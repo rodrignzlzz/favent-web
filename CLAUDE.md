@@ -12,6 +12,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 - Alojamiento: **GitHub Pages**, rama `main`, carpeta raíz. Cada push a `main` se publica en https://www.favent.app.
 - **No borrar ni modificar el archivo `CNAME`** (contiene `www.favent.app`).
 - Web estática: un único `index.html` con CSS y JS en línea, sin build ni dependencias. Mantenerlo así salvo que se pida lo contrario. Si se añaden páginas (privacidad, aviso legal, cookies), crear archivos `.html` en la raíz con el mismo estilo.
+- Única dependencia externa: el mapa real usa **Leaflet 1.9.4** (unpkg, con `integrity`) y mosaicos **CARTO Voyager** (atribución OpenStreetMap/CARTO obligatoria). Si Leaflet no carga, el listado del mapa sigue funcionando.
 - GitHub Pages no permite backend ni pagos: los formularios deben enviar a un servicio externo (Formspree, Supabase, etc.).
 
 ## Marca
