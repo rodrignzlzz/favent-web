@@ -19,6 +19,29 @@ a{color:#0F1110}a:hover{color:#3A3D3B}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6FD8;outline-offset:2px}
 [hidden]{display:none !important}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+/* Vida al pasar el ratón */
+a,button,.lift,.row-h,.day-h,.fv-pin>span{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease,background-color .2s ease,border-color .2s ease,color .2s ease,filter .2s ease}
+a[style*="999px"]:hover,button[style*="999px"]:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,17,16,0.14);filter:brightness(1.06)}
+a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);box-shadow:none}
+[role="group"] button[style*="999px"]:hover{transform:none;box-shadow:none;filter:none;color:#0F1110}
+.lift:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(15,17,16,0.10)}
+.row-h{border-radius:12px;margin:0 -10px;padding-left:10px !important;padding-right:10px !important}
+.row-h:hover{background:#F6F6F3}
+.day-h:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(15,17,16,0.10)}
+.nav-l{position:relative}
+.nav-l::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;background:#3F6FD8;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-l:hover::after{transform:scaleX(1)}
+#map-list button:hover,#team-rows button:hover{border-color:#3F6FD8 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,17,16,0.08)}
+#steps button:hover{border-color:#8CA9E8 !important;transform:translateY(-3px)}
+#app-nav button:hover{background:#ECEDE9 !important}
+.fv-pin:hover>span,.fv-pin.hot>span{transform:translate(-50%,-100%) scale(1.12) !important;box-shadow:0 10px 22px rgba(15,17,16,0.28) !important}
+.logo-dot{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+a:hover>.logo-dot{transform:scale(1.5)}
+#team-range{accent-color:#3F6FD8;width:100%;cursor:pointer}
+/* Aparición al hacer scroll (solo si hay JS y no se pide movimiento reducido) */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none !important;animation:none !important}.rv{opacity:1;transform:none}}
 #map{font-family:'Inter',sans-serif;background:#E7ECF5}
 #map .leaflet-tile-pane{filter:saturate(0.55) brightness(1.03)}
 #map .leaflet-control-attribution{font-size:10px;background:rgba(255,255,255,0.85);color:#4C504D}
@@ -37,14 +60,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
 
   <nav style="position: relative; max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between" aria-label="Principal">
     <div style="display: flex; align-items: center; gap: 10px">
-      <a href="#" style="display: flex; align-items: baseline; gap: 3px; text-decoration: none; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.05em">favent<span style="width: 7px; height: 7px; border-radius: 4px; background: #3F6FD8"></span></a>
+      <a href="#" style="display: flex; align-items: baseline; gap: 3px; text-decoration: none; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.05em">favent<span class="logo-dot" style="width: 7px; height: 7px; border-radius: 4px; background: #3F6FD8"></span></a>
       <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #4C504D; border: 1px solid #DADBD6; padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
-      <a href="#como" style="text-decoration: none">Cómo funciona</a>
-      <a href="#hoteles" style="text-decoration: none">Si recomiendas</a>
-      <a href="#hoteles" style="text-decoration: none">Si ofreces servicios</a>
-      <a href="#" style="text-decoration: none">Precios</a>
+      <a href="#como" class="nav-l" style="text-decoration: none">Cómo funciona</a>
+      <a href="#hoteles" class="nav-l" style="text-decoration: none">Si recomiendas</a>
+      <a href="#hoteles" class="nav-l" style="text-decoration: none">Si ofreces servicios</a>
+      <a href="#equipos" class="nav-l" style="text-decoration: none">Equipos</a>
+      <a href="#" class="nav-l" style="text-decoration: none">Precios</a>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
       <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
@@ -94,22 +118,22 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
           </div>
           <div style="display: flex; flex-direction: column">
             
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
+              <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Chárter privado · día completo</span><span style="font-size: 12px; color: #6A6E6B">Velas del Norte · Sáb 12 abr · 8 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">180,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #D8E1F2; color: #274586">Retenida</span>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
+              <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Yate con patrón · semana</span><span style="font-size: 12px; color: #6A6E6B">Yates Formentor · 3–10 may · 6 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">1.250,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #F0F1ED; color: #3A3D3B">Pendiente de pago</span>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
+              <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Catamarán privado al atardecer</span><span style="font-size: 12px; color: #6A6E6B">Velas del Norte · Vie 11 abr · 10 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">160,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Liberada</span>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
+              <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Velero clásico · día completo</span><span style="font-size: 12px; color: #6A6E6B">Mar Blau Yachting · Jue 10 abr · 6 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">210,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Liberada</span>
@@ -155,15 +179,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     </div>
     <div style="display: flex; flex-direction: column; gap: 16px">
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+      <div class="lift" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Acuerdos por relación</span>
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D; max-width: 460px">Porcentaje o importe fijo, pactado una vez con cada socio. Cada reserva copia el acuerdo vigente: nada se discute después.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 10px">
-          <div style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Hotel Miramar → Velas del Norte</span><span style="font-size: 12px; color: #6A6E6B">Charter · desde enero</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">12 %</span></div>
-          <div style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Laura C. → Yates Formentor</span><span style="font-size: 12px; color: #6A6E6B">Chárter semanal · importe fijo</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">600,00 €</span></div>
+          <div class="lift" style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Hotel Miramar → Velas del Norte</span><span style="font-size: 12px; color: #6A6E6B">Charter · desde enero</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">12 %</span></div>
+          <div class="lift" style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Laura C. → Yates Formentor</span><span style="font-size: 12px; color: #6A6E6B">Chárter semanal · importe fijo</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">600,00 €</span></div>
         </div>
       </div>
-      <div style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Señal retenida</span>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">El cliente paga la comisión al reservar. Stripe la custodia hasta que el servicio se presta.</span>
         <span style="margin-top: auto; align-self: flex-start; font-size: 13px; font-weight: 600; background: #8CA9E8; color: #0F1110; padding: 6px 12px; border-radius: 999px">Pagada · retenida</span>
@@ -171,7 +195,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     </div>
 
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div style="flex: 1 1 260px; min-width: 0; background: #E7ECF5; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #E7ECF5; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Canje por código</span>
         <span style="font-size: 15px; line-height: 1.55; color: #3A3D3B">Al prestar el servicio se escanea el QR del cliente. Ese escaneo libera la comisión.</span>
         <div style="margin-top: auto; align-self: flex-start; background: #FFFFFF; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 10px">
@@ -180,7 +204,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
         </div>
       </div>
 
-      <div style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <div class="lift" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
         <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start">
           <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Agenda sincronizada</span>
           <div style="display: flex; gap: 4px; background: #F3F3F0; padding: 4px; border-radius: 999px" role="group" aria-label="Modo de reserva">
@@ -196,25 +220,25 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
             </div>
             <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
               
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Lun</span><span style="font-size: 15px; font-weight: 600">7</span><span style="font-size: 10px">Libre</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Mar</span><span style="font-size: 15px; font-weight: 600">8</span><span style="font-size: 10px">Completo</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Mié</span><span style="font-size: 15px; font-weight: 600">9</span><span style="font-size: 10px">Libre</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Jue</span><span style="font-size: 15px; font-weight: 600">10</span><span style="font-size: 10px">1 plaza</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Vie</span><span style="font-size: 15px; font-weight: 600">11</span><span style="font-size: 10px">Completo</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #3F6FD8; color: #FFFFFF; border: 1px solid #3F6FD8; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #3F6FD8; color: #FFFFFF; border: 1px solid #3F6FD8; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Sáb</span><span style="font-size: 15px; font-weight: 600">12</span><span style="font-size: 10px">2 plazas</span>
                 </div>
-                <div style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
+                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
                   <span style="font-size: 11px">Dom</span><span style="font-size: 15px; font-weight: 600">13</span><span style="font-size: 10px">Libre</span>
                 </div>
             </div>
@@ -241,15 +265,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     </div>
 
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Protección ante no-shows</span>
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas. Si cancela quien presta el servicio, reembolso total.</span>
       </div>
-      <div style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Reputación pública</span>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Valoraciones mutuas y ranking: quien mejor trabaja recibe más clientes.</span>
       </div>
-      <div style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Extracto mensual</span>
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Reservas, comisiones cobradas, retenidas y reembolsadas, listo para tu gestoría cada mes.</span>
       </div>
@@ -297,9 +321,9 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Tras cada servicio, las dos empresas se valoran. Con el tiempo, los mejores aparecen primero y reciben más clientes.</span>
       </div>
       <div style="flex: 2 1 480px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-        <div style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">01</span><span style="font-size: 14px; font-weight: 600">Se presta el servicio</span><span style="font-size: 13px; color: #6A6E6B">Código canjeado y comisión liberada.</span></div>
-        <div style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">02</span><span style="font-size: 14px; font-weight: 600">Valoración mutua</span><span style="font-size: 13px; color: #6A6E6B">Puntualidad, trato y pago, de 1 a 5.</span></div>
-        <div style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">03</span><span style="font-size: 14px; font-weight: 600">Los mejores, primero</span><span style="font-size: 13px; color: #6A6E6B">El ranking se actualiza solo.</span></div>
+        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">01</span><span style="font-size: 14px; font-weight: 600">Se presta el servicio</span><span style="font-size: 13px; color: #6A6E6B">Código canjeado y comisión liberada.</span></div>
+        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">02</span><span style="font-size: 14px; font-weight: 600">Valoración mutua</span><span style="font-size: 13px; color: #6A6E6B">Puntualidad, trato y pago, de 1 a 5.</span></div>
+        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">03</span><span style="font-size: 14px; font-weight: 600">Los mejores, primero</span><span style="font-size: 13px; color: #6A6E6B">El ranking se actualiza solo.</span></div>
       </div>
     </div>
   </section>
@@ -318,7 +342,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
   </section>
 
   <section id="hoteles" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-    <div style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div style="height: 240px; background: #E7E8E3; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #5D615E">[Foto: conserje atendiendo a un cliente]</div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em">Si recomiendas clientes</span>
@@ -326,13 +350,64 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
         <a href="#acceso" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
       </div>
     </div>
-    <div style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div style="height: 240px; background: #E7E8E3; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #5D615E">[Foto: catamarán en una cala de Mallorca]</div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em">Si ofreces servicios</span>
         <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.</span>
         <a href="#acceso" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
       </div>
+    </div>
+  </section>
+
+  <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
+      <span style="font-size: 14px; font-weight: 600; color: #274586">Para equipos</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">En un hotel, una agencia o un club suelen recomendar varias personas. Cada una tiene su número personal y su enlace: Favent atribuye cada reserva a quien la hizo, calcula su parte y te enseña quién vende qué.</p>
+    </div>
+
+    <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <span style="position: absolute; top: 14px; right: 24px; z-index: 1; font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
+
+      <div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.08); padding: 22px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
+          <div style="display: flex; align-items: center; gap: 10px"><div style="width: 28px; height: 28px; border-radius: 8px; background: #0F1110; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">HM</div><div style="display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 15px">Equipo de Hotel Miramar</span><span style="font-size: 12px; color: #6A6E6B">Este mes</span></div></div>
+          <span style="font-family: 'DM Mono', monospace; font-size: 13px; background: #F3F3F0; padding: 6px 12px; border-radius: 999px"><span id="team-sum"></span></span>
+        </div>
+        <div style="background: #F6F6F3; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><label for="team-range" style="font-size: 13px; font-weight: 600">Parte para cada persona</label><output id="team-pct" for="team-range" style="font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: #274586"></output></div>
+          <input id="team-range" type="range" min="0" max="100" step="5" value="40">
+        </div>
+        <div id="team-rows" style="display: flex; flex-direction: column; gap: 8px"></div>
+      </div>
+
+      <div style="flex: 1 1 280px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: #B4B8B4">Número personal</span>
+            <span id="t-num" style="font-family: 'DM Mono', monospace; font-size: 40px; font-weight: 500; letter-spacing: 0.02em; color: #8CA9E8; line-height: 1"></span>
+          </div>
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 8px"><div class="qr" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 64px; height: 64px" aria-hidden="true"></div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span id="t-name" style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em"></span><span id="t-role" style="font-size: 13px; color: #B4B8B4"></span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #B4B8B4">Enlace de reserva</span><span id="t-link" style="font-family: 'DM Mono', monospace; font-size: 13px; background: #1E201F; padding: 8px 12px; border-radius: 10px; overflow-wrap: anywhere"></span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+          <div style="background: #1E201F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #B4B8B4">Reservas</span><span id="t-bookings" style="font-family: 'DM Mono', monospace; font-size: 18px"></span></div>
+          <div style="background: #1E201F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #B4B8B4">Comisión generada</span><span id="t-total" style="font-family: 'DM Mono', monospace; font-size: 18px"></span></div>
+        </div>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+          <div style="height: 10px; border-radius: 999px; background: #2A2D2B; overflow: hidden; display: flex"><span id="t-bar" style="display: block; height: 100%; background: #8CA9E8; border-radius: 999px; transition: width .4s cubic-bezier(.2,.7,.2,1)"></span></div>
+          <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span><span id="t-person-l" style="color: #B4B8B4"></span> <b id="t-person" style="font-family: 'DM Mono', monospace; font-weight: 500; color: #8CA9E8"></b></span><span><span style="color: #B4B8B4">Para el hotel</span> <b id="t-company" style="font-family: 'DM Mono', monospace; font-weight: 500"></b></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">#01</span><span style="font-size: 16px; font-weight: 600">Número personal</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">%</span><span style="font-size: 16px; font-weight: 600">Reparto automático</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">+ / −</span><span style="font-size: 16px; font-weight: 600">Altas y bajas en un clic</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">↑</span><span style="font-size: 16px; font-weight: 600">Ranking del equipo</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.</span></div>
     </div>
   </section>
 
@@ -363,7 +438,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#3F6FD8', on: '#FFFFFF', tint: '#E7ECF5', soft: '#D8E1F2', bright: '#8CA9E8', text: '#274586' };
-  var S = { nav: 1, step: 2, mtype: 'Todos', msort: 'rating', pin: 0, mode: 'sync', lang: 'es' };
+  var S = { nav: 1, step: 2, mtype: 'Todos', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40 };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function eur(v) {
@@ -496,6 +571,30 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     'Privacidad': 'Privacy',
     'Condiciones': 'Terms',
     'Contacto': 'Contact',
+    'Equipos': 'Teams',
+    'Gestión de equipos': 'Team management',
+    'Para equipos': 'For teams',
+    'Todo tu equipo recomienda. Cada uno con su número.': 'Your whole team refers. Each with their own number.',
+    'En un hotel, una agencia o un club suelen recomendar varias personas. Cada una tiene su número personal y su enlace: Favent atribuye cada reserva a quien la hizo, calcula su parte y te enseña quién vende qué.': 'In a hotel, an agency or a club, several people usually refer clients. Each one has a personal number and link: Favent attributes every booking to whoever made it, calculates their share and shows you who sells what.',
+    'Equipo de Hotel Miramar': 'Hotel Miramar team',
+    'Este mes': 'This month',
+    'Parte para cada persona': 'Share for each person',
+    'Número personal': 'Personal number',
+    'Enlace de reserva': 'Booking link',
+    'Comisión generada': 'Commission generated',
+    'Para el hotel': 'For the hotel',
+    'Para': 'For',
+    'Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.': 'Each person has their own number, link and QR code. They use it when booking and the sale goes under their name.',
+    'Reparto automático': 'Automatic split',
+    'Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.': 'You decide what share of the commission goes to each person. Favent calculates it on every booking, no spreadsheets.',
+    'Altas y bajas en un clic': 'Add or remove people in one click',
+    'Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.': 'When someone joins or leaves, add or remove them without touching your agreements with partners.',
+    'Ranking del equipo': 'Team ranking',
+    'Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.': 'See who sells most and which services work best, per person and per month.',
+    'Recepción · mañana': 'Front desk · morning',
+    'Conserjería': 'Concierge',
+    'Recepción · noche': 'Front desk · night',
+    'Relaciones con clientes': 'Guest relations',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -615,6 +714,39 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       m.setZIndexOffset(on ? 1000 : 0);
     });
   }
+  var TEAM = [
+    { n: '01', name: 'Laura C.', role: 'Recepción · mañana', b: 14, c: 1680 },
+    { n: '02', name: 'Marc R.', role: 'Conserjería', b: 9, c: 1120 },
+    { n: '03', name: 'Ana P.', role: 'Recepción · noche', b: 6, c: 720 },
+    { n: '04', name: 'Toni S.', role: 'Relaciones con clientes', b: 3, c: 340 }
+  ];
+  function bookings(n) { return n + (S.lang === 'en' ? (n === 1 ? ' booking' : ' bookings') : (n === 1 ? ' reserva' : ' reservas')); }
+  function renderTeam() {
+    var max = Math.max.apply(null, TEAM.map(function (m) { return m.c; }));
+    var total = TEAM.reduce(function (a, m) { return a + m.c; }, 0);
+    $('team-sum').textContent = eur(total);
+    $('team-pct').textContent = S.share + (S.lang === 'en' ? '%' : ' %');
+    $('team-rows').innerHTML = TEAM.map(function (m, i) {
+      var on = i === S.member;
+      return '<button type="button" data-act="member" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; width: 100%; background: ' + (on ? A.tint : '#FFFFFF') + '; border: 1px solid ' + (on ? A.accent : '#ECEDE9') + '; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; cursor: pointer; font-family: \'Inter\', sans-serif; color: #0F1110">'
+        + '<span style="font-family: \'DM Mono\', monospace; font-size: 13px; font-weight: 500; min-width: 44px; height: 30px; padding: 0 8px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: ' + (on ? A.accent : '#0F1110') + '; color: #FFFFFF">#' + m.n + '</span>'
+        + '<span style="flex: 1 1 130px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">' + m.name + '</span><span style="font-size: 12px; color: #6A6E6B">' + T(m.role) + '</span></span>'
+        + '<span style="flex: 1 1 120px; display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: #4C504D"><span>' + bookings(m.b) + '</span><span style="font-family: \'DM Mono\', monospace; color: #0F1110">' + eur(m.c) + '</span></span>'
+        + '<span style="height: 6px; border-radius: 999px; background: #ECEDE9; overflow: hidden; display: block"><span style="display: block; height: 100%; width: ' + Math.round(m.c / max * 100) + '%; background: ' + A.accent + '; border-radius: 999px"></span></span></span>'
+        + '</button>';
+    }).join('');
+    var m = TEAM[S.member], person = m.c * S.share / 100;
+    $('t-num').textContent = '#' + m.n;
+    $('t-name').textContent = m.name;
+    $('t-role').textContent = T(m.role);
+    $('t-link').textContent = 'favent.app/r/miramar-' + m.n;
+    $('t-bookings').textContent = m.b;
+    $('t-total').textContent = eur(m.c);
+    $('t-bar').style.width = S.share + '%';
+    $('t-person-l').textContent = T('Para') + ' ' + m.name.split(' ')[0];
+    $('t-person').textContent = eur(person);
+    $('t-company').textContent = eur(m.c - person);
+  }
   function comm(s) { return s.pct + (S.lang === 'en' ? '% · ' : ' % · ') + eur(s.price * s.pct / 100); }
   function visible(s) { return S.mtype === 'Todos' || s.type === S.mtype; }
 
@@ -698,7 +830,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       b.style.boxShadow = on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none';
     });
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
-    renderNav(); renderModes(); renderSteps(); renderMap();
+    renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam();
   }
 
   document.addEventListener('click', function (e) {
@@ -712,7 +844,37 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     if (act === 'type') { S.mtype = v; renderMap(); }
     if (act === 'pin') { S.pin = +v; renderMap(); if (MAP) MAP.panInside([SVCS[S.pin].lat, SVCS[S.pin].lng], { padding: [60, 60] }); }
     if (act === 'lang') { setLang(v); }
+    if (act === 'member') { S.member = +v; renderTeam(); }
   });
+
+  $('team-range').addEventListener('input', function (e) { S.share = +e.target.value; renderTeam(); });
+
+  // Al pasar por la lista del mapa, se resalta su pin
+  $('map-list').addEventListener('mouseover', function (e) {
+    var b = e.target.closest('[data-act="pin"]');
+    PINS.forEach(function (m, i) { var el = m.getElement(), hot = !!b && +b.getAttribute('data-v') === i; el.classList.toggle('hot', hot); if (hot) el.style.zIndex = 2000; else m.setZIndexOffset(i === S.pin ? 1000 : 0); });
+  });
+  $('map-list').addEventListener('mouseleave', function () {
+    PINS.forEach(function (m, i) { m.getElement().classList.remove('hot'); m.setZIndexOffset(i === S.pin ? 1000 : 0); });
+  });
+
+  // Aparición suave de los bloques al hacer scroll
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('in'); io.unobserve(el);
+        setTimeout(function () { el.classList.remove('rv', 'in'); el.style.transitionDelay = ''; }, 1100);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('header > :not(#sent), section > div, #hoteles > div').forEach(function (el) {
+      var sib = el.parentNode.children, k = Array.prototype.indexOf.call(sib, el);
+      el.style.transitionDelay = Math.min(k, 4) * 70 + 'ms';
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
 
   var form = $('acceso');
   form.addEventListener('submit', function (e) {
