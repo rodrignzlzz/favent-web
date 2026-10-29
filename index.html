@@ -593,8 +593,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Ruta guiada en bici de carretera': 'Guided road cycling tour',
     'Alquiler de bici eléctrica · día': 'E-bike rental · day',
     'Cena privada en finca · grupo': 'Private dinner at a country estate · group',
-    'Acuerdo': 'Agreement', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
-    'Quien ofrece el servicio y quien recomienda acuerdan qué se vende y por cuánto.': 'The business offering the service and whoever refers agree on what is sold and for how much.',
+    'Encuentro': 'Match', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
+    'Quien tiene clientes encuentra a quien tiene el servicio.': 'Whoever has the clients meets whoever has the service.',
     'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.': 'Each service carries its agreed commission, as a percentage or a fixed amount. Every booking respects it.',
     'El cliente recibe su link de pago por email o SMS.': 'The client gets their payment link by email or text message.',
     'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.': 'Whoever refers picks the service, date and spots and adds the client’s email or mobile number. Favent sends the payment link instantly.',
@@ -655,7 +655,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
 
   var NAV = ['Inicio', 'Reservas', 'Acuerdos', 'Red', 'Liquidaciones'];
   var STEPS = [
-    { n: '01', t: 'Acuerdo', d: 'Quien ofrece el servicio y quien recomienda acuerdan qué se vende y por cuánto.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
+    { n: '01', t: 'Encuentro', d: 'Quien tiene clientes encuentra a quien tiene el servicio.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva', d: 'El cliente recibe su link de pago por email o SMS.', x: 'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.', e: 'creada' },
     { n: '03', t: 'Señal', d: 'El cliente paga la comisión con Stripe.', x: 'El cliente paga una señal igual a la comisión. Stripe custodia el dinero; nadie lo toca hasta que se presta el servicio.', e: 'pagada · retenida' },
     { n: '04', t: 'Confirmación', d: 'Todos reciben la confirmación del pago.', x: 'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.', e: 'confirmada' },
