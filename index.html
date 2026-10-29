@@ -254,8 +254,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas. Si cancela quien presta el servicio, reembolso total.</span>
       </div>
       <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Reputación pública</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Valoraciones mutuas y ranking: quien mejor trabaja recibe más clientes.</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Reputación verificada</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Valoraciones mutuas, historial y fiabilidad: quien mejor trabaja recibe más clientes.</span>
       </div>
       <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Extracto mensual</span>
@@ -307,16 +307,89 @@ a:hover>.logo-dot{transform:scale(1.5)}
         <div id="map-list" style="display: flex; flex-direction: column; gap: 10px"></div>
       </div>
     </div>
+  </section>
 
-    <div style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: clamp(20px, 3vw, 32px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
-      <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.03em">Las reseñas ordenan el mapa.</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Tras cada servicio, las dos empresas se valoran. Con el tiempo, los mejores aparecen primero y reciben más clientes.</span>
+  <section id="confianza" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
+      <span style="font-size: 14px; font-weight: 600; color: #274586">Confianza y calidad</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Las valoraciones mutuas son un comienzo, pero por sí solas pueden manipularse o quedarse cortas. Por eso cada empresa tiene una ficha de fiabilidad construida con datos reales de su actividad.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+          <span style="font-size: 16px; font-weight: 600">Identidad verificada</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada empresa verifica sus datos fiscales y su cuenta de cobro antes de operar.</span>
+        </div>
+        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/><path d="M17 17l2 2 3-4"/></svg></span>
+          <span style="font-size: 16px; font-weight: 600">Historial de cumplimiento</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Servicios prestados, cancelaciones y no-shows, registrados reserva a reserva.</span>
+        </div>
+        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span>
+          <span style="font-size: 16px; font-weight: 600">Tiempo de respuesta</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cuánto tarda cada empresa en contestar y confirmar una reserva.</span>
+        </div>
+        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          <span style="font-size: 16px; font-weight: 600">Reservas completadas</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Porcentaje de reservas que acaban con el servicio prestado y el código canjeado.</span>
+        </div>
+        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.5 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.2l6-.7z"/></svg></span>
+          <span style="font-size: 16px; font-weight: 600">Reseñas contra el fraude</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Solo valora quien ha tenido una reserva canjeada, y vigilamos los patrones sospechosos.</span>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Cada parte se gana su reputación.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">La valoran las otras empresas y la mide Favent con cada reserva.</span>
       </div>
-      <div style="flex: 2 1 480px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">01</span><span style="font-size: 14px; font-weight: 600">Se presta el servicio</span><span style="font-size: 13px; color: #6A6E6B">Código canjeado y comisión liberada.</span></div>
-        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">02</span><span style="font-size: 14px; font-weight: 600">Valoración mutua</span><span style="font-size: 13px; color: #6A6E6B">Puntualidad, trato y pago, de 1 a 5.</span></div>
-        <div class="lift" style="background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #274586">03</span><span style="font-size: 14px; font-weight: 600">Los mejores, primero</span><span style="font-size: 13px; color: #6A6E6B">El ranking se actualiza solo.</span></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; color: #0F1110; border: 1px solid #ECEDE9; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 13px; font-weight: 600; color: #274586">Quien ofrece el servicio</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">La mejor experiencia, mejor valorada.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Lo prometido, cumplido</span></div>
+      </div>
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #0F1110; color: #F4F4F1; border: 1px solid #0F1110; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 13px; font-weight: 600; color: #8CA9E8">Quien recomienda</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Describir bien también cuenta.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Quien explica el servicio tal como es, para que el cliente llegue con las expectativas correctas, y envía más clientes, recibe mejor valoración.</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Descripción fiel</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Clientes enviados</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Pocas cancelaciones</span></div>
+      </div>
+      </div>
+    </div>
+
+    <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+      <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Popularidad y fiabilidad, por separado.</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #3A3D3B">Tener muchas reseñas no es lo mismo que cumplir siempre. Los rankings lo distinguen, y las empresas nuevas tienen su propio espacio: nadie queda enterrado por llegar tarde.</span>
+      </div>
+      <div style="flex: 999 1 460px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.08); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center">
+          <div style="display: flex; gap: 4px; background: #F3F3F0; padding: 4px; border-radius: 999px" role="group" aria-label="Ordenar ranking">
+            <span id="trust-tabs" style="display: contents"></span>
+          </div>
+          <span style="font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
+        </div>
+        <div id="trust-list" style="display: flex; flex-direction: column; gap: 8px"></div>
+        <div style="border: 1px dashed #8CA9E8; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between">
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Finques del Pla</span><span style="font-size: 12px; color: #6A6E6B">Aún sin reseñas · evaluada por Favent</span></div>
+          <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Nueva en la red</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: clamp(20px, 3vw, 32px); display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center">
+      <span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 24px; background: #8CA9E8; color: #0F1110; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Nuestro compromiso en el piloto</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #B4B8B4">Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.</span>
       </div>
     </div>
   </section>
@@ -465,7 +538,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#3F6FD8', on: '#FFFFFF', tint: '#E7ECF5', soft: '#D8E1F2', bright: '#8CA9E8', text: '#274586' };
-  var S = { nav: 1, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40 };
+  var S = { nav: 1, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40, trust: 'rel' };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function eur(v) {
@@ -563,8 +636,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Registrar reserva': 'Log booking',
     'Protección ante no-shows': 'No-show protection',
     'Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas. Si cancela quien presta el servicio, reembolso total.': 'If the client doesn’t show up, the deposit is split 50/50 between the two businesses. If the business providing the service cancels, it’s a full refund.',
-    'Reputación pública': 'Public reputation',
-    'Valoraciones mutuas y ranking: quien mejor trabaja recibe más clientes.': 'Mutual ratings and rankings: the businesses that work best get more clients.',
+    'Reputación verificada': 'Verified reputation',
+    'Valoraciones mutuas, historial y fiabilidad: quien mejor trabaja recibe más clientes.': 'Mutual ratings, track record and reliability: the businesses that work best get more clients.',
     'Extracto mensual': 'Monthly statement',
     'Reservas, comisiones cobradas, retenidas y reembolsadas, listo para tu gestoría cada mes.': 'Bookings and commissions collected, held and refunded, ready for your accountant every month.',
     'Mapa de servicios': 'Service map',
@@ -574,14 +647,6 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Mapa de Mallorca con los servicios de la red': 'Map of Mallorca with the network’s services',
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
-    'Las reseñas ordenan el mapa.': 'Reviews rank the map.',
-    'Tras cada servicio, las dos empresas se valoran. Con el tiempo, los mejores aparecen primero y reciben más clientes.': 'After each service, the two businesses rate each other. Over time, the best rise to the top and get more clients.',
-    'Se presta el servicio': 'The service is delivered',
-    'Código canjeado y comisión liberada.': 'Code redeemed and commission released.',
-    'Valoración mutua': 'Mutual rating',
-    'Puntualidad, trato y pago, de 1 a 5.': 'Punctuality, service and payment, from 1 to 5.',
-    'Los mejores, primero': 'The best, first',
-    'El ranking se actualiza solo.': 'The ranking updates itself.',
     'Así se mueve una reserva.': 'How a booking moves.',
     'Estado:': 'Status:',
     'Recepción de hotel atendiendo a un huésped': 'Hotel front desk assisting a guest',
@@ -632,6 +697,37 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Pasa la reserva · 8 personas': 'Passes the booking · 8 guests',
     'Acepta la reserva': 'Accepts the booking',
     'Comisión para Velas del Norte': 'Commission for Velas del Norte',
+    'Confianza y calidad': 'Trust and quality',
+    'Un sistema de confianza, no solo estrellas.': 'A system of trust, not just stars.',
+    'Las valoraciones mutuas son un comienzo, pero por sí solas pueden manipularse o quedarse cortas. Por eso cada empresa tiene una ficha de fiabilidad construida con datos reales de su actividad.': 'Mutual ratings are a start, but on their own they can be gamed or fall short. That’s why every business has a reliability profile built from real data about its activity.',
+    'Identidad verificada': 'Verified identity',
+    'Cada empresa verifica sus datos fiscales y su cuenta de cobro antes de operar.': 'Every business verifies its tax details and payout account before it can operate.',
+    'Historial de cumplimiento': 'Delivery track record',
+    'Servicios prestados, cancelaciones y no-shows, registrados reserva a reserva.': 'Services delivered, cancellations and no-shows, recorded booking by booking.',
+    'Tiempo de respuesta': 'Response time',
+    'Cuánto tarda cada empresa en contestar y confirmar una reserva.': 'How long each business takes to reply and confirm a booking.',
+    'Reservas completadas': 'Completed bookings',
+    'Porcentaje de reservas que acaban con el servicio prestado y el código canjeado.': 'Share of bookings that end with the service delivered and the code redeemed.',
+    'Reseñas contra el fraude': 'Fraud-resistant reviews',
+    'Solo valora quien ha tenido una reserva canjeada, y vigilamos los patrones sospechosos.': 'Only businesses with a redeemed booking can leave a review, and we watch for suspicious patterns.',
+    'Popularidad y fiabilidad, por separado.': 'Popularity and reliability, kept apart.',
+    'Tener muchas reseñas no es lo mismo que cumplir siempre. Los rankings lo distinguen, y las empresas nuevas tienen su propio espacio: nadie queda enterrado por llegar tarde.': 'Having lots of reviews is not the same as always delivering. Rankings tell them apart, and new businesses get their own space: nobody gets buried for arriving late.',
+    'Ordenar ranking': 'Sort ranking',
+    'Aún sin reseñas · evaluada por Favent': 'No reviews yet · evaluated by Favent',
+    'Nueva en la red': 'New to the network',
+    'Nuestro compromiso en el piloto': 'Our commitment during the pilot',
+    'Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.': 'During the pilot, we personally evaluate every business offering services before it joins the network.',
+    'Fiabilidad': 'Reliability', 'Popularidad': 'Popularity',
+    'Cada parte se gana su reputación.': 'Each side earns its reputation.',
+    'La valoran las otras empresas y la mide Favent con cada reserva.': 'Rated by the other businesses and measured by Favent on every booking.',
+    'Quien ofrece el servicio': 'The business offering the service',
+    'La mejor experiencia, mejor valorada.': 'The best experience gets the best rating.',
+    'Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.': 'The better the client’s experience, the better the rating from whoever referred, and the higher the score in Favent.',
+    'Puntualidad': 'Punctuality', 'Trato al cliente': 'Client care', 'Lo prometido, cumplido': 'Delivers what was promised',
+    'Quien recomienda': 'Whoever refers',
+    'Describir bien también cuenta.': 'Describing it well counts too.',
+    'Quien explica el servicio tal como es, para que el cliente llegue con las expectativas correctas, y envía más clientes, recibe mejor valoración.': 'Whoever describes the service as it really is, so the client arrives with the right expectations, and sends more clients, gets a better rating.',
+    'Descripción fiel': 'Accurate description', 'Clientes enviados': 'Clients sent', 'Pocas cancelaciones': 'Few cancellations',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -731,6 +827,35 @@ a:hover>.logo-dot{transform:scale(1.5)}
     $('pins').innerHTML = SVCS.map(function (s, i) {
       var on = i === S.pin, xy = proj(s.lat, s.lng);
       return '<button type="button" class="fv-pin" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); opacity: ' + (visible(s) ? 1 : 0.3) + '; height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
+    }).join('');
+  }
+  var TRUST = [
+    { name: 'Velas del Norte', rel: 99, resp: 12, reviews: 38 },
+    { name: 'Mar Blau Yachting', rel: 94, resp: 40, reviews: 54 },
+    { name: 'Tramuntana Cycling', rel: 97, resp: 20, reviews: 29 },
+    { name: 'Cala d’Or Charters', rel: 91, resp: 55, reviews: 17 }
+  ];
+  function renderTrust() {
+    var byRel = S.trust === 'rel';
+    $('trust-tabs').innerHTML = [['rel', 'Fiabilidad'], ['pop', 'Popularidad']].map(function (m) {
+      var on = m[0] === S.trust;
+      return '<button type="button" data-act="trust" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#0F1110' : '#4C504D') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none') + '">' + T(m[1]) + '</button>';
+    }).join('');
+    var maxRev = Math.max.apply(null, TRUST.map(function (t) { return t.reviews; }));
+    var list = TRUST.slice().sort(function (a, b) { return byRel ? b.rel - a.rel : b.reviews - a.reviews; });
+    var en = S.lang === 'en';
+    $('trust-list').innerHTML = list.map(function (t, i) {
+      var w = byRel ? t.rel : Math.round(t.reviews / maxRev * 100);
+      var big = byRel ? t.rel + (en ? '%' : ' %') : t.reviews + (en ? ' reviews' : ' reseñas');
+      var meta = (en ? 'Replies in ' : 'Responde en ') + t.resp + ' min · ' + t.rel + (en ? '% completed' : ' % completadas');
+      return '<div style="border: 1px solid #ECEDE9; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center">'
+        + '<span style="font-family: \'DM Mono\', monospace; font-size: 13px; color: ' + A.text + '; width: 20px">' + (i + 1) + '</span>'
+        + '<span style="flex: 1 1 150px; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600">' + t.name
+        + '<svg width="14" height="14" viewBox="0 0 24 24" role="img" aria-label="' + (en ? 'Verified identity' : 'Identidad verificada') + '"><path d="M12 2.5l2.4 1.8 3-.1.9 2.8 2.4 1.8-.9 2.8.9 2.9-2.4 1.7-.9 2.9-3-.1L12 21.5l-2.4-1.8-3 .1-.9-2.9-2.4-1.7.9-2.9-.9-2.8 2.4-1.8.9-2.8 3 .1z" fill="' + A.accent + '"></path><path d="M8.5 12.2l2.3 2.3 4.7-4.8" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>'
+        + '<span style="font-size: 12px; color: #6A6E6B">' + meta + '</span></span>'
+        + '<span style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 6px"><span style="align-self: flex-end; font-family: \'DM Mono\', monospace; font-size: 13px">' + big + '</span>'
+        + '<span style="height: 6px; border-radius: 999px; background: #ECEDE9; overflow: hidden; display: block"><span style="display: block; height: 100%; width: ' + w + '%; background: ' + (byRel ? A.accent : '#0F1110') + '; border-radius: 999px"></span></span></span>'
+        + '</div>';
     }).join('');
   }
   var TEAM = [
@@ -861,7 +986,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
       b.style.boxShadow = on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none';
     });
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
-    renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam();
+    renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam(); renderTrust();
   }
 
   document.addEventListener('click', function (e) {
@@ -876,6 +1001,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'pin') { S.pin = +v; renderMap(); }
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
+    if (act === 'trust') { S.trust = v; renderTrust(); }
   });
 
   $('team-range').addEventListener('input', function (e) { S.share = +e.target.value; renderTeam(); });
