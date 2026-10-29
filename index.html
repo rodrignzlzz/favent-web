@@ -18,6 +18,7 @@ a{color:#0F1110}a:hover{color:#3A3D3B}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6FD8;outline-offset:2px}
 [hidden]{display:none !important}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+@media (max-width: 640px){.lang-switch{position:absolute;top:18px;right:24px}}
 </style>
 </head>
 <body>
@@ -25,7 +26,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
 
   <div style="background: #0F1110; color: #F4F4F1; font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso" style="color: #8CA9E8; text-decoration: none; font-weight: 600">Solicita acceso →</a></div>
 
-  <nav style="max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between" aria-label="Principal">
+  <nav style="position: relative; max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between" aria-label="Principal">
     <div style="display: flex; align-items: center; gap: 10px">
       <a href="#" style="display: flex; align-items: baseline; gap: 3px; text-decoration: none; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.05em">favent<span style="width: 7px; height: 7px; border-radius: 4px; background: #3F6FD8"></span></a>
       <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #4C504D; border: 1px solid #DADBD6; padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
@@ -36,7 +37,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       <a href="#hoteles" style="text-decoration: none">Si ofreces servicios</a>
       <a href="#" style="text-decoration: none">Precios</a>
     </div>
-    <div style="display: flex; gap: 8px">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+      <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
+        <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
+          <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect></svg>ES
+        </button>
+        <button type="button" data-act="lang" data-v="en" lang="en" title="English" aria-pressed="false" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
+          <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#FFFFFF"></rect><g fill="#B22234"><rect width="30" height="1.54"></rect><rect y="3.08" width="30" height="1.54"></rect><rect y="6.15" width="30" height="1.54"></rect><rect y="9.23" width="30" height="1.54"></rect><rect y="12.31" width="30" height="1.54"></rect><rect y="15.38" width="30" height="1.54"></rect><rect y="18.46" width="30" height="1.54"></rect></g><rect width="12" height="10.77" fill="#3C3B6E"></rect></svg>EN
+        </button>
+      </div>
       <a href="#" style="height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid #DADBD6; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 500; background: #FFFFFF">Entrar</a>
       <a href="#acceso" style="height: 40px; padding: 0 18px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Solicitar acceso</a>
     </div>
@@ -355,10 +364,187 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#3F6FD8', on: '#FFFFFF', tint: '#E7ECF5', soft: '#D8E1F2', bright: '#8CA9E8', text: '#274586' };
-  var S = { nav: 1, step: 2, mtype: 'Todos', msort: 'rating', pin: 0, mode: 'sync' };
+  var S = { nav: 1, step: 2, mtype: 'Todos', msort: 'rating', pin: 0, mode: 'sync', lang: 'es' };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function eur(v) { return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
+  function eur(v) {
+    var n = String(Math.round(v));
+    return S.lang === 'en' ? '€' + n.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : n.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €';
+  }
+
+  // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
+  var EN = {
+    'Favent — El canal de ventas profesional B2B': 'Favent — The professional B2B sales channel',
+    'Favent es el canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio.': 'Favent is the B2B sales channel for service businesses in Mallorca: partners agree on a commission, every referred booking is prepaid, and the commission is released automatically once the service is delivered.',
+    'Idioma': 'Language',
+    'Principal': 'Main',
+    'Piloto abierto en Mallorca ·': 'Pilot open in Mallorca ·',
+    'Solicita acceso →': 'Request access →',
+    'Cómo funciona': 'How it works',
+    'Si recomiendas': 'If you refer',
+    'Si ofreces servicios': 'If you offer services',
+    'Precios': 'Pricing',
+    'Entrar': 'Log in',
+    'Solicitar acceso': 'Request access',
+    'Red B2B de referrals · Mallorca': 'B2B referral network · Mallorca',
+    'Cada cliente que envías,': 'Every client you send,',
+    'cobrado.': 'paid.',
+    'Favent convierte tus recomendaciones en un canal de ventas profesional: acuerdos de comisión claros, cobro por adelantado y liberación automática cuando el servicio se presta.': 'Favent turns your referrals into a professional sales channel: clear commission agreements, upfront payment and automatic release once the service is delivered.',
+    'Email de empresa': 'Business email',
+    'Email de tu empresa': 'Your business email',
+    'Gracias. Te escribimos en cuanto abramos tu zona.': 'Thank you. We’ll be in touch as soon as we open your area.',
+    'Gratis durante el piloto · Pagos procesados con Stripe': 'Free during the pilot · Payments processed by Stripe',
+    'Producto': 'Product',
+    'Vista de ejemplo': 'Sample view',
+    'Buenos días, recepción': 'Good morning, front desk',
+    '+ Nueva reserva': '+ New booking',
+    'Comisión retenida': 'Commission held',
+    'Liberada este mes': 'Released this month',
+    'Acuerdos activos': 'Active agreements',
+    '1.430,00 €': '€1,430.00',
+    '3.860,00 €': '€3,860.00',
+    '1.250,00 €': '€1,250.00',
+    '600,00 €': '€600.00',
+    '210,00 €': '€210.00',
+    '180,00 €': '€180.00',
+    '160,00 €': '€160.00',
+    '12 %': '12%',
+    'Chárter privado · día completo': 'Private charter · full day',
+    'Yate con patrón · semana': 'Skippered yacht · week',
+    'Catamarán privado al atardecer': 'Private sunset catamaran',
+    'Velero clásico · día completo': 'Classic sailboat · full day',
+    'Catamarán privado · día completo': 'Private catamaran · full day',
+    'Velero · día completo': 'Sailboat · full day',
+    'Lancha privada · día completo': 'Private motorboat · full day',
+    'Velas del Norte · Sáb 12 abr · 8 personas': 'Velas del Norte · Sat 12 Apr · 8 guests',
+    'Yates Formentor · 3–10 may · 6 personas': 'Yates Formentor · 3–10 May · 6 guests',
+    'Velas del Norte · Vie 11 abr · 10 personas': 'Velas del Norte · Fri 11 Apr · 10 guests',
+    'Mar Blau Yachting · Jue 10 abr · 6 personas': 'Mar Blau Yachting · Thu 10 Apr · 6 guests',
+    'Retenida': 'Held',
+    'Pendiente de pago': 'Awaiting payment',
+    'Liberada': 'Released',
+    'Comisión liberada · 180,00 €': 'Commission released · €180.00',
+    'Velas del Norte canjeó FV-7K2Q': 'Velas del Norte redeemed FV-7K2Q',
+    'Verificada': 'Verified',
+    'Chárter privado · Sáb 12 abr': 'Private charter · Sat 12 Apr',
+    'Socios del piloto': 'Pilot partners',
+    'Diseñado con empresas de servicios de Mallorca': 'Designed with service businesses in Mallorca',
+    '[Logo socio]': '[Partner logo]',
+    'Un canal de ventas profesional': 'A professional sales channel',
+    'La forma profesional de gestionar tus comisiones.': 'The professional way to manage your commissions.',
+    'Acuerdos por relación': 'One agreement per partner',
+    'Porcentaje o importe fijo, pactado una vez con cada socio. Cada reserva copia el acuerdo vigente: nada se discute después.': 'A percentage or a fixed amount, agreed once with each partner. Every booking copies the agreement in force: nothing to argue about later.',
+    'Charter · desde enero': 'Charter · since January',
+    'Chárter semanal · importe fijo': 'Weekly charter · fixed amount',
+    'Señal retenida': 'Deposit held',
+    'El cliente paga la comisión al reservar. Stripe la custodia hasta que el servicio se presta.': 'The client pays the commission when booking. Stripe holds it until the service is delivered.',
+    'Pagada · retenida': 'Paid · held',
+    'Canje por código': 'Code redemption',
+    'Al prestar el servicio se escanea el QR del cliente. Ese escaneo libera la comisión.': 'When the service is delivered, the client’s QR code is scanned. That scan releases the commission.',
+    'Agenda sincronizada': 'Synced calendar',
+    'Modo de reserva': 'Booking mode',
+    'Conecta la agenda de la web de reservas de tu negocio y quien recomienda ve la disponibilidad real y reserva al momento. ¿Sin sistema de reservas? Funciona en manual: Favent facilita el contacto y registráis la reserva igual.': 'Connect the calendar from your business’s booking website, and whoever refers sees real availability and books instantly. No booking system? It works manually: Favent puts you in touch and you log the booking all the same.',
+    'Velas del Norte · Chárter privado': 'Velas del Norte · Private charter',
+    'Agenda conectada': 'Connected calendar',
+    'Reserva manual': 'Manual booking',
+    'Lun': 'Mon', 'Mar': 'Tue', 'Mié': 'Wed', 'Jue': 'Thu', 'Vie': 'Fri', 'Sáb': 'Sat', 'Dom': 'Sun',
+    'Libre': 'Available',
+    'Completo': 'Full',
+    '1 plaza': '1 spot',
+    '2 plazas': '2 spots',
+    'Día completo · 2 plazas': 'Full day · 2 spots',
+    'Atardecer · 18:30': 'Sunset · 18:30',
+    'Reservar ahora': 'Book now',
+    'Contacto de reservas': 'Bookings contact',
+    '[teléfono] · [email]': '[phone] · [email]',
+    'Contactas y acordáis fecha y plazas.': 'You get in touch and agree on the date and spots.',
+    'Registras la reserva en Favent.': 'You log the booking in Favent.',
+    'El cliente paga la señal como siempre.': 'The client pays the deposit as usual.',
+    'Registrar reserva': 'Log booking',
+    'Protección ante no-shows': 'No-show protection',
+    'Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas. Si cancela quien presta el servicio, reembolso total.': 'If the client doesn’t show up, the deposit is split 50/50 between the two businesses. If the business providing the service cancels, it’s a full refund.',
+    'Reputación pública': 'Public reputation',
+    'Valoraciones mutuas y ranking: quien mejor trabaja recibe más clientes.': 'Mutual ratings and rankings: the businesses that work best get more clients.',
+    'Extracto mensual': 'Monthly statement',
+    'Reservas, comisiones cobradas, retenidas y reembolsadas, listo para tu gestoría cada mes.': 'Bookings and commissions collected, held and refunded, ready for your accountant every month.',
+    'Mapa de servicios': 'Service map',
+    'Encuentra servicios cerca de ti y compara.': 'Find services near you and compare.',
+    'Precio, comisión pactada y valoraciones de cada servicio de la red, en un solo mapa. Eliges con datos, no por quién te escribió primero.': 'Price, agreed commission and ratings for every service in the network, on a single map. You choose based on data, not on who messaged you first.',
+    'Ordenar': 'Sort',
+    'Tipo de servicio': 'Service type',
+    'Mapa de Mallorca con los servicios de la red': 'Map of Mallorca with the network’s services',
+    'Tú': 'You',
+    'Proponer acuerdo': 'Propose agreement',
+    'Las reseñas ordenan el mapa.': 'Reviews rank the map.',
+    'Tras cada servicio, las dos empresas se valoran. Con el tiempo, los mejores aparecen primero y reciben más clientes.': 'After each service, the two businesses rate each other. Over time, the best rise to the top and get more clients.',
+    'Se presta el servicio': 'The service is delivered',
+    'Código canjeado y comisión liberada.': 'Code redeemed and commission released.',
+    'Valoración mutua': 'Mutual rating',
+    'Puntualidad, trato y pago, de 1 a 5.': 'Punctuality, service and payment, from 1 to 5.',
+    'Los mejores, primero': 'The best, first',
+    'El ranking se actualiza solo.': 'The ranking updates itself.',
+    'Así se mueve una reserva.': 'How a booking moves.',
+    'Estado:': 'Status:',
+    '[Foto: conserje atendiendo a un cliente]': '[Photo: concierge assisting a guest]',
+    'Si recomiendas clientes': 'If you refer clients',
+    'Hoteles, conserjerías, agencias, gestores o profesionales independientes. Cobras cada recomendación sin perseguir a nadie y, si eres empresa, ves qué empleado vende qué y decides el reparto interno.': 'Hotels, concierge desks, agencies, managers or independent professionals. Get paid for every referral without chasing anyone and, if you’re a business, see which employee sells what and decide the internal split.',
+    'Recomiendo clientes': 'I refer clients',
+    '[Foto: catamarán en una cala de Mallorca]': '[Photo: catamaran in a Mallorca cove]',
+    'Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.': 'A new sales channel without chasing anyone or keeping accounts in a notebook. Plus protection against no-shows.',
+    'Ofrezco servicios': 'I offer services',
+    'Únete al piloto en Mallorca.': 'Join the pilot in Mallorca.',
+    'El canal de ventas profesional entre empresas.': 'The professional sales channel between businesses.',
+    'Privacidad': 'Privacy',
+    'Condiciones': 'Terms',
+    'Contacto': 'Contact',
+    // Partes interactivas
+    'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
+    'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
+    'Todos': 'All', 'Chárter': 'Charter', 'Yates': 'Yachts', 'Veleros': 'Sailboats',
+    'Acuerdo': 'Agreement', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
+    'Las dos empresas pactan la comisión.': 'The two businesses agree on the commission.',
+    'Quien ofrece el servicio publica su catálogo y fija con cada socio un porcentaje o un importe fijo. Cada reserva copia el acuerdo vigente.': 'The business offering the service publishes its catalogue and sets a percentage or a fixed amount with each partner. Every booking copies the agreement in force.',
+    'acuerdo activo': 'agreement active',
+    'Quien recomienda mete el email del cliente.': 'Whoever refers enters the client’s email.',
+    'Quien recomienda elige servicio y fecha e introduce el email del cliente. Favent le envía el link de pago al momento.': 'Whoever refers picks the service and date and enters the client’s email. Favent sends the client the payment link instantly.',
+    'creada': 'created',
+    'El cliente paga la comisión con Stripe.': 'The client pays the commission with Stripe.',
+    'El cliente paga una señal igual a la comisión. Stripe custodia el dinero; nadie lo toca hasta que se presta el servicio.': 'The client pays a deposit equal to the commission. Stripe holds the money; nobody touches it until the service is delivered.',
+    'pagada · retenida': 'paid · held',
+    'Se confirma la plaza al momento.': 'The spot is confirmed instantly.',
+    'Quien presta el servicio recibe el aviso y confirma la plaza. Si no confirma a tiempo, la señal se devuelve sola.': 'The business providing the service is notified and confirms the spot. If it doesn’t confirm in time, the deposit is refunded automatically.',
+    'confirmada': 'confirmed',
+    'Se escanea el código al prestar el servicio.': 'The code is scanned when the service is delivered.',
+    'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.': 'On the day of the service, the client’s QR code is scanned. That scan is the proof of referral.',
+    'canjeada': 'redeemed',
+    'La comisión llega a la empresa.': 'The commission reaches the business.',
+    'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.': 'Favent transfers the commission to the account of whoever referred. If that’s a business, it decides the internal split.',
+    'liquidada': 'settled',
+    'Nuevo · aún sin reseñas': 'New · no reviews yet', 'desde': 'from', 'Comisión': 'Commission'
+  };
+  function T(t) { return S.lang === 'en' && EN[t] ? EN[t] : t; }
+
+  // Recoge una vez los textos fijos y atributos traducibles de la página.
+  var I18N = [];
+  (function () {
+    function norm(t) { return t.replace(/\s+/g, ' ').trim(); }
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) {
+      var k = norm(n.nodeValue);
+      if (!EN[k] || n.parentNode.closest('script')) continue;
+      var m = /^(\s*)[\s\S]*?(\s*)$/.exec(n.nodeValue);
+      I18N.push({ node: n, es: n.nodeValue, en: m[1] + EN[k] + m[2] });
+    }
+    document.querySelectorAll('[aria-label], [placeholder]').forEach(function (el) {
+      ['aria-label', 'placeholder'].forEach(function (a) {
+        var v = el.getAttribute(a);
+        if (v && EN[v]) I18N.push({ el: el, attr: a, es: v, en: EN[v] });
+      });
+    });
+    var d = document.querySelector('meta[name="description"]');
+    I18N.push({ el: d, attr: 'content', es: d.content, en: EN[d.content] });
+    I18N.push({ title: true, es: document.title, en: EN[document.title] });
+  })();
 
   // QR decorativo
   (function () {
@@ -392,19 +578,19 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     { name: 'Andratx Sailing', svc: 'Velero · día completo', type: 'Veleros', place: 'Port d’Andratx', x: 12, y: 57, price: 1100, pct: 14, rating: 0, reviews: 0 },
     { name: 'Sóller Boats', svc: 'Lancha privada · día completo', type: 'Chárter', place: 'Port de Sóller', x: 32, y: 33, price: 900, pct: 15, rating: 4.9, reviews: 12 }
   ];
-  function comm(s) { return s.pct + ' % · ' + eur(s.price * s.pct / 100); }
+  function comm(s) { return s.pct + (S.lang === 'en' ? '% · ' : ' % · ') + eur(s.price * s.pct / 100); }
   function visible(s) { return S.mtype === 'Todos' || s.type === S.mtype; }
 
   function renderNav() {
     $('app-nav').innerHTML = NAV.map(function (l, i) {
       var on = i === S.nav;
-      return '<button type="button" data-act="nav" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; padding: 8px 10px; border: 0; border-radius: 10px; background: ' + (on ? A.soft : 'transparent') + '; font-family: \'Inter\', sans-serif; font-size: 14px; font-weight: ' + (on ? 600 : 400) + '; color: ' + (on ? A.text : '#2A2D2B') + '; cursor: pointer">' + l + '</button>';
+      return '<button type="button" data-act="nav" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; padding: 8px 10px; border: 0; border-radius: 10px; background: ' + (on ? A.soft : 'transparent') + '; font-family: \'Inter\', sans-serif; font-size: 14px; font-weight: ' + (on ? 600 : 400) + '; color: ' + (on ? A.text : '#2A2D2B') + '; cursor: pointer">' + T(l) + '</button>';
     }).join('');
   }
   function renderModes() {
     $('modes').innerHTML = [['sync', 'Agenda conectada'], ['manual', 'Reserva manual']].map(function (m) {
       var on = m[0] === S.mode;
-      return '<button type="button" data-act="mode" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#0F1110' : '#4C504D') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none') + '">' + m[1] + '</button>';
+      return '<button type="button" data-act="mode" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#0F1110' : '#4C504D') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none') + '">' + T(m[1]) + '</button>';
     }).join('');
     $('panel-sync').hidden = S.mode !== 'sync';
     $('panel-manual').hidden = S.mode !== 'manual';
@@ -414,24 +600,24 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       var on = i === S.step;
       return '<button type="button" data-act="step" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; border: 1px solid ' + (on ? A.accent : '#2A2D2B') + '; background: ' + (on ? A.accent : 'transparent') + '; color: ' + (on ? A.on : '#F4F4F1') + '; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; font-family: \'Inter\', sans-serif">'
         + '<span style="font-family: \'DM Mono\', monospace; font-size: 14px; color: ' + (on ? A.on : A.bright) + '">' + s.n + '</span>'
-        + '<span style="font-family: \'Inter Tight\', sans-serif; font-size: 18px; font-weight: 600">' + s.t + '</span>'
-        + '<span style="font-size: 14px; line-height: 1.5; color: ' + (on ? A.on : '#B4B8B4') + '">' + s.d + '</span></button>';
+        + '<span style="font-family: \'Inter Tight\', sans-serif; font-size: 18px; font-weight: 600">' + T(s.t) + '</span>'
+        + '<span style="font-size: 14px; line-height: 1.5; color: ' + (on ? A.on : '#B4B8B4') + '">' + T(s.d) + '</span></button>';
     }).join('');
-    $('step-detail').textContent = STEPS[S.step].x;
-    $('step-state').textContent = STEPS[S.step].e;
+    $('step-detail').textContent = T(STEPS[S.step].x);
+    $('step-state').textContent = T(STEPS[S.step].e);
   }
   function pill(act, v, label, on, kind) {
     var bg, fg, bd, h = kind === 'sort' ? 38 : 36, fw = kind === 'sort' ? 600 : 500;
     if (kind === 'sort') { bg = on ? A.soft : '#FFFFFF'; fg = on ? A.text : '#0F1110'; bd = on ? A.accent : '#DADBD6'; }
     else { bg = on ? '#0F1110' : '#FFFFFF'; fg = on ? '#FFFFFF' : '#0F1110'; bd = on ? '#0F1110' : '#DADBD6'; }
-    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: ' + h + 'px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + bd + '; background: ' + bg + '; color: ' + fg + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: ' + fw + '; cursor: pointer">' + label + '</button>';
+    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: ' + h + 'px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + bd + '; background: ' + bg + '; color: ' + fg + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: ' + fw + '; cursor: pointer">' + T(label) + '</button>';
   }
   function renderMap() {
     $('sorts').innerHTML = [['rating', 'Mejor valorados'], ['comm', 'Mayor comisión'], ['price', 'Menor precio']].map(function (o) { return pill('sort', o[0], o[1], o[0] === S.msort, 'sort'); }).join('');
     $('chips').innerHTML = ['Todos', 'Chárter', 'Yates', 'Veleros'].map(function (t) { return pill('type', t, t, t === S.mtype, 'chip'); }).join('');
     $('pins').innerHTML = SVCS.map(function (s, i) {
       var on = i === S.pin;
-      return '<button type="button" data-act="pin" data-v="' + i + '" aria-label="' + esc(s.name + ', ' + s.place + ', comisión ' + comm(s)) + '" style="position: absolute; left: ' + s.x + '%; top: ' + s.y + '%; transform: translate(-50%, -100%); opacity: ' + (visible(s) ? 1 : 0.25) + '; height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
+      return '<button type="button" data-act="pin" data-v="' + i + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + s.x + '%; top: ' + s.y + '%; transform: translate(-50%, -100%); opacity: ' + (visible(s) ? 1 : 0.25) + '; height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
     }).join('');
     var list = SVCS.map(function (s, i) { return Object.assign({ i: i, c: s.price * s.pct / 100 }, s); }).filter(visible);
     list.sort(function (a, b) {
@@ -439,23 +625,46 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       if (S.msort === 'price') return a.price - b.price;
       return (b.reviews ? b.rating : -1) - (a.reviews ? a.rating : -1);
     });
-    $('results').textContent = list.length + (list.length === 1 ? ' servicio' : ' servicios') + ' de ejemplo en Mallorca';
+    $('results').textContent = S.lang === 'en'
+      ? list.length + (list.length === 1 ? ' sample service' : ' sample services') + ' in Mallorca'
+      : list.length + (list.length === 1 ? ' servicio' : ' servicios') + ' de ejemplo en Mallorca';
     $('map-list').innerHTML = list.map(function (s) {
       var on = s.i === S.pin;
-      var rating = s.reviews ? s.rating.toFixed(1).replace('.', ',') + ' · ' + s.reviews + ' reseñas' : 'Nuevo · aún sin reseñas';
+      var rating = !s.reviews ? T('Nuevo · aún sin reseñas')
+        : S.lang === 'en' ? s.rating.toFixed(1) + ' · ' + s.reviews + ' reviews'
+        : s.rating.toFixed(1).replace('.', ',') + ' · ' + s.reviews + ' reseñas';
       return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" style="text-align: left; width: 100%; background: ' + (on ? A.tint : '#FFFFFF') + '; border: 1px solid ' + (on ? A.accent : '#ECEDE9') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Inter\', sans-serif; color: #0F1110">'
         + '<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><span style="font-size: 15px; font-weight: 600">' + s.name + '</span><span style="font-size: 12px; color: #6A6E6B">' + s.place + '</span></div>'
-        + '<span style="font-size: 13px; color: #4C504D">' + s.svc + '</span>'
+        + '<span style="font-size: 13px; color: #4C504D">' + T(s.svc) + '</span>'
         + '<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">'
-        + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; background: #F3F3F0; padding: 4px 8px; border-radius: 999px">desde ' + eur(s.price) + '</span>'
+        + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; background: #F3F3F0; padding: 4px 8px; border-radius: 999px">' + T('desde') + ' ' + eur(s.price) + '</span>'
         + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; background: ' + A.soft + '; color: ' + A.text + '; padding: 4px 8px; border-radius: 999px">' + comm(s) + '</span>'
         + '<span style="display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: ' + (s.reviews ? '#0F1110' : '#6A6E6B') + '"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="' + (s.reviews ? '#0F1110' : '#C9CBC5') + '"></path></svg>' + rating + '</span>'
         + '</div></button>';
     }).join('');
     var sel = SVCS[S.pin];
     $('sel-name').textContent = sel.name;
-    $('sel-meta').textContent = sel.svc + ' · ' + sel.place;
-    $('sel-comm').textContent = 'Comisión ' + comm(sel);
+    $('sel-meta').textContent = T(sel.svc) + ' · ' + sel.place;
+    $('sel-comm').textContent = T('Comisión') + ' ' + comm(sel);
+  }
+
+  function setLang(l) {
+    S.lang = l === 'en' ? 'en' : 'es';
+    document.documentElement.lang = S.lang;
+    I18N.forEach(function (x) {
+      var v = x[S.lang];
+      if (x.node) x.node.nodeValue = v;
+      else if (x.title) document.title = v;
+      else x.el.setAttribute(x.attr, v);
+    });
+    document.querySelectorAll('[data-act="lang"]').forEach(function (b) {
+      var on = b.getAttribute('data-v') === S.lang;
+      b.setAttribute('aria-pressed', on);
+      b.style.background = on ? '#FFFFFF' : 'transparent';
+      b.style.boxShadow = on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none';
+    });
+    try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
+    renderNav(); renderModes(); renderSteps(); renderMap();
   }
 
   document.addEventListener('click', function (e) {
@@ -468,6 +677,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') { S.mtype = v; renderMap(); }
     if (act === 'pin') { S.pin = +v; renderMap(); }
+    if (act === 'lang') { setLang(v); }
   });
 
   var form = $('acceso');
@@ -481,7 +691,9 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
       .then(done).catch(done);
   });
 
-  renderNav(); renderModes(); renderSteps(); renderMap();
+  var startLang = new URLSearchParams(location.search).get('lang');
+  if (!startLang) { try { startLang = localStorage.getItem('favent-lang'); } catch (e) {} }
+  setLang(startLang || 'es');
 })();
 </script>
 
