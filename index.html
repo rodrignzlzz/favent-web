@@ -28,9 +28,6 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 .row-h{border-radius:12px;margin:0 -10px;padding-left:10px !important;padding-right:10px !important}
 .row-h:hover{background:#F6F6F3}
 .day-h:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(15,17,16,0.10)}
-.nav-l{position:relative}
-.nav-l::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;background:#3F6FD8;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
-.nav-l:hover::after{transform:scaleX(1)}
 #map-list button:hover,#team-rows button:hover{border-color:#3F6FD8 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,17,16,0.08)}
 #steps button:hover{border-color:#8CA9E8 !important;transform:translateY(-3px)}
 #app-nav button:hover{background:#ECEDE9 !important}
@@ -49,7 +46,9 @@ a:hover>.logo-dot{transform:scale(1.5)}
 #map .leaflet-control-zoom a{color:#0F1110}
 .fv-pin:focus{outline:none}
 .fv-pin:focus-visible>span{outline:2px solid #3F6FD8;outline-offset:2px}
-@media (max-width: 640px){.lang-switch{position:absolute;top:18px;right:24px}#map{aspect-ratio:auto !important;height:440px}}
+.topnav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.n-brand{justify-self:start}.n-cta{justify-self:center}.lang-switch{justify-self:end}
+@media (max-width: 640px){.topnav{grid-template-columns:1fr auto;row-gap:14px}.n-cta{grid-column:1 / -1;grid-row:2}#map{aspect-ratio:auto !important;height:440px}}
 </style>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
@@ -58,29 +57,22 @@ a:hover>.logo-dot{transform:scale(1.5)}
 
   <div style="background: #0F1110; color: #F4F4F1; font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso" style="color: #8CA9E8; text-decoration: none; font-weight: 600">Solicita acceso →</a></div>
 
-  <nav style="position: relative; max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between" aria-label="Principal">
-    <div style="display: flex; align-items: center; gap: 10px">
+  <nav class="topnav" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px" aria-label="Principal">
+    <div class="n-brand" style="display: flex; align-items: center; gap: 10px">
       <a href="#" style="display: flex; align-items: baseline; gap: 3px; text-decoration: none; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.05em">favent<span class="logo-dot" style="width: 7px; height: 7px; border-radius: 4px; background: #3F6FD8"></span></a>
       <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #4C504D; border: 1px solid #DADBD6; padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 500">
-      <a href="#como" class="nav-l" style="text-decoration: none">Cómo funciona</a>
-      <a href="#hoteles" class="nav-l" style="text-decoration: none">Si recomiendas</a>
-      <a href="#hoteles" class="nav-l" style="text-decoration: none">Si ofreces servicios</a>
-      <a href="#equipos" class="nav-l" style="text-decoration: none">Equipos</a>
-      <a href="#" class="nav-l" style="text-decoration: none">Precios</a>
-    </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-      <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
-        <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
-          <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect></svg>ES
-        </button>
-        <button type="button" data-act="lang" data-v="en" lang="en" title="English" aria-pressed="false" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
-          <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#FFFFFF"></rect><g fill="#B22234"><rect width="30" height="1.54"></rect><rect y="3.08" width="30" height="1.54"></rect><rect y="6.15" width="30" height="1.54"></rect><rect y="9.23" width="30" height="1.54"></rect><rect y="12.31" width="30" height="1.54"></rect><rect y="15.38" width="30" height="1.54"></rect><rect y="18.46" width="30" height="1.54"></rect></g><rect width="12" height="10.77" fill="#3C3B6E"></rect></svg>EN
-        </button>
-      </div>
+    <div class="n-cta" style="display: flex; gap: 8px; align-items: center">
       <a href="#" style="height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid #DADBD6; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 500; background: #FFFFFF">Entrar</a>
       <a href="#acceso" style="height: 40px; padding: 0 18px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Solicitar acceso</a>
+    </div>
+    <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
+      <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
+        <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#AA151B"></rect><rect y="5" width="30" height="10" fill="#F1BF00"></rect></svg>ES
+      </button>
+      <button type="button" data-act="lang" data-v="en" lang="en" title="English" aria-pressed="false" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: #0F1110; cursor: pointer">
+        <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 17, 16, 0.12)"><rect width="30" height="20" fill="#FFFFFF"></rect><g fill="#B22234"><rect width="30" height="1.54"></rect><rect y="3.08" width="30" height="1.54"></rect><rect y="6.15" width="30" height="1.54"></rect><rect y="9.23" width="30" height="1.54"></rect><rect y="12.31" width="30" height="1.54"></rect><rect y="15.38" width="30" height="1.54"></rect><rect y="18.46" width="30" height="1.54"></rect></g><rect width="12" height="10.77" fill="#3C3B6E"></rect></svg>EN
+      </button>
     </div>
   </nav>
 
