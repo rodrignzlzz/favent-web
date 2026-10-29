@@ -54,7 +54,6 @@ a:hover>.logo-dot{transform:scale(1.5)}
       <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #4C504D; border: 1px solid #DADBD6; padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
     <div class="n-cta" style="display: flex; gap: 8px; align-items: center">
-      <a href="#" style="height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid #DADBD6; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 500; background: #FFFFFF">Entrar</a>
       <a href="#acceso" style="height: 40px; padding: 0 18px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Solicitar acceso</a>
     </div>
     <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
@@ -276,7 +275,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
       </div>
     </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Tipo de servicio">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Categorías">
       <span id="chips" style="display: contents"></span>
     </div>
 
@@ -430,7 +429,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#3F6FD8', on: '#FFFFFF', tint: '#E7ECF5', soft: '#D8E1F2', bright: '#8CA9E8', text: '#274586' };
-  var S = { nav: 1, step: 2, mtype: 'Todos', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40 };
+  var S = { nav: 1, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40 };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function eur(v) {
@@ -450,7 +449,6 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Si recomiendas': 'If you refer',
     'Si ofreces servicios': 'If you offer services',
     'Precios': 'Pricing',
-    'Entrar': 'Log in',
     'Solicitar acceso': 'Request access',
     'Red B2B de referrals · Mallorca': 'B2B referral network · Mallorca',
     'Cada cliente que envías,': 'Every client you send,',
@@ -537,7 +535,6 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Encuentra servicios cerca de ti y compara.': 'Find services near you and compare.',
     'Precio, comisión pactada y valoraciones de cada servicio de la red, en un solo mapa. Eliges con datos, no por quién te escribió primero.': 'Price, agreed commission and ratings for every service in the network, on a single map. You choose based on data, not on who messaged you first.',
     'Ordenar': 'Sort',
-    'Tipo de servicio': 'Service type',
     'Mapa de Mallorca con los servicios de la red': 'Map of Mallorca with the network’s services',
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
@@ -590,7 +587,12 @@ a:hover>.logo-dot{transform:scale(1.5)}
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
-    'Todos': 'All', 'Chárter': 'Charter', 'Yates': 'Yachts', 'Veleros': 'Sailboats',
+    'Categorías': 'Categories',
+    'Todas': 'All', 'Náutica': 'Nautical', 'Traslados': 'Transfers', 'Ciclismo': 'Cycling', 'Eventos': 'Events', 'Alquiler': 'Rentals',
+    'Traslado privado aeropuerto–hotel': 'Private airport–hotel transfer',
+    'Ruta guiada en bici de carretera': 'Guided road cycling tour',
+    'Alquiler de bici eléctrica · día': 'E-bike rental · day',
+    'Cena privada en finca · grupo': 'Private dinner at a country estate · group',
     'Acuerdo': 'Agreement', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
     'Las dos empresas pactan la comisión.': 'The two businesses agree on the commission.',
     'Quien ofrece el servicio publica su catálogo y fija con cada socio un porcentaje o un importe fijo. Cada reserva copia el acuerdo vigente.': 'The business offering the service publishes its catalogue and sets a percentage or a fixed amount with each partner. Every booking copies the agreement in force.',
@@ -661,12 +663,13 @@ a:hover>.logo-dot{transform:scale(1.5)}
     { n: '06', t: 'Liberación', d: 'La comisión llega a la empresa.', x: 'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.', e: 'liquidada' }
   ];
   var SVCS = [
-    { name: 'Velas del Norte', svc: 'Chárter privado · día completo', type: 'Chárter', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
-    { name: 'Yates Formentor', svc: 'Yate con patrón · semana', type: 'Yates', place: 'Port d’Alcúdia', lat: 39.8370, lng: 3.1395, price: 9800, pct: 10, rating: 4.8, reviews: 21 },
-    { name: 'Mar Blau Yachting', svc: 'Velero clásico · día completo', type: 'Veleros', place: 'Palma', lat: 39.5660, lng: 2.6370, price: 1400, pct: 15, rating: 4.7, reviews: 54 },
-    { name: 'Cala d’Or Charters', svc: 'Catamarán privado · día completo', type: 'Chárter', place: 'Cala d’Or', lat: 39.3720, lng: 3.2330, price: 1200, pct: 13, rating: 4.6, reviews: 17 },
-    { name: 'Andratx Sailing', svc: 'Velero · día completo', type: 'Veleros', place: 'Port d’Andratx', lat: 39.5440, lng: 2.3870, price: 1100, pct: 14, rating: 0, reviews: 0 },
-    { name: 'Sóller Boats', svc: 'Lancha privada · día completo', type: 'Chárter', place: 'Port de Sóller', lat: 39.7970, lng: 2.6930, price: 900, pct: 15, rating: 4.9, reviews: 12 }
+    { name: 'Velas del Norte', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
+    { name: 'Mar Blau Yachting', svc: 'Velero clásico · día completo', type: 'Náutica', place: 'Palma', lat: 39.5660, lng: 2.6370, price: 1400, pct: 15, rating: 4.7, reviews: 54 },
+    { name: 'Cala d’Or Charters', svc: 'Catamarán privado · día completo', type: 'Náutica', place: 'Cala d’Or', lat: 39.3720, lng: 3.2330, price: 1200, pct: 13, rating: 4.6, reviews: 17 },
+    { name: 'Llevant Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Cala Millor', lat: 39.5970, lng: 3.3830, price: 95, pct: 15, rating: 4.8, reviews: 63 },
+    { name: 'Tramuntana Cycling', svc: 'Ruta guiada en bici de carretera', type: 'Ciclismo', place: 'Sóller', lat: 39.7667, lng: 2.7150, price: 120, pct: 15, rating: 4.9, reviews: 29 },
+    { name: 'Badia Bike Rental', svc: 'Alquiler de bici eléctrica · día', type: 'Alquiler', place: 'Can Picafort', lat: 39.7672, lng: 3.1560, price: 45, pct: 20, rating: 4.5, reviews: 11 },
+    { name: 'Finques del Pla', svc: 'Cena privada en finca · grupo', type: 'Eventos', place: 'Algaida', lat: 39.5590, lng: 2.8940, price: 2400, pct: 10, rating: 0, reviews: 0 }
   ];
   var ME = [39.7210, 2.9100]; // "Tú": Inca
   // Proyección del contorno de Mallorca (Natural Earth, dominio público) al SVG de 600×494
@@ -716,7 +719,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     $('t-company').textContent = eur(m.c - person);
   }
   function comm(s) { return s.pct + (S.lang === 'en' ? '% · ' : ' % · ') + eur(s.price * s.pct / 100); }
-  function visible(s) { return S.mtype === 'Todos' || s.type === S.mtype; }
+  function visible(s) { return S.mtype === 'Todas' || s.type === S.mtype; }
 
   function renderNav() {
     $('app-nav').innerHTML = NAV.map(function (l, i) {
@@ -743,15 +746,27 @@ a:hover>.logo-dot{transform:scale(1.5)}
     $('step-detail').textContent = T(STEPS[S.step].x);
     $('step-state').textContent = T(STEPS[S.step].e);
   }
-  function pill(act, v, label, on, kind) {
-    var bg, fg, bd, h = kind === 'sort' ? 38 : 36, fw = kind === 'sort' ? 600 : 500;
-    if (kind === 'sort') { bg = on ? A.soft : '#FFFFFF'; fg = on ? A.text : '#0F1110'; bd = on ? A.accent : '#DADBD6'; }
-    else { bg = on ? '#0F1110' : '#FFFFFF'; fg = on ? '#FFFFFF' : '#0F1110'; bd = on ? '#0F1110' : '#DADBD6'; }
-    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: ' + h + 'px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + bd + '; background: ' + bg + '; color: ' + fg + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: ' + fw + '; cursor: pointer">' + T(label) + '</button>';
+  function pill(act, v, label, on) {
+    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + (on ? A.accent : '#DADBD6') + '; background: ' + (on ? A.soft : '#FFFFFF') + '; color: ' + (on ? A.text : '#0F1110') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">' + T(label) + '</button>';
+  }
+  var CATS = [
+    ['Todas', '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>'],
+    ['Náutica', '<path d="M12 3v12M12 4l7 11h-7M5 15l1 0M3 18c3 2 15 2 18 0"/>'],
+    ['Traslados', '<path d="M4 15v-3l2-5h12l2 5v3zM4 12h16"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/>'],
+    ['Ciclismo', '<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h6l2 7M10 9l3 7h-7M9 6h3"/>'],
+    ['Eventos', '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>'],
+    ['Alquiler', '<circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/>']
+  ];
+  function catChip(c) {
+    var on = c[0] === S.mtype;
+    var n = c[0] === 'Todas' ? SVCS.length : SVCS.filter(function (s) { return s.type === c[0]; }).length;
+    return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? '#0F1110' : '#DADBD6') + '; background: ' + (on ? '#0F1110' : '#FFFFFF') + '; color: ' + (on ? '#FFFFFF' : '#0F1110') + '; display: flex; align-items: center; gap: 8px; font-family: \'Inter\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
+      + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (on ? A.accent : A.tint) + '; color: ' + (on ? '#FFFFFF' : A.text) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
+      + T(c[0]) + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? '#B4B8B4' : '#6A6E6B') + '">' + n + '</span></button>';
   }
   function renderMap() {
-    $('sorts').innerHTML = [['rating', 'Mejor valorados'], ['comm', 'Mayor comisión'], ['price', 'Menor precio']].map(function (o) { return pill('sort', o[0], o[1], o[0] === S.msort, 'sort'); }).join('');
-    $('chips').innerHTML = ['Todos', 'Chárter', 'Yates', 'Veleros'].map(function (t) { return pill('type', t, t, t === S.mtype, 'chip'); }).join('');
+    $('sorts').innerHTML = [['rating', 'Mejor valorados'], ['comm', 'Mayor comisión'], ['price', 'Menor precio']].map(function (o) { return pill('sort', o[0], o[1], o[0] === S.msort); }).join('');
+    $('chips').innerHTML = CATS.map(catChip).join('');
     renderPins();
     var list = SVCS.map(function (s, i) { return Object.assign({ i: i, c: s.price * s.pct / 100 }, s); }).filter(visible);
     list.sort(function (a, b) {
