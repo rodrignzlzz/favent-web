@@ -20,6 +20,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
 [hidden]{display:none !important}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 #map{font-family:'Inter',sans-serif;background:#E7ECF5}
+#map .leaflet-tile-pane{filter:saturate(0.55) brightness(1.03)}
 #map .leaflet-control-attribution{font-size:10px;background:rgba(255,255,255,0.85);color:#4C504D}
 #map .leaflet-control-attribution a{color:#274586}
 #map .leaflet-control-zoom a{color:#0F1110}
@@ -584,9 +585,9 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #3F6F
   function initMap() {
     if (!window.L) return; // sin conexión con el CDN: el listado sigue funcionando
     MAP = L.map('map', { scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: false, zoomSnap: 0.25 });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd', maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(MAP);
     MAP.attributionControl.setPrefix(false);
     MAP.fitBounds(SVCS.map(function (s) { return [s.lat, s.lng]; }).concat([ME]), { padding: [44, 44] });
