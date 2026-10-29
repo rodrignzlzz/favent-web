@@ -594,10 +594,10 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Alquiler de bici eléctrica · día': 'E-bike rental · day',
     'Cena privada en finca · grupo': 'Private dinner at a country estate · group',
     'Acuerdo': 'Agreement', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
-    'Las dos empresas pactan un servicio a una comisión determinada.': 'The two businesses agree on a service at a set commission.',
-    'Quien ofrece el servicio publica su catálogo y pacta con cada socio qué servicios puede vender y a qué comisión: un porcentaje o un importe fijo. Cada reserva copia el acuerdo vigente.': 'The business offering the service publishes its catalogue and agrees with each partner which services they can sell and at what commission: a percentage or a fixed amount. Every booking copies the agreement in force.',
-    'Quien recomienda mete los datos del cliente.': 'Whoever refers enters the client’s details.',
-    'Quien recomienda elige servicio y fecha e introduce los datos del cliente. Favent le envía el link de pago por email o por SMS, al momento.': 'Whoever refers picks the service and date and enters the client’s details. Favent sends the client the payment link by email or text message, instantly.',
+    'Quien ofrece el servicio y quien recomienda acuerdan qué se vende y por cuánto.': 'The business offering the service and whoever refers agree on what is sold and for how much.',
+    'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.': 'Each service carries its agreed commission, as a percentage or a fixed amount. Every booking respects it.',
+    'El cliente recibe su link de pago por email o SMS.': 'The client gets their payment link by email or text message.',
+    'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.': 'Whoever refers picks the service, date and spots and adds the client’s email or mobile number. Favent sends the payment link instantly.',
     'Todos reciben la confirmación del pago.': 'Everyone gets the payment confirmation.',
     'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.': 'As soon as the client pays, everyone is notified: the client gets their booking confirmation; both businesses see it in their Favent dashboard. Whoever referred sees their commission right after the payment.',
     'acuerdo activo': 'agreement active',
@@ -655,8 +655,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
 
   var NAV = ['Inicio', 'Reservas', 'Acuerdos', 'Red', 'Liquidaciones'];
   var STEPS = [
-    { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan un servicio a una comisión determinada.', x: 'Quien ofrece el servicio publica su catálogo y pacta con cada socio qué servicios puede vender y a qué comisión: un porcentaje o un importe fijo. Cada reserva copia el acuerdo vigente.', e: 'acuerdo activo' },
-    { n: '02', t: 'Reserva', d: 'Quien recomienda mete los datos del cliente.', x: 'Quien recomienda elige servicio y fecha e introduce los datos del cliente. Favent le envía el link de pago por email o por SMS, al momento.', e: 'creada' },
+    { n: '01', t: 'Acuerdo', d: 'Quien ofrece el servicio y quien recomienda acuerdan qué se vende y por cuánto.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
+    { n: '02', t: 'Reserva', d: 'El cliente recibe su link de pago por email o SMS.', x: 'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.', e: 'creada' },
     { n: '03', t: 'Señal', d: 'El cliente paga la comisión con Stripe.', x: 'El cliente paga una señal igual a la comisión. Stripe custodia el dinero; nadie lo toca hasta que se presta el servicio.', e: 'pagada · retenida' },
     { n: '04', t: 'Confirmación', d: 'Todos reciben la confirmación del pago.', x: 'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.', e: 'confirmada' },
     { n: '05', t: 'Canje', d: 'Se escanea el código al prestar el servicio.', x: 'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.', e: 'canjeada' },
