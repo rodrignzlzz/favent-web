@@ -351,6 +351,40 @@ a:hover>.logo-dot{transform:scale(1.5)}
         <a href="#acceso" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
       </div>
     </div>
+    <div style="grid-column: 1 / -1; background: #0F1110; color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
+      <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Entre colegas</span>
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B4B8B4; max-width: 520px">¿Ese día ya estás completo? Pasa la reserva, o parte del grupo, a una empresa de confianza y cobra tu comisión. ¿Quieres ayudar a una empresa vecina? Recomiéndala a tus clientes.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+          <span style="font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Todos ganan.</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">El cliente no se queda sin plan</span>
+            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">Tu colega llena su agenda</span>
+            <span style="font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: #8CA9E8; color: #0F1110">Tú cobras tu comisión</span>
+          </div>
+        </div>
+      </div>
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #1E201F; border: 1px solid #2A2D2B; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative">
+        <span style="position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 600; color: #B4B8B4; border: 1px solid #3A3D3B; padding: 3px 10px; border-radius: 999px">Ejemplo</span>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding-right: 72px">
+          <span style="font-size: 15px; font-weight: 600">Velas del Norte</span>
+          <span style="align-self: flex-start; font-family: 'DM Mono', monospace; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #2A2D2B; color: #E4E6E2">Sáb 12 abr · completo</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 4px 0 4px 6px; color: #8CA9E8; font-size: 13px; font-weight: 500">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span>Pasa la reserva · 8 personas</span>
+        </div>
+        <div style="background: #FFFFFF; color: #0F1110; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
+          <span style="font-size: 15px; font-weight: 600">Mar Blau Yachting</span>
+          <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #D8E1F2; color: #274586">Acepta la reserva</span>
+        </div>
+        <div style="background: #3F6FD8; color: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
+          <span style="font-size: 14px; font-weight: 600">Comisión para Velas del Norte</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">180,00 €</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
@@ -586,6 +620,18 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Conserjería': 'Concierge',
     'Recepción · noche': 'Front desk · night',
     'Relaciones con clientes': 'Guest relations',
+    'Entre colegas': 'Between colleagues',
+    'Si ofreces servicios, también puedes recomendar.': 'If you offer services, you can refer too.',
+    '¿Ese día ya estás completo? Pasa la reserva, o parte del grupo, a una empresa de confianza y cobra tu comisión. ¿Quieres ayudar a una empresa vecina? Recomiéndala a tus clientes.': 'Fully booked that day? Pass the booking, or part of the group, to a business you trust and earn your commission. Want to help a neighbouring business? Recommend it to your clients.',
+    'Todos ganan.': 'Everyone wins.',
+    'El cliente no se queda sin plan': 'The client still gets their plan',
+    'Tu colega llena su agenda': 'Your colleague fills their calendar',
+    'Tú cobras tu comisión': 'You earn your commission',
+    'Ejemplo': 'Example',
+    'Sáb 12 abr · completo': 'Sat 12 Apr · fully booked',
+    'Pasa la reserva · 8 personas': 'Passes the booking · 8 guests',
+    'Acepta la reserva': 'Accepts the booking',
+    'Comisión para Velas del Norte': 'Commission for Velas del Norte',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
