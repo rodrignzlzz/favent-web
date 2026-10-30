@@ -34,6 +34,26 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 #map-list button:hover,#team-rows button:hover{border-color:#3F6FD8 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,17,16,0.08)}
 #steps button:hover{border-color:#8CA9E8 !important;transform:translateY(-3px)}
 #app-nav button:hover{background:#ECEDE9 !important}
+.pin-pop{position:absolute;z-index:8;width:270px;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:18px;box-shadow:0 22px 50px rgba(15,17,16,.18);overflow:hidden;animation:pop .3s cubic-bezier(.2,.7,.2,1)}
+.pin-pop .pp-ph{height:130px;background:#E7ECF5;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;font-size:11px;font-weight:600}
+.pin-pop .pp-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pin-pop .pp-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.pin-pop .pp-x{position:absolute;top:8px;right:8px;z-index:1;width:30px;height:30px;border-radius:15px;border:0;background:rgba(255,255,255,.92);color:#0F1110;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(15,17,16,.15)}
+.pin-pop .pp-n{font-size:15px;font-weight:600;padding-right:4px}
+.pin-pop .pp-p{font-size:12px;color:#6A6E6B}
+.pin-pop .pp-d{font-size:13px;line-height:1.45;color:#3A3D3B}
+.pin-pop .pp-f{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-top:4px}
+.pin-pop .pp-f small{display:block;font-size:11px;color:#6A6E6B}
+.pin-pop .pp-f b{font:500 18px 'DM Mono',monospace}
+.pin-pop .pp-r{display:flex;align-items:center;gap:4px;font-size:12.5px;font-weight:500}
+@media (max-width: 640px){
+  .pin-pop{position:fixed;left:12px !important;right:12px;bottom:12px;top:auto !important;width:auto;z-index:60;display:grid;grid-template-columns:104px minmax(0,1fr);box-shadow:0 18px 50px rgba(15,17,16,.3)}
+  .pin-pop .pp-ph{height:auto;min-height:100%}
+  .pin-pop .pp-ph span{display:none}
+  .pin-pop .pp-b{padding:10px 36px 10px 10px;gap:4px}
+  .pin-pop .pp-n{font-size:13px}.pin-pop .pp-d{font-size:11.5px}.pin-pop .pp-f b{font-size:14px}
+  .pin-pop .pp-x{width:26px;height:26px;top:6px;right:6px}
+}
 #map-list{max-height:620px;overflow-y:auto;padding-right:4px}
 .fv-pin.dot{font-size:0 !important;width:16px !important;height:16px !important;padding:0 !important;border-width:2px !important;background:var(--c) !important;transform:translate(-50%,-50%) !important}
 .fv-pin.dot:hover,.fv-pin.dot.hot{font-size:12px !important;width:auto !important;height:32px !important;padding:0 12px !important;background:#0F1110 !important;transform:translate(-50%,-100%) !important;z-index:6 !important}
@@ -523,7 +543,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     </div>
 
     <div class="map-row" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div class="map-main" style="flex: 999 1 560px; min-width: 0; background: #E7ECF5; border-radius: 28px; padding: clamp(12px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px">
+      <div class="map-main" style="position: relative; flex: 999 1 560px; min-width: 0; background: #E7ECF5; border-radius: 28px; padding: clamp(12px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px">
         <div id="map" style="position: relative; width: 100%; aspect-ratio: 600 / 473">
           <svg viewBox="0 0 600 473" style="position: absolute; inset: 0; width: 100%; height: 100%" role="img" aria-label="Mapa de Mallorca con los servicios de la red">
             <path d="M27.5 261.9L26.0 261.4L28.2 255.9L42.7 246.2L40.4 251.7L37.9 252.4L33.3 259.2L28.3 260.1L27.5 261.9ZM456.3 162.1L468.9 166.9L472.2 163.3L474.9 164.3L479.6 160.7L484.0 160.4L485.2 157.6L491.0 155.7L494.1 151.7L504.6 148.1L507.5 142.2L505.5 139.1L507.0 133.8L513.0 130.5L518.3 136.9L524.0 139.5L525.0 143.2L530.3 146.0L539.2 145.9L539.3 148.9L541.9 148.9L543.6 152.9L549.8 153.5L552.6 157.5L561.0 158.4L565.8 155.5L564.0 157.9L566.1 161.5L561.9 166.8L561.7 169.1L563.7 167.7L561.8 171.1L565.8 172.6L570.6 171.4L574.0 175.1L572.0 179.0L569.8 176.8L563.7 181.2L562.2 188.8L564.3 194.0L561.7 195.4L563.7 196.9L561.9 200.1L563.9 202.3L561.7 203.1L563.3 211.0L556.3 211.0L554.1 224.5L549.7 225.6L541.7 222.3L535.9 227.8L530.3 250.1L534.6 255.1L538.5 255.1L538.9 257.7L534.9 259.8L527.7 259.4L524.7 265.2L525.0 271.1L521.9 271.6L522.6 274.8L515.5 276.4L516.6 277.5L509.9 280.7L509.6 282.7L508.4 280.3L505.5 281.2L509.4 284.5L505.6 285.8L500.9 292.2L497.4 293.0L498.5 294.8L495.8 295.4L496.6 296.9L490.7 303.3L491.4 305.2L488.9 305.7L490.3 307.2L487.0 309.0L488.0 313.5L487.3 314.9L484.7 313.9L486.2 315.9L484.4 316.2L486.6 317.1L482.9 325.5L481.2 325.7L482.6 326.8L480.2 331.6L480.0 344.7L477.9 348.5L479.9 350.7L479.0 356.4L476.8 357.6L474.9 349.2L471.5 356.3L475.8 356.5L471.4 360.0L473.6 360.5L471.4 363.7L469.3 363.9L469.4 369.5L466.3 370.3L468.6 371.0L467.6 373.8L465.7 373.2L466.9 375.2L464.8 379.6L463.7 380.6L462.4 378.5L462.1 383.8L459.4 382.4L458.1 385.4L454.4 382.5L457.5 386.6L460.3 385.8L459.0 389.3L456.6 391.3L455.4 389.7L455.7 391.7L453.4 392.2L449.2 387.4L448.4 392.9L451.2 393.4L444.8 395.9L438.4 395.1L437.2 396.3L440.5 398.6L438.9 403.8L434.6 405.7L433.3 408.9L429.7 406.3L428.9 407.3L431.9 409.6L430.5 410.6L420.9 410.4L419.1 408.4L418.8 410.7L415.7 411.9L417.2 414.2L412.1 418.2L408.9 416.9L405.9 418.7L402.1 425.3L392.9 433.2L388.2 441.8L381.2 447.5L374.1 447.5L370.2 441.8L370.5 438.9L364.9 437.2L363.6 435.4L365.1 432.9L362.8 434.0L359.3 429.7L360.1 424.2L357.1 420.2L353.1 419.2L352.6 416.4L350.3 415.9L347.7 419.2L347.9 417.6L344.3 416.9L343.3 412.4L346.1 410.4L346.3 403.7L331.8 389.1L329.0 390.0L329.9 388.4L328.7 390.4L317.7 387.7L310.8 391.2L310.6 394.9L295.7 386.5L292.4 388.7L278.2 386.7L273.9 389.7L274.0 388.1L271.1 392.6L265.7 391.1L260.1 386.0L251.7 388.5L244.0 376.0L236.0 370.5L230.5 362.3L229.4 356.6L233.0 341.1L221.2 320.1L226.8 316.2L228.3 310.1L233.2 306.6L232.2 305.4L232.8 304.0L232.3 305.4L234.9 305.9L233.9 299.9L223.5 287.0L220.1 284.8L218.5 286.2L218.1 284.9L218.5 286.6L216.2 285.3L209.4 279.0L209.2 276.6L206.0 276.4L205.0 273.1L196.6 270.0L196.7 267.7L196.2 270.1L185.5 265.9L180.3 269.9L180.7 267.2L184.9 265.0L183.7 264.0L182.8 265.7L182.4 264.2L180.2 266.5L180.0 264.9L182.6 264.0L179.4 264.3L177.0 269.4L178.3 269.3L178.3 271.2L178.2 269.7L177.0 269.4L176.5 271.1L177.7 270.9L177.7 271.8L176.5 271.2L175.8 272.6L180.8 272.8L173.7 275.6L178.2 278.0L182.7 273.7L179.5 278.3L173.2 278.4L168.1 274.1L164.7 274.7L159.9 286.8L153.3 285.2L153.1 286.7L151.3 286.4L150.9 287.6L147.9 288.6L151.0 286.8L148.3 287.8L146.5 286.2L142.1 290.7L142.0 289.2L136.9 290.6L135.2 295.4L136.2 297.9L139.8 298.8L133.6 302.7L134.8 312.9L129.7 318.3L129.9 321.1L127.1 320.7L129.0 322.6L126.7 328.2L129.1 329.4L127.9 331.9L122.4 330.8L120.6 328.4L118.3 329.1L117.9 325.1L113.3 322.0L111.1 322.2L106.6 326.0L109.4 320.1L107.5 319.1L105.7 311.0L107.7 313.0L108.0 310.3L105.1 309.4L102.9 311.5L102.4 308.1L98.9 306.3L99.5 302.9L97.4 302.8L101.6 297.3L102.7 300.0L103.8 299.7L101.9 297.7L107.9 297.3L108.3 294.8L102.3 294.2L103.0 292.1L97.6 284.8L94.2 283.2L88.9 285.9L90.0 288.2L85.5 288.0L80.2 291.7L82.3 283.3L77.5 281.9L73.6 283.6L73.3 289.4L65.3 293.0L65.9 285.2L61.6 285.6L60.4 282.9L57.8 286.6L53.9 285.8L56.3 282.6L61.2 281.8L66.7 277.7L64.5 276.5L61.4 277.7L61.4 279.7L58.2 278.9L55.4 272.3L49.8 270.8L50.3 267.4L46.2 266.5L50.0 259.2L45.4 252.8L46.5 248.3L50.2 247.3L50.7 241.7L56.6 236.6L64.3 236.8L69.0 234.6L76.6 228.2L81.4 227.0L82.0 221.8L100.0 213.8L108.2 205.0L109.3 201.3L112.5 201.7L116.9 194.0L121.4 190.4L125.4 190.3L130.7 183.7L137.3 185.5L143.6 184.6L158.5 174.1L164.2 164.7L175.0 155.6L173.7 150.7L175.5 150.4L176.3 152.9L181.0 145.2L183.7 148.3L193.9 140.8L196.8 128.8L201.6 125.0L203.4 127.9L208.6 129.1L208.9 125.8L207.1 127.0L205.9 125.3L210.8 117.6L212.9 118.9L217.9 113.2L224.3 110.3L224.0 108.6L230.5 104.4L232.5 104.3L233.3 107.4L240.1 104.5L242.4 98.1L246.3 100.0L245.6 93.2L248.0 90.3L251.5 92.3L254.1 89.9L257.7 93.3L260.3 92.4L258.4 88.9L259.7 86.3L264.8 89.7L268.2 89.3L268.8 87.2L270.2 89.4L275.5 84.6L278.6 86.7L282.4 79.2L292.5 76.9L302.1 66.7L306.8 65.0L308.2 66.5L312.4 65.7L313.5 62.4L315.9 63.6L321.1 61.1L327.7 51.5L333.9 54.9L335.0 57.5L345.2 58.1L351.5 49.2L364.2 42.6L366.9 42.8L366.4 45.4L370.4 40.8L368.4 45.4L379.3 44.0L376.3 50.4L379.1 51.9L381.6 49.7L388.7 48.6L395.7 42.0L398.2 42.4L394.9 46.0L396.3 46.8L400.4 44.1L403.9 44.8L405.9 42.5L407.6 44.3L412.2 40.3L412.6 36.6L419.6 30.9L425.4 29.9L428.0 27.4L430.8 28.5L434.5 26.6L431.6 32.1L434.5 32.7L439.5 28.8L442.2 30.5L450.6 26.0L450.2 30.2L445.1 37.1L440.7 39.6L439.1 37.0L438.5 39.3L434.9 39.1L436.5 40.8L422.8 49.7L415.4 46.7L412.1 47.4L410.3 53.5L404.8 57.2L402.1 56.8L402.5 64.0L401.0 60.1L391.5 57.3L389.6 59.8L392.1 60.8L391.6 61.9L390.7 62.5L391.8 60.8L389.6 59.9L390.7 61.5L388.1 62.2L387.4 70.3L392.7 83.7L400.5 89.3L404.9 85.0L406.9 86.9L407.9 85.0L409.2 85.9L412.2 82.3L416.6 85.0L421.9 80.5L425.0 80.9L428.4 77.2L430.3 78.0L438.9 72.0L439.5 68.2L445.7 69.5L438.5 74.8L439.6 77.4L436.7 81.2L437.8 85.8L442.7 86.7L435.4 97.9L431.7 101.1L424.2 101.3L416.4 104.8L417.5 103.5L413.8 101.2L414.6 99.7L413.0 99.3L413.7 102.5L411.5 100.7L412.4 99.4L410.7 99.9L406.3 106.5L405.4 114.4L400.8 119.0L404.2 119.0L406.8 121.5L407.4 121.0L409.8 128.5L421.1 142.6L456.3 162.1Z" fill="#FFFFFF" stroke="#C9D3E6" stroke-width="1.4" stroke-linejoin="round"></path>
@@ -565,6 +585,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
           </span>
           <span id="pins" style="display: contents"></span>
         </div>
+        <div id="pin-pop" class="pin-pop" role="dialog" hidden></div>
         <div class="sel-bar" style="background: #FFFFFF; border-radius: 18px; border: 1px solid #E3E5E0; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
           <div style="display: flex; flex-direction: column; gap: 2px"><span id="sel-name" style="font-size: 15px; font-weight: 600"></span><span id="sel-meta" style="font-size: 13px; color: #6A6E6B"></span></div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
@@ -1078,6 +1099,32 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Alquiler de bici eléctrica · día': 'E-bike rental · day',
     'Cena privada en finca · grupo': 'Private dinner at a country estate · group',
     'Catamarán al atardecer · 3 h': 'Sunset catamaran · 3 h',
+    'Día completo en velero privado por la bahía de Pollença, con patrón.': 'A full day on a private sailboat around Pollença bay, with skipper.',
+    'Velero clásico con patrón por la bahía de Palma y sus calas.': 'Classic sailboat with skipper around Palma bay and its coves.',
+    'Catamarán privado por las calas del sureste, con comida a bordo.': 'Private catamaran around the south-east coves, with lunch on board.',
+    'Una semana en yate con patrón por el norte de Mallorca.': 'A week on a skippered yacht along the north of Mallorca.',
+    'Velero por la costa de Andratx y la isla de Dragonera.': 'Sailing along the Andratx coast and Dragonera island.',
+    'Lancha privada por la costa de la Tramuntana.': 'Private motorboat along the Tramuntana coast.',
+    'Salida en catamarán al atardecer, con bebida incluida.': 'Sunset catamaran trip, drinks included.',
+    'Primera inmersión con instructor, sin experiencia previa.': 'First dive with an instructor, no experience needed.',
+    'Traslado puerta a puerta entre el aeropuerto y el hotel.': 'Door-to-door transfer between the airport and the hotel.',
+    'Traslado privado entre el aeropuerto y el suroeste de la isla.': 'Private transfer between the airport and the south-west of the island.',
+    'Minibús con conductor para grupos de hasta 16 personas.': 'Minibus with driver for groups of up to 16 people.',
+    'Traslado privado al sur de la isla, con silla infantil si se pide.': 'Private transfer to the south of the island, child seat on request.',
+    'Coche de lujo con conductor para traslados y excursiones.': 'Luxury car with driver for transfers and day trips.',
+    'Minibús para grupos entre el aeropuerto y la Platja de Palma.': 'Group minibus between the airport and Platja de Palma.',
+    'Ruta guiada por la Serra de Tramuntana en bici de carretera.': 'Guided road-bike route through the Serra de Tramuntana.',
+    'Ruta tranquila entre pueblos y caminos rurales del interior.': 'Easy ride through inland villages and country lanes.',
+    'Ruta guiada por los caminos de montaña del Llevant.': 'Guided ride along the mountain trails of the east.',
+    'Cena privada para grupos en una finca del interior.': 'Private group dinner at an inland country estate.',
+    'Organización completa de bodas en finca en el norte de la isla.': 'Full planning of estate weddings in the north of the island.',
+    'Cóctel privado con vistas al mar para empresas y grupos.': 'Private seafront cocktail party for companies and groups.',
+    'Visita a la bodega y cata de vinos de Binissalem.': 'Winery visit and tasting of Binissalem wines.',
+    'Bici eléctrica por días, con casco y entrega en el hotel.': 'E-bike by the day, with helmet and hotel delivery.',
+    'Kayak doble para recorrer las calas de Cala Figuera.': 'Double kayak to explore the coves around Cala Figuera.',
+    'Precio total': 'Total price',
+    'Foto del servicio': 'Service photo',
+    'reseñas': 'reviews',
     'Bautismo de buceo': 'Try scuba diving',
     'Minibús privado para grupos': 'Private minibus for groups',
     'Traslado privado en coche de lujo': 'Private luxury car transfer',
@@ -1157,29 +1204,29 @@ a:hover>.logo-dot{transform:scale(1.5)}
     { n: '06', t: 'Liberación', d: 'La comisión llega a la empresa.', x: 'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.', e: 'liquidada' }
   ];
   var SVCS = [
-    { name: 'Velas del Norte', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
-    { name: 'Mar Blau Yachting', svc: 'Velero clásico · día completo', type: 'Náutica', place: 'Palma', lat: 39.5660, lng: 2.6370, price: 1400, pct: 15, rating: 4.7, reviews: 54 },
-    { name: 'Cala d’Or Charters', svc: 'Catamarán privado · día completo', type: 'Náutica', place: 'Cala d’Or', lat: 39.3720, lng: 3.2330, price: 1200, pct: 13, rating: 4.6, reviews: 17 },
-    { name: 'Yates Formentor', svc: 'Yate con patrón · semana', type: 'Náutica', place: 'Port d’Alcúdia', lat: 39.8370, lng: 3.1395, price: 9800, pct: 10, rating: 4.8, reviews: 21 },
-    { name: 'Andratx Sailing', svc: 'Velero · día completo', type: 'Náutica', place: 'Port d’Andratx', lat: 39.5440, lng: 2.3870, price: 1100, pct: 14, rating: 4.7, reviews: 26 },
-    { name: 'Sóller Boats', svc: 'Lancha privada · día completo', type: 'Náutica', place: 'Port de Sóller', lat: 39.7970, lng: 2.6930, price: 900, pct: 15, rating: 4.9, reviews: 12 },
-    { name: 'Portocolom Catamarans', svc: 'Catamarán al atardecer · 3 h', type: 'Náutica', place: 'Portocolom', lat: 39.4180, lng: 3.2620, price: 650, pct: 12, rating: 4.6, reviews: 33 },
-    { name: 'Llevant Diving', svc: 'Bautismo de buceo', type: 'Náutica', place: 'Cala Rajada', lat: 39.7120, lng: 3.4650, price: 90, pct: 15, rating: 4.8, reviews: 47 },
-    { name: 'Llevant Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Cala Millor', lat: 39.5970, lng: 3.3830, price: 95, pct: 15, rating: 4.8, reviews: 63 },
-    { name: 'Ponent Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Santa Ponça', lat: 39.5090, lng: 2.4770, price: 70, pct: 15, rating: 4.7, reviews: 58 },
-    { name: 'Nord Transfers', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'Alcúdia', lat: 39.8530, lng: 3.1210, price: 180, pct: 12, rating: 4.6, reviews: 29 },
-    { name: 'Migjorn Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Colònia de Sant Jordi', lat: 39.3160, lng: 2.9930, price: 85, pct: 15, rating: 4.5, reviews: 14 },
-    { name: 'Serra Drivers', svc: 'Traslado privado en coche de lujo', type: 'Traslados', place: 'Valldemossa', lat: 39.7103, lng: 2.6226, price: 160, pct: 12, rating: 4.9, reviews: 22 },
-    { name: 'Platja Shuttle', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'S’Arenal', lat: 39.5000, lng: 2.7500, price: 150, pct: 12, rating: 4.4, reviews: 37 },
-    { name: 'Tramuntana Cycling', svc: 'Ruta guiada en bici de carretera', type: 'Ciclismo', place: 'Sóller', lat: 39.7667, lng: 2.7150, price: 120, pct: 15, rating: 4.9, reviews: 29 },
-    { name: 'Pla Bike Tours', svc: 'Ruta en bici por el Pla de Mallorca', type: 'Ciclismo', place: 'Sineu', lat: 39.6430, lng: 3.0110, price: 85, pct: 15, rating: 4.7, reviews: 18 },
-    { name: 'Llevant Cycling', svc: 'Ruta guiada en bici de montaña', type: 'Ciclismo', place: 'Artà', lat: 39.6936, lng: 3.3497, price: 95, pct: 15, rating: 0, reviews: 0 },
-    { name: 'Finques del Pla', svc: 'Cena privada en finca · grupo', type: 'Eventos', place: 'Algaida', lat: 39.5590, lng: 2.8940, price: 2400, pct: 10, rating: 0, reviews: 0 },
-    { name: 'Son Events', svc: 'Boda en finca · hasta 120 invitados', type: 'Eventos', place: 'Pollença', lat: 39.8770, lng: 3.0160, price: 18000, pct: 5, rating: 4.9, reviews: 9 },
-    { name: 'Mar i Cel Events', svc: 'Cóctel privado frente al mar', type: 'Eventos', place: 'Portals Nous', lat: 39.5330, lng: 2.5740, price: 3200, pct: 8, rating: 4.7, reviews: 15 },
-    { name: 'Celler Events', svc: 'Cata de vinos en bodega · grupo', type: 'Eventos', place: 'Binissalem', lat: 39.6870, lng: 2.8440, price: 600, pct: 12, rating: 4.8, reviews: 31 },
-    { name: 'Badia Bike Rental', svc: 'Alquiler de bici eléctrica · día', type: 'Alquiler', place: 'Can Picafort', lat: 39.7672, lng: 3.1560, price: 45, pct: 20, rating: 4.5, reviews: 11 },
-    { name: 'Migjorn Kayak', svc: 'Alquiler de kayak · medio día', type: 'Alquiler', place: 'Cala Figuera', lat: 39.3330, lng: 3.1770, price: 40, pct: 20, rating: 4.6, reviews: 19 }
+    { name: 'Velas del Norte', desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
+    { name: 'Mar Blau Yachting', desc: 'Velero clásico con patrón por la bahía de Palma y sus calas.', svc: 'Velero clásico · día completo', type: 'Náutica', place: 'Palma', lat: 39.5660, lng: 2.6370, price: 1400, pct: 15, rating: 4.7, reviews: 54 },
+    { name: 'Cala d’Or Charters', desc: 'Catamarán privado por las calas del sureste, con comida a bordo.', svc: 'Catamarán privado · día completo', type: 'Náutica', place: 'Cala d’Or', lat: 39.3720, lng: 3.2330, price: 1200, pct: 13, rating: 4.6, reviews: 17 },
+    { name: 'Yates Formentor', desc: 'Una semana en yate con patrón por el norte de Mallorca.', svc: 'Yate con patrón · semana', type: 'Náutica', place: 'Port d’Alcúdia', lat: 39.8370, lng: 3.1395, price: 9800, pct: 10, rating: 4.8, reviews: 21 },
+    { name: 'Andratx Sailing', desc: 'Velero por la costa de Andratx y la isla de Dragonera.', svc: 'Velero · día completo', type: 'Náutica', place: 'Port d’Andratx', lat: 39.5440, lng: 2.3870, price: 1100, pct: 14, rating: 4.7, reviews: 26 },
+    { name: 'Sóller Boats', desc: 'Lancha privada por la costa de la Tramuntana.', svc: 'Lancha privada · día completo', type: 'Náutica', place: 'Port de Sóller', lat: 39.7970, lng: 2.6930, price: 900, pct: 15, rating: 4.9, reviews: 12 },
+    { name: 'Portocolom Catamarans', desc: 'Salida en catamarán al atardecer, con bebida incluida.', svc: 'Catamarán al atardecer · 3 h', type: 'Náutica', place: 'Portocolom', lat: 39.4180, lng: 3.2620, price: 650, pct: 12, rating: 4.6, reviews: 33 },
+    { name: 'Llevant Diving', desc: 'Primera inmersión con instructor, sin experiencia previa.', svc: 'Bautismo de buceo', type: 'Náutica', place: 'Cala Rajada', lat: 39.7120, lng: 3.4650, price: 90, pct: 15, rating: 4.8, reviews: 47 },
+    { name: 'Llevant Transfers', desc: 'Traslado puerta a puerta entre el aeropuerto y el hotel.', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Cala Millor', lat: 39.5970, lng: 3.3830, price: 95, pct: 15, rating: 4.8, reviews: 63 },
+    { name: 'Ponent Transfers', desc: 'Traslado privado entre el aeropuerto y el suroeste de la isla.', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Santa Ponça', lat: 39.5090, lng: 2.4770, price: 70, pct: 15, rating: 4.7, reviews: 58 },
+    { name: 'Nord Transfers', desc: 'Minibús con conductor para grupos de hasta 16 personas.', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'Alcúdia', lat: 39.8530, lng: 3.1210, price: 180, pct: 12, rating: 4.6, reviews: 29 },
+    { name: 'Migjorn Transfers', desc: 'Traslado privado al sur de la isla, con silla infantil si se pide.', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Colònia de Sant Jordi', lat: 39.3160, lng: 2.9930, price: 85, pct: 15, rating: 4.5, reviews: 14 },
+    { name: 'Serra Drivers', desc: 'Coche de lujo con conductor para traslados y excursiones.', svc: 'Traslado privado en coche de lujo', type: 'Traslados', place: 'Valldemossa', lat: 39.7103, lng: 2.6226, price: 160, pct: 12, rating: 4.9, reviews: 22 },
+    { name: 'Platja Shuttle', desc: 'Minibús para grupos entre el aeropuerto y la Platja de Palma.', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'S’Arenal', lat: 39.5000, lng: 2.7500, price: 150, pct: 12, rating: 4.4, reviews: 37 },
+    { name: 'Tramuntana Cycling', desc: 'Ruta guiada por la Serra de Tramuntana en bici de carretera.', svc: 'Ruta guiada en bici de carretera', type: 'Ciclismo', place: 'Sóller', lat: 39.7667, lng: 2.7150, price: 120, pct: 15, rating: 4.9, reviews: 29 },
+    { name: 'Pla Bike Tours', desc: 'Ruta tranquila entre pueblos y caminos rurales del interior.', svc: 'Ruta en bici por el Pla de Mallorca', type: 'Ciclismo', place: 'Sineu', lat: 39.6430, lng: 3.0110, price: 85, pct: 15, rating: 4.7, reviews: 18 },
+    { name: 'Llevant Cycling', desc: 'Ruta guiada por los caminos de montaña del Llevant.', svc: 'Ruta guiada en bici de montaña', type: 'Ciclismo', place: 'Artà', lat: 39.6936, lng: 3.3497, price: 95, pct: 15, rating: 0, reviews: 0 },
+    { name: 'Finques del Pla', desc: 'Cena privada para grupos en una finca del interior.', svc: 'Cena privada en finca · grupo', type: 'Eventos', place: 'Algaida', lat: 39.5590, lng: 2.8940, price: 2400, pct: 10, rating: 0, reviews: 0 },
+    { name: 'Son Events', desc: 'Organización completa de bodas en finca en el norte de la isla.', svc: 'Boda en finca · hasta 120 invitados', type: 'Eventos', place: 'Pollença', lat: 39.8770, lng: 3.0160, price: 18000, pct: 5, rating: 4.9, reviews: 9 },
+    { name: 'Mar i Cel Events', desc: 'Cóctel privado con vistas al mar para empresas y grupos.', svc: 'Cóctel privado frente al mar', type: 'Eventos', place: 'Portals Nous', lat: 39.5330, lng: 2.5740, price: 3200, pct: 8, rating: 4.7, reviews: 15 },
+    { name: 'Celler Events', desc: 'Visita a la bodega y cata de vinos de Binissalem.', svc: 'Cata de vinos en bodega · grupo', type: 'Eventos', place: 'Binissalem', lat: 39.6870, lng: 2.8440, price: 600, pct: 12, rating: 4.8, reviews: 31 },
+    { name: 'Badia Bike Rental', desc: 'Bici eléctrica por días, con casco y entrega en el hotel.', svc: 'Alquiler de bici eléctrica · día', type: 'Alquiler', place: 'Can Picafort', lat: 39.7672, lng: 3.1560, price: 45, pct: 20, rating: 4.5, reviews: 11 },
+    { name: 'Migjorn Kayak', desc: 'Kayak doble para recorrer las calas de Cala Figuera.', svc: 'Alquiler de kayak · medio día', type: 'Alquiler', place: 'Cala Figuera', lat: 39.3330, lng: 3.1770, price: 40, pct: 20, rating: 4.6, reviews: 19 }
   ];
   var ME = [39.7210, 2.9100]; // "Tú": Inca
   // Proyección del contorno de Mallorca (OpenStreetMap, ODbL) al SVG de 600×494
@@ -1193,7 +1240,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     $('pins').innerHTML = SVCS.map(function (s, i) {
       if (!visible(s)) return '';
       var on = i === S.pin, xy = proj(s.lat, s.lng), dot = S.mtype === 'Todas' && !on;
-      return '<button type="button" class="fv-pin' + (dot ? ' dot' : '') + '" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; --c: ' + FXCOL[s.type] + '; transform: translate(-50%, -100%); height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
+      return '<button type="button" class="fv-pin' + (dot ? ' dot' : '') + '" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; --c: ' + FXCOL[s.type] + '; transform: translate(-50%, -100%); height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price) + ' | ' + s.pct + (S.lang === 'en' ? '%' : ' %') + '</button>';
     }).join('');
   }
   var TRUST = [
@@ -1304,10 +1351,38 @@ a:hover>.logo-dot{transform:scale(1.5)}
       + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
       + T(c[0]) + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? '#B4B8B4' : '#6A6E6B') + '">' + n + '</span></button>';
   }
+  function renderPop() {
+    var pop = $('pin-pop');
+    if (!S.popup || !visible(SVCS[S.pin])) { pop.hidden = true; pop.innerHTML = ''; return; }
+    var s = SVCS[S.pin], en = S.lang === 'en';
+    var cat = CATS.filter(function (c) { return c[0] === s.type; })[0];
+    var ph = s.type === 'Náutica'
+      ? '<img src="img/ofreces.jpg" alt="">'
+      : '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="' + FXCOL[s.type] + '" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + cat[1] + '</svg><span style="color: #6A6E6B">' + T('Foto del servicio') + '</span>';
+    var rating = s.reviews
+      ? '<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="#0F1110"></path></svg>' + (en ? s.rating.toFixed(1) : s.rating.toFixed(1).replace('.', ',')) + ' <span style="color: #6A6E6B; font-weight: 400">(' + s.reviews + ' ' + T('reseñas') + ')</span>'
+      : '<span style="color: #6A6E6B; font-weight: 400">' + T('Nuevo · aún sin reseñas') + '</span>';
+    pop.setAttribute('aria-label', s.name);
+    pop.innerHTML = '<div class="pp-ph" style="background: ' + (s.type === 'Náutica' ? '#1F6F78' : '#F3F3F0') + '">' + ph + '</div>'
+      + '<button type="button" class="pp-x" data-act="popclose" aria-label="' + T('Cerrar') + '"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg></button>'
+      + '<div class="pp-b"><span class="pp-n">' + s.name + '</span><span class="pp-p">' + T(s.svc) + ' · ' + s.place + '</span>'
+      + '<span class="pp-d">' + T(s.desc) + '</span>'
+      + '<div class="pp-f"><span><small>' + T('Precio total') + '</small><b>' + eur(s.price) + '</b></span><span class="pp-r">' + rating + '</span></div></div>';
+    pop.hidden = false;
+    if (window.innerWidth <= 640) { pop.style.left = ''; pop.style.top = ''; return; }
+    var main = pop.parentNode, map = $('map'), xy = proj(s.lat, s.lng);
+    var px = map.offsetLeft + xy[0] / 100 * map.offsetWidth, py = map.offsetTop + xy[1] / 100 * map.offsetHeight;
+    var w = pop.offsetWidth, h = pop.offsetHeight;
+    var top = py - 42 - h;
+    if (top < 8) top = py + 14;
+    pop.style.left = Math.max(8, Math.min(main.clientWidth - w - 8, px - w / 2)) + 'px';
+    pop.style.top = top + 'px';
+  }
   function renderMap() {
     $('sorts').innerHTML = [['rating', 'Mejor valorados'], ['comm', 'Mayor comisión'], ['price', 'Menor precio']].map(function (o) { return pill('sort', o[0], o[1], o[0] === S.msort); }).join('');
     $('chips').innerHTML = CATS.map(catChip).join('');
     renderPins();
+    renderPop();
     var list = SVCS.map(function (s, i) { return Object.assign({ i: i, c: s.price * s.pct / 100 }, s); }).filter(visible);
     list.sort(function (a, b) {
       if (S.msort === 'comm') return b.c - a.c;
@@ -1360,6 +1435,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   }
 
   document.addEventListener('click', function (e) {
+    if (S.popup && e.target.closest('.map-main') && !e.target.closest('.pin-pop, .fv-pin')) { S.popup = false; renderMap(); }
     var b = e.target.closest('[data-act]');
     if (!b) return;
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
@@ -1368,11 +1444,12 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'step') { S.step = +v; renderSteps(); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
-      S.mtype = v;
+      S.mtype = v; S.popup = false;
       if (!visible(SVCS[S.pin])) { for (var k = 0; k < SVCS.length; k++) if (visible(SVCS[k])) { S.pin = k; break; } }
       renderMap();
     }
-    if (act === 'pin') { S.pin = +v; renderMap(); }
+    if (act === 'pin') { S.pin = +v; S.popup = true; renderMap(); }
+    if (act === 'popclose') { S.popup = false; renderMap(); }
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
     if (act === 'trust') { S.trust = v; renderTrust(); }
@@ -1896,10 +1973,11 @@ a:hover>.logo-dot{transform:scale(1.5)}
   $('zoom').addEventListener('click', function (e) { if (e.target === $('zoom')) closeZoom(); });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (S.popup) { S.popup = false; renderMap(); var pb = document.querySelector('.fv-pin[aria-pressed="true"]'); if (pb) pb.focus({ preventScroll: true }); return; }
     if (!$('zoom').hidden) closeZoom();
     else if (FX.open) fxClose();
   });
-  window.addEventListener('resize', fitPanel);
+  window.addEventListener('resize', function () { fitPanel(); if (S.popup) renderPop(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
 
   var form = $('acceso');
