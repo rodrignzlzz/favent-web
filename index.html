@@ -129,6 +129,31 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .hx-rail{padding:16px;display:flex;flex-direction:column;gap:14px;background:#FBFBFA;min-width:0}
 .hx-notif{background:#FFFFFF;border:1px solid #E3E5E0;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 24px rgba(15,17,16,.06)}
 .hx-qr{background:#0F1110;color:#F4F4F1;border-radius:16px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 18px 18px}
+.fp-card{border:1px solid #ECEDE9;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:#FFFFFF;transition:opacity .25s}
+.fp-card.off{opacity:.55}
+.fp-card.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1);border-color:#3F6FD8}
+.fp-card img{height:92px;width:100%;object-fit:cover;display:block}
+.fp-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.fp-b b{font-size:14px;font-weight:600}
+.fp-b p{margin:0;font-size:12.5px;line-height:1.45;color:#3A3D3B}
+.fp-days{display:flex;gap:4px;flex-wrap:wrap}
+.fp-day{width:24px;height:24px;border-radius:12px;border:0;font:600 10.5px 'Inter',sans-serif;display:inline-flex;align-items:center;justify-content:center;background:#F0F1ED;color:#A3ABB8;padding:0}
+.fp-day.on,.fp-day[aria-pressed="true"]{background:#E7ECF5;color:#274586}
+button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size:11.5px}
+.fp-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#6A6E6B}
+.fp-price{font:500 15px 'DM Mono',monospace;color:#0F1110}
+.fp-sw{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:0;font:600 12px 'Inter',sans-serif;color:#274586;cursor:pointer}
+.fp-sw i{width:34px;height:20px;border-radius:10px;background:#3F6FD8;position:relative;transition:background-color .2s}
+.fp-sw i::after{content:"";position:absolute;top:2px;left:16px;width:16px;height:16px;border-radius:8px;background:#FFFFFF;transition:left .2s}
+.fp-sw[aria-checked="false"]{color:#6A6E6B}.fp-sw[aria-checked="false"] i{background:#DADBD6}.fp-sw[aria-checked="false"] i::after{left:2px}
+.fp-form{margin:0 18px 14px;border:1px solid #D8E1F2;background:#F7F9FD;border-radius:16px;padding:14px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+.fp-form label,.fp-form fieldset{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#4C504D;margin:0;padding:0;border:0;min-width:0}
+.fp-form legend{padding:0;margin-bottom:5px}
+.fp-form input,.fp-form textarea{height:36px;border:1px solid #DADBD6;border-radius:10px;padding:0 10px;font:13px 'Inter',sans-serif;color:#0F1110;background:#FFFFFF;min-width:0}
+.fp-form textarea{height:auto;padding:8px 10px;resize:none}
+.fp-form .full{grid-column:1 / -1}
+.fp-form .acts{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
 .fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Inter',sans-serif;color:#4C504D;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#0F1110;color:#FFFFFF;box-shadow:0 4px 12px rgba(15,17,16,.18)}
@@ -277,7 +302,11 @@ a:hover>.logo-dot{transform:scale(1.5)}
   .fx-who small{display:block}
   .fx-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fx-rep{grid-template-columns:1fr}
-  .fx-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .fx-tabs{display:flex;overflow-x:auto;gap:6px;scrollbar-width:none}
+  .fx-tabs .fx-tab{flex:0 0 auto}
+  .fp-grid{grid-template-columns:1fr}
+  .fp-form{grid-template-columns:1fr 1fr}
+  .fp-form .nm{grid-column:1 / -1}
   .fx-role{display:grid;grid-template-columns:1fr 1fr;align-self:stretch;margin-bottom:-8px}
   .fx-role button{justify-content:center;padding:0 8px;font-size:12.5px;height:40px}
   .fx-pro{--cols:minmax(0,1fr) auto auto !important}
@@ -1121,6 +1150,16 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Propuesta enviada': 'Proposal sent',
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
+    'Mis servicios': 'My services',
+    'Publica lo que ofreces, a qué precio y qué días.': 'Publish what you offer, at what price and on which days.',
+    '+ Publicar servicio': '+ Publish service',
+    'Visitas al perfil': 'Profile visits', 'Clics en tus servicios': 'Clicks on your services', 'Servicios publicados': 'Published services',
+    'este mes': 'this month', 'clics este mes': 'clicks this month', 'Publicado': 'Published', 'Oculto': 'Hidden',
+    'Días disponibles': 'Available days', 'Nombre del servicio': 'Service name', 'Precio': 'Price', 'Descripción corta': 'Short description',
+    'Publicar': 'Publish', 'Cancelar': 'Cancel', 'Nuevo': 'New',
+    'Velero con patrón por las calas del norte, para grupos pequeños.': 'Skippered sailboat around the northern coves, for small groups.',
+    'Excursión a Formentor · medio día': 'Formentor trip · half day',
+    'Media jornada hasta el cabo de Formentor con baño en una cala.': 'Half-day trip to Cape Formentor with a swim in a cove.',
     'Recibe reservas, confírmalas y canjea el código.': 'Receive bookings, confirm them and redeem the code.',
     'Tu disponibilidad, sincronizada.': 'Your availability, in sync.',
     'Quién vende tus servicios y a qué comisión.': 'Who sells your services and at what commission.',
@@ -1533,12 +1572,16 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'trust') { S.trust = v; renderTrust(); }
     if (act === 'fxv') { FX.view = v; FX.cat = null; FX.open = null; if (v === 'rep') FX.grow = true; fxRender(); if (v === 'msg') fxChatPlay(); }
     if (act === 'fxrole' && FX.role !== v) {
-      FX.role = v; FX.view = 'res'; FX.cat = null; FX.st = 'all'; FX.open = null; FX.q = ''; $('fx-q').value = '';
-      if (TOUR.on) tourGo(0); else fxRender();
+      FX.role = v; FX.view = v === 'pro' ? 'srv' : 'res'; FX.cat = null; FX.st = 'all'; FX.open = null; FX.q = ''; $('fx-q').value = '';
+      if (TOUR.on && TOUR.visible) tourGo(0); else fxRender();
     }
     if (act === 'fprow') { fxOpen({ t: 'pres', i: +v }); }
     if (act === 'fppar') { fxOpen({ t: 'ppar', i: +v }); }
     if (act === 'fpscan') { fpScan(+v); }
+    if (act === 'fpnew') { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
+    if (act === 'fpcancel') { FX.form = null; fxRender(); }
+    if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
+    if (act === 'fptoggle') { FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
     if (act === 'fpslot') { if (FPBLOCK[v]) delete FPBLOCK[v]; else FPBLOCK[v] = 1; FX.fresh = v; fxRender(); }
     if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
     if (act === 'fxaccept') { fxAccept(); }
@@ -1622,6 +1665,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     map: '<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
     msg: '<path d="M4 5h16v11H9l-5 4z"/>',
     cal: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8 14h3"/>',
+    srv: '<path d="M3.5 12.5l8-8h8v8l-8 8z"/><circle cx="15.5" cy="8.5" r="1.4"/>',
     par: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><circle cx="17" cy="8" r="2.5"/><path d="M16 13.2c2.3 0 4 1.3 4.6 3.8"/>'
   };
   function fxDate(iso, long) {
@@ -1797,7 +1841,24 @@ a:hover>.logo-dot{transform:scale(1.5)}
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] },
     { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] }
   ];
+  function fpType(id, key, text, ms) {
+    var n = 0, step = Math.max(20, ms / text.length);
+    (function tick() {
+      if (!TOUR.on || !FX.form) return;
+      n++; FX.form[key] = text.slice(0, n);
+      var el = $(id); if (el) el.value = FX.form[key];
+      if (n < text.length) TOUR.timers.push(setTimeout(tick, step));
+    })();
+  }
   var TOUR_PRO = [
+    { v: 'srv', d: 9000, at: [
+      [1300, function () { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
+      [1800, function () { fpType('fpf-n', 'n', T('Excursión a Formentor · medio día'), 1100); }],
+      [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
+      [3700, function () { [4, 5, 6].forEach(function (d, k) { TOUR.timers.push(setTimeout(function () { if (FX.form) { FX.form.d[d] = 1; fxRender(); } }, k * 250)); }); }],
+      [4700, function () { fpType('fpf-d', 't', T('Media jornada hasta el cabo de Formentor con baño en una cala.'), 1300); }],
+      [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); setTimeout(fpPublish, 350); } }]
+    ] },
     { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); setTimeout(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
     { v: 'cal', d: 5500, at: [[1800, function () { FPBLOCK['2|2026-04-10'] = 1; FX.fresh = '2|2026-04-10'; fxRender(); }], [3600, function () { fxOpen({ t: 'pres', i: 4 }, true); }]] },
     { v: 'par', d: 5000, at: [[1500, function () { fxOpen({ t: 'ppar', i: 4 }, true); }], [4300, function () { FX.open = null; fxRender(); }]] },
@@ -1831,10 +1892,10 @@ a:hover>.logo-dot{transform:scale(1.5)}
   $('app').addEventListener('focusin', function (e) { if (TOUR.on && e.target.matches('input')) tourStop(); });
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
-      var v = es[0].isIntersecting;
+      var v = es[es.length - 1].isIntersecting;
       if (v && !TOUR.visible) { TOUR.visible = true; if (TOUR.on) tourGo(TOUR.i); }
       if (!v) { TOUR.visible = false; tourClear(); }
-    }, { threshold: 0.3 }).observe(document.querySelector('.fx-win'));
+    }, { threshold: 0.3 }).observe(document.querySelector('#app .fx-win'));
   }
   if (!TOUR.on) $('fx-replay').hidden = false;
 
@@ -1864,6 +1925,60 @@ a:hover>.logo-dot{transform:scale(1.5)}
   var FPBLOCK = Object.assign({}, FPBLOCK0);
   var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], start: 4 };
   var FPSHARE = [['Hotel Miramar', 38], ['Hotel Can Ribes', 24], ['Tramuntana Travel', 18], ['Conserjería Port Blau', 12], ['Mar Blau Yachting', 8]];
+  var FPS0 = [
+    { n: 'Chárter privado · día completo', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', clicks: 312, on: true },
+    { n: 'Catamarán privado al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida en catamarán al atardecer, con bebida incluida.', clicks: 198, on: true },
+    { n: 'Velero · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Velero con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: true }
+  ];
+  var FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); });
+  function fpDayL() { return S.lang === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'X', 'J', 'V', 'S', 'D']; }
+  function fpNum(v) { return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, S.lang === 'en' ? ',' : '.'); }
+  function fpSrv() {
+    var en = S.lang === 'en', dl = fpDayL();
+    var clicks = FPS.reduce(function (a, x) { return a + x.clicks; }, 0), pub = FPS.filter(function (x) { return x.on; }).length;
+    var kpis = '<div class="fx-kpis" style="grid-template-columns: repeat(3, minmax(0, 1fr))">' + [['Visitas al perfil', fpNum(1284), 'este mes'], ['Clics en tus servicios', fpNum(clicks), 'este mes'], ['Servicios publicados', pub + ' / ' + FPS.length, '']].map(function (k) {
+      return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] ? '<span style="font-size: 11px">' + T(k[2]) + '</span>' : '') + '</div>';
+    }).join('') + '</div>';
+    var f = FX.form, form = '';
+    if (f) {
+      form = '<form class="fp-form" id="fpf">'
+        + '<label class="nm">' + T('Nombre del servicio') + '<input id="fpf-n" required maxlength="60" value="' + esc(f.n) + '"></label>'
+        + '<label>' + T('Precio') + ' (€)<input id="fpf-p" type="number" min="1" required value="' + esc(f.p) + '"></label>'
+        + '<label>' + T('Comisión') + ' (%)<input id="fpf-c" type="number" min="1" max="50" required value="' + esc(f.c) + '"></label>'
+        + '<fieldset class="full"><legend>' + T('Días disponibles') + '</legend><div class="fp-days">' + dl.map(function (d, i) { return '<button type="button" class="fp-day" data-act="fpday" data-v="' + i + '" aria-pressed="' + !!f.d[i] + '">' + d + '</button>'; }).join('') + '</div></fieldset>'
+        + '<label class="full">' + T('Descripción corta') + '<textarea id="fpf-d" rows="2" maxlength="120">' + esc(f.t) + '</textarea></label>'
+        + '<div class="acts"><button type="button" class="fx-btn ghost" data-act="fpcancel">' + T('Cancelar') + '</button><button type="submit" class="fx-btn accent" id="fpf-go">' + T('Publicar') + '</button></div></form>';
+    }
+    var cards = FPS.map(function (x, i) {
+      var name = x.raw ? esc(x.n) : T(x.n), desc = x.raw ? esc(x.desc) : T(x.desc);
+      return '<div class="fp-card' + (x.on ? '' : ' off') + (FX.freshSrv === i ? ' fresh' : '') + '"><img src="img/ofreces.jpg" alt=""><div class="fp-b">'
+        + '<div class="fp-meta"><b style="color: #0F1110">' + name + '</b>' + (x.isNew ? '<span class="fx-pill" style="background: #3F6FD8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '') + '</div>'
+        + '<p>' + desc + '</p>'
+        + '<div class="fp-meta"><span class="fp-price">' + T('desde') + ' ' + eur(x.price) + '</span><span class="fx-pill" style="background: #D8E1F2; color: #274586">' + T('Comisión') + ' ' + x.pct + (en ? '%' : ' %') + '</span></div>'
+        + '<div class="fp-days" aria-label="' + T('Días disponibles') + '">' + dl.map(function (d, k) { return '<span class="fp-day' + (x.days[k] ? ' on' : '') + '">' + d + '</span>'; }).join('') + '</div>'
+        + '<div class="fp-meta"><span style="display: flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>' + fpNum(x.clicks) + ' ' + T('clics este mes') + '</span>'
+        + '<button type="button" class="fp-sw" role="switch" data-act="fptoggle" data-v="' + i + '" aria-checked="' + x.on + '"><i></i>' + T(x.on ? 'Publicado' : 'Oculto') + '</button></div>'
+        + '</div></div>';
+    }).join('');
+    FX.freshSrv = null;
+    return '<div class="fx-bar"><span class="fx-title">' + T('Mis servicios') + '</span>' + (f ? '' : '<button type="button" class="fx-btn" data-act="fpnew" id="fp-new">' + T('+ Publicar servicio') + '</button>') + '</div>'
+      + kpis + form + '<div class="fp-grid">' + cards + '</div>';
+  }
+  function fpPublish() {
+    var f = FX.form; if (!f) return;
+    FPS.unshift(f.tour
+      ? { n: 'Excursión a Formentor · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
+      : { n: f.n.trim(), desc: f.t.trim(), price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
+    FX.form = null; FX.freshSrv = 0; fxRender();
+  }
+  document.addEventListener('input', function (e) {
+    if (!FX.form || !e.target.id || e.target.id.indexOf('fpf-') !== 0) return;
+    FX.form[{ 'fpf-n': 'n', 'fpf-p': 'p', 'fpf-c': 'c', 'fpf-d': 't' }[e.target.id]] = e.target.value;
+  });
+  document.addEventListener('submit', function (e) {
+    if (e.target.id !== 'fpf') return;
+    e.preventDefault(); fpPublish();
+  });
   function fpList() {
     var q = FX.q.trim().toLowerCase();
     var l = FPB.map(function (b, i) { return Object.assign({ i: i }, b); }).filter(function (b) {
@@ -1977,7 +2092,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     b.st = 'redeemed'; FX.scanned = i; fxRender();
     setTimeout(function () { b.st = 'released'; fxRender(); }, 900);
   }
-  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FX.scanned = null; FX.fresh = null; }
+  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.scanned = null; FX.fresh = null; }
 
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
@@ -2010,13 +2125,14 @@ a:hover>.logo-dot{transform:scale(1.5)}
     var en = S.lang === 'en';
     var pro = FX.role === 'pro';
     var views = pro
-      ? [['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['par', 'Socios', 'Quién vende tus servicios y a qué comisión.'], ['rep', 'Informes', 'Tus ventas por socio, mes a mes.']]
+      ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['par', 'Socios', 'Quién vende tus servicios y a qué comisión.'], ['rep', 'Informes', 'Tus ventas por socio, mes a mes.']]
       : [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red, mes a mes.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
     $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
       return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
     }).join('');
     var run = TOUR.on && TOUR.visible, el = Date.now() - TOUR.t0, dur = tourSteps()[TOUR.i].d;
+    $('fx-tabs').style.gridTemplateColumns = 'repeat(' + views.length + ', minmax(0, 1fr))';
     $('fx-tabs').innerHTML = views.map(function (v) {
       var on = FX.view === v[0], r = run && on;
       return '<button type="button" class="fx-tab' + (r ? ' run' : '') + '" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + on + '"' + (r ? ' style="--d: ' + dur + 'ms; animation-delay: -' + el + 'ms"' : '') + '><b>' + T(v[1]) + '</b><span>' + T(v[2]) + '</span></button>';
@@ -2024,7 +2140,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     var cur = views.filter(function (v) { return v[0] === FX.view; })[0] || views[0];
     $('fx-crumb').innerHTML = ws[1] + ' / <b>' + T(cur[1]) + '</b>';
     var side = '<div class="fx-ws"><i>' + ws[0] + '</i>' + ws[1] + '</div>' + views.map(function (v) {
-      var n = pro ? (v[0] === 'res' ? FPB.length : v[0] === 'par' ? FPP.length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
+      var n = pro ? (v[0] === 'srv' ? FPS.length : v[0] === 'res' ? FPB.length : v[0] === 'par' ? FPP.length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
       return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && FX.cat == null) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
     }).join('');
     if (pro) side += '<div class="fx-sec">' + T('Servicios') + '</div>' + FPSV.map(function (sv, i) {
@@ -2037,7 +2153,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     }).join('');
     $('fx-side').innerHTML = side;
     $('fx-main').innerHTML = pro
-      ? (FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'par' ? fpPar() : fpRep())
+      ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'par' ? fpPar() : fpRep())
       : (FX.view === 'res' ? fxRes() : FX.view === 'ag' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat());
     FX.fresh = null;
     fxDrawer();
@@ -2241,7 +2357,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   }
   if (!LIVE.still && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
-      var v = es[0].isIntersecting;
+      var v = es[es.length - 1].isIntersecting;
       if (v && !LIVE.visible) { LIVE.visible = true; sceneRun(); }
       if (!v && LIVE.visible) { LIVE.visible = false; sceneStop(); SCENE[0][1](); }
     }, { threshold: 0.35 }).observe($('demo'));
