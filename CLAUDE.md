@@ -12,7 +12,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 - Alojamiento: **GitHub Pages**, rama `main`, carpeta raíz. Cada push a `main` se publica en https://www.favent.app.
 - **No borrar ni modificar el archivo `CNAME`** (contiene `www.favent.app`).
 - Web estática: un único `index.html` con CSS y JS en línea, sin build ni dependencias. Mantenerlo así salvo que se pida lo contrario. Si se añaden páginas (privacidad, aviso legal, cookies), crear archivos `.html` en la raíz con el mismo estilo.
-- El mapa es un SVG propio con el contorno real de Mallorca (Natural Earth, dominio público); los pins se colocan por latitud/longitud con `proj()`. Sin librerías ni mosaicos externos.
+- El mapa es un SVG propio: costa de Mallorca y Dragonera de OpenStreetMap (paquete `@geo-maps/earth-lands-100m`, ODbL; atribución «© OpenStreetMap» obligatoria en el mapa), con Serra de Tramuntana, carreteras principales esquemáticas, pueblos y bahías. Los pins se colocan por latitud/longitud con `proj()`. Sin librerías ni mosaicos externos.
 - GitHub Pages no permite backend ni pagos: los formularios deben enviar a un servicio externo (Formspree, Supabase, etc.).
 
 ## Marca
