@@ -34,6 +34,9 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 #map-list button:hover,#team-rows button:hover{border-color:#3F6FD8 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,17,16,0.08)}
 #steps button:hover{border-color:#8CA9E8 !important;transform:translateY(-3px)}
 #app-nav button:hover{background:#ECEDE9 !important}
+#map-list{max-height:620px;overflow-y:auto;padding-right:4px}
+.fv-pin.dot{font-size:0 !important;width:16px !important;height:16px !important;padding:0 !important;border-width:2px !important;background:var(--c) !important;transform:translate(-50%,-50%) !important}
+.fv-pin.dot:hover,.fv-pin.dot.hot{font-size:12px !important;width:auto !important;height:32px !important;padding:0 12px !important;background:#0F1110 !important;transform:translate(-50%,-100%) !important;z-index:6 !important}
 .fv-pin:hover,.fv-pin.hot{transform:translate(-50%,-100%) scale(1.12) !important;box-shadow:0 10px 22px rgba(15,17,16,0.28) !important;z-index:5 !important}
 .logo-dot,.logo-mark{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 a:hover>.logo-mark{transform:rotate(-6deg) scale(1.06)}
@@ -1074,6 +1077,16 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Ruta guiada en bici de carretera': 'Guided road cycling tour',
     'Alquiler de bici eléctrica · día': 'E-bike rental · day',
     'Cena privada en finca · grupo': 'Private dinner at a country estate · group',
+    'Catamarán al atardecer · 3 h': 'Sunset catamaran · 3 h',
+    'Bautismo de buceo': 'Try scuba diving',
+    'Minibús privado para grupos': 'Private minibus for groups',
+    'Traslado privado en coche de lujo': 'Private luxury car transfer',
+    'Ruta en bici por el Pla de Mallorca': 'Bike tour through the Pla de Mallorca',
+    'Ruta guiada en bici de montaña': 'Guided mountain bike tour',
+    'Boda en finca · hasta 120 invitados': 'Estate wedding · up to 120 guests',
+    'Cóctel privado frente al mar': 'Private seafront cocktail party',
+    'Cata de vinos en bodega · grupo': 'Winery wine tasting · group',
+    'Alquiler de kayak · medio día': 'Kayak rental · half day',
     'Encuentro': 'Match', 'Reserva': 'Booking', 'Señal': 'Deposit', 'Confirmación': 'Confirmation', 'Canje': 'Redemption', 'Liberación': 'Release',
     'Quien tiene clientes encuentra a quien tiene el servicio.': 'Whoever has the clients meets whoever has the service.',
     'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.': 'Each service carries its agreed commission, as a percentage or a fixed amount. Every booking respects it.',
@@ -1147,10 +1160,26 @@ a:hover>.logo-dot{transform:scale(1.5)}
     { name: 'Velas del Norte', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
     { name: 'Mar Blau Yachting', svc: 'Velero clásico · día completo', type: 'Náutica', place: 'Palma', lat: 39.5660, lng: 2.6370, price: 1400, pct: 15, rating: 4.7, reviews: 54 },
     { name: 'Cala d’Or Charters', svc: 'Catamarán privado · día completo', type: 'Náutica', place: 'Cala d’Or', lat: 39.3720, lng: 3.2330, price: 1200, pct: 13, rating: 4.6, reviews: 17 },
+    { name: 'Yates Formentor', svc: 'Yate con patrón · semana', type: 'Náutica', place: 'Port d’Alcúdia', lat: 39.8370, lng: 3.1395, price: 9800, pct: 10, rating: 4.8, reviews: 21 },
+    { name: 'Andratx Sailing', svc: 'Velero · día completo', type: 'Náutica', place: 'Port d’Andratx', lat: 39.5440, lng: 2.3870, price: 1100, pct: 14, rating: 4.7, reviews: 26 },
+    { name: 'Sóller Boats', svc: 'Lancha privada · día completo', type: 'Náutica', place: 'Port de Sóller', lat: 39.7970, lng: 2.6930, price: 900, pct: 15, rating: 4.9, reviews: 12 },
+    { name: 'Portocolom Catamarans', svc: 'Catamarán al atardecer · 3 h', type: 'Náutica', place: 'Portocolom', lat: 39.4180, lng: 3.2620, price: 650, pct: 12, rating: 4.6, reviews: 33 },
+    { name: 'Llevant Diving', svc: 'Bautismo de buceo', type: 'Náutica', place: 'Cala Rajada', lat: 39.7120, lng: 3.4650, price: 90, pct: 15, rating: 4.8, reviews: 47 },
     { name: 'Llevant Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Cala Millor', lat: 39.5970, lng: 3.3830, price: 95, pct: 15, rating: 4.8, reviews: 63 },
+    { name: 'Ponent Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Santa Ponça', lat: 39.5090, lng: 2.4770, price: 70, pct: 15, rating: 4.7, reviews: 58 },
+    { name: 'Nord Transfers', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'Alcúdia', lat: 39.8530, lng: 3.1210, price: 180, pct: 12, rating: 4.6, reviews: 29 },
+    { name: 'Migjorn Transfers', svc: 'Traslado privado aeropuerto–hotel', type: 'Traslados', place: 'Colònia de Sant Jordi', lat: 39.3160, lng: 2.9930, price: 85, pct: 15, rating: 4.5, reviews: 14 },
+    { name: 'Serra Drivers', svc: 'Traslado privado en coche de lujo', type: 'Traslados', place: 'Valldemossa', lat: 39.7103, lng: 2.6226, price: 160, pct: 12, rating: 4.9, reviews: 22 },
+    { name: 'Platja Shuttle', svc: 'Minibús privado para grupos', type: 'Traslados', place: 'S’Arenal', lat: 39.5000, lng: 2.7500, price: 150, pct: 12, rating: 4.4, reviews: 37 },
     { name: 'Tramuntana Cycling', svc: 'Ruta guiada en bici de carretera', type: 'Ciclismo', place: 'Sóller', lat: 39.7667, lng: 2.7150, price: 120, pct: 15, rating: 4.9, reviews: 29 },
+    { name: 'Pla Bike Tours', svc: 'Ruta en bici por el Pla de Mallorca', type: 'Ciclismo', place: 'Sineu', lat: 39.6430, lng: 3.0110, price: 85, pct: 15, rating: 4.7, reviews: 18 },
+    { name: 'Llevant Cycling', svc: 'Ruta guiada en bici de montaña', type: 'Ciclismo', place: 'Artà', lat: 39.6936, lng: 3.3497, price: 95, pct: 15, rating: 0, reviews: 0 },
+    { name: 'Finques del Pla', svc: 'Cena privada en finca · grupo', type: 'Eventos', place: 'Algaida', lat: 39.5590, lng: 2.8940, price: 2400, pct: 10, rating: 0, reviews: 0 },
+    { name: 'Son Events', svc: 'Boda en finca · hasta 120 invitados', type: 'Eventos', place: 'Pollença', lat: 39.8770, lng: 3.0160, price: 18000, pct: 5, rating: 4.9, reviews: 9 },
+    { name: 'Mar i Cel Events', svc: 'Cóctel privado frente al mar', type: 'Eventos', place: 'Portals Nous', lat: 39.5330, lng: 2.5740, price: 3200, pct: 8, rating: 4.7, reviews: 15 },
+    { name: 'Celler Events', svc: 'Cata de vinos en bodega · grupo', type: 'Eventos', place: 'Binissalem', lat: 39.6870, lng: 2.8440, price: 600, pct: 12, rating: 4.8, reviews: 31 },
     { name: 'Badia Bike Rental', svc: 'Alquiler de bici eléctrica · día', type: 'Alquiler', place: 'Can Picafort', lat: 39.7672, lng: 3.1560, price: 45, pct: 20, rating: 4.5, reviews: 11 },
-    { name: 'Finques del Pla', svc: 'Cena privada en finca · grupo', type: 'Eventos', place: 'Algaida', lat: 39.5590, lng: 2.8940, price: 2400, pct: 10, rating: 0, reviews: 0 }
+    { name: 'Migjorn Kayak', svc: 'Alquiler de kayak · medio día', type: 'Alquiler', place: 'Cala Figuera', lat: 39.3330, lng: 3.1770, price: 40, pct: 20, rating: 4.6, reviews: 19 }
   ];
   var ME = [39.7210, 2.9100]; // "Tú": Inca
   // Proyección del contorno de Mallorca (OpenStreetMap, ODbL) al SVG de 600×494
@@ -1162,8 +1191,9 @@ a:hover>.logo-dot{transform:scale(1.5)}
     var me = proj(ME[0], ME[1]), meEl = $('me');
     meEl.style.left = me[0] + '%'; meEl.style.top = me[1] + '%';
     $('pins').innerHTML = SVCS.map(function (s, i) {
-      var on = i === S.pin, xy = proj(s.lat, s.lng);
-      return '<button type="button" class="fv-pin" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); opacity: ' + (visible(s) ? 1 : 0.3) + '; height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
+      if (!visible(s)) return '';
+      var on = i === S.pin, xy = proj(s.lat, s.lng), dot = S.mtype === 'Todas' && !on;
+      return '<button type="button" class="fv-pin' + (dot ? ' dot' : '') + '" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; --c: ' + FXCOL[s.type] + '; transform: translate(-50%, -100%); height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price * s.pct / 100) + '</button>';
     }).join('');
   }
   var TRUST = [
@@ -1271,7 +1301,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     var on = c[0] === S.mtype;
     var n = c[0] === 'Todas' ? SVCS.length : SVCS.filter(function (s) { return s.type === c[0]; }).length;
     return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? '#0F1110' : '#DADBD6') + '; background: ' + (on ? '#0F1110' : '#FFFFFF') + '; color: ' + (on ? '#FFFFFF' : '#0F1110') + '; display: flex; align-items: center; gap: 8px; font-family: \'Inter\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
-      + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (on ? A.accent : A.tint) + '; color: ' + (on ? '#FFFFFF' : A.text) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
+      + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
       + T(c[0]) + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? '#B4B8B4' : '#6A6E6B') + '">' + n + '</span></button>';
   }
   function renderMap() {
@@ -1337,7 +1367,11 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'mode') { S.mode = v; renderModes(); }
     if (act === 'step') { S.step = +v; renderSteps(); }
     if (act === 'sort') { S.msort = v; renderMap(); }
-    if (act === 'type') { S.mtype = v; renderMap(); }
+    if (act === 'type') {
+      S.mtype = v;
+      if (!visible(SVCS[S.pin])) { for (var k = 0; k < SVCS.length; k++) if (visible(SVCS[k])) { S.pin = k; break; } }
+      renderMap();
+    }
     if (act === 'pin') { S.pin = +v; renderMap(); }
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
