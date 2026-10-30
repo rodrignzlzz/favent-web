@@ -71,6 +71,114 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .map-sea{font-size:10px;font-style:italic;letter-spacing:.12em;fill:#7E95C4}
 .map-tram{font-size:9px;font-style:italic;letter-spacing:.1em;fill:#9AA3B2}
 @media (max-width: 640px){.map-town,.map-bay,.map-sea,.map-tram{display:none}.map-city{font-size:20px}.map-attr{font-size:8px !important;right:4px !important;bottom:2px !important}}
+/* Dashboard interactivo */
+.fx-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fx-tab{text-align:left;border:1px solid #ECEDE9;background:#FFFFFF;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;cursor:pointer;font-family:'Inter',sans-serif;color:#0F1110}
+.fx-tab b{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.02em}
+.fx-tab span{font-size:13px;color:#6A6E6B;line-height:1.4}
+.fx-tab[aria-pressed="true"]{border-color:#3F6FD8;background:#E7ECF5}
+.fx-tab[aria-pressed="true"] span{color:#274586}
+.fx-tab:hover{border-color:#8CA9E8}
+.fx-win{position:relative;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:22px;box-shadow:0 30px 70px rgba(15,17,16,.10);overflow:hidden}
+.fx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #ECEDE9;background:#FBFBFA}
+.fx-dots{display:flex;gap:6px}.fx-dots span{width:10px;height:10px;border-radius:5px;background:#DADBD6}
+.fx-crumb{flex:1;min-width:0;font-size:13px;color:#6A6E6B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fx-crumb b{color:#0F1110;font-weight:600}
+.fx-search{position:relative;display:flex;align-items:center;color:#6A6E6B}
+.fx-search svg{position:absolute;left:11px}
+.fx-search input{height:32px;width:220px;max-width:42vw;padding:0 12px 0 30px;border-radius:999px;border:1px solid #DADBD6;background:#FFFFFF;font:13px 'Inter',sans-serif;color:#0F1110}
+.fx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fx-badge{font-size:11px;font-weight:600;color:#4C504D;border:1px solid #DADBD6;background:#FFFFFF;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.fx-body{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:540px}
+.fx-side{border-right:1px solid #ECEDE9;background:#F8F8F6;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
+.fx-ws{display:flex;align-items:center;gap:8px;padding:2px 10px 12px;font-size:14px;font-weight:600}
+.fx-ws i{width:24px;height:24px;border-radius:7px;background:#0F1110;color:#FFFFFF;font:700 10px 'Inter',sans-serif;font-style:normal;display:flex;align-items:center;justify-content:center}
+.fx-side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Inter',sans-serif;color:#2A2D2B;cursor:pointer}
+.fx-side button:hover{background:#EFEFEC}
+.fx-side button[aria-pressed="true"]{background:#E7ECF5;color:#274586;font-weight:600}
+.fx-side button em{margin-left:auto;font:500 11px 'DM Mono',monospace;font-style:normal;color:#6A6E6B}
+.fx-side svg{flex-shrink:0}
+.fx-sec{font-size:11px;font-weight:600;color:#6A6E6B;text-transform:uppercase;letter-spacing:.06em;padding:16px 10px 6px}
+.fx-dot{width:8px;height:8px;border-radius:3px;flex-shrink:0}
+.fx-main{min-width:0;display:flex;flex-direction:column}
+.fx-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #ECEDE9}
+.fx-title{font-family:'Inter Tight',sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.fx-chips{display:flex;flex-wrap:wrap;gap:6px}
+.fx-chip{height:28px;padding:0 10px;border-radius:999px;border:1px solid #DADBD6;background:#FFFFFF;font:500 12px 'Inter',sans-serif;color:#0F1110;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.fx-chip[aria-pressed="true"]{background:#0F1110;border-color:#0F1110;color:#FFFFFF}
+.fx-chip b{font:500 11px 'DM Mono',monospace;opacity:.7}
+.fx-row{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:8px 18px;min-height:48px;border:0;border-bottom:1px solid #F0F1ED;font:13px 'Inter',sans-serif;color:#0F1110;width:100%;text-align:left;background:#FFFFFF;cursor:pointer;transition:background-color .15s}
+.fx-row:hover{background:#F7F8FB}
+.fx-row[aria-pressed="true"]{background:#EEF2FA;box-shadow:inset 3px 0 0 #3F6FD8}
+.fx-head{min-height:36px;font-size:11px;font-weight:600;color:#6A6E6B;text-transform:uppercase;letter-spacing:.05em;background:#FBFBFA;cursor:default}
+.fx-head:hover{background:#FBFBFA}
+.fx-sort{border:0;background:none;padding:0;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.fx-sort[aria-pressed="true"]{color:#274586}
+.fx-res{--cols:minmax(0,1.3fr) minmax(0,1.5fr) minmax(0,1.15fr) .75fr .75fr 1.05fr}
+.fx-ag{--cols:minmax(0,1.5fr) .9fr .8fr .6fr .7fr .7fr 1fr}
+.fx-cell{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fx-who{display:flex;align-items:center;gap:9px;min-width:0}
+.fx-who span{min-width:0;display:flex;flex-direction:column}
+.fx-who small{font-size:11.5px;color:#6A6E6B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:none}
+.fx-av{width:26px;height:26px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;font:600 10px 'Inter',sans-serif;color:#FFFFFF;flex-shrink:0}
+.fx-mono{font-family:'DM Mono',monospace}
+.fx-pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;justify-self:start;border:1px solid transparent}
+.fx-dh .fx-pill{align-self:flex-start}
+.fx-empty{padding:40px 18px;text-align:center;color:#6A6E6B;font-size:14px}
+.fx-drawer{position:absolute;top:0;right:0;bottom:0;width:min(380px,100%);background:#FFFFFF;border-left:1px solid #E3E5E0;box-shadow:-24px 0 48px rgba(15,17,16,.10);transform:translateX(102%);visibility:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility .35s;display:flex;flex-direction:column;z-index:4;overflow-y:auto}
+.fx-drawer.open{transform:none;visibility:visible}
+.fx-dh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:18px 18px 14px;border-bottom:1px solid #ECEDE9}
+.fx-x{width:32px;height:32px;border-radius:999px;border:1px solid #DADBD6;background:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0F1110;flex-shrink:0}
+.fx-fields{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;padding:16px 18px;font-size:13px;border-bottom:1px solid #ECEDE9}
+.fx-fields dt{color:#6A6E6B}.fx-fields dd{margin:0;font-weight:500;min-width:0}
+.fx-tl{list-style:none;margin:0;padding:16px 18px;display:flex;flex-direction:column;gap:0}
+.fx-tl li{position:relative;padding:0 0 16px 26px;font-size:13px;display:flex;flex-direction:column;gap:2px}
+.fx-tl li::before{content:"";position:absolute;left:5px;top:16px;bottom:0;width:2px;background:#ECEDE9}
+.fx-tl li:last-child::before{display:none}
+.fx-tl i{position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:6px;border:2px solid #DADBD6;background:#FFFFFF}
+.fx-tl li.done i{border-color:#3F6FD8;background:#3F6FD8}
+.fx-tl li.done::before{background:#8CA9E8}
+.fx-tl li.now i{box-shadow:0 0 0 4px rgba(63,111,216,.2)}
+.fx-tl small{color:#6A6E6B;font-size:12px}
+.fx-tl li:not(.done){color:#6A6E6B}
+.fx-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px 18px}
+.fx-kpi{border:1px solid #ECEDE9;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.fx-kpi span{font-size:12px;color:#6A6E6B}.fx-kpi b{font:500 19px 'DM Mono',monospace}
+.fx-rep{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:12px;padding:0 18px 18px}
+.fx-card{border:1px solid #ECEDE9;border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.fx-card h4{margin:0;font-size:13px;font-weight:600}
+.fx-chart{display:flex;align-items:flex-end;gap:6px;height:180px;padding-top:24px}
+.fx-bar-b{position:relative;flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;font:11px 'Inter',sans-serif;color:#6A6E6B}
+.fx-bar-b i{display:block;width:100%;max-width:34px;border-radius:7px 7px 3px 3px;background:#D8E1F2;transition:background-color .2s,height .45s cubic-bezier(.2,.7,.2,1)}
+.fx-bar-b:hover i,.fx-bar-b[aria-pressed="true"] i{background:#3F6FD8}
+.fx-bar-b[aria-pressed="true"]{color:#0F1110;font-weight:600}
+.fx-cap{font-size:13px;color:#4C504D}.fx-cap b{font-family:'DM Mono',monospace;font-weight:500;color:#0F1110}
+.fx-hb{display:flex;flex-direction:column;gap:10px}
+.fx-hb div{display:grid;grid-template-columns:78px minmax(0,1fr) 38px;gap:8px;align-items:center;font-size:12px}
+.fx-hb s{display:block;height:8px;border-radius:999px;background:#ECEDE9;overflow:hidden;text-decoration:none}
+.fx-hb s i{display:block;height:100%;border-radius:999px;background:#3F6FD8}
+.fx-hb em{font:500 11px 'DM Mono',monospace;font-style:normal;text-align:right}
+@media (max-width: 860px){
+  .fx-body{grid-template-columns:1fr;min-height:0}
+  .fx-side{display:none}
+  .fx-res,.fx-ag{--cols:minmax(0,1fr) auto auto}
+  .fx-hm{display:none !important}
+  .fx-who small{display:block}
+  .fx-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fx-rep{grid-template-columns:1fr}
+  .fx-tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .fx-tab{padding:10px 12px;border-radius:14px}
+  .fx-tab span{display:none}
+  .fx-tab b{font-size:15px}
+}
+@media (max-width: 520px){
+  .fx-top{flex-wrap:wrap}
+  .fx-crumb{order:3;flex-basis:100%}
+  .fx-search{flex:1}.fx-search input{width:100%;max-width:none}
+  .fx-dots{display:none}
+  .fx-bar{padding:12px 14px}.fx-row{padding:8px 14px;gap:8px}
+  .fx-kpis{padding:14px}.fx-rep{padding:0 14px 14px}
+}
 .zoom-hint{display:none}
 #producto.scaled .zoom-hint{display:inline-block}
 #producto.scaled{padding-top:36px !important}
@@ -322,6 +430,32 @@ a:hover>.logo-dot{transform:scale(1.5)}
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Reservas, comisiones cobradas, retenidas y reembolsadas, listo para tu gestoría cada mes.</span>
       </div>
     </div>
+    </div>
+  </section>
+
+  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 28px" aria-label="Producto">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
+      <span style="font-size: 14px; font-weight: 600; color: #274586">Producto</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Todo tu canal de ventas, en una sola pantalla.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Reservas, acuerdos e informes conectados. Explóralo: filtra, ordena y abre cualquier reserva.</p>
+    </div>
+    <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
+    <div class="fx-win">
+      <div class="fx-top">
+        <span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span id="fx-crumb" class="fx-crumb"></span>
+        <label class="fx-search">
+          <span class="fx-sr">Buscar</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+          <input id="fx-q" type="search" placeholder="Buscar reservas…" autocomplete="off">
+        </label>
+        <span class="fx-badge">Vista de ejemplo</span>
+      </div>
+      <div class="fx-body">
+        <nav id="fx-side" class="fx-side" aria-label="Menú de la aplicación de ejemplo"></nav>
+        <div id="fx-main" class="fx-main"></div>
+      </div>
+      <div id="fx-drawer" class="fx-drawer" role="region" aria-label="Detalle"></div>
     </div>
   </section>
 
@@ -841,6 +975,29 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Cala d’Or Charters · Sáb 19 abr · 6 personas': 'Cala d’Or Charters · Sat 19 Apr · 6 guests',
     'Cala d’Or Charters · Sáb 19 abr': 'Cala d’Or Charters · Sat 19 Apr',
     'Cala d’Or Charters canjeó FV-9M4T': 'Cala d’Or Charters redeemed FV-9M4T',
+    'Todo tu canal de ventas, en una sola pantalla.': 'Your whole sales channel, on one screen.',
+    'Reservas, acuerdos e informes conectados. Explóralo: filtra, ordena y abre cualquier reserva.': 'Bookings, agreements and reports, all connected. Explore it: filter, sort and open any booking.',
+    'Vistas': 'Views',
+    'Buscar': 'Search',
+    'Buscar reservas…': 'Search bookings…',
+    'Menú de la aplicación de ejemplo': 'Sample app menu',
+    'Detalle': 'Details',
+    'Cada cliente, de la reserva al cobro.': 'Every client, from booking to payout.',
+    'Socios, comisiones y condiciones.': 'Partners, commissions and terms.',
+    'Informes': 'Reports',
+    'Lo que vende tu red, mes a mes.': 'What your network sells, month by month.',
+    'Cliente': 'Client', 'Servicio': 'Service', 'Empresa': 'Business', 'Fecha': 'Date', 'Estado': 'Status',
+    'Categoría': 'Category', 'Servicios': 'Services', 'Reservas/mes': 'Bookings/mo', 'Valoración': 'Rating',
+    'Activo': 'Active', 'Pendiente de firma': 'Awaiting signature', 'Sin resultados': 'No results',
+    'Personas': 'Guests', 'Recomendado por': 'Referred by', 'Código': 'Code', 'Historial': 'Timeline',
+    'Reserva creada': 'Booking created', 'Código canjeado': 'Code redeemed', 'Condiciones': 'Terms',
+    'Servicios incluidos': 'Included services',
+    'Cancelación gratuita hasta 48 h antes': 'Free cancellation up to 48 h before',
+    'No-show: la señal se reparte 50/50': 'No-show: deposit split 50/50',
+    'Comisión liberada al canjear el código': 'Commission released when the code is redeemed',
+    'Comisión media': 'Average commission', 'Tasa de canje': 'Redemption rate',
+    'Por categoría': 'By category', 'Comisión por mes': 'Commission by month', 'Pendiente': 'Pending',
+    'fijo': 'fixed', 'Listas': 'Lists',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -1101,6 +1258,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
     renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam(); renderTrust();
     if (LIVE) renderLive();
+    if (FX) fxRender();
     if (PS) fitPanel();
   }
 
@@ -1117,6 +1275,15 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
     if (act === 'trust') { S.trust = v; renderTrust(); }
+    if (act === 'fxv') { FX.view = v; FX.cat = null; FX.open = null; fxRender(); }
+    if (act === 'fxcat') { FX.view = 'res'; FX.cat = FX.cat === v ? null : v; FX.open = null; fxRender(); }
+    if (act === 'fxst') { FX.st = v; fxRender(); }
+    if (act === 'fxsort') { if (FX.sort === v) FX.dir = -FX.dir; else { FX.sort = v; FX.dir = v === 'com' ? -1 : 1; } fxRender(); }
+    if (act === 'fxrow') { fxOpen({ t: 'res', i: +v }); }
+    if (act === 'fxag') { fxOpen({ t: 'ag', i: +v }); }
+    if (act === 'fxclose') { fxClose(); }
+    if (act === 'fxrange') { FX.range = +v; FX.mon = null; fxRender(); }
+    if (act === 'fxmon') { FX.mon = +v; fxRender(); var mb = document.querySelector('#fx-main [data-act="fxmon"][data-v="' + v + '"]'); if (mb) mb.focus({ preventScroll: true }); }
   });
 
   $('team-range').addEventListener('input', function (e) { S.share = +e.target.value; renderTeam(); });
@@ -1147,6 +1314,181 @@ a:hover>.logo-dot{transform:scale(1.5)}
       io.observe(el);
     });
   }
+
+  // Dashboard interactivo (datos de ejemplo)
+  var FX = { view: 'res', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null };
+  var FXB = [
+    { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', emp: 'Velas del Norte', cat: 'Náutica', date: '2026-04-12', pax: 8, com: 180, st: 'held', by: 1 },
+    { id: 'FV-9M4T', cli: 'S. Rossi', svc: 'Catamarán privado · día completo', emp: 'Cala d’Or Charters', cat: 'Náutica', date: '2026-04-19', pax: 6, com: 156, st: 'pend', by: 0 },
+    { id: 'FV-3HX8', cli: 'J. Andersson', svc: 'Ruta guiada en bici de carretera', emp: 'Tramuntana Cycling', cat: 'Ciclismo', date: '2026-04-09', pax: 2, com: 36, st: 'released', by: 0 },
+    { id: 'FV-5RT1', cli: 'M. Dubois', svc: 'Traslado privado aeropuerto–hotel', emp: 'Llevant Transfers', cat: 'Traslados', date: '2026-04-10', pax: 3, com: 14, st: 'released', by: 2 },
+    { id: 'FV-8PL6', cli: 'Grupo Kowalski', svc: 'Cena privada en finca · grupo', emp: 'Finques del Pla', cat: 'Eventos', date: '2026-04-25', pax: 14, com: 240, st: 'held', by: 1 },
+    { id: 'FV-2QW9', cli: 'L. Smith', svc: 'Velero clásico · día completo', emp: 'Mar Blau Yachting', cat: 'Náutica', date: '2026-04-11', pax: 6, com: 210, st: 'redeemed', by: 3 },
+    { id: 'FV-6ZN3', cli: 'A. Novak', svc: 'Alquiler de bici eléctrica · día', emp: 'Badia Bike Rental', cat: 'Alquiler', date: '2026-04-14', pax: 2, com: 18, st: 'held', by: 2 },
+    { id: 'FV-4TB7', cli: 'P. García', svc: 'Yate con patrón · semana', emp: 'Yates Formentor', cat: 'Náutica', date: '2026-05-03', pax: 6, com: 600, st: 'pend', by: 0 }
+  ];
+  var FXA = [
+    { emp: 'Velas del Norte', cat: 'Náutica', fix: 0, val: 12, svcs: ['Chárter privado · día completo', 'Catamarán privado al atardecer', 'Velero · día completo'], bk: 14, rating: 4.9, st: 'active' },
+    { emp: 'Mar Blau Yachting', cat: 'Náutica', fix: 0, val: 15, svcs: ['Velero clásico · día completo', 'Catamarán privado al atardecer'], bk: 9, rating: 4.7, st: 'active' },
+    { emp: 'Yates Formentor', cat: 'Náutica', fix: 1, val: 600, svcs: ['Yate con patrón · semana'], bk: 2, rating: 4.8, st: 'active' },
+    { emp: 'Tramuntana Cycling', cat: 'Ciclismo', fix: 0, val: 15, svcs: ['Ruta guiada en bici de carretera', 'Alquiler de bici eléctrica · día'], bk: 11, rating: 4.9, st: 'active' },
+    { emp: 'Llevant Transfers', cat: 'Traslados', fix: 0, val: 15, svcs: ['Traslado privado aeropuerto–hotel'], bk: 21, rating: 4.8, st: 'active' },
+    { emp: 'Badia Bike Rental', cat: 'Alquiler', fix: 0, val: 20, svcs: ['Alquiler de bici eléctrica · día'], bk: 6, rating: 4.5, st: 'active' },
+    { emp: 'Finques del Pla', cat: 'Eventos', fix: 0, val: 10, svcs: ['Cena privada en finca · grupo'], bk: 0, rating: 0, st: 'pending' }
+  ];
+  var FXM = { v: [420, 610, 880, 1150, 760, 520, 1240, 980, 1610, 2140, 3020, 3860], n: [6, 9, 13, 16, 11, 8, 17, 14, 22, 29, 41, 52], start: 4 };
+  var FXCAT = [['Náutica', 62], ['Traslados', 14], ['Ciclismo', 11], ['Eventos', 8], ['Alquiler', 5]];
+  var FXST = {
+    pend: { l: 'Pendiente de pago', bg: '#F0F1ED', fg: '#3A3D3B', bd: '#F0F1ED', step: 1 },
+    held: { l: 'Retenida', bg: '#D8E1F2', fg: '#274586', bd: '#D8E1F2', step: 2 },
+    redeemed: { l: 'Canjeada', bg: '#FFFFFF', fg: '#274586', bd: '#3F6FD8', step: 3 },
+    released: { l: 'Liberada', bg: '#3F6FD8', fg: '#FFFFFF', bd: '#3F6FD8', step: 4 }
+  };
+  var FXCOL = { 'Náutica': '#3F6FD8', 'Traslados': '#0F1110', 'Ciclismo': '#8CA9E8', 'Eventos': '#274586', 'Alquiler': '#6A6E6B' };
+  var ICON = {
+    res: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+    ag: '<path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
+    rep: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'
+  };
+  function fxDate(iso, long) {
+    var d = new Date(iso + 'T12:00:00'), en = S.lang === 'en';
+    var dn = en ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    var mn = en ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] : ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    return (long ? dn[d.getDay()] + ' ' : '') + d.getDate() + ' ' + mn[d.getMonth()];
+  }
+  function fxMon(i) { var en = S.lang === 'en'; return (en ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] : ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'])[i % 12]; }
+  function fxInit(n) { return n.replace(/[^A-Za-zÀ-ÿ ]/g, '').split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase(); }
+  function fxPill(k) {
+    var p = FXST[k], l = k === 'pend' ? '<span class="full-l">' + T(p.l) + '</span><span class="full-s">' + T('Pendiente') + '</span>' : T(p.l);
+    return '<span class="fx-pill" style="background: ' + p.bg + '; color: ' + p.fg + '; border-color: ' + p.bd + '">' + l + '</span>';
+  }
+  function fxSvg(k, size) { return '<svg width="' + (size || 16) + '" height="' + (size || 16) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[k] + '</svg>'; }
+  function fxList() {
+    var q = FX.q.trim().toLowerCase();
+    var l = FXB.map(function (b, i) { return Object.assign({ i: i }, b); }).filter(function (b) {
+      if (FX.st !== 'all' && b.st !== FX.st) return false;
+      if (FX.cat && b.cat !== FX.cat) return false;
+      if (q && (b.cli + ' ' + T(b.svc) + ' ' + b.emp + ' ' + b.id).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    l.sort(function (a, b) {
+      var x = FX.sort === 'com' ? a.com - b.com : FX.sort === 'cli' ? a.cli.localeCompare(b.cli) : a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+      return x * FX.dir;
+    });
+    return l;
+  }
+  function fxSortBtn(key, label) {
+    var on = FX.sort === key;
+    return '<button type="button" class="fx-sort" data-act="fxsort" data-v="' + key + '" aria-pressed="' + on + '">' + T(label) + (on ? (FX.dir > 0 ? ' ↑' : ' ↓') : '') + '</button>';
+  }
+  function fxRes() {
+    var l = fxList();
+    var counts = { all: FXB.length };
+    FXB.forEach(function (b) { counts[b.st] = (counts[b.st] || 0) + 1; });
+    var chips = [['all', 'Todas'], ['pend', 'Pendiente'], ['held', 'Retenida'], ['redeemed', 'Canjeada'], ['released', 'Liberada']].map(function (c) {
+      return '<button type="button" class="fx-chip" data-act="fxst" data-v="' + c[0] + '" aria-pressed="' + (FX.st === c[0]) + '">' + T(c[1]) + ' <b>' + (counts[c[0]] || 0) + '</b></button>';
+    }).join('');
+    var head = '<div class="fx-row fx-res fx-head" role="presentation"><span>' + fxSortBtn('cli', 'Cliente') + '</span><span class="fx-hm">' + T('Servicio') + '</span><span class="fx-hm">' + T('Empresa') + '</span><span class="fx-hm">' + fxSortBtn('date', 'Fecha') + '</span><span>' + fxSortBtn('com', 'Comisión') + '</span><span>' + T('Estado') + '</span></div>';
+    var rows = l.map(function (b) {
+      return '<button type="button" class="fx-row fx-res" data-act="fxrow" data-v="' + b.i + '" aria-pressed="' + (FX.open && FX.open.t === 'res' && FX.open.i === b.i) + '">'
+        + '<span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[b.cat] + '">' + fxInit(b.cli) + '</span><span><span class="fx-cell" style="font-weight: 600">' + b.cli + '</span><small>' + T(b.svc) + '</small></span></span>'
+        + '<span class="fx-cell fx-hm">' + T(b.svc) + '</span>'
+        + '<span class="fx-cell fx-hm" style="color: #4C504D">' + b.emp + '</span>'
+        + '<span class="fx-cell fx-hm" style="color: #4C504D">' + fxDate(b.date, true) + '</span>'
+        + '<span class="fx-mono">' + money(b.com) + '</span>'
+        + fxPill(b.st) + '</button>';
+    }).join('');
+    return '<div class="fx-bar"><span class="fx-title">' + T('Reservas') + (FX.cat ? ' · ' + T(FX.cat) : '') + '</span><div class="fx-chips">' + chips + '</div></div>'
+      + head + (rows || '<div class="fx-empty">' + T('Sin resultados') + '</div>');
+  }
+  function fxAgs() {
+    var head = '<div class="fx-row fx-ag fx-head" role="presentation"><span>' + T('Empresa') + '</span><span class="fx-hm">' + T('Categoría') + '</span><span>' + T('Comisión') + '</span><span class="fx-hm">' + T('Servicios') + '</span><span class="fx-hm">' + T('Reservas/mes') + '</span><span class="fx-hm">' + T('Valoración') + '</span><span>' + T('Estado') + '</span></div>';
+    var rows = FXA.map(function (a, i) {
+      var c = a.fix ? money(a.val) : a.val + (S.lang === 'en' ? '%' : ' %');
+      var st = a.st === 'active' ? '<span class="fx-pill" style="background: #E7ECF5; color: #274586">' + T('Activo') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3A3D3B">' + T('Pendiente de firma') + '</span>';
+      return '<button type="button" class="fx-row fx-ag" data-act="fxag" data-v="' + i + '" aria-pressed="' + (FX.open && FX.open.t === 'ag' && FX.open.i === i) + '">'
+        + '<span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[a.cat] + '">' + fxInit(a.emp) + '</span><span><span class="fx-cell" style="font-weight: 600">' + a.emp + '</span><small>' + T(a.cat) + '</small></span></span>'
+        + '<span class="fx-cell fx-hm"><span class="fx-pill" style="background: #F3F3F0; color: #3A3D3B">' + T(a.cat) + '</span></span>'
+        + '<span class="fx-mono">' + c + '</span>'
+        + '<span class="fx-mono fx-hm">' + a.svcs.length + '</span>'
+        + '<span class="fx-mono fx-hm">' + a.bk + '</span>'
+        + '<span class="fx-cell fx-hm">' + (a.reviews === 0 || !a.rating ? '—' : '★ ' + (S.lang === 'en' ? a.rating.toFixed(1) : a.rating.toFixed(1).replace('.', ','))) + '</span>'
+        + st + '</button>';
+    }).join('');
+    return '<div class="fx-bar"><span class="fx-title">' + T('Acuerdos') + '</span><span style="font-size: 13px; color: #6A6E6B">' + FXA.length + ' ' + (S.lang === 'en' ? 'partners' : 'socios') + '</span></div>' + head + rows;
+  }
+  function fxRep() {
+    var n = FX.range, v = FXM.v.slice(-n), c = FXM.n.slice(-n), off = 12 - n;
+    var sum = v.reduce(function (a, b) { return a + b; }, 0), bk = c.reduce(function (a, b) { return a + b; }, 0), max = Math.max.apply(null, v);
+    var sel = FX.mon == null || FX.mon < off ? 11 : FX.mon;
+    var en = S.lang === 'en';
+    var kpis = [['Comisión generada', money(sum)], ['Reservas', String(bk)], ['Comisión media', money(sum / bk)], ['Tasa de canje', en ? '96%' : '96 %']].map(function (k) {
+      return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b></div>';
+    }).join('');
+    var bars = v.map(function (x, i) {
+      var gi = off + i, on = gi === sel, m = fxMon(FXM.start + gi);
+      return '<button type="button" class="fx-bar-b" data-act="fxmon" data-v="' + gi + '" aria-pressed="' + on + '" aria-label="' + m + ': ' + money(x) + '"><i style="height: ' + Math.max(4, Math.round(x / max * 100)) + '%"></i>' + m + '</button>';
+    }).join('');
+    var cap = fxMon(FXM.start + sel) + ' · <b>' + money(FXM.v[sel]) + '</b> · ' + bookings(FXM.n[sel]);
+    var ranges = [3, 6, 12].map(function (r) { return '<button type="button" class="fx-chip" data-act="fxrange" data-v="' + r + '" aria-pressed="' + (FX.range === r) + '">' + r + 'M</button>'; }).join('');
+    var hb = FXCAT.map(function (k) { return '<div><span>' + T(k[0]) + '</span><s><i style="width: ' + k[1] + '%; background: ' + FXCOL[k[0]] + '"></i></s><em>' + k[1] + (en ? '%' : ' %') + '</em></div>'; }).join('');
+    return '<div class="fx-bar"><span class="fx-title">' + T('Informes') + '</span><div class="fx-chips">' + ranges + '</div></div>'
+      + '<div class="fx-kpis">' + kpis + '</div>'
+      + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Comisión por mes') + '</h4><div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
+      + '<div class="fx-card"><h4>' + T('Por categoría') + '</h4><div class="fx-hb">' + hb + '</div></div></div>';
+  }
+  function fxDrawer() {
+    var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
+    if (!o) { d.classList.remove('open'); return; }
+    var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
+    var h;
+    if (o.t === 'res') {
+      var b = FXB[o.i], step = FXST[b.st].step, m = TEAM[b.by];
+      var tl = [['Reserva creada', fxDate(b.date, false)], ['Link de pago enviado', en ? 'By text message' : 'Por SMS'], ['Pago recibido', money(b.com)], ['Código canjeado', b.id], ['Comisión liberada', money(b.com)]].map(function (t, i) {
+        return '<li class="' + (i <= step ? 'done' : '') + (i === step ? ' now' : '') + '"><i></i>' + T(t[0]) + (i <= step ? '<small>' + t[1] + '</small>' : '') + '</li>';
+      }).join('');
+      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="fx-mono" style="font-size: 12px; color: #6A6E6B">' + b.id + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Inter Tight\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + b.cli + '</span>' + fxPill(b.st) + '</div>' + x + '</div>'
+        + '<dl class="fx-fields"><dt>' + T('Servicio') + '</dt><dd>' + T(b.svc) + '</dd><dt>' + T('Empresa') + '</dt><dd>' + b.emp + '</dd><dt>' + T('Fecha') + '</dt><dd>' + fxDate(b.date, true) + '</dd><dt>' + T('Personas') + '</dt><dd>' + b.pax + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + money(b.com) + '</dd><dt>' + T('Recomendado por') + '</dt><dd>#' + m.n + ' · ' + m.name + '</dd></dl>'
+        + '<div style="padding: 16px 18px 0; font-size: 12px; font-weight: 600; color: #6A6E6B; text-transform: uppercase; letter-spacing: .05em">' + T('Historial') + '</div><ol class="fx-tl">' + tl + '</ol>';
+    } else {
+      var a = FXA[o.i];
+      var c = a.fix ? money(a.val) + ' ' + T('fijo') : a.val + (en ? '%' : ' %');
+      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #6A6E6B">' + T(a.cat) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Inter Tight\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + a.emp + '</span>'
+        + (a.st === 'active' ? '<span class="fx-pill" style="background: #E7ECF5; color: #274586">' + T('Activo') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3A3D3B">' + T('Pendiente de firma') + '</span>') + '</div>' + x + '</div>'
+        + '<dl class="fx-fields"><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + c + '</dd><dt>' + T('Reservas/mes') + '</dt><dd>' + a.bk + '</dd><dt>' + T('Valoración') + '</dt><dd>' + (a.rating ? '★ ' + (en ? a.rating.toFixed(1) : a.rating.toFixed(1).replace('.', ',')) : T('Nuevo · aún sin reseñas')) + '</dd></dl>'
+        + '<div style="padding: 16px 18px 6px; font-size: 12px; font-weight: 600; color: #6A6E6B; text-transform: uppercase; letter-spacing: .05em">' + T('Servicios incluidos') + '</div>'
+        + '<div style="padding: 0 18px 12px; display: flex; flex-direction: column; gap: 6px">' + a.svcs.map(function (sv) { return '<span style="font-size: 13px; border: 1px solid #ECEDE9; border-radius: 12px; padding: 9px 12px; display: flex; justify-content: space-between; gap: 8px"><span>' + T(sv) + '</span><span class="fx-mono" style="color: #274586">' + c + '</span></span>'; }).join('') + '</div>'
+        + '<div style="padding: 10px 18px 6px; font-size: 12px; font-weight: 600; color: #6A6E6B; text-transform: uppercase; letter-spacing: .05em">' + T('Condiciones') + '</div>'
+        + '<ul style="margin: 0; padding: 0 18px 18px 34px; font-size: 13px; line-height: 1.7; color: #3A3D3B">' + ['Cancelación gratuita hasta 48 h antes', 'No-show: la señal se reparte 50/50', 'Comisión liberada al canjear el código'].map(function (t) { return '<li>' + T(t) + '</li>'; }).join('') + '</ul>';
+    }
+    d.innerHTML = h; d.classList.add('open');
+  }
+  function fxRender() {
+    var en = S.lang === 'en';
+    var views = [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red, mes a mes.']];
+    $('fx-tabs').innerHTML = views.map(function (v) { return '<button type="button" class="fx-tab" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0]) + '"><b>' + T(v[1]) + '</b><span>' + T(v[2]) + '</span></button>'; }).join('');
+    var cur = views.filter(function (v) { return v[0] === FX.view; })[0];
+    $('fx-crumb').innerHTML = 'Hotel Miramar / <b>' + T(cur[1]) + '</b>';
+    var side = '<div class="fx-ws"><i>HM</i>Hotel Miramar</div>' + views.map(function (v) {
+      var n = v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : '';
+      return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && !FX.cat) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
+    }).join('') + '<div class="fx-sec">' + T('Listas') + '</div>' + ['Náutica', 'Traslados', 'Ciclismo', 'Eventos', 'Alquiler'].map(function (c) {
+      var n = FXB.filter(function (b) { return b.cat === c; }).length;
+      return '<button type="button" data-act="fxcat" data-v="' + c + '" aria-pressed="' + (FX.view === 'res' && FX.cat === c) + '"><span class="fx-dot" style="background: ' + FXCOL[c] + '"></span>' + T(c) + '<em>' + n + '</em></button>';
+    }).join('');
+    $('fx-side').innerHTML = side;
+    $('fx-main').innerHTML = FX.view === 'res' ? fxRes() : FX.view === 'ag' ? fxAgs() : fxRep();
+    fxDrawer();
+  }
+  function fxOpen(o) {
+    FX.open = o; fxRender();
+    setTimeout(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
+  }
+  function fxClose() {
+    var o = FX.open; FX.open = null; fxRender();
+    if (o) { var b = document.querySelector('#fx-main [data-act="' + (o.t === 'res' ? 'fxrow' : 'fxag') + '"][data-v="' + o.i + '"]'); if (b) b.focus({ preventScroll: true }); }
+  }
+  $('fx-q').addEventListener('input', function (e) { FX.q = e.target.value; if (FX.view !== 'res') FX.view = 'res'; FX.open = null; fxRender(); });
 
   // Panel de ejemplo animado: recorrido de una comisión en bucle
   var LIVE = { step: -1, held: 1430, rel: 3860, timer: 0, visible: false, still: matchMedia('(prefers-reduced-motion: reduce)').matches };
@@ -1314,7 +1656,11 @@ a:hover>.logo-dot{transform:scale(1.5)}
   }, true);
   $('zoom-close').addEventListener('click', closeZoom);
   $('zoom').addEventListener('click', function (e) { if (e.target === $('zoom')) closeZoom(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('zoom').hidden) closeZoom(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (!$('zoom').hidden) closeZoom();
+    else if (FX.open) fxClose();
+  });
   window.addEventListener('resize', fitPanel);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
 
