@@ -72,13 +72,50 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .map-tram{font-size:9px;font-style:italic;letter-spacing:.1em;fill:#9AA3B2}
 @media (max-width: 640px){.map-town,.map-bay,.map-sea,.map-tram{display:none}.map-city{font-size:20px}.map-attr{font-size:8px !important;right:4px !important;bottom:2px !important}}
 /* Dashboard interactivo */
-.fx-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.fx-tab{text-align:left;border:1px solid #ECEDE9;background:#FFFFFF;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;cursor:pointer;font-family:'Inter',sans-serif;color:#0F1110}
+.fx-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.fx-tab{position:relative;overflow:hidden;text-align:left;border:1px solid #ECEDE9;background:#FFFFFF;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;cursor:pointer;font-family:'Inter',sans-serif;color:#0F1110}
 .fx-tab b{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.02em}
 .fx-tab span{font-size:13px;color:#6A6E6B;line-height:1.4}
 .fx-tab[aria-pressed="true"]{border-color:#3F6FD8;background:#E7ECF5}
 .fx-tab[aria-pressed="true"] span{color:#274586}
 .fx-tab:hover{border-color:#8CA9E8}
+.fx-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:#3F6FD8;transform:scaleX(0);transform-origin:left}
+.fx-tab.run::after{animation:fxprog var(--d) linear forwards}
+@keyframes fxprog{to{transform:scaleX(1)}}
+.fx-replay{align-self:flex-start;margin-top:-14px;display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;border:1px solid #DADBD6;background:#FFFFFF;font:600 13px 'Inter',sans-serif;color:#0F1110;cursor:pointer}
+.fx-chat{display:grid;grid-template-columns:230px minmax(0,1fr);flex:1;min-height:0}
+.fx-convs{border-right:1px solid #ECEDE9;display:flex;flex-direction:column}
+.fx-conv{display:flex;gap:10px;align-items:center;text-align:left;border:0;border-bottom:1px solid #F0F1ED;background:#FFFFFF;padding:12px 14px;cursor:pointer;font:13px 'Inter',sans-serif;color:#0F1110;width:100%}
+.fx-conv:hover{background:#F7F8FB}
+.fx-conv[aria-pressed="true"]{background:#EEF2FA}
+.fx-conv>span:not(.fx-av){min-width:0;display:flex;flex-direction:column;gap:2px;flex:1}
+.fx-conv small{color:#6A6E6B;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fx-unread{width:8px;height:8px;border-radius:4px;background:#3F6FD8;flex-shrink:0}
+.fx-thread{display:flex;flex-direction:column;min-width:0;height:470px}
+.fx-th-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #ECEDE9;font-size:14px;font-weight:600}
+.fx-th-head small{display:block;font-size:12px;font-weight:400;color:#6A6E6B}
+.fx-msgs>*{flex-shrink:0}
+.fx-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#FBFBFA}
+.fx-msg{max-width:78%;padding:9px 13px;border-radius:16px;font-size:13.5px;line-height:1.45;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+.fx-msg.them{align-self:flex-start;background:#FFFFFF;border:1px solid #ECEDE9;border-bottom-left-radius:5px}
+.fx-msg.me{align-self:flex-end;background:#3F6FD8;color:#FFFFFF;border-bottom-right-radius:5px}
+.fx-sys{align-self:center;font-size:12px;font-weight:600;color:#274586;background:#E7ECF5;padding:6px 12px;border-radius:999px;display:flex;align-items:center;gap:6px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+.fx-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#FFFFFF;border:1px solid #ECEDE9;border-radius:16px;border-bottom-left-radius:5px}
+.fx-typing i{width:6px;height:6px;border-radius:3px;background:#A3ABB8;animation:fxdot 1s infinite ease-in-out}
+.fx-typing i:nth-child(2){animation-delay:.15s}.fx-typing i:nth-child(3){animation-delay:.3s}
+@keyframes fxdot{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-3px);opacity:1}}
+.fx-deal{align-self:flex-start;width:min(330px,92%);background:#FFFFFF;border:1px solid #D8E1F2;border-radius:18px;box-shadow:0 12px 30px rgba(15,17,16,.08);overflow:hidden;animation:rowin .4s cubic-bezier(.2,.7,.2,1)}
+.fx-deal header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;background:#E7ECF5;font-size:13px;font-weight:600;color:#274586}
+.fx-deal dl{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;margin:0;padding:12px 14px;font-size:12.5px}
+.fx-deal dt{color:#6A6E6B}.fx-deal dd{margin:0;font-weight:500}
+.fx-deal footer{display:flex;gap:8px;padding:0 14px 14px}
+.fx-btn{height:34px;padding:0 14px;border-radius:999px;border:1px solid #0F1110;background:#0F1110;color:#FFFFFF;font:600 13px 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.fx-btn.ghost{background:#FFFFFF;color:#0F1110;border-color:#DADBD6}
+.fx-btn.accent{background:#3F6FD8;border-color:#3F6FD8}
+.fx-btn.press{animation:press .35s ease}
+.fx-comp{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #ECEDE9;background:#FFFFFF}
+.fx-comp input{flex:1;min-width:0;height:36px;border-radius:999px;border:1px solid #DADBD6;padding:0 14px;font:13px 'Inter',sans-serif;color:#0F1110}
+.fx-comp button{width:36px;height:36px;border-radius:18px;border:0;background:#0F1110;color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .fx-win{position:relative;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:22px;box-shadow:0 30px 70px rgba(15,17,16,.10);overflow:hidden}
 .fx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #ECEDE9;background:#FBFBFA}
 .fx-dots{display:flex;gap:6px}.fx-dots span{width:10px;height:10px;border-radius:5px;background:#DADBD6}
@@ -166,10 +203,16 @@ a:hover>.logo-dot{transform:scale(1.5)}
   .fx-who small{display:block}
   .fx-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fx-rep{grid-template-columns:1fr}
-  .fx-tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .fx-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .fx-chat{grid-template-columns:1fr}
+  .fx-convs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #ECEDE9}
+  .fx-conv{width:auto;flex:0 0 auto;border-bottom:0;border-right:1px solid #F0F1ED;padding:10px 12px}
+  .fx-conv small{display:none}
+  .fx-thread{height:440px}
+  .fx-replay{margin-top:-10px}
   .fx-tab{padding:10px 12px;border-radius:14px}
   .fx-tab span{display:none}
-  .fx-tab b{font-size:15px}
+  .fx-tab b{font-size:13.5px}
 }
 @media (max-width: 520px){
   .fx-top{flex-wrap:wrap}
@@ -440,6 +483,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
       <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Reservas, acuerdos e informes conectados. Explóralo: filtra, ordena y abre cualquier reserva.</p>
     </div>
     <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
+    <button type="button" id="fx-replay" class="fx-replay" data-act="fxtour" hidden><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"></path></svg>Ver el recorrido automático</button>
     <div class="fx-win">
       <div class="fx-top">
         <span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -998,6 +1042,29 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'Comisión media': 'Average commission', 'Tasa de canje': 'Redemption rate',
     'Por categoría': 'By category', 'Comisión por mes': 'Commission by month', 'Pendiente': 'Pending',
     'fijo': 'fixed', 'Listas': 'Lists',
+    'Mensajes': 'Messages',
+    'Habla con tus socios y cerrad acuerdos.': 'Talk to partners and close agreements.',
+    'Ver el recorrido automático': 'Watch the automatic tour',
+    'Hola, somos Finques del Pla. Organizamos cenas privadas en finca para grupos.': 'Hi, we’re Finques del Pla. We host private dinners at our country estate for groups.',
+    '¡Hola! Muchos huéspedes nos lo piden. ¿Qué comisión proponéis?': 'Hi! Lots of our guests ask for that. What commission do you propose?',
+    'Un 10 % por reserva. Te envío la propuesta.': '10% per booking. I’ll send you the proposal.',
+    'Confirmada la salida del sábado para 8 personas.': 'Saturday’s trip for 8 guests is confirmed.',
+    'Perfecto, el cliente ya ha pagado la señal.': 'Perfect, the client has already paid the deposit.',
+    '¿Podéis recoger a la familia Dubois a las 9:00?': 'Can you pick up the Dubois family at 9:00?',
+    'Sí, traslado confirmado para las 9:00.': 'Yes, transfer confirmed for 9:00.',
+    '¿Podríamos ajustar la comisión?': 'Could we adjust the commission?',
+    'Claro, lo vemos y te mando una nueva propuesta.': 'Sure, we’ll look at it and send you a new proposal.',
+    'Propuesta de acuerdo': 'Agreement proposal',
+    'Firmado': 'Signed',
+    'Aceptar': 'Accept',
+    'Proponer cambios': 'Suggest changes',
+    'Acuerdo firmado por las dos empresas': 'Agreement signed by both businesses',
+    'Ver en Acuerdos': 'View in Agreements',
+    'Escribe un mensaje…': 'Write a message…',
+    'Mensaje': 'Message',
+    'Enviar': 'Send',
+    'Liquidación': 'Payout',
+    'Al canjear el código': 'When the code is redeemed',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -1275,7 +1342,12 @@ a:hover>.logo-dot{transform:scale(1.5)}
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
     if (act === 'trust') { S.trust = v; renderTrust(); }
-    if (act === 'fxv') { FX.view = v; FX.cat = null; FX.open = null; fxRender(); }
+    if (act === 'fxv') { FX.view = v; FX.cat = null; FX.open = null; if (v === 'rep') FX.grow = true; fxRender(); if (v === 'msg') fxChatPlay(); }
+    if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
+    if (act === 'fxaccept') { fxAccept(); }
+    if (act === 'fxchange') { FXCH.fp.msgs.push({ who: 'me', t: '¿Podríamos ajustar la comisión?', extra: true }, { who: 'them', t: 'Claro, lo vemos y te mando una nueva propuesta.', extra: true }); CHAT.shown = FXCH.fp.msgs.length; fxRender(); }
+    if (act === 'fxgoag') { FX.view = 'ag'; fxOpen({ t: 'ag', i: 6 }); }
+    if (act === 'fxtour') { TOUR.on = true; $('fx-replay').hidden = true; tourGo(0); }
     if (act === 'fxcat') { FX.view = 'res'; FX.cat = FX.cat === v ? null : v; FX.open = null; fxRender(); }
     if (act === 'fxst') { FX.st = v; fxRender(); }
     if (act === 'fxsort') { if (FX.sort === v) FX.dir = -FX.dir; else { FX.sort = v; FX.dir = v === 'com' ? -1 : 1; } fxRender(); }
@@ -1316,7 +1388,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   }
 
   // Dashboard interactivo (datos de ejemplo)
-  var FX = { view: 'res', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null };
+  var FX = { view: 'res', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false };
   var FXB = [
     { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', emp: 'Velas del Norte', cat: 'Náutica', date: '2026-04-12', pax: 8, com: 180, st: 'held', by: 1 },
     { id: 'FV-9M4T', cli: 'S. Rossi', svc: 'Catamarán privado · día completo', emp: 'Cala d’Or Charters', cat: 'Náutica', date: '2026-04-19', pax: 6, com: 156, st: 'pend', by: 0 },
@@ -1348,7 +1420,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
   var ICON = {
     res: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
     ag: '<path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
-    rep: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'
+    rep: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    msg: '<path d="M4 5h16v11H9l-5 4z"/>'
   };
   function fxDate(iso, long) {
     var d = new Date(iso + 'T12:00:00'), en = S.lang === 'en';
@@ -1427,16 +1500,135 @@ a:hover>.logo-dot{transform:scale(1.5)}
     }).join('');
     var bars = v.map(function (x, i) {
       var gi = off + i, on = gi === sel, m = fxMon(FXM.start + gi);
-      return '<button type="button" class="fx-bar-b" data-act="fxmon" data-v="' + gi + '" aria-pressed="' + on + '" aria-label="' + m + ': ' + money(x) + '"><i style="height: ' + Math.max(4, Math.round(x / max * 100)) + '%"></i>' + m + '</button>';
+      var h = Math.max(4, Math.round(x / max * 100));
+      return '<button type="button" class="fx-bar-b" data-act="fxmon" data-v="' + gi + '" aria-pressed="' + on + '" aria-label="' + m + ': ' + money(x) + '"><i data-h="' + h + '" style="height: ' + (FX.grow ? 0 : h) + '%"></i>' + m + '</button>';
     }).join('');
     var cap = fxMon(FXM.start + sel) + ' · <b>' + money(FXM.v[sel]) + '</b> · ' + bookings(FXM.n[sel]);
     var ranges = [3, 6, 12].map(function (r) { return '<button type="button" class="fx-chip" data-act="fxrange" data-v="' + r + '" aria-pressed="' + (FX.range === r) + '">' + r + 'M</button>'; }).join('');
-    var hb = FXCAT.map(function (k) { return '<div><span>' + T(k[0]) + '</span><s><i style="width: ' + k[1] + '%; background: ' + FXCOL[k[0]] + '"></i></s><em>' + k[1] + (en ? '%' : ' %') + '</em></div>'; }).join('');
+    var hb = FXCAT.map(function (k) { return '<div><span>' + T(k[0]) + '</span><s><i data-w="' + k[1] + '" style="width: ' + (FX.grow ? 0 : k[1]) + '%; background: ' + FXCOL[k[0]] + '; transition: width .6s cubic-bezier(.2,.7,.2,1)"></i></s><em>' + k[1] + (en ? '%' : ' %') + '</em></div>'; }).join('');
     return '<div class="fx-bar"><span class="fx-title">' + T('Informes') + '</span><div class="fx-chips">' + ranges + '</div></div>'
       + '<div class="fx-kpis">' + kpis + '</div>'
       + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Comisión por mes') + '</h4><div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
       + '<div class="fx-card"><h4>' + T('Por categoría') + '</h4><div class="fx-hb">' + hb + '</div></div></div>';
   }
+  var FXCH = {
+    fp: { name: 'Finques del Pla', cat: 'Eventos', msgs: [
+      { who: 'them', t: 'Hola, somos Finques del Pla. Organizamos cenas privadas en finca para grupos.' },
+      { who: 'me', t: '¡Hola! Muchos huéspedes nos lo piden. ¿Qué comisión proponéis?' },
+      { who: 'them', t: 'Un 10 % por reserva. Te envío la propuesta.' },
+      { who: 'them', deal: true }
+    ] },
+    vn: { name: 'Velas del Norte', cat: 'Náutica', msgs: [
+      { who: 'them', t: 'Confirmada la salida del sábado para 8 personas.' },
+      { who: 'me', t: 'Perfecto, el cliente ya ha pagado la señal.' }
+    ] },
+    lt: { name: 'Llevant Transfers', cat: 'Traslados', msgs: [
+      { who: 'me', t: '¿Podéis recoger a la familia Dubois a las 9:00?' },
+      { who: 'them', t: 'Sí, traslado confirmado para las 9:00.' }
+    ] }
+  };
+  var CHAT = { th: 'fp', shown: 0, typing: false, signed: false, timer: 0 };
+  var FX_STILL = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fxMsgHtml(m) {
+    if (m.sys) return '<div class="fx-sys"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>' + T('Acuerdo firmado por las dos empresas') + '</div>'
+      + '<button type="button" class="fx-btn ghost" data-act="fxgoag" style="align-self: center">' + T('Ver en Acuerdos') + '</button>';
+    if (m.deal) {
+      var en = S.lang === 'en';
+      return '<div class="fx-deal"><header>' + T('Propuesta de acuerdo') + (CHAT.signed ? '<span class="fx-pill" style="background: #3F6FD8; color: #FFFFFF">' + T('Firmado') + '</span>' : '') + '</header>'
+        + '<dl><dt>' + T('Servicio') + '</dt><dd>' + T('Cena privada en finca · grupo') + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + (en ? '10%' : '10 %') + '</dd><dt>' + T('Condiciones') + '</dt><dd>' + T('Cancelación gratuita hasta 48 h antes') + '</dd><dt>' + T('Liquidación') + '</dt><dd>' + T('Al canjear el código') + '</dd></dl>'
+        + (CHAT.signed ? '' : '<footer><button type="button" class="fx-btn accent" data-act="fxaccept">' + T('Aceptar') + '</button><button type="button" class="fx-btn ghost" data-act="fxchange">' + T('Proponer cambios') + '</button></footer>') + '</div>';
+    }
+    return '<div class="fx-msg ' + m.who + '">' + (m.raw ? esc(m.raw) : T(m.t)) + '</div>';
+  }
+  function fxChat() {
+    var th = FXCH[CHAT.th];
+    var convs = Object.keys(FXCH).map(function (k) {
+      var c = FXCH[k], last = c.msgs[c.msgs.length - 1];
+      var prev = last.deal ? T('Propuesta de acuerdo') : last.sys ? T('Acuerdo firmado por las dos empresas') : last.raw ? last.raw : T(last.t);
+      return '<button type="button" class="fx-conv" data-act="fxth" data-v="' + k + '" aria-pressed="' + (CHAT.th === k) + '"><span class="fx-av" style="background: ' + FXCOL[c.cat] + '">' + fxInit(c.name) + '</span><span><b style="font-weight: 600">' + c.name + '</b><small>' + esc(prev) + '</small></span>' + (k === 'fp' && !CHAT.signed ? '<i class="fx-unread" aria-hidden="true"></i>' : '') + '</button>';
+    }).join('');
+    var list = CHAT.th === 'fp' ? th.msgs.slice(0, CHAT.shown) : th.msgs;
+    var msgs = list.map(fxMsgHtml).join('') + (CHAT.th === 'fp' && CHAT.typing ? '<div class="fx-typing" aria-hidden="true"><i></i><i></i><i></i></div>' : '');
+    return '<div class="fx-bar"><span class="fx-title">' + T('Mensajes') + '</span></div>'
+      + '<div class="fx-chat"><div class="fx-convs">' + convs + '</div><div class="fx-thread">'
+      + '<div class="fx-th-head"><span class="fx-av" style="background: ' + FXCOL[th.cat] + '">' + fxInit(th.name) + '</span><span>' + th.name + '<small>' + T(th.cat) + '</small></span></div>'
+      + '<div class="fx-msgs" id="fx-msgs" aria-live="polite">' + msgs + '</div>'
+      + '<form class="fx-comp" id="fx-comp"><label class="fx-sr" for="fx-in">' + T('Mensaje') + '</label><input id="fx-in" autocomplete="off" placeholder="' + T('Escribe un mensaje…') + '"><button type="submit" aria-label="' + T('Enviar') + '"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></form>'
+      + '</div></div>';
+  }
+  function fxChatPlay() {
+    clearTimeout(CHAT.timer);
+    if (CHAT.shown >= 4 || FX.view !== 'msg' || CHAT.th !== 'fp') { CHAT.typing = false; return; }
+    if (FX_STILL) { CHAT.shown = 4; fxRender(); return; }
+    CHAT.typing = true; fxRender();
+    CHAT.timer = setTimeout(function () { CHAT.typing = false; CHAT.shown++; if (FX.view === 'msg') fxRender(); CHAT.timer = setTimeout(fxChatPlay, 500); }, 900);
+  }
+  function fxAccept() {
+    if (CHAT.signed) return;
+    CHAT.signed = true; FXA[6].st = 'active';
+    FXCH.fp.msgs.push({ sys: true });
+    CHAT.shown = FXCH.fp.msgs.length;
+    fxRender();
+  }
+  function fxChatReset() {
+    clearTimeout(CHAT.timer);
+    FXCH.fp.msgs = FXCH.fp.msgs.filter(function (m) { return !m.sys && !m.raw && !m.extra; });
+    CHAT.th = 'fp'; CHAT.shown = 0; CHAT.typing = false; CHAT.signed = false; FXA[6].st = 'pending';
+  }
+  function fxScrollMsgs() { var m = $('fx-msgs'); if (m) m.scrollTop = m.scrollHeight; }
+  document.addEventListener('submit', function (e) {
+    if (e.target.id !== 'fx-comp') return;
+    e.preventDefault();
+    var v = $('fx-in').value.trim();
+    if (!v) return;
+    var th = FXCH[CHAT.th];
+    th.msgs.push({ who: 'me', raw: v });
+    if (CHAT.th === 'fp') CHAT.shown = th.msgs.length;
+    fxRender();
+    var inp = $('fx-in'); if (inp) inp.focus({ preventScroll: true });
+  });
+
+  // Recorrido automático por las vistas mientras nadie toque el dashboard
+  var TOUR = { on: !FX_STILL, i: 0, t0: 0, timers: [], visible: false };
+  var TOUR_STEPS = [
+    { v: 'res', d: 6500, at: [[1800, function () { fxOpen({ t: 'res', i: 0 }, true); }], [5200, function () { FX.open = null; fxRender(); }]] },
+    { v: 'ag', d: 5000, at: [[1500, function () { fxOpen({ t: 'ag', i: 3 }, true); }], [4200, function () { FX.open = null; fxRender(); }]] },
+    { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] },
+    { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] }
+  ];
+  function tourClear() { TOUR.timers.forEach(clearTimeout); TOUR.timers = []; }
+  function tourGo(i) {
+    tourClear();
+    if (!TOUR.on || !TOUR.visible) return;
+    TOUR.i = i; TOUR.t0 = Date.now();
+    var st = TOUR_STEPS[i];
+    FX.view = st.v; FX.open = null; FX.cat = null; FX.st = 'all'; FX.q = ''; $('fx-q').value = '';
+    if (st.v === 'rep') { FX.range = 12; FX.mon = null; FX.grow = true; }
+    if (st.v === 'msg') fxChatReset();
+    fxRender();
+    st.at.forEach(function (a) { TOUR.timers.push(setTimeout(function () { if (TOUR.on) a[1](); }, a[0])); });
+    TOUR.timers.push(setTimeout(function () { tourGo((i + 1) % TOUR_STEPS.length); }, st.d));
+  }
+  function tourStop() {
+    if (!TOUR.on) return;
+    TOUR.on = false; tourClear();
+    document.querySelectorAll('.fx-tab.run').forEach(function (t) { t.classList.remove('run'); });
+    $('fx-replay').hidden = false;
+  }
+  $('app').addEventListener('pointerdown', function (e) {
+    if (TOUR.on && e.target.closest('.fx-win, #fx-tabs')) tourStop();
+  }, true);
+  $('app').addEventListener('keydown', function (e) { if (TOUR.on && e.target.closest('.fx-win, #fx-tabs')) tourStop(); }, true);
+  $('app').addEventListener('focusin', function (e) { if (TOUR.on && e.target.matches('input')) tourStop(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting;
+      if (v && !TOUR.visible) { TOUR.visible = true; if (TOUR.on) tourGo(TOUR.i); }
+      if (!v) { TOUR.visible = false; tourClear(); }
+    }, { threshold: 0.3 }).observe(document.querySelector('.fx-win'));
+  }
+  if (!TOUR.on) $('fx-replay').hidden = false;
+
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
     if (!o) { d.classList.remove('open'); return; }
@@ -1465,24 +1657,36 @@ a:hover>.logo-dot{transform:scale(1.5)}
   }
   function fxRender() {
     var en = S.lang === 'en';
-    var views = [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red, mes a mes.']];
-    $('fx-tabs').innerHTML = views.map(function (v) { return '<button type="button" class="fx-tab" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0]) + '"><b>' + T(v[1]) + '</b><span>' + T(v[2]) + '</span></button>'; }).join('');
+    var views = [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red, mes a mes.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
+    var run = TOUR.on && TOUR.visible, el = Date.now() - TOUR.t0, dur = TOUR_STEPS[TOUR.i].d;
+    $('fx-tabs').innerHTML = views.map(function (v) {
+      var on = FX.view === v[0], r = run && on;
+      return '<button type="button" class="fx-tab' + (r ? ' run' : '') + '" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + on + '"' + (r ? ' style="--d: ' + dur + 'ms; animation-delay: -' + el + 'ms"' : '') + '><b>' + T(v[1]) + '</b><span>' + T(v[2]) + '</span></button>';
+    }).join('');
     var cur = views.filter(function (v) { return v[0] === FX.view; })[0];
     $('fx-crumb').innerHTML = 'Hotel Miramar / <b>' + T(cur[1]) + '</b>';
     var side = '<div class="fx-ws"><i>HM</i>Hotel Miramar</div>' + views.map(function (v) {
-      var n = v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : '';
+      var n = v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : v[0] === 'msg' && !CHAT.signed ? 1 : '';
       return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && !FX.cat) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
     }).join('') + '<div class="fx-sec">' + T('Listas') + '</div>' + ['Náutica', 'Traslados', 'Ciclismo', 'Eventos', 'Alquiler'].map(function (c) {
       var n = FXB.filter(function (b) { return b.cat === c; }).length;
       return '<button type="button" data-act="fxcat" data-v="' + c + '" aria-pressed="' + (FX.view === 'res' && FX.cat === c) + '"><span class="fx-dot" style="background: ' + FXCOL[c] + '"></span>' + T(c) + '<em>' + n + '</em></button>';
     }).join('');
     $('fx-side').innerHTML = side;
-    $('fx-main').innerHTML = FX.view === 'res' ? fxRes() : FX.view === 'ag' ? fxAgs() : fxRep();
+    $('fx-main').innerHTML = FX.view === 'res' ? fxRes() : FX.view === 'ag' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat();
     fxDrawer();
+    if (FX.view === 'msg') fxScrollMsgs();
+    if (FX.grow) {
+      FX.grow = false;
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        document.querySelectorAll('#fx-main [data-h]').forEach(function (i) { i.style.height = i.getAttribute('data-h') + '%'; });
+        document.querySelectorAll('#fx-main [data-w]').forEach(function (i) { i.style.width = i.getAttribute('data-w') + '%'; });
+      }); });
+    }
   }
-  function fxOpen(o) {
+  function fxOpen(o, quiet) {
     FX.open = o; fxRender();
-    setTimeout(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
+    if (!quiet) setTimeout(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
   }
   function fxClose() {
     var o = FX.open; FX.open = null; fxRender();
