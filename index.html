@@ -48,6 +48,21 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .duo{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width: 720px){.duo{grid-template-columns:1fr}}
 header>:not(#hero-sphere){position:relative;z-index:1}
+/* Panel animado */
+#cursor{position:absolute;left:62%;top:30%;z-index:5;pointer-events:none;opacity:0;transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1),opacity .4s ease;filter:drop-shadow(0 3px 6px rgba(15,17,16,.25))}
+#cursor.on{opacity:1}
+#cursor svg{display:block;transform-origin:20% 15%}
+#cursor.click svg{animation:clk .35s ease}
+@keyframes clk{50%{transform:scale(.78)}}
+@keyframes rowin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.live-in{animation:rowin .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{0%{transform:scale(.96);opacity:.5}100%{transform:none;opacity:1}}
+.pop{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+#q-scan{position:absolute;left:8px;right:8px;top:12%;height:2px;border-radius:2px;background:#3F6FD8;box-shadow:0 0 10px 2px rgba(63,111,216,.6);opacity:0;z-index:1}
+#q-scan.on{opacity:1;animation:scan 1.1s ease-in-out 2}
+@keyframes scan{0%,100%{top:12%}50%{top:86%}}
+.press{animation:press .35s ease}
+@keyframes press{50%{transform:scale(.94)}}
 .zoom-hint{display:none}
 #producto.scaled .zoom-hint{display:inline-block}
 #producto.scaled{padding-top:36px !important}
@@ -121,7 +136,8 @@ header>:not(#hero-sphere){position:relative;z-index:1}
     <span style="position: absolute; top: 14px; right: 40px; z-index: 1; font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
     <span class="zoom-hint" style="position: absolute; top: 14px; left: 40px; z-index: 1; font-size: 11px; font-weight: 600; color: #FFFFFF; background: #3F6FD8; padding: 3px 10px; border-radius: 999px">Toca para ampliar</span>
     <div id="panel-scale" style="overflow: hidden; border-radius: 32px">
-    <div style="background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <div id="demo" style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <span id="cursor" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#0F1110" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg></span>
 
       <div style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.10); overflow: hidden; display: flex; flex-wrap: wrap">
         <div data-zoom style="flex: 1 1 180px; background: #F6F6F3; border-right: 1px solid #ECEDE9; padding: 20px 14px; display: flex; flex-direction: column; gap: 4px; font-size: 14px">
@@ -129,14 +145,14 @@ header>:not(#hero-sphere){position:relative;z-index:1}
           <div id="app-nav" style="display: flex; flex-direction: column; gap: 4px"></div>
         </div>
         <div data-zoom style="flex: 999 1 360px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 18px">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px"><span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Buenos días, recepción</span><span style="font-size: 13px; height: 34px; padding: 0 14px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; font-weight: 600">+ Nueva reserva</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px"><span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Buenos días, recepción</span><span style="font-size: 13px; height: 34px; padding: 0 14px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; font-weight: 600" id="new-btn">+ Nueva reserva</span></div>
+          <div id="flow" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px"></div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-            <div style="border: 1px solid #ECEDE9; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #6A6E6B">Comisión retenida</span><span style="font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500">1.430,00 €</span></div>
-            <div style="border: 1px solid #ECEDE9; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #6A6E6B">Liberada este mes</span><span style="font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: #274586">3.860,00 €</span></div>
+            <div style="border: 1px solid #ECEDE9; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #6A6E6B">Comisión retenida</span><span id="k-held" style="font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500">1.430,00 €</span></div>
+            <div style="border: 1px solid #ECEDE9; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #6A6E6B">Liberada este mes</span><span id="k-rel" style="font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: #274586">3.860,00 €</span></div>
             <div style="border: 1px solid #ECEDE9; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #6A6E6B">Acuerdos activos</span><span style="font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500">8</span></div>
           </div>
-          <div style="display: flex; flex-direction: column">
-            
+          <div id="rows" style="display: flex; flex-direction: column">
               <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Chárter privado · día completo</span><span style="font-size: 12px; color: #6A6E6B">Velas del Norte · Sáb 12 abr · 8 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">180,00 €</span>
@@ -152,7 +168,7 @@ header>:not(#hero-sphere){position:relative;z-index:1}
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">160,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Liberada</span>
               </div>
-              <div class="row-h" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
+              <div class="row-h" id="row-last" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px">
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">Velero clásico · día completo</span><span style="font-size: 12px; color: #6A6E6B">Mar Blau Yachting · Jue 10 abr · 6 personas</span></div>
                 <span style="font-family: 'DM Mono', monospace; font-size: 13px">210,00 €</span>
                 <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Liberada</span>
@@ -162,17 +178,18 @@ header>:not(#hero-sphere){position:relative;z-index:1}
       </div>
 
       <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 16px">
-        <div data-zoom style="background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 16px 40px rgba(15, 17, 16, 0.08); padding: 18px; display: flex; gap: 12px; align-items: center">
-          <div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 20px; background: #3F6FD8; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l4 4L18 8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Comisión liberada · 180,00 €</span><span style="font-size: 12px; color: #6A6E6B">Velas del Norte canjeó FV-7K2Q</span></div>
+        <div data-zoom id="notif" style="background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 16px 40px rgba(15, 17, 16, 0.08); padding: 18px; display: flex; gap: 12px; align-items: center">
+          <div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 20px; background: #3F6FD8; display: flex; align-items: center; justify-content: center"><svg id="n-ico" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l4 4L18 8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><span id="n-title" style="font-size: 14px; font-weight: 600">Comisión liberada · 180,00 €</span><span id="n-sub" style="font-size: 12px; color: #6A6E6B">Velas del Norte canjeó FV-7K2Q</span></div>
         </div>
         <div data-zoom style="background: #0F1110; color: #F4F4F1; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px; align-items: center">
           <div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Inter Tight', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.05em">favent</span><span style="font-size: 11px; font-weight: 600; background: #8CA9E8; color: #0F1110; padding: 4px 10px; border-radius: 999px">Verificada</span></div>
-          <div style="background: #FFFFFF; border-radius: 16px; padding: 12px">
+          <div style="position: relative; background: #FFFFFF; border-radius: 16px; padding: 12px">
+            <span id="q-scan" aria-hidden="true"></span>
             <div class="qr" data-round="1" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 140px; height: 140px" aria-hidden="true"></div>
           </div>
-          <span style="font-family: 'DM Mono', monospace; font-size: 20px; letter-spacing: 0.1em">FV-7K2Q</span>
-          <span style="font-size: 12px; color: #B4B8B4">Chárter privado · Sáb 12 abr</span>
+          <span id="q-code" style="font-family: 'DM Mono', monospace; font-size: 20px; letter-spacing: 0.1em">FV-7K2Q</span>
+          <span id="q-sub" style="font-size: 12px; color: #B4B8B4">Chárter privado · Sáb 12 abr</span>
         </div>
       </div>
 
@@ -774,6 +791,19 @@ header>:not(#hero-sphere){position:relative;z-index:1}
     'Toca para ampliar': 'Tap to zoom in',
     'Vista ampliada': 'Zoomed view',
     'Cerrar': 'Close',
+    'Pago': 'Payment',
+    'Link enviado': 'Link sent',
+    'Canjeada': 'Redeemed',
+    'Link de pago enviado': 'Payment link sent',
+    'Por SMS al cliente': 'By text message to the client',
+    'Pago recibido': 'Payment received',
+    'Comisión retenida hasta el servicio': 'Commission held until the service',
+    'canjeado': 'redeemed',
+    'Comisión liberada': 'Commission released',
+    'Catamarán privado · Sáb 19 abr': 'Private catamaran · Sat 19 Apr',
+    'Cala d’Or Charters · Sáb 19 abr · 6 personas': 'Cala d’Or Charters · Sat 19 Apr · 6 guests',
+    'Cala d’Or Charters · Sáb 19 abr': 'Cala d’Or Charters · Sat 19 Apr',
+    'Cala d’Or Charters canjeó FV-9M4T': 'Cala d’Or Charters redeemed FV-9M4T',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -1033,6 +1063,7 @@ header>:not(#hero-sphere){position:relative;z-index:1}
     });
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
     renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam(); renderTrust();
+    if (LIVE) renderLive();
     if (PS) fitPanel();
   }
 
@@ -1078,6 +1109,125 @@ header>:not(#hero-sphere){position:relative;z-index:1}
       el.classList.add('rv');
       io.observe(el);
     });
+  }
+
+  // Panel de ejemplo animado: recorrido de una comisión en bucle
+  var LIVE = { step: -1, held: 1430, rel: 3860, timer: 0, visible: false, still: matchMedia('(prefers-reduced-motion: reduce)').matches };
+  var BASE = { held: 1430, rel: 3860 }, AMT = 156;
+  function money(v) {
+    var p = v.toFixed(2).split('.'), en = S.lang === 'en';
+    var i = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, en ? ',' : '.');
+    return en ? '€' + i + '.' + p[1] : i + ',' + p[1] + ' €';
+  }
+  var ICO = {
+    ok: '<path d="M6 12.5l4 4L18 8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>',
+    link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>',
+    card: '<rect x="3" y="6" width="18" height="12" rx="2.5" fill="none" stroke="#FFFFFF" stroke-width="2"></rect><path d="M3 10h18" stroke="#FFFFFF" stroke-width="2"></path>',
+    qr: '<path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4M4 12h16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>'
+  };
+  var LIVE_ST = [
+    { pill: 'Link enviado', bg: '#F0F1ED', fg: '#3A3D3B', ico: 'link', t: function () { return T('Link de pago enviado'); }, sub: function () { return T('Por SMS al cliente'); } },
+    { pill: 'Pagada · retenida', bg: '#D8E1F2', fg: '#274586', ico: 'card', t: function () { return T('Pago recibido') + ' · ' + money(AMT); }, sub: function () { return T('Comisión retenida hasta el servicio'); } },
+    { pill: 'Canjeada', bg: '#D8E1F2', fg: '#274586', ico: 'qr', t: function () { return (S.lang === 'en' ? 'Code FV-9M4T ' : 'Código FV-9M4T ') + T('canjeado'); }, sub: function () { return T('Cala d’Or Charters · Sáb 19 abr'); } },
+    { pill: 'Liberada', bg: '#3F6FD8', fg: '#FFFFFF', ico: 'ok', t: function () { return T('Comisión liberada') + ' · ' + money(AMT); }, sub: function () { return T('Cala d’Or Charters canjeó FV-9M4T'); } }
+  ];
+  function renderFlow() {
+    var labels = ['Reserva', 'Pago', 'Canje', 'Liberada'], st = LIVE.step;
+    $('flow').innerHTML = labels.map(function (l, i) {
+      var done = st > i, on = st === i;
+      var bg = on ? A.accent : done ? A.soft : '#FFFFFF', fg = on ? '#FFFFFF' : done ? A.text : '#6A6E6B', bd = on ? A.accent : done ? A.soft : '#ECEDE9';
+      return (i ? '<span aria-hidden="true" style="width: 14px; height: 1px; background: ' + (st >= i ? A.accent : '#DADBD6') + '"></span>' : '')
+        + '<span style="font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; border: 1px solid ' + bd + '; background: ' + bg + '; color: ' + fg + '; transition: background-color .3s, color .3s">' + T(l) + '</span>';
+    }).join('');
+  }
+  function setNotif(ico, title, sub, anim) {
+    $('n-ico').innerHTML = ICO[ico]; $('n-title').textContent = title; $('n-sub').textContent = sub;
+    if (anim) { var n = $('notif'); n.classList.remove('pop'); void n.offsetWidth; n.classList.add('pop'); }
+  }
+  function countTo(el, from, to) {
+    if (LIVE.still || from === to) { el.textContent = money(to); return; }
+    var t0 = performance.now();
+    (function tick(t) {
+      var k = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = money(from + (to - from) * e);
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  function liveRow() {
+    var st = LIVE_ST[LIVE.step];
+    return '<div style="display: flex; flex-direction: column; gap: 2px; min-width: 180px"><span style="font-weight: 600">' + T('Catamarán privado · día completo') + '</span><span style="font-size: 12px; color: #6A6E6B">' + T('Cala d’Or Charters · Sáb 19 abr · 6 personas') + '</span></div>'
+      + '<span style="font-family: \'DM Mono\', monospace; font-size: 13px">' + money(AMT) + '</span>'
+      + '<span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: ' + st.bg + '; color: ' + st.fg + '; transition: background-color .3s, color .3s">' + T(st.pill) + '</span>';
+  }
+  // Pinta el estado actual sin animaciones (también al cambiar de idioma)
+  function renderLive() {
+    var st = LIVE.step, row = $('live-row');
+    renderFlow();
+    $('k-held').textContent = money(LIVE.held); $('k-rel').textContent = money(LIVE.rel);
+    if (st < 0) {
+      if (row) row.remove();
+      $('row-last').style.display = '';
+      $('rows').style.minHeight = ''; $('rows').style.minHeight = $('rows').offsetHeight + 'px';
+      setNotif('ok', T('Comisión liberada · 180,00 €'), T('Velas del Norte canjeó FV-7K2Q'));
+      $('q-code').textContent = 'FV-7K2Q'; $('q-sub').textContent = T('Chárter privado · Sáb 12 abr');
+      return;
+    }
+    if (!row) {
+      row = document.createElement('div');
+      row.id = 'live-row'; row.className = 'row-h live-in';
+      row.style.cssText = 'display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #F0F1ED; font-size: 14px';
+      $('rows').insertBefore(row, $('rows').firstChild);
+      $('row-last').style.display = 'none';
+    }
+    row.innerHTML = liveRow();
+    var s = LIVE_ST[st];
+    setNotif(s.ico, s.t(), s.sub());
+    $('q-code').textContent = 'FV-9M4T'; $('q-sub').textContent = T('Catamarán privado · Sáb 19 abr');
+  }
+  function cursorTo(el, click) {
+    var c = $('cursor'), d = $('demo').getBoundingClientRect(), r = el.getBoundingClientRect(), k = d.width / $('demo').offsetWidth || 1;
+    c.classList.add('on');
+    c.style.left = ((r.left - d.left) / k + Math.min(r.width / k * 0.6, 60)) + 'px';
+    c.style.top = ((r.top - d.top) / k + r.height / k * 0.55) + 'px';
+    if (click) setTimeout(function () {
+      c.classList.remove('click'); void c.offsetWidth; c.classList.add('click');
+      el.classList.remove('press'); void el.offsetWidth; el.classList.add('press');
+    }, 950);
+  }
+  function liveStep() {
+    clearTimeout(LIVE.timer);
+    if (!LIVE.visible) return;
+    var next = LIVE.step >= 3 ? -1 : LIVE.step + 1, wait = 2700;
+    if (next === 0) {
+      cursorTo($('new-btn'), true);
+      LIVE.timer = setTimeout(function () { LIVE.step = 0; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); LIVE.timer = setTimeout(liveStep, wait); }, 1250);
+      return;
+    }
+    LIVE.step = next;
+    if (next === -1) {
+      S.nav = 1; renderNav();
+      LIVE.held = BASE.held; LIVE.rel = BASE.rel; renderLive(); $('cursor').classList.remove('on');
+      LIVE.timer = setTimeout(liveStep, 2200); return;
+    }
+    renderLive();
+    var s = LIVE_ST[next]; setNotif(s.ico, s.t(), s.sub(), true);
+    if (next === 1) { countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false); }
+    if (next === 2) { var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false); }
+    if (next === 3) {
+      countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
+      LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
+      var navBtn = document.querySelector('#app-nav [data-v="4"]');
+      if (navBtn) { cursorTo(navBtn, true); setTimeout(function () { S.nav = 4; renderNav(); }, 1000); }
+      wait = 3600;
+    }
+    LIVE.timer = setTimeout(liveStep, wait);
+  }
+  if (!LIVE.still && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting;
+      if (v && !LIVE.visible) { LIVE.visible = true; LIVE.timer = setTimeout(liveStep, 900); }
+      if (!v) { LIVE.visible = false; clearTimeout(LIVE.timer); }
+    }, { threshold: 0.35 }).observe($('demo'));
   }
 
   // Esfera de puntos animada detrás del titular
@@ -1189,7 +1339,7 @@ header>:not(#hero-sphere){position:relative;z-index:1}
   $('zoom').addEventListener('click', function (e) { if (e.target === $('zoom')) closeZoom(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('zoom').hidden) closeZoom(); });
   window.addEventListener('resize', fitPanel);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPanel);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
 
   var form = $('acceso');
   form.addEventListener('submit', function (e) {
