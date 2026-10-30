@@ -111,16 +111,19 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .hx-row:hover{background:#FFFFFF}
 .hx-sub{display:block;font-size:11.5px;color:#6A6E6B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #hx-alt{height:100%;display:flex;flex-direction:column;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
-.hx-mapwrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px;background:#E7ECF5}
-.hx-mapbox{position:relative}
-.hx-mapbox svg{position:absolute;inset:0;width:100%;height:100%}
-.hx-pin{position:absolute;transform:translate(-50%,-100%);height:26px;line-height:22px;padding:0 9px;border-radius:999px;border:2px solid #FFFFFF;background:#0F1110;color:#FFFFFF;font:500 10.5px 'DM Mono',monospace;white-space:nowrap;box-shadow:0 5px 12px rgba(15,17,16,.18)}
-.hx-pin.on{background:#3F6FD8;z-index:2;transform:translate(-50%,-100%) scale(1.08)}
-.hx-pop{position:absolute;z-index:4;width:220px;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:16px;box-shadow:0 18px 40px rgba(15,17,16,.18);overflow:hidden;animation:pop .3s cubic-bezier(.2,.7,.2,1)}
-.hx-pop img{display:block;width:100%;height:86px;object-fit:cover}
-.hx-pop div{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px}
-.hx-pop b{font-size:13.5px}.hx-pop p{margin:0;font-size:11.5px;line-height:1.4;color:#3A3D3B}
-.hx-pop small{font-size:11px;color:#6A6E6B;display:flex;justify-content:space-between;gap:6px}
+.hx-mapfit{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#FFFFFF}
+.hx-mapcard{flex-shrink:0;transform-origin:top left;background:#E7ECF5;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.hx-mapcard .map-town,.hx-mapcard .map-bay,.hx-mapcard .map-sea,.hx-mapcard .map-tram{display:inline !important}
+.hx-mapcard .map-city{font-size:11.5px !important}
+.hx-mapbox{position:relative;flex-shrink:0}
+.hx-mapbox>svg{position:absolute;inset:0;width:100%;height:100%}
+.hx-mapbox .pin-pop{position:absolute !important;right:auto !important;bottom:auto !important;width:270px !important;display:block !important;z-index:4 !important;box-shadow:0 22px 50px rgba(15,17,16,.18) !important}
+.hx-mapbox .pin-pop .pp-ph{height:130px;min-height:0}
+.hx-mapbox .pin-pop .pp-ph span{display:inline}
+.hx-mapbox .pin-pop .pp-b{padding:12px 14px 14px;gap:6px}
+.hx-mapbox .pin-pop .pp-n{font-size:15px}.hx-mapbox .pin-pop .pp-d{font-size:13px}.hx-mapbox .pin-pop .pp-f b{font-size:18px}
+.hx-mapbox .pin-pop .pp-x{width:30px;height:30px;top:8px;right:8px}
+.hx-selbar{background:#FFFFFF;border-radius:18px;border:1px solid #E3E5E0;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
 .hx-msgs{flex:1;min-height:0;overflow:hidden;padding:14px 16px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:#FBFBFA}
 .hx-msgs>*{flex-shrink:0}
 .hx-rail{padding:16px;display:flex;flex-direction:column;gap:14px;background:#FBFBFA;min-width:0}
@@ -1422,10 +1425,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
       + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
       + T(c[0]) + '<span style="font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? '#B4B8B4' : '#6A6E6B') + '">' + n + '</span></button>';
   }
-  function renderPop() {
-    var pop = $('pin-pop');
-    if (!S.popup || !visible(SVCS[S.pin])) { pop.hidden = true; pop.innerHTML = ''; return; }
-    var s = SVCS[S.pin], en = S.lang === 'en';
+  function popHtml(s) {
+    var en = S.lang === 'en';
     var cat = CATS.filter(function (c) { return c[0] === s.type; })[0];
     var ph = s.type === 'Náutica'
       ? '<img src="img/ofreces.jpg" alt="">'
@@ -1433,12 +1434,18 @@ a:hover>.logo-dot{transform:scale(1.5)}
     var rating = s.reviews
       ? '<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="#0F1110"></path></svg>' + (en ? s.rating.toFixed(1) : s.rating.toFixed(1).replace('.', ',')) + ' <span style="color: #6A6E6B; font-weight: 400">(' + s.reviews + ' ' + T('reseñas') + ')</span>'
       : '<span style="color: #6A6E6B; font-weight: 400">' + T('Nuevo · aún sin reseñas') + '</span>';
-    pop.setAttribute('aria-label', s.name);
-    pop.innerHTML = '<div class="pp-ph" style="background: ' + (s.type === 'Náutica' ? '#1F6F78' : '#F3F3F0') + '">' + ph + '</div>'
+    return '<div class="pp-ph" style="background: ' + (s.type === 'Náutica' ? '#1F6F78' : '#F3F3F0') + '">' + ph + '</div>'
       + '<button type="button" class="pp-x" data-act="popclose" aria-label="' + T('Cerrar') + '"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg></button>'
       + '<div class="pp-b"><span class="pp-n">' + s.name + '</span><span class="pp-p">' + T(s.svc) + ' · ' + s.place + '</span>'
       + '<span class="pp-d">' + T(s.desc) + '</span>'
       + '<div class="pp-f"><span><small>' + T('Precio total') + '</small><b>' + eur(s.price) + '</b></span><span class="pp-r">' + rating + '</span></div></div>';
+  }
+  function renderPop() {
+    var pop = $('pin-pop');
+    if (!S.popup || !visible(SVCS[S.pin])) { pop.hidden = true; pop.innerHTML = ''; return; }
+    var s = SVCS[S.pin];
+    pop.setAttribute('aria-label', s.name);
+    pop.innerHTML = popHtml(s);
     pop.hidden = false;
     if (window.innerWidth <= 640) { pop.style.left = ''; pop.style.top = ''; return; }
     var main = pop.parentNode, map = $('map'), xy = proj(s.lat, s.lng);
@@ -2102,17 +2109,27 @@ a:hover>.logo-dot{transform:scale(1.5)}
     return '<div class="fx-row hx-row' + (fresh ? ' live-in' : '') + '"><span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[b.cat] + '">' + fxInit(b.cli) + '</span><span style="min-width: 0"><span class="fx-cell" style="display: block; font-weight: 600">' + b.cli + '</span><span class="hx-sub">' + T(b.svc) + ' · ' + b.emp + '</span></span></span>'
       + '<span class="fx-mono">' + money(b.com) + '</span>' + fxPill(st) + '</div>';
   }
-  var HPINS = [0, 1, 2, 4, 5, 6], HSEL = 2;
+  var HPINS = [0, 1, 2, 4, 5, 6, 3, 7], HSEL = 2, HMAP_W = 600;
+  function heroPin(i, on) {
+    var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
+    return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? A.accent : '#0F1110') + '; color: ' + (on ? A.on : '#FFFFFF') + '; font-family: \'DM Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(15, 17, 16, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
+  }
   function heroMap() {
-    var coast = document.querySelector('#map svg path').getAttribute('d');
-    var pins = HPINS.map(function (i) {
-      var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
-      return '<span class="hx-pin' + (LIVE.pin && i === HSEL ? ' on' : '') + '" data-hpin="' + i + '" style="left: ' + xy[0] + '%; top: ' + xy[1] + '%">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
+    var svg = document.querySelector('#map svg').innerHTML;
+    var sel = LIVE.pin ? HSEL : 0, sv = SVCS[sel];
+    var chips = CATS.filter(function (c) { return c[0] === 'Todas' || c[0] === 'Náutica'; }).map(function (c) {
+      var keep = S.mtype; S.mtype = 'Náutica';
+      var h = catChip(c).replace('<button type="button"', '<span').replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
+      S.mtype = keep; return h;
     }).join('');
-    var sel = SVCS[HSEL], en = S.lang === 'en';
-    var pop = LIVE.pin ? '<div class="hx-pop" id="hx-pop"><img src="img/ofreces.jpg" alt=""><div><b>' + sel.name + '</b><p>' + T(sel.desc) + '</p><small><span class="fx-mono" style="color: #0F1110; font-size: 13px">' + eur(sel.price) + '</span><span>★ ' + (en ? sel.rating.toFixed(1) : sel.rating.toFixed(1).replace('.', ',')) + ' (' + sel.reviews + ')</span></small><span class="fx-btn" id="hx-propose" style="height: 30px; font-size: 12px; justify-content: center; margin-top: 2px">' + T('Proponer acuerdo') + '</span></div></div>' : '';
-    return '<div class="fx-bar"><span class="fx-title">' + T('Mapa') + '</span><span class="fx-chip" aria-pressed="true" style="background: #0F1110; color: #FFFFFF; border-color: #0F1110">' + T('Náutica') + ' <b>8</b></span></div>'
-      + '<div class="hx-mapwrap"><div class="hx-mapbox" id="hx-mapbox"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true"><path d="' + coast + '" fill="#FFFFFF" stroke="#C9D3E6" stroke-width="1.4" stroke-linejoin="round"></path></svg>' + pins + pop + '</div></div>';
+    var pins = HPINS.map(function (i) { return heroPin(i, LIVE.pin && i === HSEL); }).join('');
+    var pop = LIVE.pin ? '<div class="pin-pop hx-pop2" id="hx-pop">' + popHtml(SVCS[HSEL]).replace(' data-act="popclose"', '') + '</div>' : '';
+    var bar = '<div class="hx-selbar"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sv.name + '</span><span style="font-size: 13px; color: #6A6E6B">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
+      + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: #D8E1F2; color: #274586; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
+      + '<span id="hx-propose" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T('Proponer acuerdo') + '</span></div></div>';
+    return '<div class="hx-mapfit" id="hx-mapfit"><div class="hx-mapcard" id="hx-mapcard"><div style="display: flex; gap: 8px">' + chips + '</div>'
+      + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #6A6E6B">© OpenStreetMap</span></div>'
+      + bar + '</div></div>';
   }
   function heroChat() {
     var en = S.lang === 'en', msgs = [];
@@ -2127,16 +2144,20 @@ a:hover>.logo-dot{transform:scale(1.5)}
       + '<div class="hx-msgs">' + msgs.join('') + '</div>';
   }
   function layoutHeroMap() {
-    var box = $('hx-mapbox'); if (!box) return;
-    var wrap = box.parentNode, aw = wrap.clientWidth - 20, ah = wrap.clientHeight - 20;
-    var w = Math.min(aw, ah * GEO.w / GEO.h), h = w * GEO.h / GEO.w;
-    box.style.width = w + 'px'; box.style.height = h + 'px';
+    var fit = $('hx-mapfit'), card = $('hx-mapcard'); if (!fit || !card) return;
     var pop = $('hx-pop');
     if (pop) {
-      var sv = SVCS[HSEL], xy = proj(sv.lat, sv.lng), px = xy[0] / 100 * w, py = xy[1] / 100 * h;
-      pop.style.left = Math.max(6, Math.min(w - pop.offsetWidth - 6, px - pop.offsetWidth - 22)) + 'px';
-      pop.style.top = Math.max(6, Math.min(h - pop.offsetHeight - 6, py - pop.offsetHeight + 30)) + 'px';
+      var sv = SVCS[HSEL], xy = proj(sv.lat, sv.lng), mh = HMAP_W * GEO.h / GEO.w;
+      var px = xy[0] / 100 * HMAP_W, py = xy[1] / 100 * mh, w = pop.offsetWidth, h = pop.offsetHeight;
+      var top = py - 42 - h; if (top < 8) top = py + 14;
+      pop.style.setProperty('left', Math.max(8, Math.min(HMAP_W - w - 8, px - w / 2)) + 'px', 'important');
+      pop.style.setProperty('top', top + 'px', 'important');
     }
+    card.style.transform = '';
+    var k = Math.min(1, (fit.clientWidth - 16) / card.offsetWidth, (fit.clientHeight - 16) / card.offsetHeight);
+    card.style.transform = 'scale(' + k + ')';
+    card.style.marginRight = (card.offsetWidth * (k - 1)) + 'px';
+    card.style.marginBottom = (card.offsetHeight * (k - 1)) + 'px';
   }
   // Pinta el estado actual sin animaciones (también al cambiar de idioma)
   function renderLive() {
