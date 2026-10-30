@@ -110,6 +110,19 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .hx-row{--cols:minmax(0,1fr) auto 128px;cursor:default}
 .hx-row:hover{background:#FFFFFF}
 .hx-sub{display:block;font-size:11.5px;color:#6A6E6B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#hx-alt{height:100%;display:flex;flex-direction:column;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+.hx-mapwrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px;background:#E7ECF5}
+.hx-mapbox{position:relative}
+.hx-mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.hx-pin{position:absolute;transform:translate(-50%,-100%);height:26px;line-height:22px;padding:0 9px;border-radius:999px;border:2px solid #FFFFFF;background:#0F1110;color:#FFFFFF;font:500 10.5px 'DM Mono',monospace;white-space:nowrap;box-shadow:0 5px 12px rgba(15,17,16,.18)}
+.hx-pin.on{background:#3F6FD8;z-index:2;transform:translate(-50%,-100%) scale(1.08)}
+.hx-pop{position:absolute;z-index:4;width:220px;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:16px;box-shadow:0 18px 40px rgba(15,17,16,.18);overflow:hidden;animation:pop .3s cubic-bezier(.2,.7,.2,1)}
+.hx-pop img{display:block;width:100%;height:86px;object-fit:cover}
+.hx-pop div{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px}
+.hx-pop b{font-size:13.5px}.hx-pop p{margin:0;font-size:11.5px;line-height:1.4;color:#3A3D3B}
+.hx-pop small{font-size:11px;color:#6A6E6B;display:flex;justify-content:space-between;gap:6px}
+.hx-msgs{flex:1;min-height:0;overflow:hidden;padding:14px 16px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:#FBFBFA}
+.hx-msgs>*{flex-shrink:0}
 .hx-rail{padding:16px;display:flex;flex-direction:column;gap:14px;background:#FBFBFA;min-width:0}
 .hx-notif{background:#FFFFFF;border:1px solid #E3E5E0;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 24px rgba(15,17,16,.06)}
 .hx-qr{background:#0F1110;color:#F4F4F1;border-radius:16px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
@@ -362,7 +375,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     <div id="demo" style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px)">
       <span id="cursor" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#0F1110" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg></span>
       <div class="fx-win">
-        <div class="hx-top"><span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="fx-crumb">Hotel Miramar / <b>Inicio</b></span></div>
+        <div class="hx-top"><span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="fx-crumb">Hotel Miramar / <b id="hx-crumb">Inicio</b></span></div>
         <div class="hx-body">
           <div data-zoom class="hx-side">
             <div class="fx-ws"><i>HM</i>Hotel Miramar</div>
@@ -371,7 +384,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
             <div id="hx-lists" style="display: flex; flex-direction: column; gap: 2px"></div>
           </div>
           <div class="hx-main">
-            <div data-zoom class="hx-content">
+            <div data-zoom class="hx-content" id="hx-content">
+              <div id="hx-home">
               <div class="fx-bar"><span class="fx-title">Buenos días, recepción</span><span class="fx-btn" id="new-btn">+ Nueva reserva</span></div>
               <div id="flow" class="hx-flow"></div>
               <div class="hx-kpis">
@@ -381,6 +395,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
               </div>
               <div class="fx-row hx-row fx-head" role="presentation"><span>Cliente</span><span>Comisión</span><span>Estado</span></div>
               <div id="rows"></div>
+              </div>
+              <div id="hx-alt" hidden></div>
             </div>
             <div class="hx-rail">
               <div data-zoom id="notif" class="hx-notif">
@@ -1095,6 +1111,11 @@ a:hover>.logo-dot{transform:scale(1.5)}
     'fijo': 'fixed', 'Listas': 'Lists',
     'Mensajes': 'Messages',
     'Catamarán privado': 'Private catamaran',
+    'Mapa': 'Map',
+    'Hola, nos interesa vuestro catamarán para nuestros huéspedes.': 'Hi, we’re interested in your catamaran for our guests.',
+    '¡Genial! Os proponemos un 13 % por reserva.': 'Great! We propose 13% per booking.',
+    'Acuerdo firmado': 'Agreement signed',
+    'Propuesta enviada': 'Proposal sent',
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
     'Recibe reservas, confírmalas y canjea el código.': 'Receive bookings, confirm them and redeem the code.',
@@ -1241,7 +1262,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     });
   })();
 
-  var NAV = [['home', 'Inicio'], ['res', 'Reservas'], ['ag', 'Acuerdos'], ['rep', 'Informes'], ['msg', 'Mensajes']];
+  var NAV = [['home', 'Inicio'], ['map', 'Mapa'], ['res', 'Reservas'], ['ag', 'Acuerdos'], ['rep', 'Informes'], ['msg', 'Mensajes']];
   var STEPS = [
     { n: '01', t: 'Encuentro', d: 'Quien tiene clientes encuentra a quien tiene el servicio.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva', d: 'El cliente recibe su link de pago por email o SMS.', x: 'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.', e: 'creada' },
@@ -1359,6 +1380,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     $('app-nav').innerHTML = NAV.map(function (n, i) {
       return '<button type="button" data-act="nav" data-v="' + i + '" aria-pressed="' + (i === S.nav) + '">' + fxSvg(n[0]) + T(n[1]) + '</button>';
     }).join('');
+    $('hx-crumb').textContent = T(NAV[S.nav][1]);
     $('hx-lists').innerHTML = ['Náutica', 'Traslados', 'Ciclismo', 'Eventos', 'Alquiler'].map(function (c) {
       return '<span class="hx-li"><span class="fx-dot" style="background: ' + FXCOL[c] + '"></span>' + T(c) + '<em>' + FXB.filter(function (b) { return b.cat === c; }).length + '</em></span>';
     }).join('');
@@ -1590,6 +1612,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
     ag: '<path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
     rep: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
     home: '<path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/>',
+    map: '<path d="M12 21s-6-5.6-6-10.5A6 6 0 0 1 18 10.5C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/>',
     msg: '<path d="M4 5h16v11H9l-5 4z"/>',
     cal: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8 14h3"/>',
     par: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><circle cx="17" cy="8" r="2.5"/><path d="M16 13.2c2.3 0 4 1.3 4.6 3.8"/>'
@@ -2031,7 +2054,7 @@ a:hover>.logo-dot{transform:scale(1.5)}
   $('fx-q').addEventListener('input', function (e) { FX.q = e.target.value; if (FX.view !== 'res') FX.view = 'res'; FX.open = null; fxRender(); });
 
   // Panel de ejemplo animado: recorrido de una comisión en bucle
-  var LIVE = { step: -1, held: 1430, rel: 3860, timer: 0, visible: false, still: matchMedia('(prefers-reduced-motion: reduce)').matches };
+  var LIVE = { view: 'home', pin: false, chat: 0, typing: false, signed: false, step: -1, held: 1430, rel: 3860, timer: 0, visible: false, still: matchMedia('(prefers-reduced-motion: reduce)').matches };
   var BASE = { held: 1430, rel: 3860 }, AMT = 156;
   function money(v) {
     var p = v.toFixed(2).split('.'), en = S.lang === 'en';
@@ -2042,7 +2065,8 @@ a:hover>.logo-dot{transform:scale(1.5)}
     ok: '<path d="M6 12.5l4 4L18 8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>',
     link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>',
     card: '<rect x="3" y="6" width="18" height="12" rx="2.5" fill="none" stroke="#FFFFFF" stroke-width="2"></rect><path d="M3 10h18" stroke="#FFFFFF" stroke-width="2"></path>',
-    qr: '<path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4M4 12h16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>'
+    qr: '<path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4M4 12h16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"></path>',
+    chat: '<path d="M4 5h16v11H9l-5 4z" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"></path>'
   };
   var LIVE_IDX = 1, HERO_ROWS = [0, 5, 2, 3];
   function liveSub(t) { return 'Cala d’Or Charters ' + (S.lang === 'en' ? 'redeemed ' : 'canjeó ') + t; }
@@ -2078,17 +2102,57 @@ a:hover>.logo-dot{transform:scale(1.5)}
     return '<div class="fx-row hx-row' + (fresh ? ' live-in' : '') + '"><span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[b.cat] + '">' + fxInit(b.cli) + '</span><span style="min-width: 0"><span class="fx-cell" style="display: block; font-weight: 600">' + b.cli + '</span><span class="hx-sub">' + T(b.svc) + ' · ' + b.emp + '</span></span></span>'
       + '<span class="fx-mono">' + money(b.com) + '</span>' + fxPill(st) + '</div>';
   }
+  var HPINS = [0, 1, 2, 4, 5, 6], HSEL = 2;
+  function heroMap() {
+    var coast = document.querySelector('#map svg path').getAttribute('d');
+    var pins = HPINS.map(function (i) {
+      var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
+      return '<span class="hx-pin' + (LIVE.pin && i === HSEL ? ' on' : '') + '" data-hpin="' + i + '" style="left: ' + xy[0] + '%; top: ' + xy[1] + '%">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
+    }).join('');
+    var sel = SVCS[HSEL], en = S.lang === 'en';
+    var pop = LIVE.pin ? '<div class="hx-pop" id="hx-pop"><img src="img/ofreces.jpg" alt=""><div><b>' + sel.name + '</b><p>' + T(sel.desc) + '</p><small><span class="fx-mono" style="color: #0F1110; font-size: 13px">' + eur(sel.price) + '</span><span>★ ' + (en ? sel.rating.toFixed(1) : sel.rating.toFixed(1).replace('.', ',')) + ' (' + sel.reviews + ')</span></small><span class="fx-btn" id="hx-propose" style="height: 30px; font-size: 12px; justify-content: center; margin-top: 2px">' + T('Proponer acuerdo') + '</span></div></div>' : '';
+    return '<div class="fx-bar"><span class="fx-title">' + T('Mapa') + '</span><span class="fx-chip" aria-pressed="true" style="background: #0F1110; color: #FFFFFF; border-color: #0F1110">' + T('Náutica') + ' <b>8</b></span></div>'
+      + '<div class="hx-mapwrap"><div class="hx-mapbox" id="hx-mapbox"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true"><path d="' + coast + '" fill="#FFFFFF" stroke="#C9D3E6" stroke-width="1.4" stroke-linejoin="round"></path></svg>' + pins + pop + '</div></div>';
+  }
+  function heroChat() {
+    var en = S.lang === 'en', msgs = [];
+    if (LIVE.chat >= 1) msgs.push('<div class="fx-msg me">' + T('Hola, nos interesa vuestro catamarán para nuestros huéspedes.') + '</div>');
+    if (LIVE.chat >= 2) msgs.push('<div class="fx-msg them">' + T('¡Genial! Os proponemos un 13 % por reserva.') + '</div>');
+    if (LIVE.chat >= 3) msgs.push('<div class="fx-deal" style="width: min(300px, 90%)"><header>' + T('Propuesta de acuerdo') + (LIVE.signed ? '<span class="fx-pill" style="background: #3F6FD8; color: #FFFFFF">' + T('Firmado') + '</span>' : '') + '</header>'
+      + '<dl><dt>' + T('Servicio') + '</dt><dd>' + T('Catamarán privado · día completo') + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + (en ? '13%' : '13 %') + '</dd><dt>' + T('Condiciones') + '</dt><dd>' + T('Cancelación gratuita hasta 48 h antes') + '</dd></dl>'
+      + (LIVE.signed ? '' : '<footer><span class="fx-btn accent" id="hx-accept">' + T('Aceptar') + '</span><span class="fx-btn ghost">' + T('Proponer cambios') + '</span></footer>') + '</div>');
+    if (LIVE.signed) msgs.push('<div class="fx-sys"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>' + T('Acuerdo firmado por las dos empresas') + '</div>');
+    if (LIVE.typing) msgs.push('<div class="fx-typing" aria-hidden="true"><i></i><i></i><i></i></div>');
+    return '<div class="fx-bar"><span class="fx-who"><span class="fx-av" style="background: #3F6FD8">CC</span><span><b style="font-weight: 600; font-size: 14px">Cala d’Or Charters</b><small style="display: block; font-size: 12px; color: #6A6E6B">' + T('Náutica') + '</small></span></span></div>'
+      + '<div class="hx-msgs">' + msgs.join('') + '</div>';
+  }
+  function layoutHeroMap() {
+    var box = $('hx-mapbox'); if (!box) return;
+    var wrap = box.parentNode, aw = wrap.clientWidth - 20, ah = wrap.clientHeight - 20;
+    var w = Math.min(aw, ah * GEO.w / GEO.h), h = w * GEO.h / GEO.w;
+    box.style.width = w + 'px'; box.style.height = h + 'px';
+    var pop = $('hx-pop');
+    if (pop) {
+      var sv = SVCS[HSEL], xy = proj(sv.lat, sv.lng), px = xy[0] / 100 * w, py = xy[1] / 100 * h;
+      pop.style.left = Math.max(6, Math.min(w - pop.offsetWidth - 6, px - pop.offsetWidth - 22)) + 'px';
+      pop.style.top = Math.max(6, Math.min(h - pop.offsetHeight - 6, py - pop.offsetHeight + 30)) + 'px';
+    }
+  }
   // Pinta el estado actual sin animaciones (también al cambiar de idioma)
   function renderLive() {
-    var st = LIVE.step;
+    var st = LIVE.step, home = LIVE.view === 'home', content = $('hx-content');
+    $('hx-home').hidden = !home; $('hx-alt').hidden = home;
+    if (home) { content.style.height = ''; }
+    else { $('hx-alt').innerHTML = LIVE.view === 'map' ? heroMap() : heroChat(); if (LIVE.view === 'map') layoutHeroMap(); }
     renderFlow();
     $('k-held').textContent = money(LIVE.held); $('k-rel').textContent = money(LIVE.rel);
     var rows = HERO_ROWS.map(function (i) { return heroRow(FXB[i], FXB[i].st); });
     if (st >= 0) { rows.pop(); rows.unshift(heroRow(FXB[LIVE_IDX], LIVE_ST[st].st, LIVE.fresh)); }
     LIVE.fresh = false;
     $('rows').innerHTML = rows.join('');
+    if (home) content.style.height = content.offsetHeight + 'px';
     if (st < 0) {
-      setNotif('ok', T('Comisión liberada') + ' · ' + money(36), 'Tramuntana Cycling ' + (S.lang === 'en' ? 'redeemed ' : 'canjeó ') + 'FV-3HX8');
+      if (home && !LIVE.signed) setNotif('ok', T('Comisión liberada') + ' · ' + money(36), 'Tramuntana Cycling ' + (S.lang === 'en' ? 'redeemed ' : 'canjeó ') + 'FV-3HX8');
       $('q-code').textContent = 'FV-7K2Q'; $('q-sub').textContent = T('Chárter privado') + ' · ' + fxDate('2026-04-12', true);
       return;
     }
@@ -2106,39 +2170,59 @@ a:hover>.logo-dot{transform:scale(1.5)}
       el.classList.remove('press'); void el.offsetWidth; el.classList.add('press');
     }, 950);
   }
-  function liveStep() {
-    clearTimeout(LIVE.timer);
-    if (!LIVE.visible) return;
-    var next = LIVE.step >= 3 ? -1 : LIVE.step + 1, wait = 2700;
-    if (next === 0) {
-      cursorTo($('new-btn'), true);
-      LIVE.timer = setTimeout(function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); LIVE.timer = setTimeout(liveStep, wait); }, 1250);
-      return;
-    }
-    LIVE.step = next;
-    if (next === -1) {
-      S.nav = 0; renderNav();
-      LIVE.held = BASE.held; LIVE.rel = BASE.rel; renderLive(); $('cursor').classList.remove('on');
-      LIVE.timer = setTimeout(liveStep, 2200); return;
-    }
-    renderLive();
-    var s = LIVE_ST[next]; setNotif(s.ico, s.t(), s.sub(), true);
-    if (next === 1) { countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false); }
-    if (next === 2) { var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false); }
-    if (next === 3) {
+  function navBtn(i) { return document.querySelector('#app-nav [data-v="' + i + '"]'); }
+  function goNav(i, view) { S.nav = i; renderNav(); LIVE.view = view; renderLive(); }
+  var SCENE = [
+    [0, function () {
+      LIVE.view = 'home'; LIVE.step = -1; LIVE.held = BASE.held; LIVE.rel = BASE.rel;
+      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false;
+      S.nav = 0; renderNav(); renderLive(); $('cursor').classList.remove('on');
+    }],
+    [900, function () { cursorTo(navBtn(1), true); }],
+    [1900, function () { goNav(1, 'map'); }],
+    [2900, function () { var p = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (p) cursorTo(p, true); }],
+    [3850, function () { LIVE.pin = true; renderLive(); }],
+    [5000, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
+    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(5, 'msg'); }],
+    [6500, function () { LIVE.chat = 1; renderLive(); }],
+    [7100, function () { LIVE.typing = true; renderLive(); }],
+    [8300, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
+    [9000, function () { LIVE.chat = 3; renderLive(); }],
+    [10000, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
+    [10950, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
+    [12400, function () { cursorTo(navBtn(0), true); }],
+    [13350, function () { goNav(0, 'home'); }],
+    [14300, function () { cursorTo($('new-btn'), true); }],
+    [15550, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
+    [18300, function () {
+      LIVE.step = 1; renderLive(); setNotif(LIVE_ST[1].ico, LIVE_ST[1].t(), LIVE_ST[1].sub(), true);
+      countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false);
+    }],
+    [21000, function () {
+      LIVE.step = 2; renderLive(); setNotif(LIVE_ST[2].ico, LIVE_ST[2].t(), LIVE_ST[2].sub(), true);
+      var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false);
+    }],
+    [23700, function () {
+      LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
-      var navBtn = document.querySelector('#app-nav [data-v="3"]');
-      if (navBtn) { cursorTo(navBtn, true); setTimeout(function () { S.nav = 3; renderNav(); }, 1000); }
-      wait = 3600;
-    }
-    LIVE.timer = setTimeout(liveStep, wait);
+      cursorTo(navBtn(4), true);
+    }],
+    [24700, function () { S.nav = 4; renderNav(); }],
+    [28000, function () { sceneRun(); }]
+  ];
+  LIVE.timers = [];
+  function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
+  function sceneRun() {
+    sceneStop();
+    if (!LIVE.visible) return;
+    SCENE.forEach(function (sc) { LIVE.timers.push(setTimeout(function () { if (LIVE.visible) sc[1](); }, sc[0])); });
   }
   if (!LIVE.still && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       var v = es[0].isIntersecting;
-      if (v && !LIVE.visible) { LIVE.visible = true; LIVE.timer = setTimeout(liveStep, 900); }
-      if (!v) { LIVE.visible = false; clearTimeout(LIVE.timer); }
+      if (v && !LIVE.visible) { LIVE.visible = true; sceneRun(); }
+      if (!v && LIVE.visible) { LIVE.visible = false; sceneStop(); SCENE[0][1](); }
     }, { threshold: 0.35 }).observe($('demo'));
   }
 
