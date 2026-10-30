@@ -18,6 +18,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 ## Marca
 - Nombre: siempre **favent** en minúscula en el logotipo (con un punto azul al final), "Favent" en el texto.
 - Etiqueta secundaria: **B2B SERVICE**.
+- Símbolo (provisional): monograma "fv" negro con punto azul, en `img/logo-mark.png` (transparente). Favicon e iconos en `img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`. Se usa junto al logotipo en la cabecera y el pie.
 - Colores:
   - Acento (azul suave): `#3F6FD8`
   - Texto sobre acento: `#FFFFFF`
