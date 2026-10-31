@@ -154,15 +154,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fp-form textarea{height:auto;padding:8px 10px;resize:none}
 .fp-form .full{grid-column:1 / -1}
 .fp-form .acts{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end}
-.kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#FFFFFF;border:1px solid #ECEDE9;border-radius:28px;overflow:hidden}
-.kp-item{padding:28px;display:flex;flex-direction:column;gap:10px;border-left:1px solid #ECEDE9;transition:background-color .2s}
-.kp-item:first-child{border-left:0}
-.kp-item:hover{background:#F7F9FD}
-.kp-ico{width:42px;height:42px;border-radius:14px;background:#E7ECF5;color:#274586;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
-.kp-t{font-family:'Inter Tight',sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em}
-.kp-d{font-size:14.5px;line-height:1.55;color:#4C504D}
-@media (max-width: 960px){.kp{grid-template-columns:repeat(2,minmax(0,1fr))}.kp-item:nth-child(3){border-left:0}.kp-item:nth-child(n+3){border-top:1px solid #ECEDE9}}
-@media (max-width: 560px){.kp{grid-template-columns:1fr}.kp-item{border-left:0;border-top:1px solid #ECEDE9;padding:22px}.kp-item:first-child{border-top:0}}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
 .fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Inter',sans-serif;color:#4C504D;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#0F1110;color:#FFFFFF;box-shadow:0 4px 12px rgba(15,17,16,.18)}
@@ -479,40 +470,11 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
   </section>
 
-  <section style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 40px">
-    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Producto">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span style="font-size: 14px; font-weight: 600; color: #274586">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
-    </div>
-    <div class="kp">
-      <div class="kp-item">
-        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/></svg></span>
-        <span class="kp-t">Comisión pactada</span>
-        <span class="kp-d">Porcentaje o importe fijo por servicio, acordado una vez. Cada reserva lo respeta.</span>
-      </div>
-      <div class="kp-item">
-        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg></span>
-        <span class="kp-t">Cobro garantizado</span>
-        <span class="kp-d">El cliente paga al reservar y la comisión se libera sola al canjear el código QR.</span>
-      </div>
-      <div class="kp-item">
-        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12h6"/></svg></span>
-        <span class="kp-t">Protección ante no-shows</span>
-        <span class="kp-d">Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas.</span>
-      </div>
-      <div class="kp-item">
-        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span>
-        <span class="kp-t">Extracto mensual</span>
-        <span class="kp-d">Reservas y comisiones de cada mes, listas para tu gestoría.</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 28px" aria-label="Producto">
-    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
-      <span style="font-size: 14px; font-weight: 600; color: #274586">Producto</span>
-      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Todo tu canal de ventas, en una sola pantalla.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Reservas, acuerdos e informes conectados. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Comisión pactada por servicio, cobro garantizado al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
     </div>
     <div id="fx-role" class="fx-role" role="group" aria-label="Perfil"></div>
     <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
@@ -1044,8 +1006,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Cala d’Or Charters · Sáb 19 abr · 6 personas': 'Cala d’Or Charters · Sat 19 Apr · 6 guests',
     'Cala d’Or Charters · Sáb 19 abr': 'Cala d’Or Charters · Sat 19 Apr',
     'Cala d’Or Charters canjeó FV-9M4T': 'Cala d’Or Charters redeemed FV-9M4T',
-    'Todo tu canal de ventas, en una sola pantalla.': 'Your whole sales channel, on one screen.',
-    'Reservas, acuerdos e informes conectados. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.': 'Bookings, agreements and reports, all connected. Pick your profile and explore: filter, sort and open any booking.',
+    'Comisión pactada por servicio, cobro garantizado al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.': 'Agreed commission per service, guaranteed payment at booking and automatic release when the QR code is redeemed. Pick your profile and explore: filter, sort and open any booking.',
     'Vistas': 'Views',
     'Buscar': 'Search',
     'Buscar reservas…': 'Search bookings…',
@@ -1054,7 +1015,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Cada cliente, de la reserva al cobro.': 'Every client, from booking to payout.',
     'Socios, comisiones y condiciones.': 'Partners, commissions and terms.',
     'Informes': 'Reports',
-    'Lo que vende tu red, mes a mes.': 'What your network sells, month by month.',
+    'Lo que vende tu red y tu extracto mensual.': 'What your network sells, plus your monthly statement.',
     'Cliente': 'Client', 'Servicio': 'Service', 'Empresa': 'Business', 'Fecha': 'Date', 'Estado': 'Status',
     'Categoría': 'Category', 'Servicios': 'Services', 'Reservas/mes': 'Bookings/mo', 'Valoración': 'Rating',
     'Activo': 'Active', 'Pendiente de firma': 'Awaiting signature', 'Sin resultados': 'No results',
@@ -1089,7 +1050,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Recibe reservas, confírmalas y canjea el código.': 'Receive bookings, confirm them and redeem the code.',
     'Tu disponibilidad, sincronizada.': 'Your availability, in sync.',
     'Quién vende tus servicios y a qué comisión.': 'Who sells your services and at what commission.',
-    'Tus ventas por socio, mes a mes.': 'Your sales by partner, month by month.',
+    'Tus ventas por socio y tu extracto mensual.': 'Your sales by partner, plus your monthly statement.',
     'Importe': 'Amount', 'Tipo': 'Type', 'Ventas': 'Sales',
     'Importe total': 'Total amount', 'Comisión del socio': 'Partner commission', 'Tú recibes': 'You receive',
     'Reserva recibida': 'Booking received', 'Plaza confirmada': 'Spot confirmed', 'Señal pagada': 'Deposit paid',
@@ -1126,11 +1087,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Liquidación': 'Payout',
     'Al canjear el código': 'When the code is redeemed',
     'Comisión pactada': 'Agreed commission',
-    'Porcentaje o importe fijo por servicio, acordado una vez. Cada reserva lo respeta.': 'A percentage or fixed amount per service, agreed once. Every booking respects it.',
-    'Cobro garantizado': 'Guaranteed payment',
-    'El cliente paga al reservar y la comisión se libera sola al canjear el código QR.': 'The client pays when booking and the commission is released automatically when the QR code is redeemed.',
-    'Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas.': 'If the client doesn’t show up, the deposit is split 50/50 between the two businesses.',
-    'Reservas y comisiones de cada mes, listas para tu gestoría.': 'Each month’s bookings and commissions, ready for your accountant.',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -2048,8 +2004,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     var en = S.lang === 'en';
     var pro = FX.role === 'pro';
     var views = pro
-      ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['par', 'Socios', 'Quién vende tus servicios y a qué comisión.'], ['rep', 'Informes', 'Tus ventas por socio, mes a mes.']]
-      : [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red, mes a mes.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
+      ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['par', 'Socios', 'Quién vende tus servicios y a qué comisión.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
+      : [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['ag', 'Acuerdos', 'Socios, comisiones y condiciones.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
     $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
       return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
