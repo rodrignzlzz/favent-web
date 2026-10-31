@@ -154,6 +154,15 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fp-form textarea{height:auto;padding:8px 10px;resize:none}
 .fp-form .full{grid-column:1 / -1}
 .fp-form .acts{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end}
+.kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#FFFFFF;border:1px solid #ECEDE9;border-radius:28px;overflow:hidden}
+.kp-item{padding:28px;display:flex;flex-direction:column;gap:10px;border-left:1px solid #ECEDE9;transition:background-color .2s}
+.kp-item:first-child{border-left:0}
+.kp-item:hover{background:#F7F9FD}
+.kp-ico{width:42px;height:42px;border-radius:14px;background:#E7ECF5;color:#274586;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.kp-t{font-family:'Inter Tight',sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.kp-d{font-size:14.5px;line-height:1.55;color:#4C504D}
+@media (max-width: 960px){.kp{grid-template-columns:repeat(2,minmax(0,1fr))}.kp-item:nth-child(3){border-left:0}.kp-item:nth-child(n+3){border-top:1px solid #ECEDE9}}
+@media (max-width: 560px){.kp{grid-template-columns:1fr}.kp-item{border-left:0;border-top:1px solid #ECEDE9;padding:22px}.kp-item:first-child{border-top:0}}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
 .fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Inter',sans-serif;color:#4C504D;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#0F1110;color:#FFFFFF;box-shadow:0 4px 12px rgba(15,17,16,.18)}
@@ -475,107 +484,27 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       <span style="font-size: 14px; font-weight: 600; color: #274586">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 16px">
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div class="lift" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Acuerdos por relación</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D; max-width: 460px">Porcentaje o importe fijo, pactado una vez con cada socio. Cada reserva copia el acuerdo vigente: nada se discute después.</span>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px">
-          <div class="lift" style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Hotel Miramar → Velas del Norte</span><span style="font-size: 12px; color: #6A6E6B">Charter · desde enero</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">12 %</span></div>
-          <div class="lift" style="flex: 1 1 220px; background: #F6F6F3; border-radius: 16px; padding: 14px; display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Laura C. → Yates Formentor</span><span style="font-size: 12px; color: #6A6E6B">Chárter semanal · importe fijo</span></div><span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">600,00 €</span></div>
-        </div>
+    <div class="kp">
+      <div class="kp-item">
+        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/></svg></span>
+        <span class="kp-t">Comisión pactada</span>
+        <span class="kp-d">Porcentaje o importe fijo por servicio, acordado una vez. Cada reserva lo respeta.</span>
       </div>
-      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Señal retenida</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">El cliente paga la comisión al reservar. Stripe la custodia hasta que el servicio se presta.</span>
-        <span style="margin-top: auto; align-self: flex-start; font-size: 13px; font-weight: 600; background: #8CA9E8; color: #0F1110; padding: 6px 12px; border-radius: 999px">Pagada · retenida</span>
+      <div class="kp-item">
+        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg></span>
+        <span class="kp-t">Cobro garantizado</span>
+        <span class="kp-d">El cliente paga al reservar y la comisión se libera sola al canjear el código QR.</span>
       </div>
-    </div>
-
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #E7ECF5; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Canje por código</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #3A3D3B">Al prestar el servicio se escanea el QR del cliente. Ese escaneo libera la comisión.</span>
-        <div style="margin-top: auto; align-self: flex-start; background: #FFFFFF; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 10px">
-          <div class="qr" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 42px; height: 42px" aria-hidden="true"></div>
-          <span style="font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.08em">FV-7K2Q</span>
-        </div>
+      <div class="kp-item">
+        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12h6"/></svg></span>
+        <span class="kp-t">Protección ante no-shows</span>
+        <span class="kp-d">Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas.</span>
       </div>
-
-      <div class="lift" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start">
-          <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Agenda sincronizada</span>
-          <div style="display: flex; gap: 4px; background: #F3F3F0; padding: 4px; border-radius: 999px" role="group" aria-label="Modo de reserva">
-            <span id="modes" style="display: contents"></span>
-          </div>
-        </div>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D; max-width: 560px">Conecta la agenda de la web de reservas de tu negocio y quien recomienda ve la disponibilidad real y reserva al momento. ¿Sin sistema de reservas? Funciona en manual: Favent facilita el contacto y registráis la reserva igual.</span>
-
-        <div id="panel-sync"><div style="background: #F6F6F3; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
-              <span style="font-size: 14px; font-weight: 600">Velas del Norte · Chárter privado</span>
-              <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #274586"><span style="width: 8px; height: 8px; border-radius: 4px; background: #3F6FD8"></span>Agenda conectada</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
-              
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Lun</span><span style="font-size: 15px; font-weight: 600">7</span><span class="free-l" style="font-size: 10px">Libre</span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Mar</span><span style="font-size: 15px; font-weight: 600">8</span><span style="font-size: 10px"><span class="full-l">Completo</span><span class="full-s">Lleno</span></span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Mié</span><span style="font-size: 15px; font-weight: 600">9</span><span class="free-l" style="font-size: 10px">Libre</span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Jue</span><span style="font-size: 15px; font-weight: 600">10</span><span class="free-l" style="font-size: 10px">Libre</span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #ECEDE9; color: #6A6E6B; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Vie</span><span style="font-size: 15px; font-weight: 600">11</span><span style="font-size: 10px"><span class="full-l">Completo</span><span class="full-s">Lleno</span></span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #3F6FD8; color: #FFFFFF; border: 1px solid #3F6FD8; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Sáb</span><span style="font-size: 15px; font-weight: 600">12</span><span class="free-l" style="font-size: 10px">Libre</span>
-                </div>
-                <div class="day-h" style="border-radius: 12px; padding: 8px 4px; text-align: center; background: #FFFFFF; color: #0F1110; border: 1px solid #E3E5E0; display: flex; flex-direction: column; gap: 2px">
-                  <span style="font-size: 11px">Dom</span><span style="font-size: 15px; font-weight: 600">13</span><span class="free-l" style="font-size: 10px">Libre</span>
-                </div>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-              <span style="font-size: 12px; background: #FFFFFF; border: 1px solid #E3E5E0; padding: 6px 10px; border-radius: 999px">Día completo · 2 plazas</span>
-              <span style="font-size: 12px; background: #FFFFFF; border: 1px solid #E3E5E0; padding: 6px 10px; border-radius: 999px">Atardecer · 18:30</span>
-              <span style="margin-left: auto; height: 36px; padding: 0 16px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600">Reservar ahora</span>
-            </div>
-          </div></div>
-        <div id="panel-manual" hidden><div style="background: #F6F6F3; border-radius: 18px; padding: 16px; display: flex; flex-wrap: wrap; gap: 16px">
-            <div style="flex: 1 1 220px; background: #FFFFFF; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
-              <span style="font-size: 14px; font-weight: 600">Yates Formentor</span>
-              <span style="font-size: 13px; color: #4C504D">Contacto de reservas</span>
-              <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4C504D">[teléfono] · [email]</span>
-            </div>
-            <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #3A3D3B">
-              <span><b style="font-weight: 600">1.</b> Contactas y acordáis fecha y plazas.</span>
-              <span><b style="font-weight: 600">2.</b> Registras la reserva en Favent.</span>
-              <span><b style="font-weight: 600">3.</b> El cliente paga la señal como siempre.</span>
-              <span style="align-self: flex-start; margin-top: 4px; height: 34px; padding: 0 14px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600">Registrar reserva</span>
-            </div>
-          </div></div>
+      <div class="kp-item">
+        <span class="kp-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span>
+        <span class="kp-t">Extracto mensual</span>
+        <span class="kp-d">Reservas y comisiones de cada mes, listas para tu gestoría.</span>
       </div>
-    </div>
-
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Protección ante no-shows</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas. Si cancela quien presta el servicio, reembolso total.</span>
-      </div>
-      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Reputación verificada</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Valoraciones mutuas, historial y fiabilidad: quien mejor trabaja recibe más clientes.</span>
-      </div>
-      <div class="lift" style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Extracto mensual</span>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Reservas, comisiones cobradas, retenidas y reembolsadas, listo para tu gestoría cada mes.</span>
-      </div>
-    </div>
     </div>
   </section>
 
@@ -912,7 +841,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#3F6FD8', on: '#FFFFFF', tint: '#E7ECF5', soft: '#D8E1F2', bright: '#8CA9E8', text: '#274586' };
-  var S = { nav: 0, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, mode: 'sync', lang: 'es', member: 0, share: 40, trust: 'rel' };
+  var S = { nav: 0, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, lang: 'es', member: 0, share: 40, trust: 'rel' };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function eur(v) {
@@ -1196,6 +1125,12 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Enviar': 'Send',
     'Liquidación': 'Payout',
     'Al canjear el código': 'When the code is redeemed',
+    'Comisión pactada': 'Agreed commission',
+    'Porcentaje o importe fijo por servicio, acordado una vez. Cada reserva lo respeta.': 'A percentage or fixed amount per service, agreed once. Every booking respects it.',
+    'Cobro garantizado': 'Guaranteed payment',
+    'El cliente paga al reservar y la comisión se libera sola al canjear el código QR.': 'The client pays when booking and the commission is released automatically when the QR code is redeemed.',
+    'Si el cliente no aparece, la señal se reparte 50/50 entre las dos empresas.': 'If the client doesn’t show up, the deposit is split 50/50 between the two businesses.',
+    'Reservas y comisiones de cada mes, listas para tu gestoría.': 'Each month’s bookings and commissions, ready for your accountant.',
     // Partes interactivas
     'Inicio': 'Home', 'Reservas': 'Bookings', 'Acuerdos': 'Agreements', 'Red': 'Network', 'Liquidaciones': 'Payouts',
     'Mejor valorados': 'Top rated', 'Mayor comisión': 'Highest commission', 'Menor precio': 'Lowest price',
@@ -1424,14 +1359,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       return '<span class="hx-li"><span class="fx-dot" style="background: ' + FXCOL[c] + '"></span>' + T(c) + '<em>' + FXB.filter(function (b) { return b.cat === c; }).length + '</em></span>';
     }).join('');
   }
-  function renderModes() {
-    $('modes').innerHTML = [['sync', 'Agenda conectada'], ['manual', 'Reserva manual']].map(function (m) {
-      var on = m[0] === S.mode;
-      return '<button type="button" data-act="mode" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#0F1110' : '#4C504D') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none') + '">' + T(m[1]) + '</button>';
-    }).join('');
-    $('panel-sync').hidden = S.mode !== 'sync';
-    $('panel-manual').hidden = S.mode !== 'manual';
-  }
   function renderSteps() {
     $('steps').innerHTML = STEPS.map(function (s, i) {
       var on = i === S.step;
@@ -1542,7 +1469,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       b.style.boxShadow = on ? '0 1px 3px rgba(15,17,16,0.15)' : 'none';
     });
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
-    renderNav(); renderModes(); renderSteps(); renderMap(); renderTeam(); renderTrust();
+    renderNav(); renderSteps(); renderMap(); renderTeam(); renderTrust();
     if (LIVE) renderLive();
     if (FX) fxRender();
     if (PS) fitPanel();
@@ -1554,7 +1481,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     if (!b) return;
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
-    if (act === 'mode') { S.mode = v; renderModes(); }
     if (act === 'step') { S.step = +v; renderSteps(); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
