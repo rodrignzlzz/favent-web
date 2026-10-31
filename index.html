@@ -72,6 +72,7 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 #map-list{max-height:620px;overflow-y:auto;padding-right:4px}
 .fv-pin.dot{font-size:0 !important;width:16px !important;height:16px !important;padding:0 !important;border-width:2px !important;background:var(--c) !important;transform:translate(-50%,-50%) !important}
 .fv-pin.dot:hover,.fv-pin.dot.hot{font-size:12px !important;width:auto !important;height:32px !important;padding:0 12px !important;background:#0F1110 !important;transform:translate(-50%,-100%) !important;z-index:6 !important}
+.fv-pin::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,28px);height:max(100%,28px);transform:translate(-50%,-50%);border-radius:999px}
 .fv-pin:hover,.fv-pin.hot{transform:translate(-50%,-100%) scale(1.12) !important;box-shadow:0 10px 22px rgba(15,17,16,0.28) !important;z-index:5 !important}
 .logo-dot,.logo-mark{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 a:hover>.logo-mark{transform:rotate(-6deg) scale(1.06)}
@@ -105,9 +106,9 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .map-lbl{font-family:'Inter',sans-serif;pointer-events:none}
 .map-city{font-size:11.5px;font-weight:600;fill:#0F1110}
 .map-town{font-size:9.5px;font-weight:500;fill:#6A6E6B}
-.map-bay{font-size:9.5px;font-style:italic;fill:#5F7BB5}
-.map-sea{font-size:10px;font-style:italic;letter-spacing:.12em;fill:#7E95C4}
-.map-tram{font-size:9px;font-style:italic;letter-spacing:.1em;fill:#9AA3B2}
+.map-bay{font-size:9.5px;font-style:italic;fill:#4A68A8}
+.map-sea{font-size:10px;font-style:italic;letter-spacing:.12em;fill:#4A68A8}
+.map-tram{font-size:9px;font-style:italic;letter-spacing:.1em;fill:#6A6E6B}
 @media (max-width: 640px){.map-town,.map-bay,.map-sea,.map-tram{display:none}.map-city{font-size:20px}.map-attr{font-size:8px !important;right:4px !important;bottom:2px !important}}
 /* Dashboard interactivo */
 .hx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #ECEDE9;background:#FBFBFA}
@@ -272,6 +273,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-who span{min-width:0;display:flex;flex-direction:column}
 .fx-who small{font-size:11.5px;color:#6A6E6B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:none}
 .fx-av{width:26px;height:26px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;font:600 10px 'Inter',sans-serif;color:#FFFFFF;flex-shrink:0}
+.fx-av[style*="#8CA9E8"]{color:#0F1110}
 .fx-mono{font-family:'DM Mono',monospace}
 .fx-pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;justify-self:start;border:1px solid transparent}
 .fx-dh .fx-pill{align-self:flex-start}
@@ -405,6 +407,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       </button>
     </div>
   </nav>
+
+  <main>
 
   <header style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <span style="font-size: 13px; font-weight: 500; border: 1px solid #DADBD6; background: #FFFFFF; padding: 6px 14px; border-radius: 999px">Red B2B de referrals · Mallorca</span>
@@ -565,7 +569,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
             <text x="462.7" y="124.1" text-anchor="middle" class="map-lbl map-bay">Badia d’Alcúdia</text>
             <text x="141.1" y="426.6" text-anchor="middle" class="map-lbl map-sea">Mar Mediterrània</text>
           </svg>
-          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" class="map-attr" style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #6A6E6B; text-decoration: none">© OpenStreetMap</a>
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" class="map-attr" style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #4C504D; text-decoration: none">© OpenStreetMap</a>
           <span id="me" style="position: absolute; transform: translate(-7px, -50%); display: flex; align-items: center; gap: 6px; white-space: nowrap; pointer-events: none">
             <span style="width: 14px; height: 14px; border-radius: 7px; background: #FFFFFF; border: 4px solid #3F6FD8; box-shadow: 0 0 0 6px rgba(63, 111, 216, 0.25)"></span>
             <span style="font-size: 11px; font-weight: 600; background: #FFFFFF; padding: 2px 8px; border-radius: 999px; border: 1px solid #E3E5E0">Tú</span>
@@ -802,6 +806,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     <div style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; font-size: clamp(96px, 24vw, 330px); color: #0F1110">favent<span style="width: clamp(18px, 4vw, 54px); height: clamp(18px, 4vw, 54px); border-radius: 999px; background: #3F6FD8"></span></div>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: #4C504D"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
   </section>
+
+  </main>
 
   <footer style="border-top: 1px solid #ECEDE9">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: #5D615E">
@@ -1301,7 +1307,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       var on = i === S.member;
       return '<button type="button" data-act="member" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; width: 100%; background: ' + (on ? A.tint : '#FFFFFF') + '; border: 1px solid ' + (on ? A.accent : '#ECEDE9') + '; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; cursor: pointer; font-family: \'Inter\', sans-serif; color: #0F1110">'
         + '<span style="font-family: \'DM Mono\', monospace; font-size: 13px; font-weight: 500; min-width: 44px; height: 30px; padding: 0 8px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: ' + (on ? A.accent : '#0F1110') + '; color: #FFFFFF">#' + m.n + '</span>'
-        + '<span style="flex: 1 1 130px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">' + m.name + '</span><span style="font-size: 12px; color: #6A6E6B">' + T(m.role) + '</span></span>'
+        + '<span style="flex: 1 1 130px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">' + m.name + '</span><span style="font-size: 12px; color: ' + (on ? '#4C504D' : '#6A6E6B') + '">' + T(m.role) + '</span></span>'
         + '<span style="flex: 1 1 120px; display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: #4C504D"><span>' + bookings(m.b) + '</span><span style="font-family: \'DM Mono\', monospace; color: #0F1110">' + eur(m.c) + '</span></span>'
         + '<span style="height: 6px; border-radius: 999px; background: #ECEDE9; overflow: hidden; display: block"><span style="display: block; height: 100%; width: ' + Math.round(m.c / max * 100) + '%; background: ' + A.accent + '; border-radius: 999px"></span></span></span>'
         + '</button>';
@@ -1459,8 +1465,14 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       if (!visible(SVCS[S.pin])) { for (var k = 0; k < SVCS.length; k++) if (visible(SVCS[k])) { S.pin = k; break; } }
       renderMap();
     }
-    if (act === 'pin') { S.pin = +v; S.popup = true; renderMap(); }
-    if (act === 'popclose') { S.popup = false; renderMap(); }
+    if (act === 'pin') {
+      S.pin = +v; S.popup = true; renderMap();
+      // renderMap() rehace pins y lista: devolver el foco para no perderlo
+      var px = document.querySelector('#pin-pop:not([hidden]) .pp-x');
+      var nb = b.classList.contains('fv-pin') ? px : document.querySelector('.' + b.classList[0] + '[data-act="pin"][data-v="' + v + '"]');
+      if (nb) nb.focus({ preventScroll: true });
+    }
+    if (act === 'popclose') { S.popup = false; renderMap(); var pb = document.querySelector('.fv-pin[aria-pressed="true"]'); if (pb) pb.focus({ preventScroll: true }); }
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
     if (act === 'trust') { S.trust = v; renderTrust(); }
@@ -2138,7 +2150,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: #D8E1F2; color: #274586; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
       + '<span id="hx-propose" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T('Proponer acuerdo') + '</span></div></div>';
     return '<div class="hx-mapfit" id="hx-mapfit"><div class="hx-mapcard" id="hx-mapcard"><div style="display: flex; gap: 8px">' + chips + '</div>'
-      + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #6A6E6B">© OpenStreetMap</span></div>'
+      + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #4C504D">© OpenStreetMap</span></div>'
       + bar + '</div></div>';
   }
   function heroChat() {
