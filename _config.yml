@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll): archivos del repositorio que no deben publicarse en www.favent.app
+exclude:
+  - CLAUDE.md
+  - DESIGN.md
+  - skills-lock.json
+  - .agents
+  - .claude
