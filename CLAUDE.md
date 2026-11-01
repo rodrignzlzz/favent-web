@@ -21,7 +21,9 @@ Sistema «Grafito y señal» (noviembre de 2026): grafito, blanco hueso frío, a
 - Nombre: siempre **favent** en minúscula en el logotipo, "Favent" en el texto.
 - Logotipo: «favent» en **IBM Plex Mono** 500 (tracking −0,05 em) seguido de un bloque naranja tipo cursor (`.logo` + `.logo-cur`, en HTML y CSS, no en imagen). Al cargar, el cursor parpadea cuatro veces. En el pie va en pequeño y como palabra gigante al final de la página.
 - Etiqueta secundaria: **B2B SERVICE** (en mono).
-- Símbolo antiguo: el monograma «fv» de `img/logo-mark.png` ya no se usa en la web. Los favicons e iconos (`img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`) y la imagen social `img/og-image.png` aún son los antiguos y hay que rehacerlos con el logotipo nuevo.
+- Icono: «f» en IBM Plex Mono 600 color hueso con el cursor naranja, sobre un cuadrado grafito (`img/favicon-32.png`, `img/icon-192.png` e `img/icon-512.png` con esquinas redondeadas y transparencia; `img/apple-touch-icon.png` cuadrado y opaco porque iOS redondea solo).
+- Imagen social `img/og-image.png` (1200 × 630): fondo hueso con retícula, logotipo, «B2B SERVICE», el titular «Cada cliente que envías, cobrado.», el sol naranja y la Tramuntana.
+- El monograma antiguo «fv» (`img/logo-mark.png`) ya no se usa.
 - Colores (día):
   - Fondo (blanco hueso): `#F6F6F3` · Tarjetas: `#FFFFFF`
   - Tinta (grafito): `#1E2226` · Texto secundario: `#50565C` · Terciario: `#656B71`
