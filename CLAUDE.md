@@ -22,9 +22,9 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 
 Resumen (el detalle está en `DESIGN.md`):
 - Nombre: siempre **favent** en minúscula en el logotipo, "Favent" en el texto. Etiqueta secundaria: **B2B SERVICE**.
-- Logotipo: «favent» en Newsreader 500 con punto final rosa (`.logo` + `.logo-cur`, en HTML/CSS). Icono «f.» en `img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`; imagen social en `img/og-image.png`. Se generan desde HTML con las fuentes reales; regenerarlos si cambia el logotipo.
+- Logotipo: «favent» en Michroma con punto final rosa (`.logo` + `.logo-cur`, en HTML/CSS). Icono «f.» en `img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`; imagen social en `img/og-image.png`. Se generan desde HTML con las fuentes reales; regenerarlos si cambia el logotipo.
 - Tema oscuro: lienzo `#0B0F17`, texto `#E9EEF6`; rosa señal `#FF4F9A` (marca y progreso) y azul eléctrico `#4DA8FF` / `#7CC4FF` (energía y énfasis). Las interfaces de ejemplo son «pantallas encendidas» claras.
-- Tipografías: Geist (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Newsreader (solo logotipo).
+- Tipografías: Geist (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Michroma (solo logotipo e icono).
 - Sin naranja, sin degradados de color visibles, sin emojis, sin transición de día y noche.
 
 ## Textos y tono

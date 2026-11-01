@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Favent-design-system
-description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo en Newsreader con punto rosa. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». En el inicio, pistas de procesador recorridas por pulsos de energía azul."
+description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo en Michroma (extendida y técnica) con punto rosa. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». En el inicio, pistas de procesador recorridas por pulsos de energía azul."
 
 colors:
   primary: "#FF4F9A"
@@ -112,9 +112,9 @@ typography:
     lineHeight: 1.50
     letterSpacing: 0
   logo:
-    fontFamily: Newsreader
-    fontSize: 29px
-    fontWeight: 500
+    fontFamily: Michroma
+    fontSize: 19px
+    fontWeight: 400
     lineHeight: 1.00
     letterSpacing: -0.02em
 
@@ -196,11 +196,11 @@ components:
   route-node-done:
     backgroundColor: "{colors.primary}"
     border: "2px {colors.primary}"
-  ticker:
-    backgroundColor: "rgba(11,15,23,0.50)"
-    textColor: "{colors.ink-muted}"
-    typography: "{typography.mono}"
-    height: 52px
+  map-badge:
+    backgroundColor: "#FFFFFF"
+    textColor: "{colors.screen-ink-muted}"
+    rounded: "{rounded.pill}"
+    padding: 3px 10px
   screen-panel:
     backgroundColor: "{colors.screen-tint}"
     textColor: "{colors.screen-ink}"
@@ -224,7 +224,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios: quien 
 El lienzo es oscuro: `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro. Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
 
 Hay dos acentos con funciones que no se mezclan:
-- **Rosa señal** `{colors.primary}` (#FF4F9A): marca y progreso. Punto del logotipo, cuadrado de las etiquetas, línea y puntos completados del recorrido, foco de puntos que sigue al ratón.
+- **Rosa señal** `{colors.primary}` (#FF4F9A): marca y progreso. Punto del logotipo, cuadrado de las etiquetas, línea y puntos completados del recorrido.
 - **Azul eléctrico** `{colors.electric}` / `{colors.electric-soft}`: energía y énfasis. Pulsos del circuito del inicio, la palabra «cobrado.» del titular, estados en mono y etiquetas sobre fondo oscuro.
 
 Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloque final de acceso) son «pantallas encendidas»: conservan una paleta clara propia (`screen-*`) dentro del lienzo oscuro. Son las protagonistas visuales, como las capturas de producto en Linear, y siempre llevan la etiqueta «Vista de ejemplo».
@@ -242,7 +242,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 > Fuente: `index.html` (variables en `:root`, `.screen`, y los estilos de cada componente).
 
 ### Brand & Accent
-- **Rosa señal** ({colors.primary}): marca y progreso (logotipo, etiquetas, recorrido, foco). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
+- **Rosa señal** ({colors.primary}): marca y progreso (logotipo, etiquetas, recorrido). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
 - **Rosa profundo** ({colors.primary-deep}): versión para rellenos con texto blanco encima (categoría Ciclismo del mapa, unos 5,9:1).
 - **Azul eléctrico** ({colors.electric}): pulsos y estelas del circuito; foco de los botones.
 - **Azul eléctrico suave** ({colors.electric-soft}): texto de énfasis («cobrado.»), etiquetas de sección sobre bloques oscuros, estados en mono.
@@ -279,8 +279,8 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 
 ### Font Family
 - **Geist** (Google Fonts, 400/500/600): titulares, texto y botones.
-- **Geist Mono** (400/500): etiquetas de sección, códigos (FV-7K2Q), importes, estados, cinta de actividad, selector de idioma.
-- **Newsreader** (500; 600 en el icono): solo el logotipo «favent.».
+- **Geist Mono** (400/500): etiquetas de sección, códigos (FV-7K2Q), importes, estados, selector de idioma.
+- **Michroma** (400, único grosor): solo el logotipo «favent.» y el icono «f.».
 
 ### Hierarchy
 
@@ -298,7 +298,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 | `button` | 15px | 600 | 1.20 | 0 | Botones |
 | `eyebrow` | 13px | 500 (mono) | 1.30 | 0 | Etiquetas de sección |
 | `mono` | 13px | 400 (mono) | 1.50 | 0 | Datos, códigos, estados |
-| `logo` | 29px | 500 (Newsreader) | 1.00 | -0.02em | Logotipo |
+| `logo` | 19px (14px en el pie) | 400 (Michroma) | 1.00 | -0.02em | Logotipo |
 
 ### Principles
 - Titulares a 500, nunca a 700: el peso lo da el tamaño y el tracking negativo.
@@ -308,7 +308,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 - Un solo énfasis de color por titular, y solo en el del inicio («cobrado.» en azul eléctrico suave).
 
 ### Note on Font Substitutes
-Las tres familias son libres (Google Fonts). Si alguna no carga, el CSS cae en `sans-serif`, `monospace` y `serif`. No sustituir por Inter ni por IBM Plex: ya se probaron y se descartaron.
+Las tres familias (Geist, Geist Mono y Michroma) son libres (Google Fonts). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter ni por IBM Plex, ni el logotipo por Newsreader o Geist: ya se probaron y se descartaron.
 
 ## Layout
 
@@ -336,7 +336,6 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 ### Decorative Depth
 - **Circuito del inicio** (canvas `#net`): pistas de procesador en ángulos de 45° y 90° (`{colors.electric}` al 13 %) con contactos cuadrados y circulares. Pulsos de energía azul con estela en tres tramos y destello al llegar al contacto final. El centro va enmascarado para que el texto se lea limpio.
-- **Foco de puntos rosas**: sigue al ratón por detrás del contenido (solo con ratón).
 - **Paralaje**: el circuito se desplaza a un cuarto de la velocidad del scroll.
 - **No usar** degradados de color visibles como fondo ni brillos de neón alrededor del texto.
 
@@ -361,7 +360,7 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 ## Components
 
 ### Buttons
-**`button-primary`**: cápsula clara sobre el lienzo («Solicitar acceso»). Fondo `{colors.ink}`, texto `{colors.canvas}`, 52 px de alto en formularios y 40 px en el menú. Magnético con ratón (se desplaza un poco hacia el cursor).
+**`button-primary`**: cápsula clara sobre el lienzo («Solicitar acceso»). Fondo `{colors.ink}`, texto `{colors.canvas}`, 52 px de alto en formularios y 40 px en el menú.
 
 **`button-secondary`**: cápsula azul `{colors.screen-accent}` con texto blanco («Ofrezco servicios»). 44 px.
 
@@ -395,11 +394,11 @@ Seis pasos unidos por una línea de 2 px. La parte recorrida y los puntos comple
 ### Statement (texto que se revela)
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
-### Ticker (cinta de actividad)
-Franja de 52 px de vidrio con eventos de ejemplo en mono y un cuadrado rosa delante de cada uno. Se desplaza con el scroll, no sola. Siempre con la etiqueta «Actividad de ejemplo».
+### Map (mapa de servicios)
+Solo filtros por categoría (sin botones de orden). El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
 
 ### Footer
-Palabra gigante «favent.» en Newsreader (clamp(96px, 23vw, 320px)) con el punto rosa, el lema y «B2B SERVICE · MALLORCA». Debajo, el logotipo pequeño. Los enlaces legales están ocultos hasta que existan las páginas.
+Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlineado 1,25 para que no se corte) con el punto rosa, el lema y «B2B SERVICE · MALLORCA». Debajo, el logotipo pequeño. Los enlaces legales están ocultos hasta que existan las páginas.
 
 ## Motion
 
@@ -410,15 +409,13 @@ Palabra gigante «favent.» en Newsreader (clamp(96px, 23vw, 320px)) con el punt
 | Panel inicial | Scroll | De inclinado 12° en 3D a plano |
 | Frase que se revela | Scroll | Palabra a palabra |
 | Línea de recorrido | Scroll | Fija en escritorio (240vh); vertical en móvil |
-| Cinta de actividad | Scroll | Desplazamiento horizontal |
 | Etiquetas | Al aparecer | Descifrado de 0,65 s, una vez |
 | Tarjetas de vidrio | Ratón | Inclinación de hasta 5° |
-| Botones principales | Ratón | Efecto magnético |
 
 - Curva estándar `cubic-bezier(.23,1,.32,1)` (ease-out). Nunca `ease-in` en la interfaz.
 - Animar solo `transform` y `opacity` (y el color de las palabras de la frase). Nada de animar `width`, `top` o `box-shadow` en bucle.
 - Nada se mueve solo durante más de 5 s sin control para pausarlo (WCAG 2.2.2): el circuito tiene «Pausar fondo» y el panel inicial, «Pausar animación».
-- Con `prefers-reduced-motion`: nada se fija, el circuito se dibuja estático, la frase aparece completa, la línea del recorrido dibujada entera, sin foco, sin inclinaciones y sin efecto magnético.
+- Con `prefers-reduced-motion`: nada se fija, el circuito se dibuja estático, la frase aparece completa, la línea del recorrido dibujada entera y sin inclinaciones.
 
 ## Do's and Don'ts
 
@@ -427,7 +424,7 @@ Palabra gigante «favent.» en Newsreader (clamp(96px, 23vw, 320px)) con el punt
 - Usar el rosa solo para marca y progreso, y el azul eléctrico solo para energía y énfasis.
 - Poner el contenido en vidrio y los controles con relieve; reservar las pantallas claras para las interfaces de ejemplo.
 - Escribir datos, códigos y estados en Geist Mono.
-- Marcar siempre los datos inventados como «Vista de ejemplo», «Actividad de ejemplo» o «servicios de ejemplo».
+- Marcar siempre los datos inventados como «Vista de ejemplo», «Servicios de ejemplo» o «Ejemplo».
 - Comprobar el contraste: 4.5:1 en texto normal, 3:1 en texto grande y en bordes de controles.
 
 ### Don't
@@ -450,7 +447,7 @@ Palabra gigante «favent.» en Newsreader (clamp(96px, 23vw, 320px)) con el punt
 | Tablet | ≤ 960px | Panel de confianza en filas |
 | Tablet-sm | ≤ 860px | Recorrido vertical sin fijar; panel interactivo sin barra lateral |
 | Mobile-lg | ≤ 720px | Perfiles en una columna |
-| Mobile | ≤ 640px | Separación de 80 px, sin botón en el menú, mapa compacto, «Pausar fondo» en línea |
+| Mobile | ≤ 640px | Separación de 80 px, sin botón en el menú, mapa a todo el ancho sin lista lateral, «Pausar fondo» en línea |
 | Mobile-sm | ≤ 440px | Desaparece la cápsula «B2B SERVICE» |
 
 ### Touch Targets
