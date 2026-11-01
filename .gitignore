@@ -1,0 +1,4 @@
+# Skills y herramientas locales de diseño (no forman parte de la web)
+.agents/
+.claude/
+skills-lock.json
