@@ -474,6 +474,49 @@ body > div:first-of-type{overflow-x:clip}
   .cine .route-pin{position:static;min-height:0;display:block}
   .cine .route-in{padding-top:var(--sp);padding-bottom:var(--sp)}
 }
+/* ===== Textura: retícula de puntos en todo el fondo y foco naranja que sigue al ratón ===== */
+body > div:first-of-type{isolation:isolate;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='1' fill='%231E2226' fill-opacity='.13'/%3E%3C/svg%3E")}
+.spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s ease;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='1.5' fill='%23F2551C'/%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(170px circle at var(--x, -400px) var(--y, -400px),#000 0,transparent 100%);mask-image:radial-gradient(170px circle at var(--x, -400px) var(--y, -400px),#000 0,transparent 100%)}
+.spot.on{opacity:.9}
+/* ===== Red de empresas en el fondo del inicio ===== */
+.net{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+/* ===== Cinta de actividad de ejemplo: avanza con el scroll ===== */
+.ticker{position:relative;display:flex;align-items:center;height:52px;margin:0 0 72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(246,246,243,.82);overflow:hidden}
+.ticker-tag{position:relative;z-index:1;flex-shrink:0;height:100%;display:flex;align-items:center;gap:8px;padding:0 18px 0 24px;background:#F6F6F3;border-right:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-3)}
+.ticker-track{display:flex;flex:1;min-width:0;will-change:transform}
+.ticker-row{display:flex;flex-shrink:0}
+.tk{display:inline-flex;align-items:center;gap:10px;padding:0 28px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-2)}
+.tk::before{content:"";width:6px;height:6px;background:var(--signal)}
+html:not(.cine) .ticker-track{overflow-x:auto}
+/* ===== Calculadora ===== */
+.calc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.calc-l{display:flex;flex-direction:column;gap:20px}
+.calc-ctl{display:flex;flex-direction:column;gap:10px;padding-top:8px}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.calc-row label{font-size:14px;font-weight:500}
+.calc-row output{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--eyebrow)}
+.calc input[type=range]{width:100%;accent-color:#1E2226;cursor:pointer}
+.calc-r{position:relative;background:#1E2226;color:#F6F6F3;border-radius:28px;padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:14px;overflow:hidden;box-shadow:0 30px 70px rgba(30,34,38,.18)}
+.calc-r::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='1' fill='%23FFFFFF' fill-opacity='.08'/%3E%3C/svg%3E")}
+.calc-k{position:relative;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A9D3F0}
+.calc-v{position:relative;font-family:'IBM Plex Mono',monospace;font-size:clamp(44px,6vw,72px);font-weight:500;letter-spacing:-0.04em;line-height:1}
+.calc-sub{position:relative;font-size:14px;color:#C9CED3}
+.calc-sub b{font-family:'IBM Plex Mono',monospace;font-weight:500;color:#F6F6F3}
+.calc-flow{position:relative;height:16px;margin:18px 0 0}
+.calc-line{position:absolute;left:12.5%;right:12.5%;top:7px;height:2px;background:#3D4248}
+.calc-line i{position:absolute;inset:0;background:var(--signal);transform-origin:left;transform:scaleX(0);transition:transform 520ms var(--ease-out)}
+.calc-flow b{position:absolute;top:0;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:2px solid #50565C;background:#1E2226;transition:background-color 200ms ease,border-color 200ms ease}
+.calc-flow b[data-k="0"]{left:12.5%}.calc-flow b[data-k="1"]{left:37.5%}.calc-flow b[data-k="2"]{left:62.5%}.calc-flow b[data-k="3"]{left:87.5%}
+.calc-flow b.on{background:var(--signal);border-color:var(--signal)}
+.calc-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.35;color:#AEB4BA}
+.calc-foot{position:relative;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:10px}
+#c-sim{height:44px;padding:0 20px;border-radius:999px;border:0;background:#F6F6F3;color:#1E2226;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;transition:transform 160ms var(--ease-out)}
+#c-sim:active{transform:scale(.97)}
+.calc-status{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F6F6F3;padding:6px 12px;border-radius:999px;border:1px solid #3D4248}
+.calc-note{position:relative;font-size:12px;color:#AEB4BA}
+@media (max-width: 860px){.calc{grid-template-columns:1fr}.calc-steps{font-size:10.5px}}
+/* Tarjetas que se inclinan con el ratón */
+.cine .lift{transform-style:preserve-3d}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -486,11 +529,12 @@ body > div:first-of-type{overflow-x:clip}
 /* ===== Texturas: grano en toda la página y retícula detrás del titular ===== */
 body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .intro{position:relative;isolation:isolate}
-.intro::before{content:"";position:absolute;z-index:-1;top:-160px;bottom:-60px;left:50%;width:100vw;transform:translateX(-50%);pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%230F1110' stroke-opacity='.07'/%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse 55% 65% at 50% 38%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse 55% 65% at 50% 38%,#000 15%,transparent 72%)}
+
 </style>
 </head>
 <body>
 <div style="width: 100%; background: #F6F6F3; color: #1E2226; font-family: 'IBM Plex Sans', sans-serif">
+  <div class="spot" id="spot" aria-hidden="true"></div>
 
   <div style="background: #1E2226; color: #F4F4F1; font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso" style="color: #A9D3F0; text-decoration: none; font-weight: 600">Solicita acceso →</a></div>
 
@@ -516,6 +560,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <main>
 
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+    <canvas class="net" id="net" aria-hidden="true"></canvas>
     <span class="eyebrow">Para empresas de servicios en Mallorca</span>
     <h1 style="margin: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span style="color: #0B2A4A">cobrado.</span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: #50565C; max-width: 660px">El canal de ventas profesional entre empresas de servicios: las dos empresas pactan la comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio.</p>
@@ -531,6 +576,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
     <p style="margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.5; color: #656B71"><span>Gratis durante el piloto · Pagos procesados con Stripe</span><span>Solo usaremos tu email para darte acceso al piloto.</span></p>
   </header>
+
+  <div class="ticker" role="region" aria-label="Actividad de ejemplo">
+    <span class="ticker-tag">Actividad de ejemplo</span>
+    <div class="ticker-track" id="ticker"><div class="ticker-row"><span class="tk">Velas del Norte · acuerdo firmado · 13 %</span><span class="tk">FV-7K2Q · señal retenida · 180,00 €</span><span class="tk">Tramuntana Cycling · código canjeado</span><span class="tk">Comisión liberada · 36,00 €</span><span class="tk">Mar Blau Yachting · nueva reserva · 8 personas</span><span class="tk">Cala d’Or Charters · señal pagada</span></div><div class="ticker-row" aria-hidden="true"><span class="tk">Velas del Norte · acuerdo firmado · 13 %</span><span class="tk">FV-7K2Q · señal retenida · 180,00 €</span><span class="tk">Tramuntana Cycling · código canjeado</span><span class="tk">Comisión liberada · 36,00 €</span><span class="tk">Mar Blau Yachting · nueva reserva · 8 personas</span><span class="tk">Cala d’Or Charters · señal pagada</span></div></div>
+  </div>
 
   <section id="producto" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; position: relative" aria-label="Panel de ejemplo">
     <div class="demo-ctl">
@@ -623,6 +673,33 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
+
+  <section id="calcula" style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp)" aria-label="Calculadora de comisión">
+    <div class="calc">
+      <div class="calc-l">
+        <span class="eyebrow">Haz la cuenta</span>
+        <h2 style="margin: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Calcula tu comisión antes de recomendar.</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 520px">Elige el precio del servicio y la comisión pactada. El cliente paga una señal igual a la comisión al reservar, y queda retenida hasta el canje.</p>
+        <div class="calc-ctl">
+          <div class="calc-row"><label for="c-price">Precio del servicio</label><output id="c-price-o" for="c-price"></output></div>
+          <input id="c-price" type="range" min="50" max="3000" step="10" value="1200">
+        </div>
+        <div class="calc-ctl">
+          <div class="calc-row"><label for="c-pct">Comisión pactada</label><output id="c-pct-o" for="c-pct"></output></div>
+          <input id="c-pct" type="range" min="5" max="25" step="1" value="12">
+        </div>
+      </div>
+      <div class="calc-r">
+        <span class="calc-k">Tu comisión</span>
+        <span class="calc-v" id="c-comm">144,00 €</span>
+        <span class="calc-sub"><span>Señal retenida hasta el canje:</span> <b id="c-sig">144,00 €</b></span>
+        <div class="calc-flow" aria-hidden="true"><span class="calc-line"><i id="c-fill"></i></span><b data-k="0" class="on"></b><b data-k="1"></b><b data-k="2"></b><b data-k="3"></b></div>
+        <div class="calc-steps" aria-hidden="true"><span>Reserva creada</span><span>Señal retenida</span><span>Código canjeado</span><span>Comisión liberada</span></div>
+        <div class="calc-foot"><button type="button" id="c-sim" data-act="calcsim">Simular la reserva</button><span id="c-status" class="calc-status" role="status">Reserva creada</span></div>
+        <span class="calc-note">Cálculo orientativo con los datos que elijas.</span>
+      </div>
+    </div>
+  </section>
 
   <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: grid; gap: 16px">
     <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin-bottom: 12px">
@@ -1050,6 +1127,23 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Actividad de ejemplo': 'Sample activity',
+    'Calculadora de comisión': 'Commission calculator',
+    'Haz la cuenta': 'Do the maths',
+    'Calcula tu comisión antes de recomendar.': 'Work out your commission before you refer.',
+    'Elige el precio del servicio y la comisión pactada. El cliente paga una señal igual a la comisión al reservar, y queda retenida hasta el canje.': 'Choose the service price and the agreed commission. The client pays a deposit equal to the commission when booking, and it is held until redemption.',
+    'Precio del servicio': 'Service price',
+    'Tu comisión': 'Your commission',
+    'Señal retenida hasta el canje:': 'Deposit held until redemption:',
+    'Código canjeado': 'Code redeemed',
+    'Simular la reserva': 'Simulate the booking',
+    'Cálculo orientativo con los datos que elijas.': 'Indicative calculation based on the values you choose.',
+    'Velas del Norte · acuerdo firmado · 13 %': 'Velas del Norte · agreement signed · 13%',
+    'FV-7K2Q · señal retenida · 180,00 €': 'FV-7K2Q · deposit held · €180.00',
+    'Tramuntana Cycling · código canjeado': 'Tramuntana Cycling · code redeemed',
+    'Comisión liberada · 36,00 €': 'Commission released · €36.00',
+    'Mar Blau Yachting · nueva reserva · 8 personas': 'Mar Blau Yachting · new booking · 8 guests',
+    'Cala d’Or Charters · señal pagada': 'Cala d’Or Charters · deposit paid',
     'Quien recomienda y quien presta el servicio pactan la comisión. El cliente paga una señal al reservar. La comisión se libera sola cuando se presta el servicio.': 'Whoever refers and whoever delivers the service agree on the commission. The client pays a deposit when booking. The commission is released automatically once the service is delivered.',
     'La idea': 'The idea',
     'Para quién es': 'Who it’s for',
@@ -1570,6 +1664,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
     renderNav(); renderSteps(); renderMap(); renderTeam(); renderTrust();
     if (RV) revealBuild();
+    if (CALC) { calcRender(); calcState(CALC.k || 0); }
+    if (TICK) { tickerMeasure(); tickerDraw(); }
     if (LIVE) renderLive();
     if (FX) fxRender();
     if (PS) fitPanel();
@@ -1582,6 +1678,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
     if (act === 'demopause') { demoPause(!LIVE.paused); }
+    if (act === 'calcsim') { calcSim(); }
     if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) routeGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
@@ -2462,6 +2559,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var reached = Math.min(5, Math.floor(f * 5 + 0.001));
     if (reached !== ROUTE.reached) { ROUTE.reached = reached; S.step = reached; renderSteps(); }
     revealDraw();
+    if (NET && NET.c) NET.c.style.transform = 'translateX(-50%) translateY(' + (Math.min(scrollY, 900) * 0.25).toFixed(1) + 'px)';
+    if (TICK) tickerDraw();
     var r = PS.sec.getBoundingClientRect();
     if (r.bottom > 0 && r.top < innerHeight) {
       var t = clamp01(1 - (r.top - 60) / (innerHeight * 0.75));
@@ -2487,6 +2586,150 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         b.addEventListener('pointerleave', function () { b.style.transform = ''; });
       });
     }
+  }
+
+
+  // Textura y red de empresas: el foco y la red reaccionan al ratón; las «referencias» viajan por la red
+  var SPOT = $('spot'), FINE = matchMedia('(hover: hover) and (pointer: fine)').matches, PTR = { x: -1e4, y: -1e4, raf: 0 };
+  var NET = { c: $('net'), ctx: null, nodes: [], edges: [], packets: [], w: 0, h: 0, raf: 0, last: 0, spawn: 0 };
+  function netBuild() {
+    var r = NET.c.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    NET.w = r.width; NET.h = r.height;
+    NET.c.width = Math.round(NET.w * dpr); NET.c.height = Math.round(NET.h * dpr);
+    NET.ctx = NET.c.getContext('2d'); NET.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var seed = 11, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+    var n = Math.max(18, Math.min(110, Math.round(NET.w * NET.h / (NET.w < 768 ? 20000 : 13000))));
+    NET.nodes = []; NET.edges = []; NET.packets = [];
+    for (var i = 0; i < n; i++) NET.nodes.push({ x: rnd() * NET.w, y: rnd() * NET.h, r: 1.3 + rnd() * 1.5 });
+    var seen = {};
+    NET.nodes.forEach(function (a, ia) {
+      NET.nodes.map(function (b, ib) { return { ib: ib, d: Math.hypot(a.x - b.x, a.y - b.y) }; })
+        .filter(function (o) { return o.ib !== ia && o.d < 240; }).sort(function (x, y) { return x.d - y.d; }).slice(0, 2)
+        .forEach(function (o) { var k = Math.min(ia, o.ib) + '-' + Math.max(ia, o.ib); if (!seen[k]) { seen[k] = 1; NET.edges.push([Math.min(ia, o.ib), Math.max(ia, o.ib)]); } });
+    });
+    netDraw();
+  }
+  function netSpawn(near) {
+    if (!NET.edges.length) return;
+    var cand = NET.edges;
+    if (near) {
+      cand = NET.edges.filter(function (e) { var a = NET.nodes[e[0]]; return Math.hypot(a.x - near.x, a.y - near.y) < 200; });
+      if (!cand.length) return;
+    }
+    var e = cand[Math.floor(Math.random() * cand.length)], flip = Math.random() < 0.5;
+    NET.packets.push({ a: flip ? e[1] : e[0], b: flip ? e[0] : e[1], t0: performance.now(), d: 700 + Math.random() * 500 });
+  }
+  function netDraw() {
+    NET.raf = 0;
+    var ctx = NET.ctx, now = performance.now(), R = 170;
+    var r = NET.c.getBoundingClientRect(), mx = PTR.x - r.left, my = PTR.y - r.top;
+    ctx.clearRect(0, 0, NET.w, NET.h);
+    ctx.lineWidth = 1;
+    NET.edges.forEach(function (e) {
+      var a = NET.nodes[e[0]], b = NET.nodes[e[1]], d = Math.hypot((a.x + b.x) / 2 - mx, (a.y + b.y) / 2 - my), hot = CINE.on && d < R;
+      ctx.strokeStyle = hot ? 'rgba(242,85,28,' + (0.15 + 0.45 * (1 - d / R)).toFixed(3) + ')' : 'rgba(30,34,38,.085)';
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    });
+    NET.nodes.forEach(function (a) {
+      var d = Math.hypot(a.x - mx, a.y - my), hot = CINE.on && d < R;
+      ctx.fillStyle = hot ? 'rgba(242,85,28,' + (0.45 + 0.5 * (1 - d / R)).toFixed(3) + ')' : 'rgba(30,34,38,.24)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r + (hot ? 1 : 0), 0, 6.283); ctx.fill();
+    });
+    NET.packets = NET.packets.filter(function (pk) { return now - pk.t0 < pk.d; });
+    NET.packets.forEach(function (pk) {
+      var t = (now - pk.t0) / pk.d, e = 1 - Math.pow(1 - t, 3), a = NET.nodes[pk.a], b = NET.nodes[pk.b];
+      var x = a.x + (b.x - a.x) * e, y = a.y + (b.y - a.y) * e;
+      ctx.strokeStyle = 'rgba(242,85,28,.55)'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(x, y); ctx.stroke();
+      ctx.fillStyle = '#F2551C'; ctx.beginPath(); ctx.arc(x, y, 3, 0, 6.283); ctx.fill();
+    });
+    if (NET.packets.length || now - NET.last < 300) NET.raf = requestAnimationFrame(netDraw);
+  }
+  function netKick() { NET.last = performance.now(); if (!NET.raf) NET.raf = requestAnimationFrame(netDraw); }
+  function ptrFrame() {
+    PTR.raf = 0;
+    SPOT.style.setProperty('--x', PTR.x + 'px'); SPOT.style.setProperty('--y', PTR.y + 'px');
+    var r = NET.c.getBoundingClientRect();
+    if (PTR.y > r.top && PTR.y < r.bottom) {
+      var now = performance.now();
+      if (now - NET.spawn > 160) { NET.spawn = now; netSpawn({ x: PTR.x - r.left, y: PTR.y - r.top }); }
+      netKick();
+    }
+  }
+  netBuild();
+  var netT = 0;
+  addEventListener('resize', function () { clearTimeout(netT); netT = setTimeout(netBuild, 200); });
+  if (CINE.on) {
+    for (var nk = 0; nk < 8; nk++) setTimeout(function () { netSpawn(); netKick(); }, 300 + nk * 260);
+    if (FINE) {
+      addEventListener('pointermove', function (e) { PTR.x = e.clientX; PTR.y = e.clientY; SPOT.classList.add('on'); if (!PTR.raf) PTR.raf = requestAnimationFrame(ptrFrame); }, { passive: true });
+      document.addEventListener('pointerleave', function () { SPOT.classList.remove('on'); PTR.x = PTR.y = -1e4; netKick(); });
+    }
+  }
+
+  // Cinta de actividad: se desplaza con el scroll, no sola
+  var TICK = { track: $('ticker'), w: 0 };
+  function tickerMeasure() { TICK.w = TICK.track.firstElementChild.offsetWidth; }
+  function tickerDraw() { if (TICK.w) TICK.track.style.transform = 'translateX(' + (-((scrollY * 0.45) % TICK.w)).toFixed(1) + 'px)'; }
+
+  // Calculadora de comisión
+  var CALC = { p: $('c-price'), c: $('c-pct'), out: $('c-comm'), v: null, raf: 0, sim: [] };
+  function calcRender() {
+    var price = +CALC.p.value, pct = +CALC.c.value, comm = price * pct / 100;
+    $('c-price-o').textContent = eur(price);
+    $('c-pct-o').textContent = pct + (S.lang === 'en' ? '%' : ' %');
+    $('c-sig').textContent = money(comm);
+    var from = CALC.v === null || !CINE.on ? comm : CALC.v, t0 = performance.now();
+    cancelAnimationFrame(CALC.raf);
+    (function step(now) {
+      var t = Math.min(1, (now - t0) / 320), v = from + (comm - from) * (1 - Math.pow(1 - t, 3));
+      CALC.out.textContent = money(v); CALC.v = v;
+      if (t < 1) CALC.raf = requestAnimationFrame(step);
+    })(t0);
+  }
+  var CALC_ST = ['Reserva creada', 'Señal retenida', 'Código canjeado', 'Comisión liberada'];
+  function calcState(k) {
+    $('c-fill').style.transform = 'scaleX(' + (k / 3) + ')';
+    document.querySelectorAll('.calc-flow b').forEach(function (b) { b.classList.toggle('on', +b.getAttribute('data-k') <= k); });
+    $('c-status').textContent = T(CALC_ST[k]);
+    CALC.k = k;
+  }
+  function calcSim() {
+    CALC.sim.forEach(clearTimeout); CALC.sim = [];
+    calcState(0);
+    if (!CINE.on) { calcState(3); return; }
+    [1, 2, 3].forEach(function (k) { CALC.sim.push(setTimeout(function () { calcState(k); }, k * 750)); });
+  }
+  CALC.p.addEventListener('input', calcRender);
+  CALC.c.addEventListener('input', calcRender);
+  CALC.k = 0;
+
+  // Etiquetas en mono que se descifran una vez al aparecer
+  function scramble(el) {
+    var n = el.firstChild; if (!n || n.nodeType !== 3) return;
+    var target = n.nodeValue, set = null, t0 = performance.now(), G = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789%/#';
+    (function f(now) {
+      if (set !== null && n.nodeValue !== set) return;
+      var p = Math.min(1, (now - t0) / 650), k = Math.floor(p * target.length), out = '';
+      for (var i = 0; i < target.length; i++) out += i < k || target[i] === ' ' ? target[i] : G[Math.floor(Math.random() * G.length)];
+      n.nodeValue = set = p < 1 ? out : target;
+      if (p < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+  if (CINE.on && 'IntersectionObserver' in window) {
+    var scrIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { scrIO.unobserve(e.target); scramble(e.target); } }); }, { threshold: 0.6 });
+    document.querySelectorAll('.eyebrow').forEach(function (el) { scrIO.observe(el); });
+  }
+
+  // Tarjetas que se inclinan un poco hacia el ratón
+  if (CINE.on && FINE) {
+    document.querySelectorAll('.lift').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
+        c.style.transform = 'perspective(900px) rotateX(' + (-dy * 5).toFixed(2) + 'deg) rotateY(' + (dx * 5).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      c.addEventListener('pointerleave', function () { c.style.transform = ''; });
+    });
   }
 
   // Perfil elegido en los botones «Recomiendo clientes» / «Ofrezco servicios»; se envía con el email

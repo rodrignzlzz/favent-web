@@ -37,15 +37,22 @@ Sistema «Grafito y señal» (noviembre de 2026): grafito, blanco hueso frío, a
 - Efectos ligados al scroll:
   - **Texto que se revela** (`#idea`): la frase «Quien recomienda y quien presta el servicio pactan la comisión…» pasa de gris `#7C8288` (3,6:1, texto grande) a grafito palabra a palabra al bajar. Las palabras se generan en JS desde un texto oculto para lectores de pantalla, que también se traduce.
   - **Línea de recorrido** (`#como`): una línea naranja une los seis pasos de «Así se mueve una reserva» y se dibuja con el scroll; cada punto se rellena al llegar la línea y el paso activo muestra su detalle. En escritorio la sección se queda fija (240vh); en móvil la línea es vertical y no fija nada.
+- Elementos interactivos:
+  - **Red de empresas** (`#net`, canvas en el fondo del inicio): nodos y conexiones en grafito muy suave. Cerca del ratón se encienden en naranja y por la red viajan «referencias» (puntos naranjas). Al cargar viajan unas pocas (menos de 3 s); después solo se mueve con el ratón y con un paralaje ligado al scroll. Nada se mueve solo de forma continua, para cumplir WCAG 2.2.2.
+  - **Cinta de actividad de ejemplo** (`.ticker`, bajo el formulario del inicio): eventos de ejemplo en mono que se desplazan con el scroll, no solos. Marcada como «Actividad de ejemplo».
+  - **Calculadora** (`#calcula`, «Haz la cuenta»): precio y comisión pactada con deslizadores; muestra la comisión y la señal (igual a la comisión, retenida hasta el canje), con el número animado. «Simular la reserva» recorre los cuatro estados. Es un cálculo orientativo: no añadir tarifas ni condiciones de Favent sin validarlas.
+  - **Etiquetas que se descifran**: las `.eyebrow` (mono) se descifran una vez al aparecer, en 0,65 s.
+  - **Tarjetas `.lift`**: se inclinan hasta 5° hacia el ratón.
 - Estilo: minimalista y técnico; mucho aire entre secciones (`--sp`: de 96 a 168 px en escritorio, 80 px en móvil), un solo acento de color y el naranja como señal, esquinas redondeadas (tarjetas 20–32 px, botones en forma de cápsula), sombras suaves, sin degradados de color visibles ni emojis.
-- Texturas: grano muy suave en toda la página (`body::after`, SVG `feTurbulence`) y retícula de 56 px detrás del titular. Siempre sutiles; nunca por encima de la legibilidad.
+- Texturas: retícula de puntos de 22 px en todo el fondo, con un foco de puntos naranjas que sigue al ratón (`.spot`, capa con `z-index:-1` detrás del contenido; solo con ratón), y grano muy suave (`body::after`, SVG `feTurbulence`). Siempre sutiles; nunca por encima de la legibilidad.
 - Movimiento: pocas escenas y bien orquestadas:
   - entrada del titular por líneas al cargar;
   - panel inicial que pasa de inclinado en 3D a plano al hacer scroll;
   - el texto que se revela y la línea de recorrido;
+  - la red de empresas, el foco de puntos, la cinta de actividad, las etiquetas que se descifran y las tarjetas que se inclinan;
   - botones magnéticos (solo con ratón).
 
-  Curva `cubic-bezier(.23,1,.32,1)`, animar solo `transform` y `opacity`, sin apariciones al hacer scroll en cada sección. Con `prefers-reduced-motion` no se fija nada: el texto se muestra completo y la línea, dibujada entera.
+  Curva `cubic-bezier(.23,1,.32,1)`, animar solo `transform` y `opacity`, sin apariciones al hacer scroll en cada sección. Con `prefers-reduced-motion` no se fija nada: el texto se muestra completo y la línea dibujada entera; la red se dibuja estática, sin foco ni inclinación; la cinta se puede desplazar a mano y la simulación salta al estado final.
 - Referencias de estilo: Linear, Vercel, Stripe, Mercury, Attio.
 
 ## Textos y tono
