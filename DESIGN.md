@@ -375,7 +375,7 @@ Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` a
 - **Iconos** (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
 - **Favicon** (`img/favicon-32.png` y `favicon.ico` con 16, 32 y 48 px): el monograma al 90 % del ancho con el punto rosa agrandado para que se vea en la pestaña.
 - Los enlaces a iconos e imagen social llevan `?v=N` para que navegadores y redes descarguen la versión nueva; súbelo cada vez que cambien los archivos.
-- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y la línea de recorrido sobre el lienzo oscuro. (Si se rehace, usar la curva suave del recorrido.)
+- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y los 4 pasos del recorrido unidos por la curva rosa, sobre el lienzo oscuro (Funnel Display).
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
@@ -392,7 +392,7 @@ Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px dela
 - **`screen-panel`**: contenedor claro de las interfaces de ejemplo, con la etiqueta «Vista de ejemplo».
 
 ### Inputs & Forms
-- **`neu-field`**: el formulario del inicio es una cápsula hundida con borde `{colors.field-border}`; el campo va transparente dentro y el botón, a la derecha (debajo en móvil).
+- **`neu-field`**: el formulario del inicio es una cápsula hundida con borde `{colors.field-border}`; el campo va transparente dentro y el botón, a la derecha (debajo en móvil). En móvil (≤ 640 px) el campo y el botón van separados: el campo es su propia cápsula hundida y el botón queda debajo.
 - El formulario del bloque final vive en una pantalla clara: campo blanco y botón grafito.
 - Error en `{colors.semantic-error}` (o `semantic-error-on-screen` dentro de pantallas), con `role="alert"`.
 - Nota de privacidad bajo cada formulario en `{typography.caption}`.

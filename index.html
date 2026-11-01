@@ -13,14 +13,14 @@
 <meta property="og:url" content="https://www.favent.app/">
 <meta property="og:title" content="Favent — Canal de ventas profesional entre empresas · Mallorca">
 <meta property="og:description" content="Cada cliente que envías, cobrado. Comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio. Piloto abierto en Mallorca.">
-<meta property="og:image" content="https://www.favent.app/img/og-image.png?v=2">
+<meta property="og:image" content="https://www.favent.app/img/og-image.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="favent · B2B SERVICE — Cada cliente que envías, cobrado.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Favent — Canal de ventas profesional entre empresas · Mallorca">
 <meta name="twitter:description" content="Cada cliente que envías, cobrado. Comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio.">
-<meta name="twitter:image" content="https://www.favent.app/img/og-image.png?v=2">
+<meta name="twitter:image" content="https://www.favent.app/img/og-image.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png?v=2">
 <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png?v=2">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=2">
@@ -568,6 +568,42 @@ html:not(.cine) .motion-btn{display:none}
 .fx-mapbox .fx-pop .pp-d{display:none}
 @media (max-width: 860px){.fx-mapgrid{grid-template-columns:1fr}.fx-maplist{display:none}.fx-mapv{padding:12px 14px 14px}}
 @media (max-width: 520px){.fx-mapbox .pin-pop.fx-pop{width:180px !important}.fx-mapbox .fx-pop .pp-ph{height:70px}}
+/* Móvil: el campo de email y el botón van en burbujas separadas */
+@media (max-width: 640px){
+  .neu-field{padding:0;border:0;border-radius:0;background:transparent !important;box-shadow:none;gap:10px}
+  .neu-field input{border:1px solid #5A657E !important;background:var(--bg) !important;box-shadow:inset 3px 3px 8px var(--neu-lo),inset -3px -3px 8px var(--neu-hi)}
+}
+/* Móvil: las cifras del panel caben siempre en su recuadro */
+@media (max-width: 520px){
+  .fx-kpis{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .fx-kpi{padding:10px 12px;min-width:0}
+  .fx-kpi b{font-size:15px;overflow-wrap:anywhere}
+}
+/* Informes: más gráficos */
+.fx-rep2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 18px 12px}
+.fx-rep3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 18px 18px}
+.rep-line{width:100%;height:auto;display:block}
+.rep-axis{display:flex;justify-content:space-between;font:11px 'Geist Mono',monospace;color:#656B71}
+.rep-donut{display:flex;align-items:center;gap:14px}
+.rep-donut svg{width:108px;height:108px;flex-shrink:0}
+.rep-dc{font:600 17px 'Funnel Display',sans-serif;fill:#1E2226}
+.rep-ds{font:500 9px 'Geist Mono',monospace;fill:#656B71}
+.rep-donut ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:12px;min-width:0;flex:1}
+.rep-donut li{display:flex;align-items:center;gap:7px}
+.rep-donut li i{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.rep-donut li b{margin-left:auto;padding-left:6px;flex-shrink:0;white-space:nowrap;font:500 11px 'Geist Mono',monospace}
+.rep-funnel{display:flex;flex-direction:column;gap:9px}
+.rep-funnel div{display:grid;grid-template-columns:112px minmax(0,1fr) 46px;gap:8px;align-items:center;font-size:12px}
+.rep-funnel s{display:block;height:14px;border-radius:5px;background:#F0F1ED;overflow:hidden;text-decoration:none}
+.rep-funnel s i{display:block;height:100%;border-radius:5px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.rep-funnel em{font:500 11px 'Geist Mono',monospace;font-style:normal;text-align:right}
+.rep-cols{display:flex;align-items:flex-end;gap:8px;height:132px}
+.rep-cols div{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+.rep-cols i{display:block;width:100%;max-width:26px;border-radius:6px 6px 3px 3px;background:#2B6CA8;transition:height .45s cubic-bezier(.2,.7,.2,1)}
+.rep-cols em{font:500 10px 'Geist Mono',monospace;font-style:normal;color:#656B71}
+.rep-cols span{font:500 11px 'Geist Mono',monospace;color:#50565C}
+@media (max-width: 860px){.fx-rep2,.fx-rep3{grid-template-columns:1fr;padding:0 14px 12px}}
+@media (max-width: 520px){.rep-funnel div,.fx-rep3 .fx-hb div{grid-template-columns:92px minmax(0,1fr) 66px !important}}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -1113,6 +1149,24 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Comisiones': 'Commissions',
+    'Reservas por mes': 'Bookings per month',
+    'Estado de las reservas': 'Booking status',
+    'Embudo de reserva': 'Booking funnel',
+    'Enlaces enviados': 'Links sent',
+    'Pagadas': 'Paid',
+    'Canjeadas': 'Redeemed',
+    'Liberadas': 'Released',
+    'Comisión por persona': 'Commission per person',
+    'Comisión por empresa': 'Commission per business',
+    'Ocupación por día': 'Occupancy by day',
+    'Ingresos y comisiones': 'Revenue and commissions',
+    'ventas': 'sales',
+    'Canjes y no-shows': 'Redemptions and no-shows',
+    'Canceladas': 'Cancelled',
+    'No-shows': 'No-shows',
+    'canjeadas': 'redeemed',
+    'Del perfil a la reserva': 'From profile to booking',
     'Ajustes': 'Settings',
     'Cuenta': 'Account',
     'Tu resumen: comisiones y últimas reservas.': 'Your overview: commissions and latest bookings.',
@@ -1864,6 +1918,47 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }).join('');
     return '<div class="fx-bar"><span class="fx-title">' + T('Acuerdos') + '</span><span style="font-size: 13px; color: #656B71">' + FXA.length + ' ' + (S.lang === 'en' ? 'partners' : 'socios') + '</span></div>' + head + rows;
   }
+  // Gráficos de los informes (datos de ejemplo): línea, dónut, embudo y barras
+  function repLine(vals, start) {
+    var W = 300, H = 120, P = 8, max = Math.max.apply(null, vals), n = vals.length;
+    var pts = vals.map(function (v, i) { return [P + i * (W - 2 * P) / Math.max(1, n - 1), H - P - (v / max) * (H - 2 * P - 10)]; });
+    var line = pts.map(function (q, i) { return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' ');
+    var area = line + ' L' + pts[n - 1][0].toFixed(1) + ' ' + (H - P) + ' L' + pts[0][0].toFixed(1) + ' ' + (H - P) + ' Z';
+    var last = pts[n - 1];
+    return '<svg class="rep-line" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + vals.join(', ') + '"><path d="' + area + '" fill="#EAF2F8"></path><path d="' + line + '" fill="none" stroke="#2B6CA8" stroke-width="2.2" stroke-linejoin="round"></path>'
+      + '<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="4" fill="#2B6CA8"></circle></svg>'
+      + '<div class="rep-axis"><span>' + fxMon(start) + '</span><span>' + fxMon(start + n - 1) + '</span></div>';
+  }
+  function repDonut(segs, center, sub) {
+    var tot = segs.reduce(function (a, s) { return a + s[1]; }, 0), C = 2 * Math.PI * 38, acc = 0, en = S.lang === 'en';
+    var arcs = segs.map(function (s) {
+      var len = s[1] / tot * C, o = '<circle r="38" cx="50" cy="50" fill="none" stroke="' + s[2] + '" stroke-width="14" stroke-dasharray="' + len.toFixed(2) + ' ' + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-acc).toFixed(2) + '" transform="rotate(-90 50 50)"></circle>';
+      acc += len; return o;
+    }).join('');
+    var leg = segs.map(function (s) { return '<li><i style="background: ' + s[2] + '"></i>' + s[0] + '<b>' + Math.round(s[1] / tot * 100) + (en ? '%' : ' %') + '</b></li>'; }).join('');
+    return '<div class="rep-donut"><svg viewBox="0 0 100 100" aria-hidden="true">' + arcs + '<text x="50" y="49" text-anchor="middle" class="rep-dc">' + center + '</text><text x="50" y="62" text-anchor="middle" class="rep-ds">' + sub + '</text></svg><ul>' + leg + '</ul></div>';
+  }
+  function repFunnel(steps) {
+    var top = steps[0][1];
+    return '<div class="rep-funnel">' + steps.map(function (s, i) {
+      var w = Math.round(s[1] / top * 100);
+      return '<div><span>' + s[0] + '</span><s><i data-w="' + w + '" style="width: ' + (FX.grow ? 0 : w) + '%; background: ' + ['#0B2A4A', '#2B6CA8', '#5B93C7', '#A9D3F0'][i % 4] + '"></i></s><em>' + fpNum(s[1]) + '</em></div>';
+    }).join('') + '</div>';
+  }
+  function repBars(rows, fmt) {
+    var max = Math.max.apply(null, rows.map(function (r) { return r[1]; }));
+    return '<div class="fx-hb">' + rows.map(function (r) {
+      var w = Math.round(r[1] / max * 100);
+      return '<div style="grid-template-columns: 112px minmax(0,1fr) 74px"><span class="fx-cell">' + r[0] + '</span><s><i data-w="' + w + '" style="width: ' + (FX.grow ? 0 : w) + '%; transition: width .6s cubic-bezier(.2,.7,.2,1)"></i></s><em>' + fmt(r[1]) + '</em></div>';
+    }).join('') + '</div>';
+  }
+  function repCols(vals, labels) {
+    var max = Math.max.apply(null, vals), en = S.lang === 'en';
+    return '<div class="rep-cols">' + vals.map(function (v, i) {
+      var h = Math.round(v / max * 100);
+      return '<div><em>' + v + (en ? '%' : '') + '</em><i data-h="' + h + '" style="height: ' + (FX.grow ? 0 : h) + '%"></i><span>' + labels[i] + '</span></div>';
+    }).join('') + '</div>';
+  }
   function fxRep() {
     var n = FX.range, v = FXM.v.slice(-n), c = FXM.n.slice(-n), off = 12 - n;
     var sum = v.reduce(function (a, b) { return a + b; }, 0), bk = c.reduce(function (a, b) { return a + b; }, 0), max = Math.max.apply(null, v);
@@ -1883,7 +1978,25 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     return '<div class="fx-bar"><span class="fx-title">' + T('Informes') + '</span><div class="fx-chips">' + ranges + '</div></div>'
       + '<div class="fx-kpis">' + kpis + '</div>'
       + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Comisión por mes') + '</h4><div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
-      + '<div class="fx-card"><h4>' + T('Por categoría') + '</h4><div class="fx-hb">' + hb + '</div></div></div>';
+      + '<div class="fx-card"><h4>' + T('Por categoría') + '</h4><div class="fx-hb">' + hb + '</div></div></div>'
+      + fxRepMore(n, off);
+  }
+  function fxRepMore(n, off) {
+    var st = { pend: 0, held: 0, redeemed: 0, released: 0 };
+    FXB.forEach(function (b) { if (st[b.st] != null) st[b.st]++; });
+    var donut = repDonut([[T('Pendiente'), st.pend, '#D5D7D3'], [T(FXST.held.l), st.held, '#A9D3F0'], [T(FXST.redeemed.l), st.redeemed, '#2B6CA8'], [T(FXST.released.l), st.released, '#0B2A4A']], String(FXB.length), T('Reservas').toLowerCase());
+    var last = FXM.n[11];
+    var funnel = repFunnel([[T('Enlaces enviados'), Math.round(last * 1.31)], [T('Pagadas'), last], [T('Canjeadas'), last - 2], [T('Liberadas'), last - 4]]);
+    var byEmp = {};
+    FXB.forEach(function (b) { byEmp[b.emp] = (byEmp[b.emp] || 0) + b.com; });
+    var emp = Object.keys(byEmp).map(function (k) { return [k, byEmp[k]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 5);
+    return '<div class="fx-rep2">'
+      + '<div class="fx-card"><h4>' + T('Reservas por mes') + '</h4>' + repLine(FXM.n.slice(-n), FXM.start + off) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Estado de las reservas') + '</h4>' + donut + '</div>'
+      + '<div class="fx-card"><h4>' + T('Embudo de reserva') + '</h4>' + funnel + '</div></div>'
+      + '<div class="fx-rep3">'
+      + '<div class="fx-card"><h4>' + T('Comisión por persona') + '</h4>' + repBars(TEAM.map(function (t) { return [t.name, t.c]; }), money) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Comisión por empresa') + '</h4>' + repBars(emp, money) + '</div></div>';
   }
   var FXCH = {
     fp: { name: 'Finques del Pla', cat: 'Eventos', msgs: [
@@ -2189,8 +2302,21 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     return '<div class="fx-bar"><span class="fx-title">' + T('Informes') + '</span><div class="fx-chips">' + ranges + '</div></div>'
       + '<div class="fx-kpis">' + kpis + '</div>'
       + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Ventas por mes') + '</h4><div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
-      + '<div class="fx-card"><h4>' + T('Por socio') + '</h4><div class="fx-hb">' + hb + '</div></div></div>';
+      + '<div class="fx-card"><h4>' + T('Por socio') + '</h4><div class="fx-hb">' + hb + '</div></div></div>'
+      + fpRepMore(n, off, sum);
   }
+  function fpRepMore(n, off, sum) {
+    var en = S.lang === 'en', bk = FPM.n.slice(-n).reduce(function (a, b) { return a + b; }, 0);
+    var money2 = donutMoney(sum);
+    return '<div class="fx-rep2">'
+      + '<div class="fx-card"><h4>' + T('Reservas por mes') + '</h4>' + repLine(FPM.n.slice(-n), FPM.start + off) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Ocupación por día') + '</h4>' + repCols([52, 48, 61, 70, 88, 97, 92], fpDayL()) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Ingresos y comisiones') + '</h4>' + repDonut([[T('Ingresos netos'), 88, '#2B6CA8'], [T('Comisiones'), 12, '#FF4F9A']], money2, T('ventas')) + '</div></div>'
+      + '<div class="fx-rep3">'
+      + '<div class="fx-card"><h4>' + T('Canjes y no-shows') + '</h4>' + repDonut([[T('Canjeadas'), 94, '#2B6CA8'], [T('Canceladas'), 4, '#A9D3F0'], [T('No-shows'), 2, '#FF4F9A']], en ? '94%' : '94 %', T('canjeadas').toLowerCase()) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Del perfil a la reserva') + '</h4>' + repFunnel([[T('Visitas al perfil'), 1284], [T('Clics en tus servicios'), 642], [T('Reservas'), bk]]) + '</div></div>';
+  }
+  function donutMoney(v) { return v >= 1000 ? (S.lang === 'en' ? '€' + (v / 1000).toFixed(1) + 'k' : (v / 1000).toFixed(1).replace('.', ',') + ' k€') : money(v); }
   function fpDrawer(o) {
     var en = S.lang === 'en';
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
