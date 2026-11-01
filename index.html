@@ -33,7 +33,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Michroma&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Michroma&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#F6F6F3;-webkit-font-smoothing:antialiased}
@@ -99,10 +99,6 @@ button[disabled]{opacity:.6;cursor:progress}
 /* Controles del panel inicial: pausa + aviso de ejemplo */
 .demo-ctl{position:absolute;top:14px;right:40px;z-index:2;display:flex;gap:6px;align-items:center}
 .demo-badge{font-size:11px;font-weight:600;color:#50565C;background:#FFFFFF;border:1px solid #D5D7D3;padding:3px 10px;border-radius:999px}
-#demo-pause{height:28px;padding:0 12px 0 10px;display:flex;align-items:center;gap:6px;border:1px solid #D5D7D3;border-radius:999px;background:#FFFFFF;color:#1E2226;font:600 12px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
-#demo-pause:hover{border-color:#1E2226}
-#demo-pause .i-play,#demo-pause[aria-pressed="true"] .i-pause{display:none}
-#demo-pause[aria-pressed="true"] .i-play{display:inline}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none !important;animation:none !important}}
 .topnav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
 .n-brand{justify-self:start}.n-cta{justify-self:center}.lang-switch{justify-self:end}
@@ -129,7 +125,7 @@ button[disabled]{opacity:.6;cursor:progress}
 @keyframes press{50%{transform:scale(.94)}}
 .full-s{display:none}
 @media (max-width: 640px){.full-l{display:none}.full-s{display:inline;font-size:9.5px;letter-spacing:-0.01em}.free-l{font-size:9.5px !important;letter-spacing:-0.01em}.day-h{padding:8px 1px !important}}
-.map-lbl{font-family:'Plus Jakarta Sans',sans-serif;pointer-events:none}
+.map-lbl{font-family:'Funnel Display',sans-serif;pointer-events:none}
 .map-city{font-size:11.5px;font-weight:600;fill:#1E2226}
 .map-town{font-size:9.5px;font-weight:500;fill:#656B71}
 .map-bay{font-size:9.5px;font-style:italic;fill:#2B5A86}
@@ -140,7 +136,7 @@ button[disabled]{opacity:.6;cursor:progress}
 .hx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #E6E7E3;background:#FBFBFA}
 .hx-body{display:grid;grid-template-columns:200px minmax(0,1fr)}
 .hx-side{border-right:1px solid #E6E7E3;background:#F8F8F6;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
-.hx-side button,.hx-li{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Plus Jakarta Sans',sans-serif;color:#2A2D2B;cursor:pointer}
+.hx-side button,.hx-li{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Funnel Display',sans-serif;color:#2A2D2B;cursor:pointer}
 .hx-li{cursor:default}
 .hx-side button:hover{background:#EFEFEC}
 .hx-side button[aria-pressed="true"]{background:#EAF2F8;color:#0B2A4A;font-weight:600}
@@ -180,31 +176,31 @@ button[disabled]{opacity:.6;cursor:progress}
 .fp-b b{font-size:14px;font-weight:600}
 .fp-b p{margin:0;font-size:12.5px;line-height:1.45;color:#3D4248}
 .fp-days{display:flex;gap:4px;flex-wrap:wrap}
-.fp-day{width:24px;height:24px;border-radius:12px;border:0;font:600 10.5px 'Plus Jakarta Sans',sans-serif;display:inline-flex;align-items:center;justify-content:center;background:#F0F1ED;color:#A3ABB8;padding:0}
+.fp-day{width:24px;height:24px;border-radius:12px;border:0;font:600 10.5px 'Funnel Display',sans-serif;display:inline-flex;align-items:center;justify-content:center;background:#F0F1ED;color:#A3ABB8;padding:0}
 .fp-day.on,.fp-day[aria-pressed="true"]{background:#EAF2F8;color:#0B2A4A}
 button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size:11.5px}
 .fp-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#656B71}
 .fp-price{font:500 15px 'Geist Mono',monospace;color:#1E2226}
-.fp-sw{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:0;font:600 12px 'Plus Jakarta Sans',sans-serif;color:#0B2A4A;cursor:pointer}
+.fp-sw{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:0;font:600 12px 'Funnel Display',sans-serif;color:#0B2A4A;cursor:pointer}
 .fp-sw i{width:34px;height:20px;border-radius:10px;background:#2B6CA8;position:relative;transition:background-color .2s}
 .fp-sw i::after{content:"";position:absolute;top:2px;left:16px;width:16px;height:16px;border-radius:8px;background:#FFFFFF;transition:left .2s}
 .fp-sw[aria-checked="false"]{color:#656B71}.fp-sw[aria-checked="false"] i{background:#D5D7D3}.fp-sw[aria-checked="false"] i::after{left:2px}
 .fp-form{margin:0 18px 14px;border:1px solid #D3E6F4;background:#F7F9FD;border-radius:16px;padding:14px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
 .fp-form label,.fp-form fieldset{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#50565C;margin:0;padding:0;border:0;min-width:0}
 .fp-form legend{padding:0;margin-bottom:5px}
-.fp-form input,.fp-form textarea{height:36px;border:1px solid #D5D7D3;border-radius:10px;padding:0 10px;font:13px 'Plus Jakarta Sans',sans-serif;color:#1E2226;background:#FFFFFF;min-width:0}
+.fp-form input,.fp-form textarea{height:36px;border:1px solid #D5D7D3;border-radius:10px;padding:0 10px;font:13px 'Funnel Display',sans-serif;color:#1E2226;background:#FFFFFF;min-width:0}
 .fp-form textarea{height:auto;padding:8px 10px;resize:none}
 .fp-form .full{grid-column:1 / -1}
 .fp-form .acts{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
-.fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Plus Jakarta Sans',sans-serif;color:#50565C;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Funnel Display',sans-serif;color:#50565C;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#1E2226;color:#FFFFFF;box-shadow:0 4px 12px rgba(30,34,38,.18)}
 .fx-cal{padding:14px 18px;overflow-x:auto}
 .fx-cal-note{font-size:12px;color:#656B71;padding:12px 18px 0;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .fx-cal-g{display:grid;grid-template-columns:140px repeat(7,minmax(70px,1fr));gap:6px;min-width:660px}
 .fx-cal-h{font-size:11px;font-weight:600;color:#656B71;text-align:center;padding:4px 0}
 .fx-cal-s{font-size:12.5px;font-weight:600;display:flex;align-items:center;padding-right:6px}
-.fx-slot{height:62px;border-radius:12px;border:1px solid #E6E7E3;background:#FFFFFF;font:11px 'Plus Jakarta Sans',sans-serif;color:#656B71;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;padding:6px 8px;text-align:left;min-width:0}
+.fx-slot{height:62px;border-radius:12px;border:1px solid #E6E7E3;background:#FFFFFF;font:11px 'Funnel Display',sans-serif;color:#656B71;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;padding:6px 8px;text-align:left;min-width:0}
 .fx-slot:hover{border-color:#A9D3F0}
 .fx-slot b{font-weight:600;color:#1E2226;font-size:11.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fx-slot span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -214,8 +210,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-ok{margin:0 18px 16px;padding:10px 12px;border-radius:12px;background:#EAF2F8;color:#0B2A4A;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
 .fx-act{padding:0 18px 16px;display:flex;gap:8px;align-items:center;font-size:13px;color:#656B71}
 .fx-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.fx-tab{position:relative;overflow:hidden;text-align:left;border:1px solid #E6E7E3;background:#FFFFFF;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:#1E2226}
-.fx-tab b{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.02em}
+.fx-tab{position:relative;overflow:hidden;text-align:left;border:1px solid #E6E7E3;background:#FFFFFF;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;cursor:pointer;font-family:'Funnel Display',sans-serif;color:#1E2226}
+.fx-tab b{font-family:'Funnel Display',sans-serif;font-size:17px;font-weight:600;letter-spacing:-.02em}
 .fx-tab span{font-size:13px;color:#656B71;line-height:1.4}
 .fx-tab[aria-pressed="true"]{border-color:#2B6CA8;background:#EAF2F8}
 .fx-tab[aria-pressed="true"] span{color:#0B2A4A}
@@ -223,10 +219,10 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-tab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:#2B6CA8;transform:scaleX(0);transform-origin:left}
 .fx-tab.run::after{animation:fxprog var(--d) linear forwards}
 @keyframes fxprog{to{transform:scaleX(1)}}
-.fx-replay{align-self:flex-start;margin-top:-14px;display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:600 13px 'Plus Jakarta Sans',sans-serif;color:#1E2226;cursor:pointer}
+.fx-replay{align-self:flex-start;margin-top:-14px;display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:600 13px 'Funnel Display',sans-serif;color:#1E2226;cursor:pointer}
 .fx-chat{display:grid;grid-template-columns:230px minmax(0,1fr);flex:1;min-height:0}
 .fx-convs{border-right:1px solid #E6E7E3;display:flex;flex-direction:column}
-.fx-conv{display:flex;gap:10px;align-items:center;text-align:left;border:0;border-bottom:1px solid #F0F1ED;background:#FFFFFF;padding:12px 14px;cursor:pointer;font:13px 'Plus Jakarta Sans',sans-serif;color:#1E2226;width:100%}
+.fx-conv{display:flex;gap:10px;align-items:center;text-align:left;border:0;border-bottom:1px solid #F0F1ED;background:#FFFFFF;padding:12px 14px;cursor:pointer;font:13px 'Funnel Display',sans-serif;color:#1E2226;width:100%}
 .fx-conv:hover{background:#F7F8FB}
 .fx-conv[aria-pressed="true"]{background:#EEF2FA}
 .fx-conv>span:not(.fx-av){min-width:0;display:flex;flex-direction:column;gap:2px;flex:1}
@@ -250,12 +246,12 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-deal dl{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;margin:0;padding:12px 14px;font-size:12.5px}
 .fx-deal dt{color:#656B71}.fx-deal dd{margin:0;font-weight:500}
 .fx-deal footer{display:flex;gap:8px;padding:0 14px 14px}
-.fx-btn{height:34px;padding:0 14px;border-radius:999px;border:1px solid #1E2226;background:#1E2226;color:#FFFFFF;font:600 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.fx-btn{height:34px;padding:0 14px;border-radius:999px;border:1px solid #1E2226;background:#1E2226;color:#FFFFFF;font:600 13px 'Funnel Display',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .fx-btn.ghost{background:#FFFFFF;color:#1E2226;border-color:#D5D7D3}
 .fx-btn.accent{background:#2B6CA8;border-color:#2B6CA8}
 .fx-btn.press{animation:press .35s ease}
 .fx-comp{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #E6E7E3;background:#FFFFFF}
-.fx-comp input{flex:1;min-width:0;height:36px;border-radius:999px;border:1px solid #D5D7D3;padding:0 14px;font:13px 'Plus Jakarta Sans',sans-serif;color:#1E2226}
+.fx-comp input{flex:1;min-width:0;height:36px;border-radius:999px;border:1px solid #D5D7D3;padding:0 14px;font:13px 'Funnel Display',sans-serif;color:#1E2226}
 .fx-comp button{width:36px;height:36px;border-radius:18px;border:0;background:#1E2226;color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .fx-win{position:relative;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:22px;box-shadow:0 30px 70px rgba(30,34,38,.10);overflow:hidden}
 .fx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #E6E7E3;background:#FBFBFA}
@@ -264,14 +260,14 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-crumb b{color:#1E2226;font-weight:600}
 .fx-search{position:relative;display:flex;align-items:center;color:#656B71}
 .fx-search svg{position:absolute;left:11px}
-.fx-search input{height:32px;width:220px;max-width:42vw;padding:0 12px 0 30px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:13px 'Plus Jakarta Sans',sans-serif;color:#1E2226}
+.fx-search input{height:32px;width:220px;max-width:42vw;padding:0 12px 0 30px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:13px 'Funnel Display',sans-serif;color:#1E2226}
 .fx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .fx-badge{font-size:11px;font-weight:600;color:#50565C;border:1px solid #D5D7D3;background:#FFFFFF;padding:3px 10px;border-radius:999px;white-space:nowrap}
 .fx-body{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:540px}
 .fx-side{border-right:1px solid #E6E7E3;background:#F8F8F6;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
 .fx-ws{display:flex;align-items:center;gap:8px;padding:2px 10px 12px;font-size:14px;font-weight:600}
-.fx-ws i{width:24px;height:24px;border-radius:7px;background:#1E2226;color:#FFFFFF;font:700 10px 'Plus Jakarta Sans',sans-serif;font-style:normal;display:flex;align-items:center;justify-content:center}
-.fx-side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Plus Jakarta Sans',sans-serif;color:#2A2D2B;cursor:pointer}
+.fx-ws i{width:24px;height:24px;border-radius:7px;background:#1E2226;color:#FFFFFF;font:700 10px 'Funnel Display',sans-serif;font-style:normal;display:flex;align-items:center;justify-content:center}
+.fx-side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Funnel Display',sans-serif;color:#2A2D2B;cursor:pointer}
 .fx-side button:hover{background:#EFEFEC}
 .fx-side button[aria-pressed="true"]{background:#EAF2F8;color:#0B2A4A;font-weight:600}
 .fx-side button em{margin-left:auto;font:500 11px 'Geist Mono',monospace;font-style:normal;color:#656B71}
@@ -280,12 +276,12 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-dot{width:8px;height:8px;border-radius:3px;flex-shrink:0}
 .fx-main{min-width:0;display:flex;flex-direction:column}
 .fx-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #E6E7E3}
-.fx-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.fx-title{font-family:'Funnel Display',sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em}
 .fx-chips{display:flex;flex-wrap:wrap;gap:6px}
-.fx-chip{height:28px;padding:0 10px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:500 12px 'Plus Jakarta Sans',sans-serif;color:#1E2226;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.fx-chip{height:28px;padding:0 10px;border-radius:999px;border:1px solid #D5D7D3;background:#FFFFFF;font:500 12px 'Funnel Display',sans-serif;color:#1E2226;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .fx-chip[aria-pressed="true"]{background:#1E2226;border-color:#1E2226;color:#FFFFFF}
 .fx-chip b{font:500 11px 'Geist Mono',monospace;opacity:.7}
-.fx-row{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:8px 18px;min-height:48px;border:0;border-bottom:1px solid #F0F1ED;font:13px 'Plus Jakarta Sans',sans-serif;color:#1E2226;width:100%;text-align:left;background:#FFFFFF;cursor:pointer;transition:background-color .15s}
+.fx-row{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:8px 18px;min-height:48px;border:0;border-bottom:1px solid #F0F1ED;font:13px 'Funnel Display',sans-serif;color:#1E2226;width:100%;text-align:left;background:#FFFFFF;cursor:pointer;transition:background-color .15s}
 .fx-row:hover{background:#F7F8FB}
 .fx-row[aria-pressed="true"]{background:#EEF2FA;box-shadow:inset 3px 0 0 #2B6CA8}
 .fx-head{min-height:36px;font-size:11px;font-weight:600;color:#656B71;text-transform:uppercase;letter-spacing:.05em;background:#FBFBFA;cursor:default}
@@ -298,7 +294,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-who{display:flex;align-items:center;gap:9px;min-width:0}
 .fx-who span{min-width:0;display:flex;flex-direction:column}
 .fx-who small{font-size:11.5px;color:#656B71;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:none}
-.fx-av{width:26px;height:26px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;font:600 10px 'Plus Jakarta Sans',sans-serif;color:#FFFFFF;flex-shrink:0}
+.fx-av{width:26px;height:26px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;font:600 10px 'Funnel Display',sans-serif;color:#FFFFFF;flex-shrink:0}
 .fx-av[style*="#A9D3F0"]{color:#1E2226}
 .fx-mono{font-family:'Geist Mono',monospace}
 .fx-pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;justify-self:start;border:1px solid transparent}
@@ -327,7 +323,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-card{border:1px solid #E6E7E3;border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .fx-card h4{margin:0;font-size:13px;font-weight:600}
 .fx-chart{display:flex;align-items:flex-end;gap:6px;height:180px;padding-top:24px}
-.fx-bar-b{position:relative;flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;font:11px 'Plus Jakarta Sans',sans-serif;color:#656B71}
+.fx-bar-b{position:relative;flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;font:11px 'Funnel Display',sans-serif;color:#656B71}
 .fx-bar-b i{display:block;width:100%;max-width:34px;border-radius:7px 7px 3px 3px;background:#D3E6F4;transition:background-color .2s,height .45s cubic-bezier(.2,.7,.2,1)}
 .fx-bar-b:hover i,.fx-bar-b[aria-pressed="true"] i{background:#2B6CA8}
 .fx-bar-b[aria-pressed="true"]{color:#1E2226;font-weight:600}
@@ -454,7 +450,7 @@ html:not(.cine) .rt-halo,html:not(.cine) .rt-head{display:none}
 /* Los pasos se alternan a dos alturas y una curva suave los une */
 .route-steps .step:nth-child(even){margin-top:48px}
 .step.done::before{box-shadow:0 0 0 5px rgba(255,79,154,.16),3px 3px 8px var(--neu-lo)}
-.step{position:relative;border:0;background:none;padding:40px 4px 0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);border-radius:12px}
+.step{position:relative;border:0;background:none;padding:40px 4px 0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;font-family:'Funnel Display',sans-serif;color:var(--ink);border-radius:12px}
 .step::before{content:"";position:absolute;top:0;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--bg);border:2px solid var(--chipline);transition:background-color 200ms ease,border-color 200ms ease,transform 200ms var(--ease-out)}
 .step.done::before{background:var(--signal);border-color:var(--signal)}
 .step[aria-pressed="true"]::before{transform:scale(1.3)}
@@ -489,12 +485,7 @@ html:not(.cine) .rt-halo,html:not(.cine) .rt-head{display:none}
 body > div:first-of-type{isolation:isolate;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='1' fill='%23FFFFFF' fill-opacity='.07'/%3E%3C/svg%3E")}
 /* ===== Red de empresas en el fondo del inicio ===== */
 .net{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 30% 34% at 50% 50%,rgba(0,0,0,.35) 40%,#000 100%),linear-gradient(#000 72%,transparent);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 30% 34% at 50% 50%,rgba(0,0,0,.35) 40%,#000 100%),linear-gradient(#000 72%,transparent);mask-composite:intersect}
-.bg-pause{position:absolute;right:24px;bottom:20px;height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--chipline);background:var(--bg);color:var(--ink-2);font:500 12px 'Geist Mono',monospace;cursor:pointer}
-@media (hover: hover){.bg-pause:hover{color:var(--ink);border-color:var(--ink-3)}}
-.bg-pause .i-play,.bg-pause[aria-pressed="true"] .i-pause{display:none}
-.bg-pause[aria-pressed="true"] .i-play{display:inline}
-html:not(.cine) .bg-pause{display:none}
-@media (max-width: 640px){.bg-pause{position:static}}
+
 /* Tarjetas que se inclinan con el ratón */
 .cine .lift{transform-style:preserve-3d}
 /* ===== Vidrio (glassmorfismo) y relieve (neumorfismo) ===== */
@@ -515,7 +506,6 @@ html{scroll-padding-top:84px}
 .neu-field input::placeholder{color:var(--ink-3)}
 .trust-grid .tg-ic{background:var(--bg) !important;box-shadow:4px 4px 10px var(--neu-lo),-4px -4px 10px var(--neu-hi)}
 .step::before{box-shadow:3px 3px 8px var(--neu-lo),-3px -3px 8px var(--neu-hi)}
-.bg-pause{box-shadow:4px 4px 10px var(--neu-lo),-4px -4px 10px var(--neu-hi);border-color:var(--line)}
 /* ===== Mapa más limpio ===== */
 .map-chips{display:flex;flex-wrap:wrap;gap:8px}
 .map-badge{position:absolute;top:14px;left:14px;z-index:4}
@@ -538,6 +528,13 @@ html{scroll-padding-top:84px}
 .light .trust-grid .tg-ic{color:#2B6CA8}
 .light .route-foot{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 16px 40px rgba(30,34,38,.07)}
 .light .screen{box-shadow:0 0 0 1px rgba(30,34,38,.06)}
+/* Botón único de pausa: solo icono; para la pancarta y el panel de ejemplo */
+.motion-btn{position:absolute;right:24px;bottom:20px;width:36px;height:36px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink-2);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:4px 4px 10px var(--neu-lo),-4px -4px 10px var(--neu-hi)}
+@media (hover: hover){.motion-btn:hover{color:var(--ink)}}
+.motion-btn .i-play,.motion-btn[aria-pressed="true"] .i-pause{display:none}
+.motion-btn[aria-pressed="true"] .i-play{display:block}
+html:not(.cine) .motion-btn{display:none}
+@media (max-width: 640px){.motion-btn{right:16px;bottom:12px}}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -554,7 +551,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 </style>
 </head>
 <body>
-<div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif">
+<div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Funnel Display', sans-serif">
 
   <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso" style="color: #7CC4FF; text-decoration: none; font-weight: 600">Solicita acceso →</a></div>
 
@@ -581,12 +578,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <canvas class="net" id="net" aria-hidden="true"></canvas>
     <span class="eyebrow">Para empresas de servicios en Mallorca</span>
-    <h1 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span style="color: #7CC4FF">cobrado.</span></span></h1>
+    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span style="color: #7CC4FF">cobrado.</span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 660px">El canal de ventas profesional entre empresas de servicios.</p>
     <form id="acceso" class="neu-field" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 540px" novalidate>
         <label for="email-hero" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
-        <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: var(--ink)">
-        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+        <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: var(--ink)">
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-family: 'Funnel Display', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
       </form>
     <div id="sent" role="status" hidden style="display: none; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 999px; background: #EAF2F8; color: #0B2A4A; font-size: 15px; font-weight: 600">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -594,12 +591,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       </div>
     <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
     <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-3)">Gratis durante el piloto · Tu email, solo para darte acceso.</p>
-    <button type="button" class="bg-pause" id="bg-pause" data-act="bgpause" aria-pressed="false"><span class="i-pause">Pausar fondo</span><span class="i-play">Reanudar fondo</span></button>
+    <button type="button" class="motion-btn" id="motion-btn" data-act="motion" aria-pressed="false" aria-label="Pausar animaciones"><svg class="i-pause" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"></path></svg><svg class="i-play" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2l8 5-8 5z" fill="currentColor"></path></svg></button>
   </header>
 
   <section id="producto" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; position: relative" aria-label="Panel de ejemplo">
     <div class="demo-ctl">
-      <button type="button" id="demo-pause" data-act="demopause" aria-pressed="false"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path class="i-pause" d="M2 1h2v8H2zM6 1h2v8H6z" fill="currentColor"></path><path class="i-play" d="M2 1l7 4-7 4z" fill="currentColor"></path></svg><span class="i-pause">Pausar animación</span><span class="i-play">Reanudar animación</span></button>
       <span class="demo-badge">Vista de ejemplo</span>
     </div>
     <p class="fx-sr">Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.</p>
@@ -636,7 +632,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
                 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span id="n-title" style="font-size: 13.5px; font-weight: 600"></span><span id="n-sub" style="font-size: 12px; color: #656B71"></span></div>
               </div>
               <div class="hx-qr">
-                <div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.05em">favent</span><span style="font-size: 11px; font-weight: 600; background: #A9D3F0; color: #1E2226; padding: 4px 10px; border-radius: 999px">Verificada</span></div>
+                <div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Funnel Display', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.05em">favent</span><span style="font-size: 11px; font-weight: 600; background: #A9D3F0; color: #1E2226; padding: 4px 10px; border-radius: 999px">Verificada</span></div>
                 <div style="position: relative; background: #FFFFFF; border-radius: 14px; padding: 10px">
                   <span id="q-scan" aria-hidden="true"></span>
                   <div class="qr" data-round="1" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 128px; height: 128px" aria-hidden="true"></div>
@@ -674,7 +670,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       <div class="route-in">
         <div class="route-head">
           <span class="eyebrow">Cómo funciona</span>
-          <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
+          <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
         </div>
         <div class="route-track">
           <svg class="route-svg" aria-hidden="true"><path class="rt-stub" id="rt-stub"></path><path class="rt-base" id="rt-base"></path><path class="rt-fill" id="rt-fill" pathLength="1"></path><circle class="rt-halo" id="rt-halo" r="11" cx="-40" cy="-40"></circle><circle class="rt-head" id="rt-head" r="3.5" cx="-40" cy="-40"></circle></svg>
@@ -692,12 +688,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: grid; gap: 16px">
     <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin-bottom: 12px">
       <span class="eyebrow">Para quién es</span>
-      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Para quien recomienda y para quien presta el servicio.</h2>
+      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Para quien recomienda y para quien presta el servicio.</h2>
     </div>
     <div class="lift glass" style="background: var(--card); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div class="photo" style="height: 320px; background: #E7E8E3; overflow: hidden"><img src="img/recomiendas.jpg" alt="Recepción de hotel atendiendo a un huésped" width="800" height="600" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.15">Si recomiendas clientes</h3>
+        <h3 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.15">Si recomiendas clientes</h3>
         <span style="font-size: 15px; line-height: 1.6; color: var(--ink-2)">Hoteles, conserjerías, agencias y profesionales. Cobras cada recomendación sin perseguir a nadie.</span>
         <a href="#acceso" data-perfil="recomienda" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: var(--bg); display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
       </div>
@@ -705,7 +701,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     <div class="lift glass" style="background: var(--card); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div class="photo" style="height: 320px; background: #1F6F78; overflow: hidden"><img src="img/ofreces.jpg" alt="Velero fondeado en aguas turquesas, visto desde el aire" width="479" height="640" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.15">Si ofreces servicios</h3>
+        <h3 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.15">Si ofreces servicios</h3>
         <span style="font-size: 15px; line-height: 1.6; color: var(--ink-2)">Un canal de venta nuevo, sin cuentas en una libreta y con protección frente a no-shows.</span>
         <a href="#acceso" data-perfil="ofrece" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #2B6CA8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
       </div>
@@ -713,7 +709,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     <div class="glass" style="grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
       <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
         <span class="eyebrow" style="color: #A9D3F0">Entre colegas</span>
-        <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
+        <h3 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B4B8B4; max-width: 520px">¿Ese día estás completo? Pasa la reserva a una empresa de confianza y cobra tu comisión.</p>
       </div>
       <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #1E201F; border: 1px solid #2A2D2B; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative">
@@ -741,7 +737,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <section id="app" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Un canal de ventas profesional</span>
-      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
+      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
       <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
     </div>
     <div id="fx-role" class="fx-role" role="group" aria-label="Perfil"></div>
@@ -770,7 +766,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
         <span class="eyebrow">Mapa de servicios</span>
-        <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Encuentra y compara servicios.</h2>
+        <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Encuentra y compara servicios.</h2>
         <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Precio, comisión y valoraciones de cada servicio, en un solo mapa.</p>
       </div>
     </div>
@@ -843,7 +839,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <section id="confianza" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Confianza y calidad</span>
-      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
+      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
       <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Cada empresa tiene una ficha de fiabilidad hecha con datos reales de su actividad.</p>
       <p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: var(--ink); font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: #2B6CA8"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Durante el piloto revisamos a cada empresa antes de que entre en la red.</span></p>
     </div>
@@ -858,18 +854,18 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
     <div style="display: flex; flex-direction: column; gap: 16px">
       <div style="display: flex; flex-direction: column; gap: 6px">
-        <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1">Cada parte se gana su reputación.</h3>
+        <h3 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1">Cada parte se gana su reputación.</h3>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 16px">
       <div class="lift glass" style="flex: 1 1 300px; min-width: 0; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: var(--eyebrow)">Quien ofrece el servicio</span>
-        <h4 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">La mejor experiencia, mejor valorada.</h4>
+        <h4 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">La mejor experiencia, mejor valorada.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: var(--ink-2)">Cuanto mejor lo vive el cliente, mejor valoración recibe.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Lo prometido, cumplido</span></div>
       </div>
       <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #06080D; color: #F4F4F1; border: 1px solid var(--line); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: #A9D3F0">Quien recomienda</span>
-        <h4 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Describir bien también cuenta.</h4>
+        <h4 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Describir bien también cuenta.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Explicar el servicio tal como es también puntúa.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Descripción fiel</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Clientes enviados</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Pocas cancelaciones</span></div>
       </div>
@@ -878,7 +874,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
     <div class="screen" style="position: relative; background: #EAF2F8; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
       <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
-        <h3 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1">Popularidad y fiabilidad, por separado.</h3>
+        <h3 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1">Popularidad y fiabilidad, por separado.</h3>
         <span style="font-size: 15px; line-height: 1.6; color: #3D4248">Muchas reseñas no es lo mismo que cumplir siempre. Y las empresas nuevas tienen su propio espacio.</span>
       </div>
       <div style="flex: 999 1 460px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(30, 34, 38, 0.08); padding: 20px; display: flex; flex-direction: column; gap: 14px">
@@ -900,7 +896,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Para equipos</span>
-      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
+      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
       <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Cada persona tiene su número y su enlace. Favent atribuye cada reserva y calcula su parte.</p>
     </div>
 
@@ -927,7 +923,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
           </div>
           <div style="background: #FFFFFF; border-radius: 12px; padding: 8px"><div class="qr" style="display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); width: 64px; height: 64px" aria-hidden="true"></div></div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 2px"><span id="t-name" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em"></span><span id="t-role" style="font-size: 13px; color: #B4B8B4"></span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><span id="t-name" style="font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em"></span><span id="t-role" style="font-size: 13px; color: #B4B8B4"></span></div>
         <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #B4B8B4">Enlace de reserva</span><span id="t-link" style="font-family: 'Geist Mono', monospace; font-size: 13px; background: #1E201F; padding: 8px 12px; border-radius: 10px; overflow-wrap: anywhere"></span></div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
           <div style="background: #1E201F; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #B4B8B4">Reservas</span><span id="t-bookings" style="font-family: 'Geist Mono', monospace; font-size: 18px"></span></div>
@@ -950,11 +946,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp)">
     <div class="screen" style="background: #EAF2F8; border-radius: 32px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
-      <h2 style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
+      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
       <form id="acceso-final" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 360px; max-width: 480px" novalidate>
         <label for="email-final" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
-        <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D3E6F4; background: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #1E2226">
-        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #1E2226; color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+        <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D3E6F4; background: #FFFFFF; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: #1E2226">
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #1E2226; color: #FFFFFF; font-family: 'Funnel Display', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
       </form>
       <div id="sent-final" role="status" hidden style="display: none; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #FFFFFF; color: #0B2A4A; font-size: 15px; font-weight: 600">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -1023,8 +1019,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Producto': 'Product',
     'Vista de ejemplo': 'Sample view',
     'Panel de ejemplo': 'Sample dashboard',
-    'Pausar animación': 'Pause animation',
-    'Reanudar animación': 'Resume animation',
     'Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.': 'Sample animation of the Favent dashboard: a hotel creates a booking, the client pays the deposit, the QR code is redeemed and the commission is released.',
     'Buenos días, recepción': 'Good morning, front desk',
     '+ Nueva reserva': '+ New booking',
@@ -1104,9 +1098,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Pausar animaciones': 'Pause animations',
     'Servicios de ejemplo': 'Sample services',
-    'Pausar fondo': 'Pause background',
-    'Reanudar fondo': 'Resume background',
     'Actividad de ejemplo': 'Sample activity',
     'Velas del Norte · acuerdo firmado · 13 %': 'Velas del Norte · agreement signed · 13%',
     'FV-7K2Q · señal retenida · 180,00 €': 'FV-7K2Q · deposit held · €180.00',
@@ -1456,7 +1449,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var byRel = S.trust === 'rel';
     $('trust-tabs').innerHTML = [['rel', 'Fiabilidad'], ['pop', 'Popularidad']].map(function (m) {
       var on = m[0] === S.trust;
-      return '<button type="button" data-act="trust" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#1E2226' : '#50565C') + '; font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(30,34,38,0.15)' : 'none') + '">' + T(m[1]) + '</button>';
+      return '<button type="button" data-act="trust" data-v="' + m[0] + '" aria-pressed="' + on + '" style="height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: ' + (on ? '#FFFFFF' : 'transparent') + '; color: ' + (on ? '#1E2226' : '#50565C') + '; font-family: \'Funnel Display\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: ' + (on ? '0 1px 3px rgba(30,34,38,0.15)' : 'none') + '">' + T(m[1]) + '</button>';
     }).join('');
     var maxRev = Math.max.apply(null, TRUST.map(function (t) { return t.reviews; }));
     var list = TRUST.slice().sort(function (a, b) { return byRel ? b.rel - a.rel : b.reviews - a.reviews; });
@@ -1489,7 +1482,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('team-pct').textContent = S.share + (S.lang === 'en' ? '%' : ' %');
     $('team-rows').innerHTML = TEAM.map(function (m, i) {
       var on = i === S.member;
-      return '<button type="button" data-act="member" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; width: 100%; background: ' + (on ? A.tint : '#FFFFFF') + '; border: 1px solid ' + (on ? A.accent : '#E6E7E3') + '; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; cursor: pointer; font-family: \'Plus Jakarta Sans\', sans-serif; color: #1E2226">'
+      return '<button type="button" data-act="member" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; width: 100%; background: ' + (on ? A.tint : '#FFFFFF') + '; border: 1px solid ' + (on ? A.accent : '#E6E7E3') + '; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; cursor: pointer; font-family: \'Funnel Display\', sans-serif; color: #1E2226">'
         + '<span style="font-family: \'Geist Mono\', monospace; font-size: 13px; font-weight: 500; min-width: 44px; height: 30px; padding: 0 8px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: ' + (on ? A.accent : '#1E2226') + '; color: #FFFFFF">#' + m.n + '</span>'
         + '<span style="flex: 1 1 130px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">' + m.name + '</span><span style="font-size: 12px; color: ' + (on ? '#50565C' : '#656B71') + '">' + T(m.role) + '</span></span>'
         + '<span style="flex: 1 1 120px; display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: #50565C"><span>' + bookings(m.b) + '</span><span style="font-family: \'Geist Mono\', monospace; color: #1E2226">' + eur(m.c) + '</span></span>'
@@ -1533,7 +1526,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (ROUTE) routeLayout();
   }
   function pill(act, v, label, on) {
-    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + (on ? A.accent : '#D5D7D3') + '; background: ' + (on ? A.soft : '#FFFFFF') + '; color: ' + (on ? A.text : '#1E2226') + '; font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">' + T(label) + '</button>';
+    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + (on ? A.accent : '#D5D7D3') + '; background: ' + (on ? A.soft : '#FFFFFF') + '; color: ' + (on ? A.text : '#1E2226') + '; font-family: \'Funnel Display\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">' + T(label) + '</button>';
   }
   var CATS = [
     ['Todas', '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>'],
@@ -1546,7 +1539,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function catChip(c) {
     var on = c[0] === S.mtype;
     var n = c[0] === 'Todas' ? SVCS.length : SVCS.filter(function (s) { return s.type === c[0]; }).length;
-    return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#D5D7D3') + '; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#FFFFFF') + '; color: ' + (on ? (S.mapPink ? '#0B0F17' : '#FFFFFF') : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
+    return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#D5D7D3') + '; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#FFFFFF') + '; color: ' + (on ? (S.mapPink ? '#0B0F17' : '#FFFFFF') : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Funnel Display\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
       + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
       + T(c[0]) + '<span style="font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? (S.mapPink ? '#3D0A22' : '#FFFFFF') : '#656B71') + '">' + n + '</span></button>';
   }
@@ -1600,7 +1593,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var rating = !s.reviews ? T('Nuevo · aún sin reseñas')
         : S.lang === 'en' ? s.rating.toFixed(1) + ' · ' + s.reviews + ' reviews'
         : s.rating.toFixed(1).replace('.', ',') + ' · ' + s.reviews + ' reseñas';
-      return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" class="ml" style="text-align: left; width: 100%; background: ' + (on ? (S.mapPink ? '#FFE8F2' : '#EAF2F8') : '#FFFFFF') + '; border: ' + (on ? (S.mapPink ? '2px solid #FF4F9A' : '2px solid #2B6CA8') : '1px solid #E6E7E3') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Plus Jakarta Sans\', sans-serif; color: #1E2226">'
+      return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" class="ml" style="text-align: left; width: 100%; background: ' + (on ? (S.mapPink ? '#FFE8F2' : '#EAF2F8') : '#FFFFFF') + '; border: ' + (on ? (S.mapPink ? '2px solid #FF4F9A' : '2px solid #2B6CA8') : '1px solid #E6E7E3') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Funnel Display\', sans-serif; color: #1E2226">'
         + '<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><span class="ml-name" style="font-size: 15px; font-weight: 600">' + s.name + '</span><span class="ml-place" style="font-size: 12px; color: #656B71">' + s.place + '</span></div>'
         + '<span class="ml-svc" style="font-size: 13px; color: #50565C">' + T(s.svc) + '</span>'
         + '<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">'
@@ -1646,8 +1639,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (!b) return;
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
-    if (act === 'demopause') { demoPause(!LIVE.paused); }
-    if (act === 'bgpause') { netPause(!NET.paused); }
+    if (act === 'motion') { motionPause(!NET.paused); }
     if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) routeGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
@@ -2155,12 +2147,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var act = b.st === 'held' ? '<div class="fx-act"><button type="button" class="fx-btn accent" data-act="fpscan" data-v="' + o.i + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4M4 12h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>' + T('Escanear código') + '</button></div>'
         : b.st === 'pend' ? '<div class="fx-act">' + T('Esperando el pago del cliente') + '</div>'
         : FX.scanned === o.i ? '<div class="fx-ok"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>' + T('Código canjeado · comisión liberada') + '</div>' : '';
-      return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="fx-mono" style="font-size: 12px; color: #656B71">' + b.id + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + b.cli + '</span>' + fxPill(b.st) + '</div>' + x + '</div>'
+      return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="fx-mono" style="font-size: 12px; color: #656B71">' + b.id + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + b.cli + '</span>' + fxPill(b.st) + '</div>' + x + '</div>'
         + '<dl class="fx-fields"><dt>' + T('Servicio') + '</dt><dd>' + T(b.svc) + '</dd><dt>' + T('Fecha') + '</dt><dd>' + fxDate(b.date, true) + '</dd><dt>' + T('Personas') + '</dt><dd>' + b.pax + '</dd><dt>' + T('Recomendado por') + '</dt><dd>' + b.from + '</dd><dt>' + T('Importe total') + '</dt><dd class="fx-mono">' + money(b.total) + '</dd><dt>' + T('Comisión del socio') + '</dt><dd class="fx-mono">' + money(b.com) + '</dd><dt>' + T('Tú recibes') + '</dt><dd class="fx-mono" style="color: #0B2A4A; font-weight: 600">' + money(b.total - b.com) + '</dd></dl>'
         + act + lbl('Historial') + '<ol class="fx-tl">' + tl + '</ol>';
     }
     var p = FPP[o.i];
-    return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T(p.type) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + p.n + '</span><span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Activo') + '</span></div>' + x + '</div>'
+    return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T(p.type) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + p.n + '</span><span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Activo') + '</span></div>' + x + '</div>'
       + '<dl class="fx-fields"><dt>' + T('Comisión pactada') + '</dt><dd class="fx-mono">' + p.pct + (en ? '%' : ' %') + '</dd><dt>' + T('Reservas/mes') + '</dt><dd>' + p.bk + '</dd><dt>' + T('Ventas generadas') + '</dt><dd class="fx-mono">' + money(p.sales) + '</dd><dt>' + T('Valoración') + '</dt><dd>★ ' + (en ? p.rating.toFixed(1) : p.rating.toFixed(1).replace('.', ',')) + '</dd></dl>'
       + (p.type === 'Colega' ? '<div class="fx-ok" style="margin-top: 14px">' + T('Te pasa reservas cuando está completo.') + '</div>' : '')
       + lbl('Servicios incluidos') + '<div style="padding: 0 18px 12px; display: flex; flex-direction: column; gap: 6px">' + FPSVFULL.map(function (sv) { return '<span style="font-size: 13px; border: 1px solid #E6E7E3; border-radius: 12px; padding: 9px 12px; display: flex; justify-content: space-between; gap: 8px"><span>' + T(sv) + '</span><span class="fx-mono" style="color: #0B2A4A">' + p.pct + (en ? '%' : ' %') + '</span></span>'; }).join('') + '</div>'
@@ -2185,13 +2177,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var tl = [['Reserva creada', fxDate(b.date, false)], ['Link de pago enviado', en ? 'By text message' : 'Por SMS'], ['Pago recibido', money(b.com)], ['Código canjeado', b.id], ['Comisión liberada', money(b.com)]].map(function (t, i) {
         return '<li class="' + (i <= step ? 'done' : '') + (i === step ? ' now' : '') + '"><i></i>' + T(t[0]) + (i <= step ? '<small>' + t[1] + '</small>' : '') + '</li>';
       }).join('');
-      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="fx-mono" style="font-size: 12px; color: #656B71">' + b.id + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + b.cli + '</span>' + fxPill(b.st) + '</div>' + x + '</div>'
+      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="fx-mono" style="font-size: 12px; color: #656B71">' + b.id + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + b.cli + '</span>' + fxPill(b.st) + '</div>' + x + '</div>'
         + '<dl class="fx-fields"><dt>' + T('Servicio') + '</dt><dd>' + T(b.svc) + '</dd><dt>' + T('Empresa') + '</dt><dd>' + b.emp + '</dd><dt>' + T('Fecha') + '</dt><dd>' + fxDate(b.date, true) + '</dd><dt>' + T('Personas') + '</dt><dd>' + b.pax + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + money(b.com) + '</dd><dt>' + T('Recomendado por') + '</dt><dd>#' + m.n + ' · ' + m.name + '</dd></dl>'
         + '<div style="padding: 16px 18px 0; font-size: 12px; font-weight: 600; color: #656B71; text-transform: uppercase; letter-spacing: .05em">' + T('Historial') + '</div><ol class="fx-tl">' + tl + '</ol>';
     } else {
       var a = FXA[o.i];
       var c = a.fix ? money(a.val) + ' ' + T('fijo') : a.val + (en ? '%' : ' %');
-      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T(a.cat) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Plus Jakarta Sans\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + a.emp + '</span>'
+      h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T(a.cat) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + a.emp + '</span>'
         + (a.st === 'active' ? '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Activo') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Pendiente de firma') + '</span>') + '</div>' + x + '</div>'
         + '<dl class="fx-fields"><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + c + '</dd><dt>' + T('Reservas/mes') + '</dt><dd>' + a.bk + '</dd><dt>' + T('Valoración') + '</dt><dd>' + (a.rating ? '★ ' + (en ? a.rating.toFixed(1) : a.rating.toFixed(1).replace('.', ',')) : T('Nuevo · aún sin reseñas')) + '</dd></dl>'
         + '<div style="padding: 16px 18px 6px; font-size: 12px; font-weight: 600; color: #656B71; text-transform: uppercase; letter-spacing: .05em">' + T('Servicios incluidos') + '</div>'
@@ -2308,20 +2300,20 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var HPINS = [0, 1, 2, 4, 5, 6, 3, 7], HSEL = 2, HMAP_W = 600;
   function heroPin(i, on) {
     var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
-    return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#0B2A4A') : '#2B6CA8') + '; color: ' + (on && S.mapPink ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
+    return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? '#FF4F9A' : '#2B6CA8') + '; color: ' + (on ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
   }
   function heroMap() {
     var svg = document.querySelector('#map svg').innerHTML;
     var sel = LIVE.pin ? HSEL : 0, sv = SVCS[sel];
     var chips = CATS.filter(function (c) { return c[0] === 'Todas' || c[0] === 'Náutica'; }).map(function (c) {
-      var keep = S.mtype; S.mtype = 'Náutica';
+      var keep = S.mtype, keepP = S.mapPink; S.mtype = 'Náutica'; S.mapPink = !!LIVE.pin;
       var h = catChip(c).replace('<button type="button"', '<span').replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
-      S.mtype = keep; return h;
+      S.mtype = keep; S.mapPink = keepP; return h;
     }).join('');
     var pins = HPINS.map(function (i) { return heroPin(i, LIVE.pin && i === HSEL); }).join('');
     var pop = LIVE.pin ? '<div class="pin-pop hx-pop2" id="hx-pop">' + popHtml(SVCS[HSEL]).replace(' data-act="popclose"', '') + '</div>' : '';
     var bar = '<div class="hx-selbar"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sv.name + '</span><span style="font-size: 13px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
-      + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: #D3E6F4; color: #0B2A4A; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
+      + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: ' + (LIVE.pin ? '#FFE0EE' : '#D3E6F4') + '; color: ' + (LIVE.pin ? '#9D0F4E' : '#0B2A4A') + '; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
       + '<span id="hx-propose" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #1E2226; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T('Proponer acuerdo') + '</span></div></div>';
     return '<div class="hx-mapfit" id="hx-mapfit"><div class="hx-mapcard" id="hx-mapcard"><div style="display: flex; gap: 8px">' + chips + '</div>'
       + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
@@ -2435,13 +2427,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (!LIVE.visible || LIVE.paused) return;
     SCENE.forEach(function (sc) { LIVE.timers.push(setTimeout(function () { if (LIVE.visible) sc[1](); }, sc[0])); });
   }
-  function demoPause(p) {
-    LIVE.paused = p;
-    var b = $('demo-pause');
-    b.setAttribute('aria-pressed', p);
-    if (p) { sceneStop(); $('cursor').classList.remove('on'); } else sceneRun();
-  }
-  if (LIVE.still || !('IntersectionObserver' in window)) $('demo-pause').hidden = true;
   if (!LIVE.still && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       var v = es[es.length - 1].isIntersecting;
@@ -2580,12 +2565,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     NET.c.width = Math.round(NET.w * dpr); NET.c.height = Math.round(NET.h * dpr);
     NET.ctx = NET.c.getContext('2d'); NET.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     // Rejilla centrada en el eje vertical de la página: queda simétrica a izquierda y derecha
+    NET.reach = 0;
     var cx = NET.w / 2, cy = NET.h * 0.46, half = Math.hypot(NET.w / 2, NET.h / 2), A = [77, 168, 255], B = [255, 79, 154];
     // Alineada con la textura de puntos de la página (centros en 11 + 22n), para que no se dupliquen
     var x0 = ((11 - (r.left + scrollX)) % G + G) % G, y0 = ((11 - (r.top + scrollY)) % G + G) % G;
     NET.dots = [];
     for (var y = y0; y < NET.h; y += G) for (var x = x0; x < NET.w; x += G) {
       var d = Math.hypot(x - cx, (y - cy) * 1.4), u = Math.min(1, d / half);
+      NET.reach = Math.max(NET.reach || 0, d);
       NET.dots.push({ x: x, y: y, d: d, rgb: A.map(function (c, q) { return Math.round(c + (B[q] - c) * u); }).join(',') });
     }
     netDraw();
@@ -2595,19 +2582,24 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     NET.raf = 0;
     var ctx = NET.ctx, t = CINE.on ? (performance.now() - NET.t0) / 1000 : 2;
     ctx.clearRect(0, 0, NET.w, NET.h);
+    // Cada 3,2 s sale del centro un anillo brillante que recorre toda la pancarta
+    var cyc = 3.2, br = (t % cyc) / cyc, ring = br * NET.reach, ringA = 1 - br;
     NET.dots.forEach(function (p) {
-      var wv = Math.max(0, Math.sin(p.d * 0.035 - t * 1.5));
-      ctx.fillStyle = 'rgba(' + p.rgb + ',' + (0.1 + 0.32 * wv).toFixed(3) + ')';
+      var w1 = Math.max(0, Math.sin(p.d * 0.032 - t * 2.1));
+      var w2 = Math.max(0, Math.sin((p.x * 0.6 + p.y) * 0.014 - t * 1.25 + p.d * 0.004));
+      var rg = Math.exp(-Math.pow((p.d - ring) / 46, 2)) * ringA;
+      var wv = Math.min(1, w1 * 0.7 + w2 * 0.35 + rg * 1.1);
+      ctx.fillStyle = 'rgba(' + p.rgb + ',' + (0.1 + 0.5 * wv).toFixed(3) + ')';
       if (wv < 0.15) ctx.fillRect(p.x - 0.8, p.y - 0.8, 1.6, 1.6);
-      else { ctx.beginPath(); ctx.arc(p.x, p.y, 0.9 + 1.3 * wv, 0, 6.283); ctx.fill(); }
+      else { ctx.beginPath(); ctx.arc(p.x, p.y, 0.9 + 1.8 * wv, 0, 6.283); ctx.fill(); }
     });
     if (netRunning()) NET.raf = requestAnimationFrame(netDraw);
   }
   function netKick() { if (!NET.raf) NET.raf = requestAnimationFrame(netDraw); }
-  function netPause(pz) {
-    NET.paused = pz;
-    $('bg-pause').setAttribute('aria-pressed', pz);
-    if (!pz) netKick();
+  function motionPause(pz) {
+    NET.paused = pz; LIVE.paused = pz;
+    $('motion-btn').setAttribute('aria-pressed', pz);
+    if (pz) { sceneStop(); $('cursor').classList.remove('on'); } else { sceneRun(); netKick(); }
   }
   netBuild();
   var netT = 0;

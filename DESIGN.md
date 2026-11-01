@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Favent-design-system
-description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Plus Jakarta Sans en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». La página alterna secciones oscuras y claras. En el inicio, una rejilla de puntos que respira desde el centro, del azul al rosa."
+description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Funnel Display en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». La página alterna secciones oscuras y claras. En el inicio, una rejilla de puntos que respira desde el centro, del azul al rosa."
 
 colors:
   primary: "#FF4F9A"
@@ -40,61 +40,61 @@ colors:
 
 typography:
   display-xl:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: clamp(42px, 7vw, 84px)
     fontWeight: 500
     lineHeight: 0.98
     letterSpacing: -0.04em
   display-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: clamp(32px, 4.5vw, 52px)
     fontWeight: 500
     lineHeight: 1.05
     letterSpacing: -0.035em
   statement:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: clamp(28px, 4vw, 48px)
     fontWeight: 500
     lineHeight: 1.20
     letterSpacing: -0.03em
   headline:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: clamp(24px, 3vw, 32px)
     fontWeight: 500
     lineHeight: 1.10
     letterSpacing: -0.025em
   card-title:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: 22px
     fontWeight: 500
     lineHeight: 1.20
     letterSpacing: -0.02em
   subhead:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: clamp(17px, 2vw, 20px)
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: 0
   body:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: 17px
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: 0
   body-sm:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: 15px
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: 0
   caption:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: 13px
     fontWeight: 400
     lineHeight: 1.50
     letterSpacing: 0
   button:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Funnel Display
     fontSize: 15px
     fontWeight: 600
     lineHeight: 1.20
@@ -233,9 +233,9 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 - Secciones oscuras y claras alternas, ambas con textura de puntos (blanca al 7 % sobre oscuro, grafito al 9 % sobre claro); nunca un fondo plano sin materia.
 - Rosa para la marca y el progreso, azul eléctrico para la energía. Ningún otro color de acento en el lienzo.
 - Vidrio esmerilado para tarjetas y paneles de contenido; relieve neumórfico solo en controles e iconos.
-- Plus Jakarta Sans 500 con tracking negativo en titulares; Geist Mono en todo lo que es dato, código o estado.
+- Funnel Display 500 con tracking negativo en titulares; Geist Mono en todo lo que es dato, código o estado.
 - Interfaces de ejemplo claras, siempre marcadas como ejemplo.
-- Movimiento ligado al scroll o al ratón; nada se mueve solo de forma indefinida sin poder pausarse.
+- Movimiento ligado al scroll o al ratón, salvo la pancarta del inicio y el panel de ejemplo, que se animan solos y se pausan con un único botón de icono.
 
 ## Colors
 
@@ -277,7 +277,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 ## Typography
 
 ### Font Family
-- **Plus Jakarta Sans** (Google Fonts, 400/500/600): titulares, texto y botones.
+- **Funnel Display** (Google Fonts, 400/500/600): titulares, texto y botones.
 - **Geist Mono** (400/500): etiquetas de sección, códigos (FV-7K2Q), importes, estados, selector de idioma.
 - **Michroma** (400, único grosor): solo la palabra «favent.» del logotipo.
 
@@ -307,7 +307,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 - Un solo énfasis de color por titular, y solo en el del inicio («cobrado.» en azul eléctrico suave).
 
 ### Note on Font Substitutes
-Las tres familias (Plus Jakarta Sans, Geist Mono y Michroma) son libres (Google Fonts). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter, IBM Plex ni Geist, ni el logotipo por Newsreader o Plus Jakarta Sans: ya se probaron y se descartaron.
+Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (Google Fonts). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter, IBM Plex, Geist ni Plus Jakarta Sans, ni el logotipo por Newsreader o Funnel Display: ya se probaron y se descartaron.
 
 ## Layout
 
@@ -329,7 +329,7 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 |---|---|---|
 | 0 (lienzo) | `{colors.canvas}` + textura de puntos + grano | Fondo, titulares, texto suelto |
 | 1 (vidrio) | `{colors.glass}`, blur 16 px, borde `{colors.glass-line}`, brillo interior de 1 px arriba, sombra 0 24px 60px rgba(0,0,0,.35) | Tarjetas, panel de confianza, detalle del recorrido, cinta, menú fijo |
-| 2 (relieve) | Mismo color que el lienzo con sombra doble (oscura abajo a la derecha, clara arriba a la izquierda) o inset | Campo de email, selector de idioma, iconos, puntos del recorrido, botón «Pausar fondo» |
+| 2 (relieve) | Mismo color que el lienzo con sombra doble (oscura abajo a la derecha, clara arriba a la izquierda) o inset | Campo de email, selector de idioma, iconos, puntos del recorrido |
 | 3 (pantalla encendida) | Panel claro `screen-*` con sombra larga | Interfaces de ejemplo |
 | Foco | Contorno de 2 px `#2B6CA8` con 2 px de separación | Botones, enlaces y campos con `:focus-visible` |
 
@@ -363,7 +363,9 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 **`button-secondary`**: cápsula azul `{colors.screen-accent}` con texto blanco («Ofrezco servicios»). 44 px.
 
-**`button-chip`**: cápsula pequeña en mono con relieve («Pausar fondo»). 30 px.
+**`button-chip`**: cápsula pequeña en mono con relieve. 30 px.
+
+**`motion-btn`**: círculo de 36 px con relieve, abajo a la derecha del inicio, **solo con el icono** de pausa o reproducir. Pausa a la vez la rejilla y el panel de ejemplo. Es un botón conmutado: etiqueta fija «Pausar animaciones» (`aria-label`, traducida) y estado en `aria-pressed`. Oculto con movimiento reducido.
 
 Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` al pulsar.
 
@@ -402,7 +404,7 @@ Seis pasos unidos por una **curva suave** (SVG, curvas de Bézier): los pasos se
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
 ### Map (mapa de servicios)
-Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`). Al cargar no hay nada en rosa: la categoría y el punto seleccionados por defecto van en azul (`{colors.screen-accent}` / `{colors.screen-accent-deep}`). En cuanto el usuario pulsa una categoría o un punto (`S.mapPink`), el **rosa marca solo lo seleccionado**: la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
+Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`). Al cargar no hay nada en rosa: la categoría y el punto seleccionados por defecto van en azul (`{colors.screen-accent}` / `{colors.screen-accent-deep}`). En cuanto el usuario pulsa una categoría o un punto (`S.mapPink`), el **rosa marca solo lo seleccionado** (en el mapa del panel de ejemplo del inicio, lo que selecciona la animación también va en rosa): la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
 
 ### Footer
 Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlineado 1,25 para que no se corte) con el punto rosa, el lema y «B2B SERVICE · MALLORCA». Debajo, el logotipo pequeño. Los enlaces legales están ocultos hasta que existan las páginas.
@@ -412,7 +414,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 | Elemento | Disparador | Detalle |
 |---|---|---|
 | Entrada del titular | Carga | Líneas que suben desde una máscara, 900 ms |
-| Rejilla del inicio | Continuo mientras se ve | Onda radial lenta desde el centro; se para fuera de pantalla, con la pestaña oculta o con «Pausar fondo» |
+| Rejilla del inicio | Continuo mientras se ve | Dos ondas (radial desde el centro y diagonal) más un anillo brillante cada 3,2 s; se para fuera de pantalla, con la pestaña oculta o con el botón de pausa |
 | Panel inicial | Scroll | De inclinado 12° en 3D a plano |
 | Frase que se revela | Scroll | Palabra a palabra |
 | Línea de recorrido | Scroll | Fija en escritorio (240vh); vertical en móvil |
@@ -421,7 +423,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 
 - Curva estándar `cubic-bezier(.23,1,.32,1)` (ease-out). Nunca `ease-in` en la interfaz.
 - Animar solo `transform` y `opacity` (y el color de las palabras de la frase). Nada de animar `width`, `top` o `box-shadow` en bucle.
-- Nada se mueve solo durante más de 5 s sin control para pausarlo (WCAG 2.2.2): la rejilla tiene «Pausar fondo» y el panel inicial, «Pausar animación».
+- Nada se mueve solo durante más de 5 s sin control para pausarlo (WCAG 2.2.2): la rejilla del inicio y el panel de ejemplo se pausan con el botón de icono `motion-btn`. Con `prefers-reduced-motion` todo queda estático, y las animaciones se paran fuera de pantalla y con la pestaña oculta.
 - Con `prefers-reduced-motion`: nada se fija, la rejilla se dibuja estática, la frase aparece completa, la línea del recorrido dibujada entera y sin inclinaciones.
 
 ## Do's and Don'ts
@@ -453,7 +455,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 | Tablet | ≤ 960px | Panel de confianza en filas |
 | Tablet-sm | ≤ 860px | Recorrido vertical sin fijar; panel interactivo sin barra lateral |
 | Mobile-lg | ≤ 720px | Perfiles en una columna |
-| Mobile | ≤ 640px | Separación de 80 px, sin botón en el menú, mapa a todo el ancho sin lista lateral, «Pausar fondo» en línea |
+| Mobile | ≤ 640px | Separación de 80 px, sin botón en el menú, mapa a todo el ancho sin lista lateral |
 | Mobile-sm | ≤ 440px | Desaparece la cápsula «B2B SERVICE» |
 
 ### Touch Targets
