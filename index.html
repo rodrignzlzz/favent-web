@@ -538,6 +538,15 @@ html{scroll-padding-top:84px}
 .motion-btn[aria-pressed="true"] .i-play{display:block}
 html:not(.cine) .motion-btn{display:none}
 @media (max-width: 640px){.motion-btn{right:16px;bottom:12px}}
+/* Ajustes y Cuenta al pie de la barra lateral de los dos paneles */
+.side-foot-wrap{margin-top:auto}
+.fx-side .side-foot{margin-top:auto}
+.side-foot{display:flex;flex-direction:column;gap:2px;padding-top:12px;margin-top:16px;border-top:1px solid #E6E7E3}
+.side-foot .hx-li{color:#656B71;cursor:default}
+.fx-side .side-foot .hx-li{display:flex;align-items:center;gap:9px;padding:7px 10px;font:500 13px 'Funnel Display',sans-serif}
+#demo.compact .side-foot .hx-li{font-size:0;gap:0;justify-content:center;padding:9px 0}
+.fx-sub-h{padding:4px 18px 8px;font:500 12px 'Geist Mono',monospace;color:#656B71}
+@media (max-width: 860px){.fx-side .side-foot{display:none}}
 /* Panel interactivo: vista «Buscar servicios» con el mapa */
 .fx-mapv{padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px}
 .fx-mapchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
@@ -632,6 +641,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
           <div class="hx-side">
             <div class="fx-ws"><i>HM</i>Hotel Miramar</div>
             <div id="app-nav" style="display: flex; flex-direction: column; gap: 2px"></div>
+            <div id="hx-foot" class="side-foot-wrap"></div>
           </div>
           <div class="hx-main">
             <div class="hx-content" id="hx-content">
@@ -766,7 +776,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="mapa" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Mapa de servicios">
+  <!-- Oculta: el panel interactivo («Buscar servicios») reutiliza este mapa; no borrar -->
+  <section id="mapa" hidden style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Mapa de servicios">
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
         <span class="eyebrow">Mapa de servicios</span>
@@ -840,7 +851,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="confianza" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
+  <section id="confianza" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Confianza y calidad</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
@@ -897,7 +908,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
+  <section id="equipos" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Para equipos</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
@@ -1102,6 +1113,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Ajustes': 'Settings',
+    'Cuenta': 'Account',
+    'Tu resumen: comisiones y últimas reservas.': 'Your overview: commissions and latest bookings.',
+    'Últimas reservas': 'Latest bookings',
+    'Ver todas las reservas': 'See all bookings',
     'Buscar servicios': 'Find services',
     'Encuentra servicios y compara.': 'Find and compare services.',
     'Acuerdo': 'Agreement',
@@ -1404,7 +1420,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     });
   })();
 
-  var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['rep', 'Informes'], ['msg', 'Mensajes']];
+  var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['msg', 'Mensajes'], ['rep', 'Informes']];
   var STEPS = [
     { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan la comisión.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal igual a la comisión, que queda retenida, y las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
@@ -1521,6 +1537,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       return '<button type="button" data-act="nav" data-v="' + i + '" aria-pressed="' + (i === S.nav) + '">' + fxSvg(n[0]) + T(n[1]) + '</button>';
     }).join('');
     $('hx-crumb').textContent = T(NAV[S.nav][1]);
+    $('hx-foot').innerHTML = '<div class="side-foot"><span class="hx-li">' + fxSvg('set') + T('Ajustes') + '</span><span class="hx-li">' + fxSvg('acc') + T('Cuenta') + '</span></div>';
   }
   function renderSteps() {
     var f = document.activeElement, fi = f && f.closest && f.closest('#steps') ? f.getAttribute('data-v') : null;
@@ -1712,7 +1729,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   // Aparición suave de los bloques al hacer scroll
 
   // Dashboard interactivo (datos de ejemplo)
-  var FX = { role: 'rec', view: 'map', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
+  var FX = { role: 'rec', view: 'home', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
   var FXB = [
     { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', emp: 'Velas del Norte', cat: 'Náutica', date: '2026-04-12', pax: 8, com: 180, st: 'held', by: 1 },
     { id: 'FV-9M4T', cli: 'S. Rossi', svc: 'Catamarán privado · día completo', emp: 'Cala d’Or Charters', cat: 'Náutica', date: '2026-04-19', pax: 6, com: 156, st: 'pend', by: 0 },
@@ -1742,6 +1759,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   };
   var FXCOL = { 'Náutica': '#2B6CA8', 'Traslados': '#2B6CA8', 'Ciclismo': '#2B6CA8', 'Eventos': '#2B6CA8', 'Alquiler': '#2B6CA8' };
   var ICON = {
+    set: '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+    acc: '<circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/>',
     res: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
     ag: '<path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
     rep: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
@@ -1763,6 +1782,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fxPill(k) {
     var p = FXST[k], l = k === 'pend' ? '<span class="full-l">' + T(p.l) + '</span><span class="full-s">' + T('Pendiente') + '</span>' : T(p.l);
     return '<span class="fx-pill" style="background: ' + p.bg + '; color: ' + p.fg + '; border-color: ' + p.bd + '">' + l + '</span>';
+  }
+  function fxHome() {
+    // Resumen como el del panel del inicio: cifras de comisión y últimas reservas
+    var kpis = [['Comisión retenida', money(1430)], ['Liberada este mes', money(3860)], ['Reservas', String(FXB.length)]].map(function (k) {
+      return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b></div>';
+    }).join('');
+    return '<div class="fx-bar"><span class="fx-title">' + T('Buenos días, recepción') + '</span><button type="button" class="fx-btn" data-act="fxv" data-v="res">' + T('Ver todas las reservas') + '</button></div>'
+      + '<div class="fx-kpis" style="grid-template-columns: repeat(3, minmax(0, 1fr))">' + kpis + '</div>'
+      + '<div class="fx-sub-h">' + T('Últimas reservas') + '</div>'
+      + '<div class="fx-row hx-row fx-head" role="presentation"><span>' + T('Cliente') + '</span><span>' + T('Comisión') + '</span><span>' + T('Estado') + '</span></div>'
+      + FXB.slice(0, 5).map(function (b) { return heroRow(b, b.st); }).join('');
   }
   function fxMap() {
     // El mismo mapa que la sección «Mapa de servicios», con acciones propias para no mover el foco a la otra copia
@@ -1934,10 +1964,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   // Recorrido automático por las vistas mientras nadie toque el dashboard
   var TOUR = { on: !FX_STILL, i: 0, t0: 0, timers: [], visible: false };
   var TOUR_STEPS = [
+    { v: 'home', d: 4500, at: [] },
     { v: 'map', d: 5000, at: [] },
     { v: 'res', d: 6500, at: [[1800, function () { fxOpen({ t: 'res', i: 0 }, true); }], [5200, function () { FX.open = null; fxRender(); }]] },
-    { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] },
-    { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] }
+    { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] },
+    { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] }
   ];
   function fpType(id, key, text, ms) {
     var n = 0, step = Math.max(20, ms / text.length);
@@ -2223,7 +2254,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var pro = FX.role === 'pro';
     var views = pro
       ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
-      : [['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
+      : [['home', 'Inicio', 'Tu resumen: comisiones y últimas reservas.'], ['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
     $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
       return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
@@ -2240,10 +2271,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var n = pro ? (v[0] === 'srv' ? FPS.length : v[0] === 'res' ? FPB.length : v[0] === 'par' ? FPP.length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
       return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && FX.cat == null) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
     }).join('');
-    $('fx-side').innerHTML = side;
+    $('fx-side').innerHTML = side + '<div class="side-foot"><span class="hx-li">' + fxSvg('set') + T('Ajustes') + '</span><span class="hx-li">' + fxSvg('acc') + T('Cuenta') + '</span></div>';
     $('fx-main').innerHTML = pro
       ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'par' ? fpPar() : fpRep())
-      : (FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'rep' ? fxRep() : fxChat());
+      : (FX.view === 'home' ? fxHome() : FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'rep' ? fxRep() : fxChat());
     FX.fresh = null;
     fxDrawer();
     if (FX.view === 'msg') fxScrollMsgs();
@@ -2409,7 +2440,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     [2900, function () { var p = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (p) cursorTo(p, true); }],
     [3850, function () { LIVE.pin = true; renderLive(); }],
     [5000, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
+    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(3, 'msg'); }],
     [6500, function () { LIVE.chat = 1; renderLive(); }],
     [7100, function () { LIVE.typing = true; renderLive(); }],
     [8300, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
@@ -2432,9 +2463,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
-      cursorTo(navBtn(3), true);
+      cursorTo(navBtn(4), true);
     }],
-    [24700, function () { S.nav = 3; renderNav(); }],
+    [24700, function () { S.nav = 4; renderNav(); }],
     [28000, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
