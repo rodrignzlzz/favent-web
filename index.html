@@ -538,6 +538,27 @@ html{scroll-padding-top:84px}
 .motion-btn[aria-pressed="true"] .i-play{display:block}
 html:not(.cine) .motion-btn{display:none}
 @media (max-width: 640px){.motion-btn{right:16px;bottom:12px}}
+/* Panel interactivo: vista «Buscar servicios» con el mapa */
+.fx-mapv{padding:16px 20px 20px;display:flex;flex-direction:column;gap:12px}
+.fx-mapchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.fx-mapchips::-webkit-scrollbar{display:none}
+.fx-mapchips button{flex:0 0 auto;height:36px !important;padding:0 12px 0 6px !important;font-size:13px !important}
+.fx-mapchips button > span:first-child{width:24px !important;height:24px !important}
+.fx-mapgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:12px;align-items:start}
+.fx-mapbox{position:relative;aspect-ratio:600 / 473;background:#EAF2F8;border-radius:16px;overflow:hidden}
+.fx-mapbox>svg{position:absolute;inset:0;width:100%;height:100%}
+.fx-mapbox .fv-pin{height:26px !important;padding:0 8px !important;font-size:11px !important}
+.fx-mapbox .fv-pin.dot{height:13px !important;width:13px !important;padding:0 !important}
+.fx-maplist{display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;padding-right:2px}
+.fx-maplist .ml{padding:10px 12px !important;border-radius:14px !important;gap:6px !important}
+.fx-mapsel{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border:1px solid #E6E7E3;border-radius:14px;padding:12px 14px}
+.fx-mapbox .pin-pop.fx-pop{position:absolute !important;top:10px !important;right:10px !important;left:auto !important;bottom:auto !important;width:230px !important;display:block !important;z-index:6 !important;box-shadow:0 18px 40px rgba(30,34,38,.18) !important}
+.fx-mapbox .fx-pop .pp-ph{height:96px;min-height:0}
+.fx-mapbox .fx-pop .pp-ph span{display:inline}
+.fx-mapbox .fx-pop .pp-b{padding:10px 12px 12px;gap:4px}
+.fx-mapbox .fx-pop .pp-d{display:none}
+@media (max-width: 860px){.fx-mapgrid{grid-template-columns:1fr}.fx-maplist{display:none}.fx-mapv{padding:12px 14px 14px}}
+@media (max-width: 520px){.fx-mapbox .pin-pop.fx-pop{width:180px !important}.fx-mapbox .fx-pop .pp-ph{height:70px}}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -611,8 +632,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
           <div class="hx-side">
             <div class="fx-ws"><i>HM</i>Hotel Miramar</div>
             <div id="app-nav" style="display: flex; flex-direction: column; gap: 2px"></div>
-            <div class="fx-sec">Listas</div>
-            <div id="hx-lists" style="display: flex; flex-direction: column; gap: 2px"></div>
           </div>
           <div class="hx-main">
             <div class="hx-content" id="hx-content">
@@ -1083,6 +1102,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Buscar servicios': 'Find services',
+    'Encuentra servicios y compara.': 'Find and compare services.',
     'Acuerdo': 'Agreement',
     'Las dos empresas pactan la comisión.': 'Both businesses agree on the commission.',
     'Reserva y señal': 'Booking and deposit',
@@ -1383,7 +1404,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     });
   })();
 
-  var NAV = [['home', 'Inicio'], ['map', 'Mapa'], ['res', 'Reservas'], ['ag', 'Acuerdos'], ['rep', 'Informes'], ['msg', 'Mensajes']];
+  var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['rep', 'Informes'], ['msg', 'Mensajes']];
   var STEPS = [
     { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan la comisión.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal igual a la comisión, que queda retenida, y las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
@@ -1500,9 +1521,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       return '<button type="button" data-act="nav" data-v="' + i + '" aria-pressed="' + (i === S.nav) + '">' + fxSvg(n[0]) + T(n[1]) + '</button>';
     }).join('');
     $('hx-crumb').textContent = T(NAV[S.nav][1]);
-    $('hx-lists').innerHTML = ['Náutica', 'Traslados', 'Ciclismo', 'Eventos', 'Alquiler'].map(function (c) {
-      return '<span class="hx-li"><span class="fx-dot" style="background: ' + FXCOL[c] + '"></span>' + T(c) + '<em>' + FXB.filter(function (b) { return b.cat === c; }).length + '</em></span>';
-    }).join('');
   }
   function renderSteps() {
     var f = document.activeElement, fi = f && f.closest && f.closest('#steps') ? f.getAttribute('data-v') : null;
@@ -1633,13 +1651,16 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'motion') { motionPause(!NET.paused); }
     if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) routeGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
-    if (act === 'type') {
+    if (act === 'type' || act === 'fxtype') {
       S.mtype = v; S.popup = false; S.mapPink = true;
       if (!visible(SVCS[S.pin])) { for (var k = 0; k < SVCS.length; k++) if (visible(SVCS[k])) { S.pin = k; break; } }
       renderMap();
+      if (FX.view === 'map') fxRender();
     }
+    if (act === 'fxpin') { S.pin = +v; S.popup = true; S.mapPink = true; renderMap(); fxRender(); var fpx = document.querySelector('.fx-pop .pp-x'); if (fpx) fpx.focus({ preventScroll: true }); }
+    if (act === 'fxpopclose') { S.popup = false; renderMap(); fxRender(); }
     if (act === 'pin') {
-      S.pin = +v; S.popup = true; S.mapPink = true; renderMap();
+      S.pin = +v; S.popup = true; S.mapPink = true; renderMap(); if (FX.view === 'map') fxRender();
       // renderMap() rehace pins y lista: devolver el foco para no perderlo
       var px = document.querySelector('#pin-pop:not([hidden]) .pp-x');
       var nb = b.classList.contains('fv-pin') ? px : document.querySelector('.' + b.classList[0] + '[data-act="pin"][data-v="' + v + '"]');
@@ -1691,7 +1712,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   // Aparición suave de los bloques al hacer scroll
 
   // Dashboard interactivo (datos de ejemplo)
-  var FX = { role: 'rec', view: 'res', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
+  var FX = { role: 'rec', view: 'map', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
   var FXB = [
     { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', emp: 'Velas del Norte', cat: 'Náutica', date: '2026-04-12', pax: 8, com: 180, st: 'held', by: 1 },
     { id: 'FV-9M4T', cli: 'S. Rossi', svc: 'Catamarán privado · día completo', emp: 'Cala d’Or Charters', cat: 'Náutica', date: '2026-04-19', pax: 6, com: 156, st: 'pend', by: 0 },
@@ -1742,6 +1763,21 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fxPill(k) {
     var p = FXST[k], l = k === 'pend' ? '<span class="full-l">' + T(p.l) + '</span><span class="full-s">' + T('Pendiente') + '</span>' : T(p.l);
     return '<span class="fx-pill" style="background: ' + p.bg + '; color: ' + p.fg + '; border-color: ' + p.bd + '">' + l + '</span>';
+  }
+  function fxMap() {
+    // El mismo mapa que la sección «Mapa de servicios», con acciones propias para no mover el foco a la otra copia
+    var en = S.lang === 'en', sel = SVCS[S.pin], n = SVCS.filter(visible).length;
+    var chips = $('chips').innerHTML.replace(/data-act="type"/g, 'data-act="fxtype"');
+    var pins = $('pins').innerHTML.replace(/data-act="pin"/g, 'data-act="fxpin"');
+    var list = $('map-list').innerHTML.replace(/data-act="pin"/g, 'data-act="fxpin"');
+    var pop = S.popup && visible(sel) ? '<div class="pin-pop fx-pop" role="dialog" aria-label="' + esc(sel.name) + '">' + popHtml(sel).replace('data-act="popclose"', 'data-act="fxpopclose"') + '</div>' : '';
+    return '<div class="fx-bar"><span class="fx-title">' + T('Buscar servicios') + '</span><span style="font-size: 13px; color: #656B71">' + n + ' ' + (en ? 'sample services' : 'servicios de ejemplo') + '</span></div>'
+      + '<div class="fx-mapv"><div class="fx-mapchips" role="group" aria-label="' + T('Categorías') + '">' + chips + '</div>'
+      + '<div class="fx-mapgrid"><div class="fx-mapbox"><svg viewBox="0 0 600 473" aria-hidden="true">' + document.querySelector('#map svg').innerHTML + '</svg>' + pins + pop
+      + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
+      + '<div class="fx-maplist">' + list + '</div></div>'
+      + '<div class="fx-mapsel"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sel.name + '</span><span style="font-size: 13px; color: #656B71">' + T(sel.svc) + ' · ' + sel.place + '</span></div>'
+      + '<span style="font-size: 12px; font-weight: 600; white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: ' + (S.mapPink ? '#FFE0EE' : '#D3E6F4') + '; color: ' + (S.mapPink ? '#9D0F4E' : '#0B2A4A') + '">' + T('Comisión') + ' ' + comm(sel) + '</span></div></div>';
   }
   function fxSvg(k, size) { return '<svg width="' + (size || 16) + '" height="' + (size || 16) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[k] + '</svg>'; }
   function fxList() {
@@ -1898,6 +1934,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   // Recorrido automático por las vistas mientras nadie toque el dashboard
   var TOUR = { on: !FX_STILL, i: 0, t0: 0, timers: [], visible: false };
   var TOUR_STEPS = [
+    { v: 'map', d: 5000, at: [] },
     { v: 'res', d: 6500, at: [[1800, function () { fxOpen({ t: 'res', i: 0 }, true); }], [5200, function () { FX.open = null; fxRender(); }]] },
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] },
     { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] }
@@ -2186,7 +2223,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var pro = FX.role === 'pro';
     var views = pro
       ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
-      : [['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
+      : [['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
     $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
       return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
@@ -2206,7 +2243,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('fx-side').innerHTML = side;
     $('fx-main').innerHTML = pro
       ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'par' ? fpPar() : fpRep())
-      : (FX.view === 'res' ? fxRes() : FX.view === 'ag' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat());
+      : (FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'rep' ? fxRep() : fxChat());
     FX.fresh = null;
     fxDrawer();
     if (FX.view === 'msg') fxScrollMsgs();
@@ -2372,7 +2409,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     [2900, function () { var p = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (p) cursorTo(p, true); }],
     [3850, function () { LIVE.pin = true; renderLive(); }],
     [5000, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(5, 'msg'); }],
+    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
     [6500, function () { LIVE.chat = 1; renderLive(); }],
     [7100, function () { LIVE.typing = true; renderLive(); }],
     [8300, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
@@ -2395,9 +2432,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
-      cursorTo(navBtn(4), true);
+      cursorTo(navBtn(3), true);
     }],
-    [24700, function () { S.nav = 4; renderNav(); }],
+    [24700, function () { S.nav = 3; renderNav(); }],
     [28000, function () { sceneRun(); }]
   ];
   LIVE.timers = [];

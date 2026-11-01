@@ -404,6 +404,8 @@ Cuatro pasos (Acuerdo, Reserva y señal, Canje, Liberación; antes eran seis, se
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
 ### Map (mapa de servicios)
+El mismo mapa aparece también como vista «Buscar servicios» (la primera) del panel interactivo, en el perfil «Si recomiendas». No es una copia aparte: reutiliza lo que pinta la sección (`fxMap()` toma sus puntos, categorías y lista) y comparte el estado, así que seleccionar en uno se refleja en el otro. El panel animado del inicio usa la misma barra lateral: Inicio, Buscar servicios, Reservas, Informes y Mensajes (sin «Acuerdos», «Socios» ni listas de categorías).
+
 Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`). Al cargar no hay nada en rosa: la categoría y el punto seleccionados por defecto van en azul (`{colors.screen-accent}` / `{colors.screen-accent-deep}`). En cuanto el usuario pulsa una categoría o un punto (`S.mapPink`), el **rosa marca solo lo seleccionado** (en el mapa del panel de ejemplo del inicio, lo que selecciona la animación también va en rosa): la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
 
 ### Footer
