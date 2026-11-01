@@ -32,7 +32,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#F6F6F3;-webkit-font-smoothing:antialiased}
@@ -419,71 +419,61 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 /* ===== Grafito y señal: logotipo, etiquetas y espaciado ===== */
 :root{--signal:#F2551C;--sp:clamp(96px, 11vw, 168px)}
 @media (max-width: 640px){:root{--sp:80px}}
-.logo{display:inline-flex;align-items:center;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;letter-spacing:-0.05em;line-height:1;color:var(--ink)}
+.logo{display:inline-flex;align-items:baseline;text-decoration:none;font-family:'Newsreader',serif;font-size:29px;font-weight:500;letter-spacing:-0.02em;line-height:1;color:var(--ink)}
 .logo:hover{color:var(--ink)}
-.logo-cur{display:inline-block;width:.52em;height:.9em;margin-left:.1em;background:var(--signal)}
-.logo-sm{font-size:17px}
-.cine .topnav .logo-cur{animation:blink 1.06s steps(1) 4 both}
-@keyframes blink{50%{opacity:0}}
+.logo-cur{display:inline-block;width:.19em;height:.19em;margin-left:.05em;border-radius:50%;background:var(--signal)}
+.logo-sm{font-size:21px}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;letter-spacing:0;color:var(--ink-2)}
 .eyebrow::before{content:"";width:7px;height:7px;flex-shrink:0;background:var(--signal)}
 .intro > .eyebrow{color:var(--ink-2)}
 .n-badge{font-family:'IBM Plex Mono',monospace;letter-spacing:.06em !important}
 main section > div:first-child{gap:20px}
-/* ===== Día y noche: tokens de tema ===== */
+/* ===== Tokens de tema ===== */
 :root{--bg:#F6F6F3;--ink:#1E2226;--ink-2:#50565C;--ink-3:#656B71;--line:#E6E7E3;--card:#FFFFFF;--eyebrow:#0B2A4A;--chipline:#D5D7D3;--ease-out:cubic-bezier(.23,1,.32,1)}
-.night{--bg:#0C1622;--ink:#EEF2F6;--ink-2:#AEBBC8;--ink-3:#8796A6;--line:#1E2E40;--card:#12202F;--eyebrow:#A9D3F0;--chipline:#2A3B50;background:var(--bg);color:var(--ink)}
-/* Las interfaces de ejemplo son pantallas encendidas: conservan los colores de día */
-.night .screen,.night .fx-win{--ink:#1E2226;--ink-2:#50565C;--ink-3:#656B71;--line:#E6E7E3;--card:#FFFFFF;--eyebrow:#0B2A4A;--chipline:#D5D7D3;--bg:#F6F6F3;color:#1E2226}
-.night .tg-ic{background:#16283D;color:#A9D3F0}
-.night .mark-ft{filter:invert(1)}
-@media (hover: hover){.night .lift:hover{box-shadow:0 24px 50px rgba(0,0,0,.45)}}
 body > div:first-of-type{overflow-x:clip}
-/* ===== Escena: el día de una reserva ===== */
-.scene{position:relative;background:#0C1622}
-.scene-pin{position:relative;overflow:hidden;background:#0C1622;color:#F4F6FB;--s-card:#13233A;--s-line:#24364C;--s-ink:#F4F6FB;--s-ink2:#AEBBC8;--s-acc:#A9D3F0;--s-on-bg:#FFFFFF;--s-on-ink:#1E2226}
-.scene-pin:not(.is-dark){color:#1E2226;--s-card:#FFFFFF;--s-line:#D5D7D3;--s-ink:#1E2226;--s-ink2:#50565C;--s-acc:#0B2A4A;--s-on-bg:#1E2226;--s-on-ink:#FFFFFF}
-.scene-sky{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.sc-stars circle{fill:#E6F1FA}
-.sc-sun{fill:var(--signal)}
-.sc-moon{fill:#E6F1FA}
-.sc-far{fill:#16283D}
-.sc-ridge{fill:#0F1C2A}
-.scene-in{position:relative;max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:40px}
-.scene-head{display:flex;flex-direction:column;gap:14px}
-.scene-eyebrow{font-size:14px;font-weight:600;color:var(--s-ink)}
-.scene-h2{margin:0;font-family:'IBM Plex Sans',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:500;letter-spacing:-.035em;line-height:1.05;max-width:700px}
-.scene-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
-.step{text-align:left;border:1px solid var(--s-line);background:var(--s-card);color:var(--s-ink);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+/* ===== Texto que se revela palabra a palabra con el scroll ===== */
+.reveal-sec{max-width:1200px;margin:0 auto;padding:calc(var(--sp) * .6) 24px 0}
+.reveal{margin:0;max-width:980px;font-size:clamp(28px,4vw,48px);line-height:1.2;font-weight:500;letter-spacing:-0.03em;color:var(--ink)}
+#reveal-words span{color:#7C8288;transition:color 240ms ease}
+#reveal-words span.on,#reveal-words.all span{color:var(--ink)}
+/* ===== Línea de recorrido: une los seis pasos y se dibuja con el scroll ===== */
+.route-in{max-width:1200px;margin:0 auto;padding:var(--sp) 24px;display:flex;flex-direction:column;gap:56px}
+.route-head{display:flex;flex-direction:column;gap:20px}
+.route-track{position:relative}
+.route-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.route-line{position:absolute;left:calc(100% / 12);right:calc(100% / 12);top:7px;height:2px;background:var(--chipline)}
+.route-line i{position:absolute;inset:0;background:var(--signal);transform-origin:left center}
+.step{position:relative;border:0;background:none;padding:40px 4px 0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;color:var(--ink);border-radius:12px}
+.step::before{content:"";position:absolute;top:0;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--bg);border:2px solid var(--chipline);transition:background-color 200ms ease,border-color 200ms ease,transform 200ms var(--ease-out)}
+.step.done::before{background:var(--signal);border-color:var(--signal)}
+.step[aria-pressed="true"]::before{transform:scale(1.3)}
 .step:active{transform:scale(.97)}
-@media (hover: hover){.step:hover{border-color:var(--s-acc)}}
-.step-n{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--s-acc)}
-.step-t{font-family:'IBM Plex Sans',sans-serif;font-size:18px;font-weight:600;letter-spacing:-.02em}
-.step-d{font-size:14px;line-height:1.5;color:var(--s-ink2)}
-.step[aria-pressed="true"]{background:var(--s-on-bg);border-color:var(--s-on-bg);color:var(--s-on-ink)}
-.step[aria-pressed="true"] .step-n,.step[aria-pressed="true"] .step-d{color:inherit}
-.scene-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;background:var(--s-card);border:1px solid var(--s-line);border-radius:20px;padding:20px 24px;color:var(--s-ink)}
-.scene-bar{grid-column:1 / -1;height:3px;border-radius:3px;background:var(--s-line);overflow:hidden}
-.scene-bar i{display:block;height:100%;background:var(--signal);transform-origin:left}
-#step-detail{margin:0;font-size:16px;line-height:1.55;max-width:720px}
-.scene-state{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--s-line);color:var(--s-acc);white-space:nowrap}
+.step-n{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-3)}
+.step-t{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.step-d{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:22ch}
+.step:not(.done) .step-t{color:var(--ink-3)}
+.step-x{display:none}
+@media (hover: hover){.step:hover .step-t{color:var(--ink)}}
+.route-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;border-top:1px solid var(--line);padding-top:28px}
+#step-detail{margin:0;font-size:17px;line-height:1.6;max-width:720px;color:var(--ink)}
+.route-state{font-family:'IBM Plex Mono',monospace;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--chipline);color:var(--eyebrow);white-space:nowrap}
+/* Con movimiento y en escritorio la sección se fija mientras la línea avanza */
+.cine .route{height:240vh}
+.cine .route-pin{position:sticky;top:0;min-height:100vh;min-height:100svh;display:flex;align-items:center}
+.cine .route-in{width:100%;padding-top:64px;padding-bottom:64px}
 @media (max-width: 860px){
-  .scene-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .step{padding:12px 14px;border-radius:16px;gap:4px}
-  .step-d{display:none}
-  .step-t{font-size:15px}
-  .scene-foot{grid-template-columns:1fr;padding:16px 18px}
-  .scene-state{justify-self:start}
+  .route-steps{grid-template-columns:1fr;gap:0}
+  .route-line{left:7px;right:auto;top:9px;width:2px;height:calc(100% - 18px)}
+  .route-line i{transform-origin:center top}
+  .step{align-items:flex-start;text-align:left;padding:0 0 32px 40px}
+  .step:last-child{padding-bottom:0}
+  .step::before{left:0;margin-left:0;top:3px}
+  .step-d,.route-foot{display:none}
+  .step-x{display:block;font-size:15px;line-height:1.55;color:var(--ink-2)}
+  .cine .route{height:auto}
+  .cine .route-pin{position:static;min-height:0;display:block}
+  .cine .route-in{padding-top:var(--sp);padding-bottom:var(--sp)}
 }
-@media (max-width: 640px){.scene-in{padding:64px 24px;gap:24px}}
-/* Con movimiento: la escena se fija y el cielo pasa del día a la noche al hacer scroll */
-.scene-win{position:relative;background:#0C1622;overflow:hidden}
-.cine .scene{height:440vh;background:#F6F6F3}
-.cine .scene-pin{background:#F6F6F3}
-.cine .scene-win{position:absolute;inset:0;display:flex;align-items:center;transform-origin:50% 50%;will-change:transform}
-.cine .scene-pin{position:sticky;top:0;height:100vh;height:100svh}
-.cine .scene-in{width:100%;padding-top:64px;padding-bottom:64px}
-@media (max-width: 640px){.cine .scene-in{padding-top:48px;padding-bottom:32px}}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -610,33 +600,29 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="como" class="scene" aria-label="Cómo funciona">
-    <div class="scene-pin is-dark" id="scene-pin">
-      <div class="scene-win" id="scene-win">
-      <svg class="scene-sky" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-        <g id="sc-stars" class="sc-stars"><circle cx="673" cy="97" r="1.6"></circle><circle cx="108" cy="57" r="0.8"></circle><circle cx="758" cy="318" r="0.8"></circle><circle cx="1049" cy="129" r="0.8"></circle><circle cx="186" cy="242" r="1.6"></circle><circle cx="153" cy="143" r="0.8"></circle><circle cx="1138" cy="237" r="0.8"></circle><circle cx="1168" cy="83" r="1.0"></circle><circle cx="136" cy="315" r="1.6"></circle><circle cx="111" cy="133" r="0.8"></circle><circle cx="1150" cy="88" r="1.2"></circle><circle cx="868" cy="93" r="0.8"></circle><circle cx="1179" cy="177" r="1.0"></circle><circle cx="221" cy="317" r="1.0"></circle><circle cx="772" cy="69" r="0.8"></circle><circle cx="1165" cy="50" r="1.0"></circle><circle cx="1026" cy="292" r="1.6"></circle><circle cx="653" cy="258" r="1.6"></circle><circle cx="750" cy="173" r="1.0"></circle><circle cx="378" cy="144" r="0.8"></circle><circle cx="1186" cy="173" r="1.6"></circle><circle cx="713" cy="249" r="1.2"></circle><circle cx="159" cy="80" r="1.6"></circle><circle cx="347" cy="195" r="1.0"></circle><circle cx="1011" cy="235" r="0.8"></circle><circle cx="168" cy="305" r="1.2"></circle><circle cx="706" cy="199" r="1.6"></circle><circle cx="944" cy="55" r="0.8"></circle><circle cx="562" cy="262" r="0.8"></circle><circle cx="134" cy="178" r="1.6"></circle><circle cx="592" cy="217" r="1.2"></circle><circle cx="56" cy="256" r="1.2"></circle><circle cx="354" cy="79" r="1.6"></circle><circle cx="130" cy="131" r="1.2"></circle><circle cx="274" cy="146" r="1.6"></circle><circle cx="810" cy="274" r="0.8"></circle><circle cx="350" cy="249" r="1.6"></circle><circle cx="1135" cy="162" r="1.0"></circle><circle cx="891" cy="301" r="1.2"></circle><circle cx="860" cy="203" r="1.6"></circle><circle cx="482" cy="97" r="0.8"></circle><circle cx="370" cy="97" r="1.0"></circle><circle cx="487" cy="26" r="1.6"></circle><circle cx="383" cy="154" r="1.2"></circle><circle cx="18" cy="94" r="1.6"></circle><circle cx="1104" cy="209" r="1.2"></circle></g>
-        <circle id="sc-moon" class="sc-moon" cx="1040" cy="150" r="24"></circle>
-        <circle id="sc-sun" class="sc-sun" cx="980" cy="760" r="30"></circle>
-        <path id="sc-far" class="sc-far" d="M0 600 L0 388 L60 377 L120 367 L180 346 L240 337 L300 334 L360 331 L420 336 L480 334 L540 329 L600 312 L660 308 L720 305 L780 320 L840 330 L900 337 L960 363 L1020 377 L1080 384 L1140 391 L1200 390 L1200 600 Z"></path>
-        <path id="sc-ridge" class="sc-ridge" d="M0 600 L0 455 L40 459 L80 447 L120 444 L160 433 L200 403 L240 386 L280 393 L320 363 L360 351 L400 365 L440 349 L480 363 L520 361 L560 377 L600 375 L640 398 L680 411 L720 403 L760 409 L800 405 L840 389 L880 412 L920 415 L960 418 L1000 423 L1040 458 L1080 456 L1120 469 L1160 477 L1200 474 L1200 600 Z"></path>
-      </svg>
-      <div class="scene-in">
-        <div class="scene-head">
-          <span class="eyebrow scene-eyebrow">Cómo funciona</span>
-          <h2 class="scene-h2">Así se mueve una reserva.</h2>
+  <section id="idea" class="reveal-sec" aria-label="La idea">
+    <p class="reveal" id="reveal"><span class="fx-sr" id="reveal-src">Quien recomienda y quien presta el servicio pactan la comisión. El cliente paga una señal al reservar. La comisión se libera sola cuando se presta el servicio.</span><span id="reveal-words" aria-hidden="true"></span></p>
+  </section>
+
+  <section id="como" class="route" aria-label="Cómo funciona">
+    <div class="route-pin">
+      <div class="route-in">
+        <div class="route-head">
+          <span class="eyebrow">Cómo funciona</span>
+          <h2 style="margin: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
         </div>
-        <div class="scene-steps" id="steps"></div>
-        <div class="scene-foot">
-          <span class="scene-bar" aria-hidden="true"><i id="sc-bar"></i></span>
+        <div class="route-track">
+          <span class="route-line" aria-hidden="true"><i id="route-fill"></i></span>
+          <div class="route-steps" id="steps"></div>
+        </div>
+        <div class="route-foot">
           <p id="step-detail" aria-live="polite"></p>
-          <span class="scene-state">Estado: <span id="step-state"></span></span>
+          <span class="route-state">Estado: <span id="step-state"></span></span>
         </div>
-      </div>
       </div>
     </div>
   </section>
 
-  <div class="night">
 
   <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: grid; gap: 16px">
     <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin-bottom: 12px">
@@ -659,9 +645,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         <a href="#acceso" data-perfil="ofrece" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #2B6CA8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
       </div>
     </div>
-    <div style="grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
+    <div style="grid-column: 1 / -1; background: #1E2226; color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
       <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
-        <span class="eyebrow">Entre colegas</span>
+        <span class="eyebrow" style="color: #A9D3F0">Entre colegas</span>
         <h3 style="margin: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B4B8B4; max-width: 520px">¿Ese día ya estás completo? Pasa la reserva, o parte del grupo, a una empresa de confianza y cobra tu comisión. ¿Quieres ayudar a una empresa vecina? Recomiéndala a tus clientes.</p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
@@ -827,7 +813,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         <span style="font-size: 15px; line-height: 1.55; color: var(--ink-2)">Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Lo prometido, cumplido</span></div>
       </div>
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #08111B; color: #F4F4F1; border: 1px solid var(--line); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #1E2226; color: #F4F4F1; border: 1px solid #1E2226; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: #A9D3F0">Quien recomienda</span>
         <h4 style="margin: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Describir bien también cuenta.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Quien explica el servicio tal como es, para que el cliente llegue con las expectativas correctas, y envía más clientes, recibe mejor valoración.</span>
@@ -926,15 +912,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   </section>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow: hidden">
-    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-weight: 500; letter-spacing: -0.07em; line-height: 0.85; font-size: clamp(72px, 19vw, 250px); color: var(--ink)">favent<span style="width: 0.5em; height: 0.72em; align-self: center; background: #F2551C"></span></div>
+    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Newsreader', serif; font-weight: 500; letter-spacing: -0.035em; line-height: 0.9; font-size: clamp(96px, 23vw, 320px); color: var(--ink)">favent<span style="width: 0.15em; height: 0.15em; border-radius: 50%; background: #F2551C; transform: translateY(-0.05em)"></span></div>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: var(--ink-2)"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
-  </div>
-
   </div>
 
   </main>
 
-  <footer class="night" style="border-top: 1px solid var(--line)">
+  <footer style="border-top: 1px solid var(--line)">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-3)">
       <span class="logo logo-sm">favent<span class="logo-cur" aria-hidden="true"></span></span>
       <!-- Oculto hasta que existan privacidad.html, condiciones.html y un email de contacto: rellenar los href y quitar «hidden» -->
@@ -1066,6 +1050,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Quien recomienda y quien presta el servicio pactan la comisión. El cliente paga una señal al reservar. La comisión se libera sola cuando se presta el servicio.': 'Whoever refers and whoever delivers the service agree on the commission. The client pays a deposit when booking. The commission is released automatically once the service is delivered.',
+    'La idea': 'The idea',
     'Para quién es': 'Who it’s for',
     'Para quien recomienda y para quien presta el servicio.': 'For those who refer clients and those who deliver the service.',
     'Estado:': 'Status:',
@@ -1474,12 +1460,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function renderSteps() {
     var f = document.activeElement, fi = f && f.closest && f.closest('#steps') ? f.getAttribute('data-v') : null;
     $('steps').innerHTML = STEPS.map(function (s, i) {
-      return '<button type="button" class="step" data-act="step" data-v="' + i + '" aria-pressed="' + (i === S.step) + '">'
-        + '<span class="step-n">' + s.n + '</span><span class="step-t">' + T(s.t) + '</span><span class="step-d">' + T(s.d) + '</span></button>';
+      var done = i <= (ROUTE ? ROUTE.reached : 5);
+      return '<button type="button" class="step' + (done ? ' done' : '') + '" data-act="step" data-v="' + i + '" aria-pressed="' + (i === S.step) + '">'
+        + '<span class="step-n">' + s.n + '</span><span class="step-t">' + T(s.t) + '</span><span class="step-d">' + T(s.d) + '</span><span class="step-x">' + T(s.x) + '</span></button>';
     }).join('');
     $('step-detail').textContent = T(STEPS[S.step].x);
     $('step-state').textContent = T(STEPS[S.step].e);
     if (fi !== null) document.querySelector('#steps [data-v="' + fi + '"]').focus({ preventScroll: true });
+    if (ROUTE) routeLayout();
   }
   function pill(act, v, label, on) {
     return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + (on ? A.accent : '#D5D7D3') + '; background: ' + (on ? A.soft : '#FFFFFF') + '; color: ' + (on ? A.text : '#1E2226') + '; font-family: \'IBM Plex Sans\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">' + T(label) + '</button>';
@@ -1581,6 +1569,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     });
     try { localStorage.setItem('favent-lang', S.lang); } catch (e) {}
     renderNav(); renderSteps(); renderMap(); renderTeam(); renderTrust();
+    if (RV) revealBuild();
     if (LIVE) renderLive();
     if (FX) fxRender();
     if (PS) fitPanel();
@@ -1593,7 +1582,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
     if (act === 'demopause') { demoPause(!LIVE.paused); }
-    if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) sceneGo(+v); }
+    if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) routeGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
       S.mtype = v; S.popup = false;
@@ -1681,7 +1670,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     redeemed: { l: 'Canjeada', bg: '#FFFFFF', fg: '#0B2A4A', bd: '#2B6CA8', step: 3 },
     released: { l: 'Liberada', bg: '#2B6CA8', fg: '#FFFFFF', bd: '#2B6CA8', step: 4 }
   };
-  var FXCOL = { 'Náutica': '#2B6CA8', 'Traslados': '#1E2226', 'Ciclismo': '#D9480F', 'Eventos': '#0B2A4A', 'Alquiler': '#656B71' };
+  var FXCOL = { 'Náutica': '#2B6CA8', 'Traslados': '#1E2226', 'Ciclismo': '#C2410C', 'Eventos': '#0B2A4A', 'Alquiler': '#656B71' };
   var ICON = {
     res: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
     ag: '<path d="M8 12l3 3 5-6"/><rect x="3" y="4" width="18" height="16" rx="3"/>',
@@ -2424,61 +2413,62 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   window.addEventListener('resize', function () { fitPanel(); if (S.popup) renderPop(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
 
-  // Día y noche: escena fijada «Así se mueve una reserva», panel en 3D y botones magnéticos
+  // Scroll: línea de recorrido en «Así se mueve una reserva», texto que se revela, panel en 3D y botones magnéticos
   var CINE = { on: !matchMedia('(prefers-reduced-motion: reduce)').matches, raf: 0 };
-  var SKY = [[0, [220, 238, 250]], [0.3, [169, 211, 240]], [0.48, [43, 108, 168]], [0.66, [11, 42, 74]], [1, [12, 22, 34]]];
-  var FAR = [[0, [196, 220, 236]], [0.48, [52, 92, 132]], [1, [22, 40, 61]]];
-  var NEAR = [[0, [160, 192, 216]], [0.48, [30, 64, 98]], [1, [15, 28, 42]]];
-  var SCN = { sec: $('como'), pin: $('scene-pin'), win: $('scene-win'), sun: $('sc-sun'), moon: $('sc-moon'), stars: $('sc-stars'), far: $('sc-far'), ridge: $('sc-ridge'), bar: $('sc-bar') };
+  var ROUTE = { sec: $('como'), fill: $('route-fill'), line: document.querySelector('.route-line'), reached: 5 };
+  var RV = { el: $('reveal'), src: $('reveal-src'), out: $('reveal-words'), words: [], n: -1 };
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-  function mixStops(st, t) {
-    for (var k = 1; k < st.length; k++) if (t <= st[k][0]) {
-      var a = st[k - 1], b = st[k], u = (t - a[0]) / (b[0] - a[0]);
-      return a[1].map(function (c, n) { return Math.round(c + (b[1][n] - c) * u); });
-    }
-    return st[st.length - 1][1];
+  function routeNarrow() { return innerWidth <= 860; }
+  function routeLayout() {
+    // En móvil la línea es vertical y va del primer punto al último
+    var st = document.querySelectorAll('#steps .step');
+    if (routeNarrow() && st.length) {
+      var a = st[0].offsetTop, b = st[st.length - 1].offsetTop;
+      ROUTE.line.style.top = (a + 11) + 'px'; ROUTE.line.style.height = (b - a) + 'px';
+    } else { ROUTE.line.style.top = ''; ROUTE.line.style.height = ''; }
   }
-  function relLum(c) { return c.reduce(function (L, v, n) { v /= 255; v = v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); return L + v * [0.2126, 0.7152, 0.0722][n]; }, 0); }
-  function sceneTotal() { return SCN.sec.offsetHeight - innerHeight; }
+  function routeProgress() {
+    if (routeNarrow()) { var t = $('steps').getBoundingClientRect(); return clamp01((innerHeight * 0.62 - t.top) / t.height); }
+    var total = ROUTE.sec.offsetHeight - innerHeight;
+    return total > 0 ? clamp01((-ROUTE.sec.getBoundingClientRect().top / total - 0.06) / 0.86) : 1;
+  }
+  function routeGo(i) {
+    if (routeNarrow()) return;
+    var top = ROUTE.sec.getBoundingClientRect().top + scrollY + (0.06 + 0.86 * i / 5) * (ROUTE.sec.offsetHeight - innerHeight);
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  function revealBuild() {
+    RV.out.textContent = '';
+    RV.src.textContent.trim().split(/\s+/).forEach(function (w, k) {
+      if (k) RV.out.appendChild(document.createTextNode(' '));
+      var sp = document.createElement('span'); sp.textContent = w; RV.out.appendChild(sp);
+    });
+    RV.words = RV.out.children; RV.n = -1;
+    RV.out.classList.toggle('all', !CINE.on);
+    revealDraw();
+  }
+  function revealDraw() {
+    if (!CINE.on || !RV.words.length) return;
+    var r = RV.el.getBoundingClientRect(), f = clamp01((innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35));
+    var n = Math.round(f * RV.words.length);
+    if (n === RV.n) return;
+    for (var k = 0; k < RV.words.length; k++) RV.words[k].classList.toggle('on', k < n);
+    RV.n = n;
+  }
   function sceneDraw() {
     CINE.raf = 0;
-    var total = sceneTotal(), p = total > 0 ? clamp01(-SCN.sec.getBoundingClientRect().top / total) : 1;
-    var g = easeOut(clamp01(p / 0.22)), sky = mixStops(SKY, p), narrow = innerWidth < 768;
-    // La ventana se abre: de tarjeta sobre la página de día a pantalla completa
-    SCN.win.style.transform = 'scale(' + (0.8 + 0.2 * g).toFixed(4) + ')';
-    SCN.win.style.borderRadius = (28 * (1 - g)).toFixed(1) + 'px';
-    SCN.win.style.backgroundColor = 'rgb(' + sky + ')';
-    // El texto cambia de tinta donde el cielo cruza la luminancia en la que ambas tintas pasan 4.5:1
-    SCN.pin.classList.toggle('is-dark', relLum(sky) < 0.18);
-    // Profundidad: las dos capas de montaña suben a distinta velocidad mientras se abre la ventana
-    SCN.far.style.transform = 'translateY(' + ((1 - g) * 30 - p * 14).toFixed(1) + 'px)';
-    SCN.ridge.style.transform = 'translateY(' + ((1 - g) * 96).toFixed(1) + 'px)';
-    SCN.far.style.fill = 'rgb(' + mixStops(FAR, p) + ')';
-    SCN.ridge.style.fill = 'rgb(' + mixStops(NEAR, p) + ')';
-    // El sol se pone tras la Tramuntana y sale la luna
-    var ss = clamp01((p - 0.15) / 0.45), mm = clamp01((p - 0.6) / 0.35);
-    // En móvil el titular ocupa todo el ancho: el sol cruza la franja superior y sale por la derecha
-    SCN.sun.setAttribute('cx', (narrow ? 560 + ss * 220 : 860 + ss * 120).toFixed(1));
-    SCN.sun.setAttribute('cy', (narrow ? 40 + ss * 30 : 130 + ss * 420).toFixed(1));
-    SCN.sun.setAttribute('r', narrow ? 16 : 30);
-    SCN.moon.setAttribute('cx', (narrow ? 760 - mm * 150 : 1040).toFixed(1));
-    SCN.moon.setAttribute('cy', (narrow ? 70 - mm * 26 : 540 - mm * 390).toFixed(1));
-    SCN.moon.setAttribute('r', narrow ? 13 : 24);
-    SCN.stars.style.opacity = clamp01((p - 0.58) / 0.25);
-    SCN.bar.style.transform = 'scaleX(' + p.toFixed(3) + ')';
-    var st = Math.min(5, Math.floor(clamp01((p - 0.12) / 0.84) * 6));
-    if (st !== S.step) { S.step = st; renderSteps(); }
+    var f = routeProgress();
+    ROUTE.fill.style.transform = (routeNarrow() ? 'scaleY(' : 'scaleX(') + f.toFixed(4) + ')';
+    var reached = Math.min(5, Math.floor(f * 5 + 0.001));
+    if (reached !== ROUTE.reached) { ROUTE.reached = reached; S.step = reached; renderSteps(); }
+    revealDraw();
     var r = PS.sec.getBoundingClientRect();
     if (r.bottom > 0 && r.top < innerHeight) {
       var t = clamp01(1 - (r.top - 60) / (innerHeight * 0.75));
       PS.wrap.style.transform = 'perspective(1600px) rotateX(' + ((1 - t) * 12).toFixed(2) + 'deg) scale(' + (0.95 + t * 0.05).toFixed(3) + ')';
     }
   }
-  function sceneGo(i) {
-    var top = SCN.sec.getBoundingClientRect().top + scrollY + (0.12 + (i + 0.5) / 6 * 0.84) * sceneTotal();
-    window.scrollTo({ top: top, behavior: 'smooth' });
-  }
+  addEventListener('resize', routeLayout);
   if (CINE.on) {
     document.documentElement.classList.add('cine');
     document.querySelectorAll('.intro > *').forEach(function (el, k) { el.style.setProperty('--i', k); });
@@ -2486,6 +2476,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var onScroll = function () { if (!CINE.raf) CINE.raf = requestAnimationFrame(sceneDraw); };
     addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', onScroll);
+    ROUTE.reached = -1;
     sceneDraw();
     if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
       document.querySelectorAll('[data-mag]').forEach(function (b) {
