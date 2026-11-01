@@ -16,29 +16,37 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 - GitHub Pages no permite backend ni pagos: los formularios deben enviar a un servicio externo (Formspree, Supabase, etc.).
 
 ## Marca
-- Nombre: siempre **favent** en minúscula en el logotipo (con un punto azul al final), "Favent" en el texto.
-- Etiqueta secundaria: **B2B SERVICE**.
-- Símbolo (provisional): monograma "fv" negro con punto azul, en `img/logo-mark.png` (transparente). Favicon e iconos en `img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`. Se usa junto al logotipo en la cabecera y el pie.
-- Colores:
-  - Acento (azul suave): `#3F6FD8`
-  - Texto sobre acento: `#FFFFFF`
-  - Acento texto oscuro: `#274586`
-  - Tinte de fondo: `#E7ECF5`
-  - Suave: `#D8E1F2`
-  - Brillante (sobre fondo oscuro): `#8CA9E8`
-  - Negro: `#0F1110`
-  - Fondo: `#FAFAF8`
-  - Grises de texto: `#4C504D`, `#6A6E6B`; líneas: `#ECEDE9`, `#DADBD6`
-- Tipografías (Google Fonts): **Inter Tight** (titulares, 600–700, tracking negativo), **Inter** (texto), **DM Mono** (códigos, importes, estados).
+Sistema «Grafito y señal» (noviembre de 2026): grafito, blanco hueso frío, azul cielo y un toque de naranja señal.
+
+- Nombre: siempre **favent** en minúscula en el logotipo, "Favent" en el texto.
+- Logotipo: «favent» en **IBM Plex Mono** 500 (tracking −0,05 em) seguido de un bloque naranja tipo cursor (`.logo` + `.logo-cur`, en HTML y CSS, no en imagen). Al cargar, el cursor parpadea cuatro veces. En el pie va en pequeño y como palabra gigante al final de la página.
+- Etiqueta secundaria: **B2B SERVICE** (en mono).
+- Símbolo antiguo: el monograma «fv» de `img/logo-mark.png` ya no se usa en la web. Los favicons e iconos (`img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`) y la imagen social `img/og-image.png` aún son los antiguos y hay que rehacerlos con el logotipo nuevo.
+- Colores (día):
+  - Fondo (blanco hueso): `#F6F6F3` · Tarjetas: `#FFFFFF`
+  - Tinta (grafito): `#1E2226` · Texto secundario: `#50565C` · Terciario: `#656B71`
+  - Líneas: `#E6E7E3`, `#D5D7D3`
+  - Acento azul: `#2B6CA8` (rellenos, barras, estados; texto blanco encima) · Azul profundo: `#0B2A4A` (texto de acento)
+  - Cielo: `#A9D3F0` (sobre fondo oscuro) · Tinte: `#EAF2F8` · Suave: `#D3E6F4`
+  - Naranja señal: `#F2551C` (`--signal`). Solo como acento: cursor del logotipo, viñeta de las etiquetas, sol de la escena, barra de progreso. Nunca en texto pequeño: sobre blanco hueso no llega a 4.5:1. Para un punto del mapa sobre blanco se usa `#D9480F`.
 - Noche (zona inferior de la web, desde «Así se mueve una reserva»):
-  - Fondo: `#0A0F1A` · Tarjetas: `#10172A` · Líneas: `#1C2538`
-  - Texto: `#EEF2F8`, secundario `#B3BDCF`, terciario `#8E9AB0` · Etiquetas: `#8CA9E8`
+  - Fondo: `#0C1622` · Tarjetas: `#12202F` · Líneas: `#1E2E40`
+  - Texto: `#EEF2F6`, secundario `#AEBBC8`, terciario `#8796A6` · Etiquetas: `#A9D3F0`
   - Los colores van como variables CSS (`--bg`, `--ink`, `--ink-2`, `--ink-3`, `--line`, `--card`, `--eyebrow`, `--chipline`) en `:root` (día) y `.night` (noche). Las interfaces de ejemplo (`.screen`, `.fx-win`) son «pantallas encendidas» y mantienen los colores de día dentro de la noche.
-- Concepto «del día a la noche»: la página empieza de día y la escena fijada «Así se mueve una reserva» recorre el día de una reserva al hacer scroll (cielo de `#FAFAF8` a `#E7ECF5`, azul `#3F6FD8` al atardecer y `#0A0F1A` de noche). El punto azul del logotipo hace de sol y de noche pasa a luna; detrás, la silueta de la Serra de Tramuntana. El texto de la escena cambia de tinta cuando la luminancia del cielo baja de 0,18, para mantener 4.5:1 con ambas tintas.
-- Estilo: minimalista, serio y social a la vez; un solo color de acento, esquinas redondeadas (tarjetas 20–32 px, botones y etiquetas en forma de cápsula), sombras suaves, sin degradados de color visibles ni emojis.
+- Tipografías (Google Fonts): **IBM Plex Sans** (titulares 500 con tracking −0,035 em; texto 400) e **IBM Plex Mono** (logotipo, etiquetas, códigos, importes, estados).
+- Etiquetas de sección: `.eyebrow`, en mono 13 px, con un cuadrado naranja de 7 px delante. En minúsculas, nunca en mayúsculas.
+- Transición «ventana que se abre»: en la escena fijada «Así se mueve una reserva», el cielo empieza como una tarjeta (escala 0,8 y esquinas de 28 px) sobre la página de día y se abre a pantalla completa en el primer 22 % del recorrido. Después pasa del día a la noche (`#DCEEFA` → `#A9D3F0` → `#2B6CA8` → `#0B2A4A` → `#0C1622`). Dos capas de la Serra de Tramuntana suben a distinta velocidad para dar profundidad, el sol naranja se pone tras las montañas, sale la luna y aparecen las estrellas. El texto cambia de tinta cuando la luminancia del cielo baja de 0,18, para mantener 4.5:1 con ambas tintas. En móvil, el sol y la luna van por la franja superior para no cruzar el titular.
+- Estilo: minimalista y técnico; mucho aire entre secciones (`--sp`: de 96 a 168 px en escritorio, 80 px en móvil), un solo acento de color y el naranja como señal, esquinas redondeadas (tarjetas 20–32 px, botones en forma de cápsula), sombras suaves, sin degradados de color visibles ni emojis.
 - Texturas: grano muy suave en toda la página (`body::after`, SVG `feTurbulence`) y retícula de 56 px detrás del titular. Siempre sutiles; nunca por encima de la legibilidad.
-- Movimiento: pocas escenas y bien orquestadas: entrada del titular al cargar, panel inicial que pasa de inclinado en 3D a plano al hacer scroll, la escena del día y botones magnéticos (solo con ratón). Curva `cubic-bezier(.23,1,.32,1)`, animar solo `transform` y `opacity`, sin apariciones al hacer scroll en cada sección. Con `prefers-reduced-motion` no se fija nada y la escena se muestra estática de noche.
-- Referencias de estilo: Attio, Mercury, Stripe, Qonto, Webflow.
+- Movimiento: pocas escenas y bien orquestadas:
+  - entrada del titular por líneas al cargar;
+  - parpadeo del cursor del logotipo;
+  - panel inicial que pasa de inclinado en 3D a plano al hacer scroll;
+  - la escena de la ventana;
+  - botones magnéticos (solo con ratón).
+
+  Curva `cubic-bezier(.23,1,.32,1)`, animar solo `transform` y `opacity`, sin apariciones al hacer scroll en cada sección. Con `prefers-reduced-motion` no se fija nada y la escena se muestra estática de noche.
+- Referencias de estilo: Linear, Vercel, Stripe, Mercury, Attio.
 
 ## Textos y tono
 - Idioma principal: **español**. Directo, profesional, cercano.
