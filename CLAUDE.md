@@ -30,7 +30,14 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
   - Fondo: `#FAFAF8`
   - Grises de texto: `#4C504D`, `#6A6E6B`; líneas: `#ECEDE9`, `#DADBD6`
 - Tipografías (Google Fonts): **Inter Tight** (titulares, 600–700, tracking negativo), **Inter** (texto), **DM Mono** (códigos, importes, estados).
-- Estilo: minimalista, serio y social a la vez; mucho blanco, un solo color de acento, esquinas redondeadas (tarjetas 20–32 px, botones y etiquetas en forma de cápsula), sombras suaves, sin degradados ni emojis.
+- Noche (zona inferior de la web, desde «Así se mueve una reserva»):
+  - Fondo: `#0A0F1A` · Tarjetas: `#10172A` · Líneas: `#1C2538`
+  - Texto: `#EEF2F8`, secundario `#B3BDCF`, terciario `#8E9AB0` · Etiquetas: `#8CA9E8`
+  - Los colores van como variables CSS (`--bg`, `--ink`, `--ink-2`, `--ink-3`, `--line`, `--card`, `--eyebrow`, `--chipline`) en `:root` (día) y `.night` (noche). Las interfaces de ejemplo (`.screen`, `.fx-win`) son «pantallas encendidas» y mantienen los colores de día dentro de la noche.
+- Concepto «del día a la noche»: la página empieza de día y la escena fijada «Así se mueve una reserva» recorre el día de una reserva al hacer scroll (cielo de `#FAFAF8` a `#E7ECF5`, azul `#3F6FD8` al atardecer y `#0A0F1A` de noche). El punto azul del logotipo hace de sol y de noche pasa a luna; detrás, la silueta de la Serra de Tramuntana. El texto de la escena cambia de tinta cuando la luminancia del cielo baja de 0,18, para mantener 4.5:1 con ambas tintas.
+- Estilo: minimalista, serio y social a la vez; un solo color de acento, esquinas redondeadas (tarjetas 20–32 px, botones y etiquetas en forma de cápsula), sombras suaves, sin degradados de color visibles ni emojis.
+- Texturas: grano muy suave en toda la página (`body::after`, SVG `feTurbulence`) y retícula de 56 px detrás del titular. Siempre sutiles; nunca por encima de la legibilidad.
+- Movimiento: pocas escenas y bien orquestadas: entrada del titular al cargar, panel inicial que pasa de inclinado en 3D a plano al hacer scroll, la escena del día y botones magnéticos (solo con ratón). Curva `cubic-bezier(.23,1,.32,1)`, animar solo `transform` y `opacity`, sin apariciones al hacer scroll en cada sección. Con `prefers-reduced-motion` no se fija nada y la escena se muestra estática de noche.
 - Referencias de estilo: Attio, Mercury, Stripe, Qonto, Webflow.
 
 ## Textos y tono

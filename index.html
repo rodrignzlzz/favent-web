@@ -53,7 +53,6 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 .row-h:hover{background:#F6F6F3}
 .day-h:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(15,17,16,0.10)}
 #map-list button:hover,#team-rows button:hover{border-color:#3F6FD8 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,17,16,0.08)}
-#steps button:hover{border-color:#8CA9E8 !important;transform:translateY(-3px)}
 #app-nav button:hover{background:#ECEDE9 !important}
 .pin-pop{position:absolute;z-index:8;width:270px;background:#FFFFFF;border:1px solid #E3E5E0;border-radius:18px;box-shadow:0 22px 50px rgba(15,17,16,.18);overflow:hidden;animation:pop .3s cubic-bezier(.2,.7,.2,1)}
 .pin-pop .pp-ph{height:130px;background:#E7ECF5;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;font-size:11px;font-weight:600}
@@ -87,16 +86,16 @@ a:hover>.logo-dot{transform:scale(1.5)}
 .form-err{margin:0;font-size:14px;font-weight:500;line-height:1.45;color:#A12A1F}
 button[disabled]{opacity:.6;cursor:progress}
 /* Confianza: cinco señales en un solo panel */
-.trust-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#FFFFFF;border:1px solid #ECEDE9;border-radius:20px;overflow:hidden}
+.trust-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
 .trust-grid li{padding:20px;display:flex;flex-direction:column;gap:10px}
-.trust-grid li+li{border-left:1px solid #ECEDE9}
+.trust-grid li+li{border-left:1px solid var(--line)}
 .trust-grid .tg-ic{width:36px;height:36px;border-radius:12px;background:#E7ECF5;color:#274586;display:flex;align-items:center;justify-content:center}
 .trust-grid h3{margin:0;font-size:16px;font-weight:600;line-height:1.3}
-.trust-grid p{margin:0;font-size:14px;line-height:1.5;color:#4C504D}
+.trust-grid p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-2)}
 @media (max-width: 960px){
   .trust-grid{grid-template-columns:1fr}
   .trust-grid li{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:14px;row-gap:4px;padding:16px 18px}
-  .trust-grid li+li{border-left:0;border-top:1px solid #ECEDE9}
+  .trust-grid li+li{border-left:0;border-top:1px solid var(--line)}
   .trust-grid .tg-ic{grid-row:span 2}
 }
 /* Controles del panel inicial: pausa + aviso de ejemplo */
@@ -106,10 +105,7 @@ button[disabled]{opacity:.6;cursor:progress}
 #demo-pause:hover{border-color:#0F1110}
 #demo-pause .i-play,#demo-pause[aria-pressed="true"] .i-pause{display:none}
 #demo-pause[aria-pressed="true"] .i-play{display:inline}
-/* Aparición al hacer scroll (solo si hay JS y no se pide movimiento reducido) */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none !important;animation:none !important}.rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none !important;animation:none !important}}
 .topnav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
 .n-brand{justify-self:start}.n-cta{justify-self:center}.lang-switch{justify-self:end}
 .n-links{display:flex;gap:2px;margin-right:8px}
@@ -421,10 +417,71 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   #producto{padding-bottom:40px !important}
   main > section[style*="96px"]{padding-bottom:64px !important}
   #hoteles{padding-top:64px !important}
-  #como > div{padding-top:64px !important;padding-bottom:64px !important;gap:32px !important}
   .n-cta{display:none !important}
   .topnav{row-gap:0}
 }
+/* ===== Día y noche: tokens de tema ===== */
+:root{--bg:#FAFAF8;--ink:#0F1110;--ink-2:#4C504D;--ink-3:#6A6E6B;--line:#ECEDE9;--card:#FFFFFF;--eyebrow:#274586;--chipline:#DADBD6;--ease-out:cubic-bezier(.23,1,.32,1)}
+.night{--bg:#0A0F1A;--ink:#EEF2F8;--ink-2:#B3BDCF;--ink-3:#8E9AB0;--line:#1C2538;--card:#10172A;--eyebrow:#8CA9E8;--chipline:#2A3550;background:var(--bg);color:var(--ink)}
+/* Las interfaces de ejemplo son pantallas encendidas: conservan los colores de día */
+.night .screen,.night .fx-win{--ink:#0F1110;--ink-2:#4C504D;--ink-3:#6A6E6B;--line:#ECEDE9;--card:#FFFFFF;--eyebrow:#274586;--chipline:#DADBD6;--bg:#FAFAF8;color:#0F1110}
+.night .tg-ic{background:#18233D;color:#8CA9E8}
+.night .mark-ft{filter:invert(1)}
+@media (hover: hover){.night .lift:hover{box-shadow:0 24px 50px rgba(0,0,0,.45)}}
+body > div:first-of-type{overflow-x:clip}
+/* ===== Escena: el día de una reserva ===== */
+.scene{position:relative;background:#0A0F1A}
+.scene-pin{position:relative;overflow:hidden;background:#0A0F1A;color:#F4F6FB;--s-card:#121B30;--s-line:#26324D;--s-ink:#F4F6FB;--s-ink2:#B3BDCF;--s-acc:#8CA9E8;--s-on-bg:#FFFFFF;--s-on-ink:#0F1110}
+.scene-pin:not(.is-dark){color:#0F1110;--s-card:#FFFFFF;--s-line:#DADBD6;--s-ink:#0F1110;--s-ink2:#4C504D;--s-acc:#274586;--s-on-bg:#0F1110;--s-on-ink:#FFFFFF}
+.scene-sky{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.sc-stars circle{fill:#DCE5F7}
+.sc-sun{fill:#DCE5F7}
+.sc-ridge{fill:#111A2E}
+.scene-in{position:relative;max-width:1200px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:40px}
+.scene-head{display:flex;flex-direction:column;gap:14px}
+.scene-eyebrow{font-size:14px;font-weight:600;color:var(--s-ink)}
+.scene-h2{margin:0;font-family:'Inter Tight',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:600;letter-spacing:-.04em;line-height:1.05;max-width:700px}
+.scene-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.step{text-align:left;border:1px solid var(--s-line);background:var(--s-card);color:var(--s-ink);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;font-family:'Inter',sans-serif;transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.step:active{transform:scale(.97)}
+@media (hover: hover){.step:hover{border-color:var(--s-acc)}}
+.step-n{font-family:'DM Mono',monospace;font-size:13px;color:var(--s-acc)}
+.step-t{font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:600;letter-spacing:-.02em}
+.step-d{font-size:14px;line-height:1.5;color:var(--s-ink2)}
+.step[aria-pressed="true"]{background:var(--s-on-bg);border-color:var(--s-on-bg);color:var(--s-on-ink)}
+.step[aria-pressed="true"] .step-n,.step[aria-pressed="true"] .step-d{color:inherit}
+.scene-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;background:var(--s-card);border:1px solid var(--s-line);border-radius:20px;padding:20px 24px;color:var(--s-ink)}
+.scene-bar{grid-column:1 / -1;height:3px;border-radius:3px;background:var(--s-line);overflow:hidden}
+.scene-bar i{display:block;height:100%;background:#3F6FD8;transform-origin:left}
+#step-detail{margin:0;font-size:16px;line-height:1.55;max-width:720px}
+.scene-state{font-family:'DM Mono',monospace;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--s-line);color:var(--s-acc);white-space:nowrap}
+@media (max-width: 860px){
+  .scene-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .step{padding:12px 14px;border-radius:16px;gap:4px}
+  .step-d{display:none}
+  .step-t{font-size:15px}
+  .scene-foot{grid-template-columns:1fr;padding:16px 18px}
+  .scene-state{justify-self:start}
+}
+@media (max-width: 640px){.scene-in{padding:64px 24px;gap:24px}}
+/* Con movimiento: la escena se fija y el cielo pasa del día a la noche al hacer scroll */
+.cine .scene{height:440vh}
+.cine .scene-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
+.cine .scene-in{width:100%;padding-top:64px;padding-bottom:64px}
+@media (max-width: 640px){.cine .scene-in{padding-top:48px;padding-bottom:32px}}
+/* ===== Entrada del inicio ===== */
+.cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
+.cine .intro > h1{animation:none}
+.cine .intro .ln{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.cine .intro .ln > span{display:inline-block;animation:lineup 900ms var(--ease-out) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes lineup{from{transform:translateY(105%)}to{transform:none}}
+.cine #panel-scale{transform-origin:50% 0}
+.cine [data-mag]{transition:transform 200ms var(--ease-out),filter .2s ease}
+/* ===== Texturas: grano en toda la página y retícula detrás del titular ===== */
+body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.intro{position:relative;isolation:isolate}
+.intro::before{content:"";position:absolute;z-index:-1;top:-160px;bottom:-60px;left:50%;width:100vw;transform:translateX(-50%);pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%230F1110' stroke-opacity='.07'/%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse 55% 65% at 50% 38%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse 55% 65% at 50% 38%,#000 15%,transparent 72%)}
 </style>
 </head>
 <body>
@@ -453,14 +510,14 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
   <main>
 
-  <header style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+  <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <span style="font-size: 13px; font-weight: 500; border: 1px solid #DADBD6; background: #FFFFFF; padding: 6px 14px; border-radius: 999px">Para empresas de servicios en Mallorca</span>
-    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; max-width: 900px">Cada cliente que envías, <span style="color: #274586">cobrado.</span></h1>
+    <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span style="color: #274586">cobrado.</span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: #4C504D; max-width: 660px">El canal de ventas profesional entre empresas de servicios: las dos empresas pactan la comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio.</p>
     <form id="acceso" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 520px" novalidate>
         <label for="email-hero" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
         <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #DADBD6; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0F1110">
-        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #3F6FD8; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #3F6FD8; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer" data-mag>Solicitar acceso</button>
       </form>
     <div id="sent" role="status" hidden style="display: none; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 999px; background: #E7ECF5; color: #274586; font-size: 15px; font-weight: 600">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -538,44 +595,52 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
   </section>
 
-  <section id="como" style="background: #0F1110; color: #F4F4F1" aria-label="Cómo funciona">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
-      <div style="display: flex; flex-direction: column; gap: 14px">
-        <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Cómo funciona</span>
-        <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
-        <span id="steps" style="display: contents"></span>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid #2A2D2B; padding-top: 24px">
-        <span id="step-detail" aria-live="polite" style="font-size: 16px; line-height: 1.5; color: #E4E6E2; max-width: 720px"></span>
-        <span style="font-family: 'DM Mono', monospace; font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #1E201F; color: #8CA9E8">Estado: <span id="step-state"></span></span>
+  <section id="como" class="scene" aria-label="Cómo funciona">
+    <div class="scene-pin is-dark" id="scene-pin">
+      <svg class="scene-sky" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g id="sc-stars" class="sc-stars"><circle cx="673" cy="97" r="1.6"></circle><circle cx="108" cy="57" r="0.8"></circle><circle cx="758" cy="318" r="0.8"></circle><circle cx="1049" cy="129" r="0.8"></circle><circle cx="186" cy="242" r="1.6"></circle><circle cx="153" cy="143" r="0.8"></circle><circle cx="1138" cy="237" r="0.8"></circle><circle cx="1168" cy="83" r="1.0"></circle><circle cx="136" cy="315" r="1.6"></circle><circle cx="111" cy="133" r="0.8"></circle><circle cx="1150" cy="88" r="1.2"></circle><circle cx="868" cy="93" r="0.8"></circle><circle cx="1179" cy="177" r="1.0"></circle><circle cx="221" cy="317" r="1.0"></circle><circle cx="772" cy="69" r="0.8"></circle><circle cx="1165" cy="50" r="1.0"></circle><circle cx="1026" cy="292" r="1.6"></circle><circle cx="653" cy="258" r="1.6"></circle><circle cx="750" cy="173" r="1.0"></circle><circle cx="378" cy="144" r="0.8"></circle><circle cx="1186" cy="173" r="1.6"></circle><circle cx="713" cy="249" r="1.2"></circle><circle cx="159" cy="80" r="1.6"></circle><circle cx="347" cy="195" r="1.0"></circle><circle cx="1011" cy="235" r="0.8"></circle><circle cx="168" cy="305" r="1.2"></circle><circle cx="706" cy="199" r="1.6"></circle><circle cx="944" cy="55" r="0.8"></circle><circle cx="562" cy="262" r="0.8"></circle><circle cx="134" cy="178" r="1.6"></circle><circle cx="592" cy="217" r="1.2"></circle><circle cx="56" cy="256" r="1.2"></circle><circle cx="354" cy="79" r="1.6"></circle><circle cx="130" cy="131" r="1.2"></circle><circle cx="274" cy="146" r="1.6"></circle><circle cx="810" cy="274" r="0.8"></circle><circle cx="350" cy="249" r="1.6"></circle><circle cx="1135" cy="162" r="1.0"></circle><circle cx="891" cy="301" r="1.2"></circle><circle cx="860" cy="203" r="1.6"></circle><circle cx="482" cy="97" r="0.8"></circle><circle cx="370" cy="97" r="1.0"></circle><circle cx="487" cy="26" r="1.6"></circle><circle cx="383" cy="154" r="1.2"></circle><circle cx="18" cy="94" r="1.6"></circle><circle cx="1104" cy="209" r="1.2"></circle></g>
+        <circle id="sc-sun" class="sc-sun" cx="980" cy="150" r="30"></circle>
+        <path id="sc-ridge" class="sc-ridge" d="M0 600 L0 455 L40 459 L80 447 L120 444 L160 433 L200 403 L240 386 L280 393 L320 363 L360 351 L400 365 L440 349 L480 363 L520 361 L560 377 L600 375 L640 398 L680 411 L720 403 L760 409 L800 405 L840 389 L880 412 L920 415 L960 418 L1000 423 L1040 458 L1080 456 L1120 469 L1160 477 L1200 474 L1200 600 Z"></path>
+      </svg>
+      <div class="scene-in">
+        <div class="scene-head">
+          <span class="scene-eyebrow">Cómo funciona</span>
+          <h2 class="scene-h2">Así se mueve una reserva.</h2>
+        </div>
+        <div class="scene-steps" id="steps"></div>
+        <div class="scene-foot">
+          <span class="scene-bar" aria-hidden="true"><i id="sc-bar"></i></span>
+          <p id="step-detail" aria-live="polite"></p>
+          <span class="scene-state">Estado: <span id="step-state"></span></span>
+        </div>
       </div>
     </div>
   </section>
 
+  <div class="night">
+
   <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: grid; gap: 16px">
     <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin-bottom: 12px">
-      <span style="font-size: 14px; font-weight: 600; color: #274586">Para quién es</span>
+      <span style="font-size: 14px; font-weight: 600; color: var(--eyebrow)">Para quién es</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Para quien recomienda y para quien presta el servicio.</h2>
     </div>
-    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+    <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div class="photo" style="height: 320px; background: #E7E8E3; overflow: hidden"><img src="img/recomiendas.jpg" alt="Recepción de hotel atendiendo a un huésped" width="800" height="600" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
         <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15">Si recomiendas clientes</h3>
-        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Hoteles, conserjerías, agencias, gestores o profesionales independientes. Cobras cada recomendación sin perseguir a nadie y, si eres empresa, ves qué empleado vende qué y decides el reparto interno.</span>
-        <a href="#acceso" data-perfil="recomienda" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
+        <span style="font-size: 15px; line-height: 1.6; color: var(--ink-2)">Hoteles, conserjerías, agencias, gestores o profesionales independientes. Cobras cada recomendación sin perseguir a nadie y, si eres empresa, ves qué empleado vende qué y decides el reparto interno.</span>
+        <a href="#acceso" data-perfil="recomienda" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: var(--bg); display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
       </div>
     </div>
-    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+    <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
       <div class="photo" style="height: 320px; background: #1F6F78; overflow: hidden"><img src="img/ofreces.jpg" alt="Velero fondeado en aguas turquesas, visto desde el aire" width="479" height="640" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
       <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
         <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15">Si ofreces servicios</h3>
-        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.</span>
+        <span style="font-size: 15px; line-height: 1.6; color: var(--ink-2)">Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.</span>
         <a href="#acceso" data-perfil="ofrece" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
       </div>
     </div>
-    <div style="grid-column: 1 / -1; background: #0F1110; color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
+    <div style="grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
       <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
         <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Entre colegas</span>
         <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
@@ -613,9 +678,9 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
   <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
-      <span style="font-size: 14px; font-weight: 600; color: #274586">Un canal de ventas profesional</span>
+      <span style="font-size: 14px; font-weight: 600; color: var(--eyebrow)">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Comisión pactada por servicio, señal pagada al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Comisión pactada por servicio, señal pagada al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
     </div>
     <div id="fx-role" class="fx-role" role="group" aria-label="Perfil"></div>
     <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
@@ -642,9 +707,9 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   <section id="mapa" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 28px" aria-label="Mapa de servicios">
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
-        <span style="font-size: 14px; font-weight: 600; color: #274586">Mapa de servicios</span>
+        <span style="font-size: 14px; font-weight: 600; color: var(--eyebrow)">Mapa de servicios</span>
         <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Encuentra servicios cerca de ti y compara.</h2>
-        <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Precio, comisión pactada y valoraciones de cada servicio de la red, en un solo mapa. Eliges con datos, no por quién te escribió primero.</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Precio, comisión pactada y valoraciones de cada servicio de la red, en un solo mapa. Eliges con datos, no por quién te escribió primero.</p>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Ordenar">
         <span id="sorts" style="display: contents"></span>
@@ -656,7 +721,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
 
     <div class="map-row" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <div class="map-main" style="position: relative; flex: 999 1 560px; min-width: 0; background: #E7ECF5; border-radius: 28px; padding: clamp(12px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px">
+      <div class="map-main screen" style="position: relative; flex: 999 1 560px; min-width: 0; background: #E7ECF5; border-radius: 28px; padding: clamp(12px, 2vw, 24px); display: flex; flex-direction: column; gap: 12px">
         <div id="map" style="position: relative; width: 100%; aspect-ratio: 600 / 473">
           <svg viewBox="0 0 600 473" style="position: absolute; inset: 0; width: 100%; height: 100%" role="img" aria-label="Mapa de Mallorca con los servicios de la red">
             <path d="M27.5 261.9L26.0 261.4L28.2 255.9L42.7 246.2L40.4 251.7L37.9 252.4L33.3 259.2L28.3 260.1L27.5 261.9ZM456.3 162.1L468.9 166.9L472.2 163.3L474.9 164.3L479.6 160.7L484.0 160.4L485.2 157.6L491.0 155.7L494.1 151.7L504.6 148.1L507.5 142.2L505.5 139.1L507.0 133.8L513.0 130.5L518.3 136.9L524.0 139.5L525.0 143.2L530.3 146.0L539.2 145.9L539.3 148.9L541.9 148.9L543.6 152.9L549.8 153.5L552.6 157.5L561.0 158.4L565.8 155.5L564.0 157.9L566.1 161.5L561.9 166.8L561.7 169.1L563.7 167.7L561.8 171.1L565.8 172.6L570.6 171.4L574.0 175.1L572.0 179.0L569.8 176.8L563.7 181.2L562.2 188.8L564.3 194.0L561.7 195.4L563.7 196.9L561.9 200.1L563.9 202.3L561.7 203.1L563.3 211.0L556.3 211.0L554.1 224.5L549.7 225.6L541.7 222.3L535.9 227.8L530.3 250.1L534.6 255.1L538.5 255.1L538.9 257.7L534.9 259.8L527.7 259.4L524.7 265.2L525.0 271.1L521.9 271.6L522.6 274.8L515.5 276.4L516.6 277.5L509.9 280.7L509.6 282.7L508.4 280.3L505.5 281.2L509.4 284.5L505.6 285.8L500.9 292.2L497.4 293.0L498.5 294.8L495.8 295.4L496.6 296.9L490.7 303.3L491.4 305.2L488.9 305.7L490.3 307.2L487.0 309.0L488.0 313.5L487.3 314.9L484.7 313.9L486.2 315.9L484.4 316.2L486.6 317.1L482.9 325.5L481.2 325.7L482.6 326.8L480.2 331.6L480.0 344.7L477.9 348.5L479.9 350.7L479.0 356.4L476.8 357.6L474.9 349.2L471.5 356.3L475.8 356.5L471.4 360.0L473.6 360.5L471.4 363.7L469.3 363.9L469.4 369.5L466.3 370.3L468.6 371.0L467.6 373.8L465.7 373.2L466.9 375.2L464.8 379.6L463.7 380.6L462.4 378.5L462.1 383.8L459.4 382.4L458.1 385.4L454.4 382.5L457.5 386.6L460.3 385.8L459.0 389.3L456.6 391.3L455.4 389.7L455.7 391.7L453.4 392.2L449.2 387.4L448.4 392.9L451.2 393.4L444.8 395.9L438.4 395.1L437.2 396.3L440.5 398.6L438.9 403.8L434.6 405.7L433.3 408.9L429.7 406.3L428.9 407.3L431.9 409.6L430.5 410.6L420.9 410.4L419.1 408.4L418.8 410.7L415.7 411.9L417.2 414.2L412.1 418.2L408.9 416.9L405.9 418.7L402.1 425.3L392.9 433.2L388.2 441.8L381.2 447.5L374.1 447.5L370.2 441.8L370.5 438.9L364.9 437.2L363.6 435.4L365.1 432.9L362.8 434.0L359.3 429.7L360.1 424.2L357.1 420.2L353.1 419.2L352.6 416.4L350.3 415.9L347.7 419.2L347.9 417.6L344.3 416.9L343.3 412.4L346.1 410.4L346.3 403.7L331.8 389.1L329.0 390.0L329.9 388.4L328.7 390.4L317.7 387.7L310.8 391.2L310.6 394.9L295.7 386.5L292.4 388.7L278.2 386.7L273.9 389.7L274.0 388.1L271.1 392.6L265.7 391.1L260.1 386.0L251.7 388.5L244.0 376.0L236.0 370.5L230.5 362.3L229.4 356.6L233.0 341.1L221.2 320.1L226.8 316.2L228.3 310.1L233.2 306.6L232.2 305.4L232.8 304.0L232.3 305.4L234.9 305.9L233.9 299.9L223.5 287.0L220.1 284.8L218.5 286.2L218.1 284.9L218.5 286.6L216.2 285.3L209.4 279.0L209.2 276.6L206.0 276.4L205.0 273.1L196.6 270.0L196.7 267.7L196.2 270.1L185.5 265.9L180.3 269.9L180.7 267.2L184.9 265.0L183.7 264.0L182.8 265.7L182.4 264.2L180.2 266.5L180.0 264.9L182.6 264.0L179.4 264.3L177.0 269.4L178.3 269.3L178.3 271.2L178.2 269.7L177.0 269.4L176.5 271.1L177.7 270.9L177.7 271.8L176.5 271.2L175.8 272.6L180.8 272.8L173.7 275.6L178.2 278.0L182.7 273.7L179.5 278.3L173.2 278.4L168.1 274.1L164.7 274.7L159.9 286.8L153.3 285.2L153.1 286.7L151.3 286.4L150.9 287.6L147.9 288.6L151.0 286.8L148.3 287.8L146.5 286.2L142.1 290.7L142.0 289.2L136.9 290.6L135.2 295.4L136.2 297.9L139.8 298.8L133.6 302.7L134.8 312.9L129.7 318.3L129.9 321.1L127.1 320.7L129.0 322.6L126.7 328.2L129.1 329.4L127.9 331.9L122.4 330.8L120.6 328.4L118.3 329.1L117.9 325.1L113.3 322.0L111.1 322.2L106.6 326.0L109.4 320.1L107.5 319.1L105.7 311.0L107.7 313.0L108.0 310.3L105.1 309.4L102.9 311.5L102.4 308.1L98.9 306.3L99.5 302.9L97.4 302.8L101.6 297.3L102.7 300.0L103.8 299.7L101.9 297.7L107.9 297.3L108.3 294.8L102.3 294.2L103.0 292.1L97.6 284.8L94.2 283.2L88.9 285.9L90.0 288.2L85.5 288.0L80.2 291.7L82.3 283.3L77.5 281.9L73.6 283.6L73.3 289.4L65.3 293.0L65.9 285.2L61.6 285.6L60.4 282.9L57.8 286.6L53.9 285.8L56.3 282.6L61.2 281.8L66.7 277.7L64.5 276.5L61.4 277.7L61.4 279.7L58.2 278.9L55.4 272.3L49.8 270.8L50.3 267.4L46.2 266.5L50.0 259.2L45.4 252.8L46.5 248.3L50.2 247.3L50.7 241.7L56.6 236.6L64.3 236.8L69.0 234.6L76.6 228.2L81.4 227.0L82.0 221.8L100.0 213.8L108.2 205.0L109.3 201.3L112.5 201.7L116.9 194.0L121.4 190.4L125.4 190.3L130.7 183.7L137.3 185.5L143.6 184.6L158.5 174.1L164.2 164.7L175.0 155.6L173.7 150.7L175.5 150.4L176.3 152.9L181.0 145.2L183.7 148.3L193.9 140.8L196.8 128.8L201.6 125.0L203.4 127.9L208.6 129.1L208.9 125.8L207.1 127.0L205.9 125.3L210.8 117.6L212.9 118.9L217.9 113.2L224.3 110.3L224.0 108.6L230.5 104.4L232.5 104.3L233.3 107.4L240.1 104.5L242.4 98.1L246.3 100.0L245.6 93.2L248.0 90.3L251.5 92.3L254.1 89.9L257.7 93.3L260.3 92.4L258.4 88.9L259.7 86.3L264.8 89.7L268.2 89.3L268.8 87.2L270.2 89.4L275.5 84.6L278.6 86.7L282.4 79.2L292.5 76.9L302.1 66.7L306.8 65.0L308.2 66.5L312.4 65.7L313.5 62.4L315.9 63.6L321.1 61.1L327.7 51.5L333.9 54.9L335.0 57.5L345.2 58.1L351.5 49.2L364.2 42.6L366.9 42.8L366.4 45.4L370.4 40.8L368.4 45.4L379.3 44.0L376.3 50.4L379.1 51.9L381.6 49.7L388.7 48.6L395.7 42.0L398.2 42.4L394.9 46.0L396.3 46.8L400.4 44.1L403.9 44.8L405.9 42.5L407.6 44.3L412.2 40.3L412.6 36.6L419.6 30.9L425.4 29.9L428.0 27.4L430.8 28.5L434.5 26.6L431.6 32.1L434.5 32.7L439.5 28.8L442.2 30.5L450.6 26.0L450.2 30.2L445.1 37.1L440.7 39.6L439.1 37.0L438.5 39.3L434.9 39.1L436.5 40.8L422.8 49.7L415.4 46.7L412.1 47.4L410.3 53.5L404.8 57.2L402.1 56.8L402.5 64.0L401.0 60.1L391.5 57.3L389.6 59.8L392.1 60.8L391.6 61.9L390.7 62.5L391.8 60.8L389.6 59.9L390.7 61.5L388.1 62.2L387.4 70.3L392.7 83.7L400.5 89.3L404.9 85.0L406.9 86.9L407.9 85.0L409.2 85.9L412.2 82.3L416.6 85.0L421.9 80.5L425.0 80.9L428.4 77.2L430.3 78.0L438.9 72.0L439.5 68.2L445.7 69.5L438.5 74.8L439.6 77.4L436.7 81.2L437.8 85.8L442.7 86.7L435.4 97.9L431.7 101.1L424.2 101.3L416.4 104.8L417.5 103.5L413.8 101.2L414.6 99.7L413.0 99.3L413.7 102.5L411.5 100.7L412.4 99.4L410.7 99.9L406.3 106.5L405.4 114.4L400.8 119.0L404.2 119.0L406.8 121.5L407.4 121.0L409.8 128.5L421.1 142.6L456.3 162.1Z" fill="#FFFFFF" stroke="#C9D3E6" stroke-width="1.4" stroke-linejoin="round"></path>
@@ -691,7 +756,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
             <text x="462.7" y="124.1" text-anchor="middle" class="map-lbl map-bay">Badia d’Alcúdia</text>
             <text x="141.1" y="426.6" text-anchor="middle" class="map-lbl map-sea">Mar Mediterrània</text>
           </svg>
-          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" class="map-attr" style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #4C504D; text-decoration: none">© OpenStreetMap</a>
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" class="map-attr" style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: var(--ink-2); text-decoration: none">© OpenStreetMap</a>
           <span id="me" style="position: absolute; transform: translate(-7px, -50%); display: flex; align-items: center; gap: 6px; white-space: nowrap; pointer-events: none">
             <span style="width: 14px; height: 14px; border-radius: 7px; background: #FFFFFF; border: 4px solid #3F6FD8; box-shadow: 0 0 0 6px rgba(63, 111, 216, 0.25)"></span>
             <span style="font-size: 11px; font-weight: 600; background: #FFFFFF; padding: 2px 8px; border-radius: 999px; border: 1px solid #E3E5E0">Tú</span>
@@ -700,7 +765,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
         </div>
         <div id="pin-pop" class="pin-pop" role="dialog" hidden></div>
         <div class="sel-bar" style="background: #FFFFFF; border-radius: 18px; border: 1px solid #E3E5E0; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
-          <div style="display: flex; flex-direction: column; gap: 2px"><span id="sel-name" style="font-size: 15px; font-weight: 600"></span><span id="sel-meta" style="font-size: 13px; color: #6A6E6B"></span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><span id="sel-name" style="font-size: 15px; font-weight: 600"></span><span id="sel-meta" style="font-size: 13px; color: var(--ink-3)"></span></div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
             <span style="font-size: 12px; font-weight: 600; background: #D8E1F2; color: #274586; padding: 5px 10px; border-radius: 999px"><span id="sel-comm"></span></span>
             <a href="#acceso" data-perfil="recomienda" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 13px; font-weight: 600">Solicitar acceso</a>
@@ -709,7 +774,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       </div>
 
       <div class="map-side" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-        <span id="results" style="font-size: 13px; color: #6A6E6B"></span>
+        <span id="results" style="font-size: 13px; color: var(--ink-3)"></span>
         <div id="map-list" style="display: flex; flex-direction: column; gap: 10px"></div>
       </div>
     </div>
@@ -717,10 +782,10 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
   <section id="confianza" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
-      <span style="font-size: 14px; font-weight: 600; color: #274586">Confianza y calidad</span>
+      <span style="font-size: 14px; font-weight: 600; color: var(--eyebrow)">Confianza y calidad</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Las valoraciones mutuas son un comienzo, pero por sí solas pueden manipularse o quedarse cortas. Por eso cada empresa tiene una ficha de fiabilidad construida con datos reales de su actividad.</p>
-      <p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: #0F1110; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: #3F6FD8"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.</span></p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Las valoraciones mutuas son un comienzo, pero por sí solas pueden manipularse o quedarse cortas. Por eso cada empresa tiene una ficha de fiabilidad construida con datos reales de su actividad.</p>
+      <p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: var(--ink); font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: #3F6FD8"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.</span></p>
     </div>
 
     <ul class="trust-grid">
@@ -734,16 +799,16 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     <div style="display: flex; flex-direction: column; gap: 16px">
       <div style="display: flex; flex-direction: column; gap: 6px">
         <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Cada parte se gana su reputación.</h3>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">La valoran las otras empresas y la mide Favent con cada reserva.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--ink-2)">La valoran las otras empresas y la mide Favent con cada reserva.</span>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 16px">
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; color: #0F1110; border: 1px solid #ECEDE9; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; color: #274586">Quien ofrece el servicio</span>
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 13px; font-weight: 600; color: var(--eyebrow)">Quien ofrece el servicio</span>
         <h4 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">La mejor experiencia, mejor valorada.</h4>
-        <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.</span>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Lo prometido, cumplido</span></div>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--ink-2)">Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--chipline)">Lo prometido, cumplido</span></div>
       </div>
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #0F1110; color: #F4F4F1; border: 1px solid #0F1110; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #05080F; color: #F4F4F1; border: 1px solid var(--line); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: #8CA9E8">Quien recomienda</span>
         <h4 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Describir bien también cuenta.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Quien explica el servicio tal como es, para que el cliente llegue con las expectativas correctas, y envía más clientes, recibe mejor valoración.</span>
@@ -752,7 +817,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       </div>
     </div>
 
-    <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+    <div class="screen" style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
       <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
         <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Popularidad y fiabilidad, por separado.</h3>
         <span style="font-size: 15px; line-height: 1.6; color: #3A3D3B">Tener muchas reseñas no es lo mismo que cumplir siempre. Los rankings lo distinguen, y las empresas nuevas tienen su propio espacio: nadie queda enterrado por llegar tarde.</span>
@@ -762,11 +827,11 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
           <div style="display: flex; gap: 4px; background: #F3F3F0; padding: 4px; border-radius: 999px" role="group" aria-label="Ordenar ranking">
             <span id="trust-tabs" style="display: contents"></span>
           </div>
-          <span style="font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
+          <span style="font-size: 11px; font-weight: 600; color: var(--ink-2); background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
         </div>
         <div id="trust-list" style="display: flex; flex-direction: column; gap: 8px"></div>
         <div style="border: 1px dashed #8CA9E8; border-radius: 16px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between">
-          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Finques del Pla</span><span style="font-size: 12px; color: #6A6E6B">Aún sin reseñas · evaluada por Favent</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Finques del Pla</span><span style="font-size: 12px; color: var(--ink-3)">Aún sin reseñas · evaluada por Favent</span></div>
           <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF">Nueva en la red</span>
         </div>
       </div>
@@ -775,17 +840,17 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
   <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
-      <span style="font-size: 14px; font-weight: 600; color: #274586">Para equipos</span>
+      <span style="font-size: 14px; font-weight: 600; color: var(--eyebrow)">Para equipos</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">En un hotel, una agencia o un club suelen recomendar varias personas. Cada una tiene su número personal y su enlace: Favent atribuye cada reserva a quien la hizo, calcula su parte y te enseña quién vende qué.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">En un hotel, una agencia o un club suelen recomendar varias personas. Cada una tiene su número personal y su enlace: Favent atribuye cada reserva a quien la hizo, calcula su parte y te enseña quién vende qué.</p>
     </div>
 
-    <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+    <div class="screen" style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
       <span class="demo-badge" style="position: absolute; top: 14px; right: 24px; z-index: 1">Vista de ejemplo</span>
 
       <div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.08); padding: 22px; display: flex; flex-direction: column; gap: 16px">
         <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
-          <div style="display: flex; align-items: center; gap: 10px"><div style="width: 28px; height: 28px; border-radius: 8px; background: #0F1110; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">HM</div><div style="display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 15px">Equipo de Hotel Miramar</span><span style="font-size: 12px; color: #6A6E6B">Este mes</span></div></div>
+          <div style="display: flex; align-items: center; gap: 10px"><div style="width: 28px; height: 28px; border-radius: 8px; background: #0F1110; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">HM</div><div style="display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 15px">Equipo de Hotel Miramar</span><span style="font-size: 12px; color: var(--ink-3)">Este mes</span></div></div>
           <span style="font-family: 'DM Mono', monospace; font-size: 13px; background: #F3F3F0; padding: 6px 12px; border-radius: 999px"><span id="team-sum"></span></span>
         </div>
         <div style="background: #F6F6F3; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -817,42 +882,44 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Número personal</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Reparto automático</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Altas y bajas en un clic</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Ranking del equipo</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.</span></div>
+      <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Número personal</span><span style="font-size: 14px; line-height: 1.5; color: var(--ink-2)">Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.</span></div>
+      <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Reparto automático</span><span style="font-size: 14px; line-height: 1.5; color: var(--ink-2)">Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.</span></div>
+      <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Altas y bajas en un clic</span><span style="font-size: 14px; line-height: 1.5; color: var(--ink-2)">Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.</span></div>
+      <div class="lift" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Ranking del equipo</span><span style="font-size: 14px; line-height: 1.5; color: var(--ink-2)">Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.</span></div>
     </div>
   </section>
 
   <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px">
-    <div style="background: #E7ECF5; border-radius: 32px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+    <div class="screen" style="background: #E7ECF5; border-radius: 32px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
       <form id="acceso-final" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 360px; max-width: 480px" novalidate>
         <label for="email-final" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
         <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D8E1F2; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0F1110">
-        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #0F1110; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #0F1110; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer" data-mag>Solicitar acceso</button>
       </form>
       <div id="sent-final" role="status" hidden style="display: none; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #FFFFFF; color: #274586; font-size: 15px; font-weight: 600">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         Gracias. Te escribimos en cuanto abramos tu zona.
       </div>
       <p id="err-final" class="form-err" role="alert" hidden style="flex-basis: 100%">No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
-      <p style="margin: 0; flex-basis: 100%; font-size: 13px; line-height: 1.5; color: #4C504D">Gratis durante el piloto. Solo usaremos tu email para darte acceso al piloto.</p>
+      <p style="margin: 0; flex-basis: 100%; font-size: 13px; line-height: 1.5; color: var(--ink-2)">Gratis durante el piloto. Solo usaremos tu email para darte acceso al piloto.</p>
     </div>
   </section>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow: hidden">
-    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; font-size: clamp(96px, 24vw, 330px); color: #0F1110">favent<span style="width: clamp(18px, 4vw, 54px); height: clamp(18px, 4vw, 54px); border-radius: 999px; background: #3F6FD8"></span></div>
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: #4C504D"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
+    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; font-size: clamp(96px, 24vw, 330px); color: var(--ink)">favent<span style="width: clamp(18px, 4vw, 54px); height: clamp(18px, 4vw, 54px); border-radius: 999px; background: #3F6FD8"></span></div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: var(--ink-2)"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
+  </div>
+
   </div>
 
   </main>
 
-  <footer style="border-top: 1px solid #ECEDE9">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: #5D615E">
-      <span style="display: flex; align-items: baseline; gap: 3px; font-family: 'Inter Tight', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.05em; color: #0F1110"><img src="img/logo-mark.png" alt="" width="30" height="20" loading="lazy" style="align-self: center; height: 20px; width: auto; margin-right: 6px">favent<span style="width: 5px; height: 5px; border-radius: 3px; background: #3F6FD8"></span></span>
+  <footer class="night" style="border-top: 1px solid var(--line)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-3)">
+      <span style="display: flex; align-items: baseline; gap: 3px; font-family: 'Inter Tight', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.05em; color: var(--ink)"><img class="mark-ft" src="img/logo-mark.png" alt="" width="30" height="20" loading="lazy" style="align-self: center; height: 20px; width: auto; margin-right: 6px">favent<span style="width: 5px; height: 5px; border-radius: 3px; background: #3F6FD8"></span></span>
       <!-- Oculto hasta que existan privacidad.html, condiciones.html y un email de contacto: rellenar los href y quitar «hidden» -->
-      <div hidden style="display: flex; flex-wrap: wrap; gap: 20px"><a href="privacidad.html" style="text-decoration: none; color: #5D615E">Privacidad</a><a href="condiciones.html" style="text-decoration: none; color: #5D615E">Condiciones</a><a href="mailto:" style="text-decoration: none; color: #5D615E">Contacto</a></div>    </div>
+      <div hidden style="display: flex; flex-wrap: wrap; gap: 20px"><a href="privacidad.html" style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" style="text-decoration: none; color: var(--ink-3)">Condiciones</a><a href="mailto:" style="text-decoration: none; color: var(--ink-3)">Contacto</a></div>    </div>
   </footer>
 
 </div>
@@ -1386,15 +1453,14 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     }).join('');
   }
   function renderSteps() {
+    var f = document.activeElement, fi = f && f.closest && f.closest('#steps') ? f.getAttribute('data-v') : null;
     $('steps').innerHTML = STEPS.map(function (s, i) {
-      var on = i === S.step;
-      return '<button type="button" data-act="step" data-v="' + i + '" aria-pressed="' + on + '" style="text-align: left; border: 1px solid ' + (on ? A.accent : '#2A2D2B') + '; background: ' + (on ? A.accent : 'transparent') + '; color: ' + (on ? A.on : '#F4F4F1') + '; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; font-family: \'Inter\', sans-serif">'
-        + '<span style="font-family: \'DM Mono\', monospace; font-size: 14px; color: ' + (on ? A.on : A.bright) + '">' + s.n + '</span>'
-        + '<span style="font-family: \'Inter Tight\', sans-serif; font-size: 18px; font-weight: 600">' + T(s.t) + '</span>'
-        + '<span style="font-size: 14px; line-height: 1.5; color: ' + (on ? A.on : '#B4B8B4') + '">' + T(s.d) + '</span></button>';
+      return '<button type="button" class="step" data-act="step" data-v="' + i + '" aria-pressed="' + (i === S.step) + '">'
+        + '<span class="step-n">' + s.n + '</span><span class="step-t">' + T(s.t) + '</span><span class="step-d">' + T(s.d) + '</span></button>';
     }).join('');
     $('step-detail').textContent = T(STEPS[S.step].x);
     $('step-state').textContent = T(STEPS[S.step].e);
+    if (fi !== null) document.querySelector('#steps [data-v="' + fi + '"]').focus({ preventScroll: true });
   }
   function pill(act, v, label, on) {
     return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid ' + (on ? A.accent : '#DADBD6') + '; background: ' + (on ? A.soft : '#FFFFFF') + '; color: ' + (on ? A.text : '#0F1110') + '; font-family: \'Inter\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">' + T(label) + '</button>';
@@ -1508,7 +1574,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
     if (act === 'demopause') { demoPause(!LIVE.paused); }
-    if (act === 'step') { S.step = +v; renderSteps(); }
+    if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) sceneGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
       S.mtype = v; S.popup = false;
@@ -1566,22 +1632,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   });
 
   // Aparición suave de los bloques al hacer scroll
-  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var el = en.target;
-        el.classList.add('in'); io.unobserve(el);
-        setTimeout(function () { el.classList.remove('rv', 'in'); el.style.transitionDelay = ''; }, 1100);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('header > :not(#sent), section > div, #hoteles > div').forEach(function (el) {
-      var sib = el.parentNode.children, k = Array.prototype.indexOf.call(sib, el);
-      el.style.transitionDelay = Math.min(k, 4) * 70 + 'ms';
-      el.classList.add('rv');
-      io.observe(el);
-    });
-  }
 
   // Dashboard interactivo (datos de ejemplo)
   var FX = { role: 'rec', view: 'res', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
@@ -2354,6 +2404,69 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   });
   window.addEventListener('resize', function () { fitPanel(); if (S.popup) renderPop(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
+
+  // Día y noche: escena fijada «Así se mueve una reserva», panel en 3D y botones magnéticos
+  var CINE = { on: !matchMedia('(prefers-reduced-motion: reduce)').matches, raf: 0 };
+  var SKY = [[0, [250, 250, 248]], [0.3, [231, 236, 245]], [0.48, [63, 111, 216]], [0.66, [27, 42, 85]], [1, [10, 15, 26]]];
+  var RIDGE = [[0, [216, 225, 242]], [0.48, [44, 74, 150]], [1, [17, 26, 46]]];
+  var SCN = { sec: $('como'), pin: $('scene-pin'), sun: $('sc-sun'), stars: $('sc-stars'), ridge: $('sc-ridge'), bar: $('sc-bar') };
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function mixStops(st, t) {
+    for (var k = 1; k < st.length; k++) if (t <= st[k][0]) {
+      var a = st[k - 1], b = st[k], u = (t - a[0]) / (b[0] - a[0]);
+      return a[1].map(function (c, n) { return Math.round(c + (b[1][n] - c) * u); });
+    }
+    return st[st.length - 1][1];
+  }
+  function relLum(c) { return c.reduce(function (L, v, n) { v /= 255; v = v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); return L + v * [0.2126, 0.7152, 0.0722][n]; }, 0); }
+  function sceneTotal() { return SCN.sec.offsetHeight - innerHeight; }
+  function sceneDraw() {
+    CINE.raf = 0;
+    var total = sceneTotal(), p = total > 0 ? clamp01(-SCN.sec.getBoundingClientRect().top / total) : 1;
+    var sky = mixStops(SKY, p);
+    SCN.pin.style.backgroundColor = 'rgb(' + sky + ')';
+    // El texto cambia de tinta justo donde el cielo cruza la luminancia en la que ambas tintas pasan 4.5:1
+    SCN.pin.classList.toggle('is-dark', relLum(sky) < 0.18);
+    var a = Math.PI * (0.1 + p * 0.8);
+    // En pantallas estrechas el cielo se recorta por los lados: arco corto por encima del titular
+    var narrow = innerWidth < 768;
+    SCN.sun.setAttribute('cx', (narrow ? 600 - Math.cos(a) * 110 : 930 - Math.cos(a) * 250).toFixed(1));
+    SCN.sun.setAttribute('cy', (narrow ? 62 - Math.sin(a) * 32 : 470 - Math.sin(a) * 370).toFixed(1));
+    SCN.sun.setAttribute('r', narrow ? 16 : 30);
+    SCN.sun.style.fill = p < 0.4 ? '#3F6FD8' : '#F4F6FB';
+    SCN.stars.style.opacity = clamp01((p - 0.55) / 0.25);
+    SCN.ridge.style.fill = 'rgb(' + mixStops(RIDGE, p) + ')';
+    SCN.bar.style.transform = 'scaleX(' + p.toFixed(3) + ')';
+    var st = Math.min(5, Math.floor(clamp01((p - 0.04) / 0.92) * 6));
+    if (st !== S.step) { S.step = st; renderSteps(); }
+    var r = PS.sec.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight) {
+      var t = clamp01(1 - (r.top - 60) / (innerHeight * 0.75));
+      PS.wrap.style.transform = 'perspective(1600px) rotateX(' + ((1 - t) * 12).toFixed(2) + 'deg) scale(' + (0.95 + t * 0.05).toFixed(3) + ')';
+    }
+  }
+  function sceneGo(i) {
+    var top = SCN.sec.getBoundingClientRect().top + scrollY + (0.04 + (i + 0.5) / 6 * 0.92) * sceneTotal();
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  if (CINE.on) {
+    document.documentElement.classList.add('cine');
+    document.querySelectorAll('.intro > *').forEach(function (el, k) { el.style.setProperty('--i', k); });
+    document.querySelectorAll('.intro .ln > span').forEach(function (el, k) { el.style.animationDelay = (180 + k * 120) + 'ms'; });
+    var onScroll = function () { if (!CINE.raf) CINE.raf = requestAnimationFrame(sceneDraw); };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    sceneDraw();
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('[data-mag]').forEach(function (b) {
+        b.addEventListener('pointermove', function (e) {
+          var r = b.getBoundingClientRect();
+          b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.16).toFixed(1) + 'px, ' + ((e.clientY - r.top - r.height / 2) * 0.28).toFixed(1) + 'px)';
+        });
+        b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+      });
+    }
+  }
 
   // Perfil elegido en los botones «Recomiendo clientes» / «Ofrezco servicios»; se envía con el email
   document.querySelectorAll('a[data-perfil]').forEach(function (a) {
