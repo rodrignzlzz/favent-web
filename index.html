@@ -3,27 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Favent — El canal de ventas profesional B2B</title>
-<meta name="description" content="Favent es el canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio.">
+<title>Favent — Canal de ventas profesional entre empresas · Mallorca</title>
+<meta name="description" content="Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.">
 <meta name="theme-color" content="#FAFAF8">
 <link rel="canonical" href="https://www.favent.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Favent">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://www.favent.app/">
-<meta property="og:title" content="Favent — El canal de ventas profesional B2B">
+<meta property="og:title" content="Favent — Canal de ventas profesional entre empresas · Mallorca">
 <meta property="og:description" content="Cada cliente que envías, cobrado. Comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio. Piloto abierto en Mallorca.">
 <meta property="og:image" content="https://www.favent.app/img/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="favent · B2B SERVICE — Cada cliente que envías, cobrado.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Favent — El canal de ventas profesional B2B">
+<meta name="twitter:title" content="Favent — Canal de ventas profesional entre empresas · Mallorca">
 <meta name="twitter:description" content="Cada cliente que envías, cobrado. Comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio.">
 <meta name="twitter:image" content="https://www.favent.app/img/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://www.favent.app/#org","name":"Favent","url":"https://www.favent.app/","logo":"https://www.favent.app/img/icon-512.png","description":"Canal de ventas profesional entre empresas de servicios en Mallorca."},
+{"@type":"WebSite","@id":"https://www.favent.app/#web","name":"Favent","url":"https://www.favent.app/","inLanguage":"es","publisher":{"@id":"https://www.favent.app/#org"}}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -78,12 +84,38 @@ a[style*="999px"]:active,button[style*="999px"]:active{transform:translateY(0);b
 a:hover>.logo-mark{transform:rotate(-6deg) scale(1.06)}
 a:hover>.logo-dot{transform:scale(1.5)}
 #team-range{accent-color:#3F6FD8;width:100%;cursor:pointer}
+.form-err{margin:0;font-size:14px;font-weight:500;line-height:1.45;color:#A12A1F}
+button[disabled]{opacity:.6;cursor:progress}
+/* Confianza: cinco señales en un solo panel */
+.trust-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#FFFFFF;border:1px solid #ECEDE9;border-radius:20px;overflow:hidden}
+.trust-grid li{padding:20px;display:flex;flex-direction:column;gap:10px}
+.trust-grid li+li{border-left:1px solid #ECEDE9}
+.trust-grid .tg-ic{width:36px;height:36px;border-radius:12px;background:#E7ECF5;color:#274586;display:flex;align-items:center;justify-content:center}
+.trust-grid h3{margin:0;font-size:16px;font-weight:600;line-height:1.3}
+.trust-grid p{margin:0;font-size:14px;line-height:1.5;color:#4C504D}
+@media (max-width: 960px){
+  .trust-grid{grid-template-columns:1fr}
+  .trust-grid li{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:14px;row-gap:4px;padding:16px 18px}
+  .trust-grid li+li{border-left:0;border-top:1px solid #ECEDE9}
+  .trust-grid .tg-ic{grid-row:span 2}
+}
+/* Controles del panel inicial: pausa + aviso de ejemplo */
+.demo-ctl{position:absolute;top:14px;right:40px;z-index:2;display:flex;gap:6px;align-items:center}
+.demo-badge{font-size:11px;font-weight:600;color:#4C504D;background:#FFFFFF;border:1px solid #DADBD6;padding:3px 10px;border-radius:999px}
+#demo-pause{height:28px;padding:0 12px 0 10px;display:flex;align-items:center;gap:6px;border:1px solid #DADBD6;border-radius:999px;background:#FFFFFF;color:#0F1110;font:600 12px 'Inter',sans-serif;cursor:pointer}
+#demo-pause:hover{border-color:#0F1110}
+#demo-pause .i-play,#demo-pause[aria-pressed="true"] .i-pause{display:none}
+#demo-pause[aria-pressed="true"] .i-play{display:inline}
 /* Aparición al hacer scroll (solo si hay JS y no se pide movimiento reducido) */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none !important;animation:none !important}.rv{opacity:1;transform:none}}
 .topnav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
 .n-brand{justify-self:start}.n-cta{justify-self:center}.lang-switch{justify-self:end}
+.n-links{display:flex;gap:2px;margin-right:8px}
+.n-links a{height:40px;padding:0 12px;border-radius:999px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#4C504D;text-decoration:none;white-space:nowrap}
+.n-links a:hover{background:#ECEDE9;color:#0F1110}
+@media (max-width: 1020px){.n-links{display:none}}
 .duo{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width: 720px){.duo{grid-template-columns:1fr}}
 /* Panel animado */
@@ -349,7 +381,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   .fx-kpis{padding:14px}.fx-rep{padding:0 14px 14px}
 }
 #producto.scaled{padding-top:36px !important}
-#producto.scaled>span{top:0 !important;right:24px !important}
+#producto.scaled>.demo-ctl{top:0;right:24px}
 /* Panel inicial en móvil: menú solo con iconos y aviso + QR debajo */
 #demo.compact{padding:12px !important;border-radius:20px}
 #demo.compact .hx-body{grid-template-columns:54px minmax(0,1fr)}
@@ -362,7 +394,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 #demo.compact .hx-rail{flex-direction:row;align-items:stretch}
 #demo.compact .hx-notif{flex:1;min-width:0}
 #demo.compact .hx-qr{flex:0 0 190px}
-@media (max-width: 640px){#producto{padding-left:12px !important;padding-right:12px !important}#producto.scaled>span{right:12px !important}}
+@media (max-width: 640px){#producto{padding-left:12px !important;padding-right:12px !important}#producto.scaled>.demo-ctl{right:12px}}
 @media (max-width: 640px){
   .map-row{flex-wrap:nowrap !important;gap:8px !important;align-items:flex-start !important}
   .map-main{flex:1 1 60% !important;padding:8px !important;border-radius:18px !important;gap:8px !important}
@@ -383,6 +415,16 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 }
 @media (max-width: 440px){.n-badge{display:none}}
 @media (max-width: 640px){.topnav{grid-template-columns:1fr auto;row-gap:14px}.n-cta{grid-column:1 / -1;grid-row:2}.fv-pin{height:24px !important;padding:0 7px !important;font-size:10.5px !important;border-width:1.5px !important}}
+/* Ritmo en móvil: menos aire entre secciones y una sola llamada a la acción arriba */
+@media (max-width: 640px){
+  main > header{padding-top:40px !important;padding-bottom:40px !important}
+  #producto{padding-bottom:40px !important}
+  main > section[style*="96px"]{padding-bottom:64px !important}
+  #hoteles{padding-top:64px !important}
+  #como > div{padding-top:64px !important;padding-bottom:64px !important;gap:32px !important}
+  .n-cta{display:none !important}
+  .topnav{row-gap:0}
+}
 </style>
 </head>
 <body>
@@ -396,6 +438,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       <span class="n-badge" style="white-space: nowrap; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #4C504D; border: 1px solid #DADBD6; padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
     <div class="n-cta" style="display: flex; gap: 8px; align-items: center">
+      <div class="n-links"><a href="#como">Cómo funciona</a><a href="#mapa">Mapa</a><a href="#confianza">Confianza</a><a href="#equipos">Equipos</a></div>
       <a href="#acceso" style="height: 40px; padding: 0 18px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Solicitar acceso</a>
     </div>
     <div class="lang-switch" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid #DADBD6; background: #F3F3F0" role="group" aria-label="Idioma">
@@ -411,9 +454,9 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   <main>
 
   <header style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
-    <span style="font-size: 13px; font-weight: 500; border: 1px solid #DADBD6; background: #FFFFFF; padding: 6px 14px; border-radius: 999px">Red B2B de referrals · Mallorca</span>
+    <span style="font-size: 13px; font-weight: 500; border: 1px solid #DADBD6; background: #FFFFFF; padding: 6px 14px; border-radius: 999px">Para empresas de servicios en Mallorca</span>
     <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; max-width: 900px">Cada cliente que envías, <span style="color: #274586">cobrado.</span></h1>
-    <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: #4C504D; max-width: 660px">Favent convierte tus recomendaciones en un canal de ventas profesional: acuerdos de comisión claros, cobro por adelantado y liberación automática cuando el servicio se presta.</p>
+    <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: #4C504D; max-width: 660px">El canal de ventas profesional entre empresas de servicios: las dos empresas pactan la comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio.</p>
     <form id="acceso" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 520px" novalidate>
         <label for="email-hero" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
         <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #DADBD6; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0F1110">
@@ -423,13 +466,18 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         Gracias. Te escribimos en cuanto abramos tu zona.
       </div>
-    <span style="font-size: 13px; color: #6A6E6B">Gratis durante el piloto · Pagos procesados con Stripe</span>
+    <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
+    <p style="margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.5; color: #6A6E6B"><span>Gratis durante el piloto · Pagos procesados con Stripe</span><span>Solo usaremos tu email para darte acceso al piloto.</span></p>
   </header>
 
-  <section id="producto" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; position: relative" aria-label="Producto">
-    <span style="position: absolute; top: 14px; right: 40px; z-index: 1; font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
+  <section id="producto" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 72px; position: relative" aria-label="Panel de ejemplo">
+    <div class="demo-ctl">
+      <button type="button" id="demo-pause" data-act="demopause" aria-pressed="false"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path class="i-pause" d="M2 1h2v8H2zM6 1h2v8H6z" fill="currentColor"></path><path class="i-play" d="M2 1l7 4-7 4z" fill="currentColor"></path></svg><span class="i-pause">Pausar animación</span><span class="i-play">Reanudar animación</span></button>
+      <span class="demo-badge">Vista de ejemplo</span>
+    </div>
+    <p class="fx-sr">Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.</p>
     <div id="panel-scale" style="overflow: hidden; border-radius: 32px">
-    <div id="demo" style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px)">
+    <div id="demo" inert style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px)">
       <span id="cursor" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#0F1110" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg></span>
       <div class="fx-win">
         <div class="hx-top"><span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="fx-crumb">Hotel Miramar / <b id="hx-crumb">Inicio</b></span></div>
@@ -477,7 +525,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
   </section>
 
-  <section style="border-top: 1px solid #ECEDE9; border-bottom: 1px solid #ECEDE9; background: #FFFFFF" aria-label="Socios del piloto">
+  <!-- Oculta hasta tener logos reales con permiso: quitar «hidden» para mostrarla -->
+  <section hidden style="border-top: 1px solid #ECEDE9; border-bottom: 1px solid #ECEDE9; background: #FFFFFF" aria-label="Socios del piloto">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
       <span style="font-size: 14px; color: #4C504D; max-width: 260px">Diseñado con empresas de servicios de Mallorca</span>
       <div style="display: flex; flex-wrap: wrap; gap: 12px">
@@ -489,11 +538,84 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
   </section>
 
-  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Producto">
+  <section id="como" style="background: #0F1110; color: #F4F4F1" aria-label="Cómo funciona">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Cómo funciona</span>
+        <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+        <span id="steps" style="display: contents"></span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid #2A2D2B; padding-top: 24px">
+        <span id="step-detail" aria-live="polite" style="font-size: 16px; line-height: 1.5; color: #E4E6E2; max-width: 720px"></span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #1E201F; color: #8CA9E8">Estado: <span id="step-state"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: grid; gap: 16px">
+    <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin-bottom: 12px">
+      <span style="font-size: 14px; font-weight: 600; color: #274586">Para quién es</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Para quien recomienda y para quien presta el servicio.</h2>
+    </div>
+    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+      <div class="photo" style="height: 320px; background: #E7E8E3; overflow: hidden"><img src="img/recomiendas.jpg" alt="Recepción de hotel atendiendo a un huésped" width="800" height="600" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
+      <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15">Si recomiendas clientes</h3>
+        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Hoteles, conserjerías, agencias, gestores o profesionales independientes. Cobras cada recomendación sin perseguir a nadie y, si eres empresa, ves qué empleado vende qué y decides el reparto interno.</span>
+        <a href="#acceso" data-perfil="recomienda" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
+      </div>
+    </div>
+    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+      <div class="photo" style="height: 320px; background: #1F6F78; overflow: hidden"><img src="img/ofreces.jpg" alt="Velero fondeado en aguas turquesas, visto desde el aire" width="479" height="640" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
+      <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15">Si ofreces servicios</h3>
+        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.</span>
+        <a href="#acceso" data-perfil="ofrece" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
+      </div>
+    </div>
+    <div style="grid-column: 1 / -1; background: #0F1110; color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
+      <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Entre colegas</span>
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B4B8B4; max-width: 520px">¿Ese día ya estás completo? Pasa la reserva, o parte del grupo, a una empresa de confianza y cobra tu comisión. ¿Quieres ayudar a una empresa vecina? Recomiéndala a tus clientes.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+          <span style="font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Todos ganan.</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">El cliente no se queda sin plan</span>
+            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">Tu colega llena su agenda</span>
+            <span style="font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: #8CA9E8; color: #0F1110">Tú cobras tu comisión</span>
+          </div>
+        </div>
+      </div>
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #1E201F; border: 1px solid #2A2D2B; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative">
+        <span style="position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 600; color: #B4B8B4; border: 1px solid #3A3D3B; padding: 3px 10px; border-radius: 999px">Ejemplo</span>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding-right: 72px">
+          <span style="font-size: 15px; font-weight: 600">Velas del Norte</span>
+          <span style="align-self: flex-start; font-family: 'DM Mono', monospace; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #2A2D2B; color: #E4E6E2">Sáb 12 abr · completo</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 4px 0 4px 6px; color: #8CA9E8; font-size: 13px; font-weight: 500">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span>Pasa la reserva · 8 personas</span>
+        </div>
+        <div style="background: #FFFFFF; color: #0F1110; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
+          <span style="font-size: 15px; font-weight: 600">Mar Blau Yachting</span>
+          <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #D8E1F2; color: #274586">Acepta la reserva</span>
+        </div>
+        <div style="background: #3F6FD8; color: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
+          <span style="font-size: 14px; font-weight: 600">Comisión para Velas del Norte</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">180,00 €</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span style="font-size: 14px; font-weight: 600; color: #274586">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Comisión pactada por servicio, cobro garantizado al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Comisión pactada por servicio, señal pagada al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
     </div>
     <div id="fx-role" class="fx-role" role="group" aria-label="Perfil"></div>
     <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
@@ -581,7 +703,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
           <div style="display: flex; flex-direction: column; gap: 2px"><span id="sel-name" style="font-size: 15px; font-weight: 600"></span><span id="sel-meta" style="font-size: 13px; color: #6A6E6B"></span></div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
             <span style="font-size: 12px; font-weight: 600; background: #D8E1F2; color: #274586; padding: 5px 10px; border-radius: 999px"><span id="sel-comm"></span></span>
-            <a href="#acceso" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 13px; font-weight: 600">Proponer acuerdo</a>
+            <a href="#acceso" data-perfil="recomienda" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 13px; font-weight: 600">Solicitar acceso</a>
           </div>
         </div>
       </div>
@@ -598,51 +720,32 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
       <span style="font-size: 14px; font-weight: 600; color: #274586">Confianza y calidad</span>
       <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
       <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #4C504D">Las valoraciones mutuas son un comienzo, pero por sí solas pueden manipularse o quedarse cortas. Por eso cada empresa tiene una ficha de fiabilidad construida con datos reales de su actividad.</p>
+      <p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: #0F1110; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; color: #3F6FD8"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.</span></p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
-        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
-          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-          <span style="font-size: 16px; font-weight: 600">Identidad verificada</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada empresa verifica sus datos fiscales y su cuenta de cobro antes de operar.</span>
-        </div>
-        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
-          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/><path d="M17 17l2 2 3-4"/></svg></span>
-          <span style="font-size: 16px; font-weight: 600">Historial de cumplimiento</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Servicios prestados, cancelaciones y no-shows, registrados reserva a reserva.</span>
-        </div>
-        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
-          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span>
-          <span style="font-size: 16px; font-weight: 600">Tiempo de respuesta</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cuánto tarda cada empresa en contestar y confirmar una reserva.</span>
-        </div>
-        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
-          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-          <span style="font-size: 16px; font-weight: 600">Reservas completadas</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Porcentaje de reservas que acaban con el servicio prestado y el código canjeado.</span>
-        </div>
-        <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
-          <span style="width: 36px; height: 36px; border-radius: 12px; background: #E7ECF5; color: #274586; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.5 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.2l6-.7z"/></svg></span>
-          <span style="font-size: 16px; font-weight: 600">Reseñas contra el fraude</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4C504D">Solo valora quien ha tenido una reserva canjeada, y vigilamos los patrones sospechosos.</span>
-        </div>
-    </div>
+    <ul class="trust-grid">
+      <li><span class="tg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h3>Identidad verificada</h3><p>Cada empresa verifica sus datos fiscales y su cuenta de cobro antes de operar.</p></li>
+      <li><span class="tg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/><path d="M17 17l2 2 3-4"/></svg></span><h3>Historial de cumplimiento</h3><p>Servicios prestados, cancelaciones y no-shows, registrados reserva a reserva.</p></li>
+      <li><span class="tg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span><h3>Tiempo de respuesta</h3><p>Cuánto tarda cada empresa en contestar y confirmar una reserva.</p></li>
+      <li><span class="tg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Reservas completadas</h3><p>Porcentaje de reservas que acaban con el servicio prestado y el código canjeado.</p></li>
+      <li><span class="tg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.5 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.2l6-.7z"/></svg></span><h3>Reseñas contra el fraude</h3><p>Solo valora quien ha tenido una reserva canjeada, y vigilamos los patrones sospechosos.</p></li>
+    </ul>
 
     <div style="display: flex; flex-direction: column; gap: 16px">
       <div style="display: flex; flex-direction: column; gap: 6px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Cada parte se gana su reputación.</span>
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Cada parte se gana su reputación.</h3>
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">La valoran las otras empresas y la mide Favent con cada reserva.</span>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 16px">
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; color: #0F1110; border: 1px solid #ECEDE9; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; color: #0F1110; border: 1px solid #ECEDE9; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: #274586">Quien ofrece el servicio</span>
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">La mejor experiencia, mejor valorada.</span>
+        <h4 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">La mejor experiencia, mejor valorada.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: #4C504D">Cuanto mejor lo vive el cliente, mejor valoración recibe de quien recomienda y mejor puntúa en Favent.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Puntualidad</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Trato al cliente</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #DADBD6">Lo prometido, cumplido</span></div>
       </div>
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #0F1110; color: #F4F4F1; border: 1px solid #0F1110; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #0F1110; color: #F4F4F1; border: 1px solid #0F1110; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
         <span style="font-size: 13px; font-weight: 600; color: #8CA9E8">Quien recomienda</span>
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Describir bien también cuenta.</span>
+        <h4 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Describir bien también cuenta.</h4>
         <span style="font-size: 15px; line-height: 1.55; color: #B4B8B4">Quien explica el servicio tal como es, para que el cliente llegue con las expectativas correctas, y envía más clientes, recibe mejor valoración.</span>
         <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Descripción fiel</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Clientes enviados</span><span style="font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; border: 1px solid #2A2D2B">Pocas cancelaciones</span></div>
       </div>
@@ -651,7 +754,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
     <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
       <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Popularidad y fiabilidad, por separado.</span>
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1">Popularidad y fiabilidad, por separado.</h3>
         <span style="font-size: 15px; line-height: 1.6; color: #3A3D3B">Tener muchas reseñas no es lo mismo que cumplir siempre. Los rankings lo distinguen, y las empresas nuevas tienen su propio espacio: nadie queda enterrado por llegar tarde.</span>
       </div>
       <div style="flex: 999 1 460px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.08); padding: 20px; display: flex; flex-direction: column; gap: 14px">
@@ -668,80 +771,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
         </div>
       </div>
     </div>
-
-    <div style="background: #0F1110; color: #F4F4F1; border-radius: 24px; padding: clamp(20px, 3vw, 32px); display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center">
-      <span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 24px; background: #8CA9E8; color: #0F1110; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 6px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Nuestro compromiso en el piloto</span>
-        <span style="font-size: 15px; line-height: 1.6; color: #B4B8B4">Durante el piloto evaluamos personalmente a cada empresa que ofrece servicios antes de que entre en la red.</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="como" style="background: #0F1110; color: #F4F4F1">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 48px">
-      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 700px">Así se mueve una reserva.</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
-        <span id="steps" style="display: contents"></span>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid #2A2D2B; padding-top: 24px">
-        <span id="step-detail" aria-live="polite" style="font-size: 16px; line-height: 1.5; color: #E4E6E2; max-width: 720px"></span>
-        <span style="font-family: 'DM Mono', monospace; font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #1E201F; color: #8CA9E8">Estado: <span id="step-state"></span></span>
-      </div>
-    </div>
-  </section>
-
-  <section id="hoteles" class="duo" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: grid; gap: 16px">
-    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-      <div class="photo" style="height: 320px; background: #E7E8E3; overflow: hidden"><img src="img/recomiendas.jpg" alt="Recepción de hotel atendiendo a un huésped" width="800" height="600" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
-      <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em">Si recomiendas clientes</span>
-        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Hoteles, conserjerías, agencias, gestores o profesionales independientes. Cobras cada recomendación sin perseguir a nadie y, si eres empresa, ves qué empleado vende qué y decides el reparto interno.</span>
-        <a href="#acceso" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Recomiendo clientes</a>
-      </div>
-    </div>
-    <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-      <div class="photo" style="height: 320px; background: #1F6F78; overflow: hidden"><img src="img/ofreces.jpg" alt="Velero fondeado en aguas turquesas, visto desde el aire" width="479" height="640" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center"></div>
-      <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.03em">Si ofreces servicios</span>
-        <span style="font-size: 15px; line-height: 1.6; color: #4C504D">Un canal de venta nuevo sin perseguir a nadie ni llevar cuentas en una libreta. Y protección frente a no-shows.</span>
-        <a href="#acceso" style="align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 20px; border-radius: 999px; background: #3F6FD8; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Ofrezco servicios</a>
-      </div>
-    </div>
-    <div style="grid-column: 1 / -1; background: #0F1110; color: #F4F4F1; border-radius: 28px; padding: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
-      <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 14px">
-        <span style="font-size: 14px; font-weight: 600; color: #8CA9E8">Entre colegas</span>
-        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08">Si ofreces servicios, también puedes recomendar.</h3>
-        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B4B8B4; max-width: 520px">¿Ese día ya estás completo? Pasa la reserva, o parte del grupo, a una empresa de confianza y cobra tu comisión. ¿Quieres ayudar a una empresa vecina? Recomiéndala a tus clientes.</p>
-        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
-          <span style="font-family: 'Inter Tight', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Todos ganan.</span>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px">
-            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">El cliente no se queda sin plan</span>
-            <span style="font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1px solid #2A2D2B; color: #E4E6E2">Tu colega llena su agenda</span>
-            <span style="font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: #8CA9E8; color: #0F1110">Tú cobras tu comisión</span>
-          </div>
-        </div>
-      </div>
-      <div class="lift" style="flex: 1 1 300px; min-width: 0; background: #1E201F; border: 1px solid #2A2D2B; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative">
-        <span style="position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 600; color: #B4B8B4; border: 1px solid #3A3D3B; padding: 3px 10px; border-radius: 999px">Ejemplo</span>
-        <div style="display: flex; flex-direction: column; gap: 6px; padding-right: 72px">
-          <span style="font-size: 15px; font-weight: 600">Velas del Norte</span>
-          <span style="align-self: flex-start; font-family: 'DM Mono', monospace; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #2A2D2B; color: #E4E6E2">Sáb 12 abr · completo</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 10px; padding: 4px 0 4px 6px; color: #8CA9E8; font-size: 13px; font-weight: 500">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <span>Pasa la reserva · 8 personas</span>
-        </div>
-        <div style="background: #FFFFFF; color: #0F1110; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
-          <span style="font-size: 15px; font-weight: 600">Mar Blau Yachting</span>
-          <span style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #D8E1F2; color: #274586">Acepta la reserva</span>
-        </div>
-        <div style="background: #3F6FD8; color: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center">
-          <span style="font-size: 14px; font-weight: 600">Comisión para Velas del Norte</span>
-          <span style="font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500">180,00 €</span>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
@@ -752,7 +781,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
 
     <div style="position: relative; background: #E7ECF5; border-radius: 32px; padding: clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
-      <span style="position: absolute; top: 14px; right: 24px; z-index: 1; font-size: 11px; font-weight: 600; color: #4C504D; background: #FFFFFF; border: 1px solid #DADBD6; padding: 3px 10px; border-radius: 999px">Vista de ejemplo</span>
+      <span class="demo-badge" style="position: absolute; top: 14px; right: 24px; z-index: 1">Vista de ejemplo</span>
 
       <div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E5E0; box-shadow: 0 24px 60px rgba(15, 17, 16, 0.08); padding: 22px; display: flex; flex-direction: column; gap: 16px">
         <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
@@ -788,32 +817,42 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">#01</span><span style="font-size: 16px; font-weight: 600">Número personal</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">%</span><span style="font-size: 16px; font-weight: 600">Reparto automático</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">+ / −</span><span style="font-size: 16px; font-weight: 600">Altas y bajas en un clic</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.</span></div>
-      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #274586">↑</span><span style="font-size: 16px; font-weight: 600">Ranking del equipo</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Número personal</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Cada persona tiene su número, su enlace y su QR. Lo usa al reservar y la venta queda a su nombre.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Reparto automático</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Decides qué parte de la comisión es para cada persona. Favent la calcula en cada reserva, sin hojas de cálculo.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Altas y bajas en un clic</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Si alguien entra o se va, lo das de alta o de baja sin tocar los acuerdos con tus socios.</span></div>
+      <div class="lift" style="background: #FFFFFF; border: 1px solid #ECEDE9; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 16px; font-weight: 600">Ranking del equipo</span><span style="font-size: 14px; line-height: 1.5; color: #4C504D">Ves quién vende más y qué servicios funcionan mejor, por persona y por mes.</span></div>
     </div>
   </section>
 
   <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 96px">
     <div style="background: #E7ECF5; border-radius: 32px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
-      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
-      <a href="#acceso" style="height: 52px; padding: 0 28px; border-radius: 999px; background: #0F1110; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 15px; font-weight: 600">Solicitar acceso</a>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
+      <form id="acceso-final" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 360px; max-width: 480px" novalidate>
+        <label for="email-final" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
+        <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D8E1F2; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0F1110">
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: #0F1110; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+      </form>
+      <div id="sent-final" role="status" hidden style="display: none; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #FFFFFF; color: #274586; font-size: 15px; font-weight: 600">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Gracias. Te escribimos en cuanto abramos tu zona.
+      </div>
+      <p id="err-final" class="form-err" role="alert" hidden style="flex-basis: 100%">No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
+      <p style="margin: 0; flex-basis: 100%; font-size: 13px; line-height: 1.5; color: #4C504D">Gratis durante el piloto. Solo usaremos tu email para darte acceso al piloto.</p>
     </div>
   </section>
 
-  <section style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow: hidden" aria-label="favent">
-    <div style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; font-size: clamp(96px, 24vw, 330px); color: #0F1110">favent<span style="width: clamp(18px, 4vw, 54px); height: clamp(18px, 4vw, 54px); border-radius: 999px; background: #3F6FD8"></span></div>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow: hidden">
+    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Inter Tight', sans-serif; font-weight: 700; letter-spacing: -0.06em; line-height: 0.85; font-size: clamp(96px, 24vw, 330px); color: #0F1110">favent<span style="width: clamp(18px, 4vw, 54px); height: clamp(18px, 4vw, 54px); border-radius: 999px; background: #3F6FD8"></span></div>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: #4C504D"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
-  </section>
+  </div>
 
   </main>
 
   <footer style="border-top: 1px solid #ECEDE9">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: #5D615E">
       <span style="display: flex; align-items: baseline; gap: 3px; font-family: 'Inter Tight', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.05em; color: #0F1110"><img src="img/logo-mark.png" alt="" width="30" height="20" loading="lazy" style="align-self: center; height: 20px; width: auto; margin-right: 6px">favent<span style="width: 5px; height: 5px; border-radius: 3px; background: #3F6FD8"></span></span>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px"><a href="#" style="text-decoration: none; color: #5D615E">Privacidad</a><a href="#" style="text-decoration: none; color: #5D615E">Condiciones</a><a href="#" style="text-decoration: none; color: #5D615E">Contacto</a></div>
-    </div>
+      <!-- Oculto hasta que existan privacidad.html, condiciones.html y un email de contacto: rellenar los href y quitar «hidden» -->
+      <div hidden style="display: flex; flex-wrap: wrap; gap: 20px"><a href="privacidad.html" style="text-decoration: none; color: #5D615E">Privacidad</a><a href="condiciones.html" style="text-decoration: none; color: #5D615E">Condiciones</a><a href="mailto:" style="text-decoration: none; color: #5D615E">Contacto</a></div>    </div>
   </footer>
 
 </div>
@@ -834,27 +873,35 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
-    'Favent — El canal de ventas profesional B2B': 'Favent — The professional B2B sales channel',
-    'Favent es el canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, reserva pagada por adelantado y liberación automática al prestar el servicio.': 'Favent is the B2B sales channel for service businesses in Mallorca: partners agree on a commission, every referred booking is prepaid, and the commission is released automatically once the service is delivered.',
+    'Favent — Canal de ventas profesional entre empresas · Mallorca': 'Favent — The professional sales channel between businesses · Mallorca',
+    'Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.': 'The professional sales channel between service businesses in Mallorca: agreed commission, deposit paid at booking and commission released once the service is delivered.',
     'Idioma': 'Language',
     'Principal': 'Main',
     'Piloto abierto en Mallorca ·': 'Pilot open in Mallorca ·',
     'Solicita acceso →': 'Request access →',
     'Cómo funciona': 'How it works',
+    'Confianza': 'Trust',
     'Si recomiendas': 'If you refer',
     'Si ofreces servicios': 'If you offer services',
     'Precios': 'Pricing',
     'Solicitar acceso': 'Request access',
-    'Red B2B de referrals · Mallorca': 'B2B referral network · Mallorca',
+    'Para empresas de servicios en Mallorca': 'For service businesses in Mallorca',
     'Cada cliente que envías,': 'Every client you send,',
     'cobrado.': 'paid.',
-    'Favent convierte tus recomendaciones en un canal de ventas profesional: acuerdos de comisión claros, cobro por adelantado y liberación automática cuando el servicio se presta.': 'Favent turns your referrals into a professional sales channel: clear commission agreements, upfront payment and automatic release once the service is delivered.',
+    'El canal de ventas profesional entre empresas de servicios: las dos empresas pactan la comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio.': 'The professional sales channel between service businesses: both businesses agree on the commission, the client pays a deposit when booking, and the commission is released automatically once the service is delivered.',
     'Email de empresa': 'Business email',
     'Email de tu empresa': 'Your business email',
     'Gracias. Te escribimos en cuanto abramos tu zona.': 'Thank you. We’ll be in touch as soon as we open your area.',
     'Gratis durante el piloto · Pagos procesados con Stripe': 'Free during the pilot · Payments processed by Stripe',
+    'Solo usaremos tu email para darte acceso al piloto.': 'We’ll only use your email to give you access to the pilot.',
+    'Gratis durante el piloto. Solo usaremos tu email para darte acceso al piloto.': 'Free during the pilot. We’ll only use your email to give you access to the pilot.',
+    'No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.': 'We couldn’t send your request. Please try again in a few minutes.',
     'Producto': 'Product',
     'Vista de ejemplo': 'Sample view',
+    'Panel de ejemplo': 'Sample dashboard',
+    'Pausar animación': 'Pause animation',
+    'Reanudar animación': 'Resume animation',
+    'Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.': 'Sample animation of the Favent dashboard: a hotel creates a booking, the client pays the deposit, the QR code is redeemed and the commission is released.',
     'Buenos días, recepción': 'Good morning, front desk',
     '+ Nueva reserva': '+ New booking',
     'Comisión retenida': 'Commission held',
@@ -933,6 +980,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Para quién es': 'Who it’s for',
+    'Para quien recomienda y para quien presta el servicio.': 'For those who refer clients and those who deliver the service.',
     'Estado:': 'Status:',
     'Recepción de hotel atendiendo a un huésped': 'Hotel front desk assisting a guest',
     'Si recomiendas clientes': 'If you refer clients',
@@ -1027,7 +1076,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'Cala d’Or Charters · Sáb 19 abr · 6 personas': 'Cala d’Or Charters · Sat 19 Apr · 6 guests',
     'Cala d’Or Charters · Sáb 19 abr': 'Cala d’Or Charters · Sat 19 Apr',
     'Cala d’Or Charters canjeó FV-9M4T': 'Cala d’Or Charters redeemed FV-9M4T',
-    'Comisión pactada por servicio, cobro garantizado al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.': 'Agreed commission per service, guaranteed payment at booking and automatic release when the QR code is redeemed. Pick your profile and explore: filter, sort and open any booking.',
+    'Comisión pactada por servicio, señal pagada al reservar y liberación automática al canjear el QR. Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.': 'Agreed commission per service, deposit paid at booking and automatic release when the QR code is redeemed. Pick your profile and explore: filter, sort and open any booking.',
     'Vistas': 'Views',
     'Buscar': 'Search',
     'Buscar reservas…': 'Search bookings…',
@@ -1162,8 +1211,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.': 'As soon as the client pays, everyone is notified: the client gets their booking confirmation; both businesses see it in their Favent dashboard. Whoever referred sees their commission right after the payment.',
     'acuerdo activo': 'agreement active',
     'creada': 'created',
-    'El cliente paga la comisión con Stripe.': 'The client pays the commission with Stripe.',
-    'El cliente paga una señal igual a la comisión. Stripe custodia el dinero; nadie lo toca hasta que se presta el servicio.': 'The client pays a deposit equal to the commission. Stripe holds the money; nobody touches it until the service is delivered.',
+    'El cliente paga una señal al reservar.': 'The client pays a deposit when booking.',
+    'El cliente paga con Stripe una señal igual a la comisión. El pago queda retenido hasta que se presta el servicio.': 'The client pays a deposit equal to the commission through Stripe. The payment is held until the service is delivered.',
     'pagada · retenida': 'paid · held',
     'confirmada': 'confirmed',
     'Se escanea el código al prestar el servicio.': 'The code is scanned when the service is delivered.',
@@ -1217,7 +1266,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   var STEPS = [
     { n: '01', t: 'Encuentro', d: 'Quien tiene clientes encuentra a quien tiene el servicio.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva', d: 'El cliente recibe su link de pago por email o SMS.', x: 'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.', e: 'creada' },
-    { n: '03', t: 'Señal', d: 'El cliente paga la comisión con Stripe.', x: 'El cliente paga una señal igual a la comisión. Stripe custodia el dinero; nadie lo toca hasta que se presta el servicio.', e: 'pagada · retenida' },
+    { n: '03', t: 'Señal', d: 'El cliente paga una señal al reservar.', x: 'El cliente paga con Stripe una señal igual a la comisión. El pago queda retenido hasta que se presta el servicio.', e: 'pagada · retenida' },
     { n: '04', t: 'Confirmación', d: 'Todos reciben la confirmación del pago.', x: 'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.', e: 'confirmada' },
     { n: '05', t: 'Canje', d: 'Se escanea el código al prestar el servicio.', x: 'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.', e: 'canjeada' },
     { n: '06', t: 'Liberación', d: 'La comisión llega a la empresa.', x: 'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.', e: 'liquidada' }
@@ -1458,6 +1507,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
     if (!b) return;
     var v = b.getAttribute('data-v'), act = b.getAttribute('data-act');
     if (act === 'nav') { S.nav = +v; renderNav(); }
+    if (act === 'demopause') { demoPause(!LIVE.paused); }
     if (act === 'step') { S.step = +v; renderSteps(); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
@@ -2258,9 +2308,16 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
   function sceneRun() {
     sceneStop();
-    if (!LIVE.visible) return;
+    if (!LIVE.visible || LIVE.paused) return;
     SCENE.forEach(function (sc) { LIVE.timers.push(setTimeout(function () { if (LIVE.visible) sc[1](); }, sc[0])); });
   }
+  function demoPause(p) {
+    LIVE.paused = p;
+    var b = $('demo-pause');
+    b.setAttribute('aria-pressed', p);
+    if (p) { sceneStop(); $('cursor').classList.remove('on'); } else sceneRun();
+  }
+  if (LIVE.still || !('IntersectionObserver' in window)) $('demo-pause').hidden = true;
   if (!LIVE.still && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
       var v = es[es.length - 1].isIntersecting;
@@ -2298,15 +2355,24 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   window.addEventListener('resize', function () { fitPanel(); if (S.popup) renderPop(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
 
-  var form = $('acceso');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = $('email-hero');
-    if (!input.checkValidity()) { input.reportValidity(); return; }
-    function done() { form.style.display = 'none'; var s = $('sent'); s.hidden = false; s.style.display = 'flex'; }
-    if (!FORM_ENDPOINT) { done(); return; }
-    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: input.value }) })
-      .then(done).catch(done);
+  // Perfil elegido en los botones «Recomiendo clientes» / «Ofrezco servicios»; se envía con el email
+  document.querySelectorAll('a[data-perfil]').forEach(function (a) {
+    a.addEventListener('click', function () { S.perfil = a.getAttribute('data-perfil'); });
+  });
+  [['acceso', 'email-hero', 'sent', 'err-hero'], ['acceso-final', 'email-final', 'sent-final', 'err-final']].forEach(function (f) {
+    var form = $(f[0]);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = $(f[1]), err = $(f[3]), btn = form.querySelector('button[type="submit"]');
+      if (!input.checkValidity()) { input.reportValidity(); return; }
+      function done() { form.style.display = 'none'; err.hidden = true; var s = $(f[2]); s.hidden = false; s.style.display = 'flex'; }
+      function fail() { btn.disabled = false; err.hidden = false; }
+      // Sin FORM_ENDPOINT no se guarda nada: se avisa del error en vez de fingir que se ha enviado
+      if (!FORM_ENDPOINT) { fail(); return; }
+      btn.disabled = true; err.hidden = true;
+      fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: input.value, perfil: S.perfil || '', origen: f[0], idioma: S.lang }) })
+        .then(function (r) { if (r.ok) done(); else fail(); }).catch(fail);
+    });
   });
 
   var startLang = new URLSearchParams(location.search).get('lang');
