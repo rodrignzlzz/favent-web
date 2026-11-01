@@ -318,7 +318,7 @@ Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (Google Fon
 
 ### Grid & Container
 - Contenedor de 1200 px con 24 px de margen lateral; el panel inicial se reduce a 12 px de margen en móvil.
-- Rejillas con `auto-fit` y `minmax()`: tarjetas de 200–300 px, dúo de perfiles en 2 columnas (1 por debajo de 720 px), pasos del recorrido en 6 columnas (vertical por debajo de 860 px).
+- Rejillas con `auto-fit` y `minmax()`: tarjetas de 200–300 px, tres tarjetas de perfil en 3 columnas iguales (1 por debajo de 720 px), pasos del recorrido en 6 columnas (vertical por debajo de 860 px).
 
 ### Whitespace Philosophy
 Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justificar su borde: si basta con el espacio, no se dibuja contorno.
@@ -347,12 +347,12 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 | `sm` | 12px | Iconos de confianza, pasos del recorrido |
 | `md` | 16px | Filas y tarjetas pequeñas dentro de pantallas |
 | `lg` | 20px | Panel de confianza, detalle del recorrido, tarjetas pequeñas |
-| `xl` | 28px | Tarjetas de perfil, bloque «Entre colegas», tarjetas de reputación |
+| `xl` | 28px | Tarjetas de perfil, tarjetas de reputación |
 | `xxl` | 32px | Paneles de pantalla (interfaces de ejemplo, bloque de acceso) |
 | `pill` | 9999px | Botones, cápsulas, campo de email, selector de idioma |
 
 ### Photography & Illustration Geometry
-- Fotos solo en las tarjetas de perfil, recortadas con `object-fit: cover` en la parte superior de una tarjeta `xl`.
+- Fotos solo en las tres tarjetas de perfil («Si recomiendas clientes», «Si ofreces servicios» y «Entre colegas»; `img/recomiendas.jpg`, `img/ofreces.jpg`, `img/colegas.jpg`), recortadas con `object-fit: cover` a 320 px de alto en la parte superior de una tarjeta `xl`. Las tres tarjetas son simétricas: foto, título, texto y botón alineado abajo.
 - Las fotos y logotipos son marcadores: sustituirlos solo con material real y con permiso.
 - Iconos de trazo de 1,8 px, en línea, dentro de una baldosa neumórfica de 36 px.
 
@@ -387,7 +387,7 @@ Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` a
 Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px delante (`.eyebrow::before`). Se «descifra» una vez al aparecer (0,65 s, caracteres aleatorios que se resuelven en el texto).
 
 ### Cards & Containers
-- **`glass-card`**: tarjetas de perfil, tarjetas de reputación, funciones de equipo y bloque «Entre colegas». Se inclinan hasta 5° hacia el ratón.
+- **`glass-card`**: las tres tarjetas de perfil, tarjetas de reputación y funciones de equipo. Se inclinan hasta 5° hacia el ratón.
 - **`trust-panel`**: las cinco señales de confianza en un solo panel de vidrio con divisores; en móvil, filas con el icono a la izquierda.
 - **`screen-panel`**: contenedor claro de las interfaces de ejemplo, con la etiqueta «Vista de ejemplo».
 
