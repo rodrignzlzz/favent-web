@@ -242,7 +242,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 > Fuente: `index.html` (variables en `:root`, `.screen`, y los estilos de cada componente).
 
 ### Brand & Accent
-- **Rosa señal** ({colors.primary}): marca y progreso (logotipo, etiquetas, recorrido). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
+- **Rosa señal** ({colors.primary}): marca, progreso y selección (logotipo, etiquetas, recorrido, lo seleccionado en el mapa). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
 - **Rosa profundo** ({colors.primary-deep}): versión para rellenos con texto blanco encima (categoría Ciclismo del mapa, unos 5,9:1).
 - **Azul eléctrico** ({colors.electric}): pulsos y estelas del circuito; foco de los botones.
 - **Azul eléctrico suave** ({colors.electric-soft}): texto de énfasis («cobrado.»), etiquetas de sección sobre bloques oscuros, estados en mono.
@@ -369,16 +369,18 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` al pulsar.
 
 ### Logo
-- **Monograma «fv»** en negativo: trazo `{colors.ink}` y punto interior `{colors.primary}`, fondo transparente (`img/logo-mark-neg.png`, 194 × 128 px, generado a partir del original `img/logo-mark.png`). Va delante de la palabra: 28 px de alto en la cabecera y 20 px en el pie.
+- **Monograma «fv»** en negativo: trazo `{colors.ink}` y punto interior `{colors.primary}`, fondo transparente (`img/logo-mark-neg.png`, 194 × 128 px, generado a partir del original `img/logo-mark.png`). Es el símbolo de la marca: se usa como icono de la pestaña, de la app y en la imagen social, pero **no** va pegado a la palabra en la cabecera ni en el pie.
 - **Palabra** «favent.» en Michroma con el punto final rosa (`.logo` + `.logo-cur`, en HTML/CSS).
-- **Iconos** (`img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
+- **Iconos** (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
+- **Favicon** (`img/favicon-32.png` y `favicon.ico` con 16, 32 y 48 px): el monograma al 90 % del ancho con el punto rosa agrandado para que se vea en la pestaña.
+- Los enlaces a iconos e imagen social llevan `?v=N` para que navegadores y redes descarguen la versión nueva; súbelo cada vez que cambien los archivos.
 - **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y la línea de recorrido sobre el lienzo oscuro.
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
 - Menú fijo (`.topnav`, sticky): transparente arriba; en cuanto la página se desplaza (`.stuck`) se vuelve de vidrio (`nav-bar-stuck`).
 - Selector de idioma ES/EN con relieve hundido; la opción activa en `{colors.surface-active}`.
-- Por debajo de 1020 px desaparecen los enlaces del menú; por debajo de 640 px también el botón del menú.
+- El menú no tiene enlaces a secciones: solo el logotipo, el botón «Solicitar acceso» y el selector de idioma. Por debajo de 640 px también se oculta el botón.
 
 ### Eyebrow
 Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px delante (`.eyebrow::before`). Se «descifra» una vez al aparecer (0,65 s, caracteres aleatorios que se resuelven en el texto).
@@ -395,13 +397,13 @@ Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px dela
 - Nota de privacidad bajo cada formulario en `{typography.caption}`.
 
 ### Route (Así se mueve una reserva)
-Seis pasos unidos por una línea de 2 px. La parte recorrida y los puntos completados (`route-node-done`) en rosa; los pendientes con relieve y borde `{colors.hairline-strong}`. Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
+Seis pasos unidos por una **pista de circuito** (SVG): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la pista los une con tramos rectos y quiebros a 45°, con una derivación corta y su contacto en cada tramo. La parte recorrida se rellena en rosa y en su punta va un pulso azul eléctrico (`{colors.electric-glow}` con halo). Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La pista se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
 
 ### Statement (texto que se revela)
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
 ### Map (mapa de servicios)
-Solo filtros por categoría (sin botones de orden). El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
+Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`) y el **rosa marca solo lo seleccionado**: la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
 
 ### Footer
 Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlineado 1,25 para que no se corte) con el punto rosa, el lema y «B2B SERVICE · MALLORCA». Debajo, el logotipo pequeño. Los enlaces legales están ocultos hasta que existan las páginas.
@@ -449,7 +451,6 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 | Nombre | Ancho | Cambios clave |
 |---|---|---|
 | Desktop | ≥ 1021px | Menú completo, recorrido horizontal fijo |
-| Laptop | ≤ 1020px | Desaparecen los enlaces del menú |
 | Tablet | ≤ 960px | Panel de confianza en filas |
 | Tablet-sm | ≤ 860px | Recorrido vertical sin fijar; panel interactivo sin barra lateral |
 | Mobile-lg | ≤ 720px | Perfiles en una columna |
@@ -462,7 +463,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 - Sin efectos hover en pantallas táctiles (`@media (hover: hover)`).
 
 ### Collapsing Strategy
-- Menú: los enlaces se ocultan por debajo de 1020 px (el contenido está a un scroll).
+- Menú: sin enlaces a secciones en ningún tamaño; por debajo de 640 px tampoco el botón.
 - Recorrido: de 6 columnas fijas a lista vertical con la línea a la izquierda.
 - Panel inicial: se escala para que quepa y pasa a un diseño compacto por debajo de 760 px.
 - Nunca scroll horizontal, ni siquiera a 320 px.

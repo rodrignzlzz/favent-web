@@ -22,7 +22,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 
 Resumen (el detalle está en `DESIGN.md`):
 - Nombre: siempre **favent** en minúscula en el logotipo, "Favent" en el texto. Etiqueta secundaria: **B2B SERVICE**.
-- Logotipo: monograma «fv» en negativo con el punto interior rosa (`img/logo-mark-neg.png`, sacado del original `img/logo-mark.png`) delante de la palabra «favent.» en Michroma con punto rosa (`.logo` + `.logo-cur`). Los iconos (`img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`) son el monograma «fv»; la imagen social está en `img/og-image.png`. Si cambia el logotipo, hay que regenerarlos.
+- Logotipo: la palabra «favent.» en Michroma con punto rosa (`.logo` + `.logo-cur`). El monograma «fv» en negativo con el punto interior rosa (`img/logo-mark-neg.png`, del original `img/logo-mark.png`) es el icono: favicon (`img/favicon-32.png`, `favicon.ico`), iconos de app (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`) e imagen social (`img/og-image.png`). No va pegado a la palabra. Si cambian, regenerarlos y subir el `?v=N` de sus enlaces.
 - Tema oscuro: lienzo `#0B0F17`, texto `#E9EEF6`; rosa señal `#FF4F9A` (marca y progreso) y azul eléctrico `#4DA8FF` / `#7CC4FF` (energía y énfasis). Las interfaces de ejemplo son «pantallas encendidas» claras.
 - Tipografías: Geist (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Michroma (solo la palabra del logotipo).
 - Sin naranja, sin degradados de color visibles, sin emojis, sin transición de día y noche.
