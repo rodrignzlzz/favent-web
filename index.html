@@ -423,6 +423,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .logo:hover{color:var(--ink)}
 .logo-cur{display:inline-block;width:.24em;height:.24em;margin-left:.1em;border-radius:50%;background:var(--signal)}
 .logo-sm{font-size:14px}
+.logo-mark{align-self:center;height:28px;width:auto;margin-right:12px}
+.logo-sm .logo-mark{height:20px;margin-right:9px}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:13px;font-weight:500;letter-spacing:0;color:var(--ink-2)}
 .eyebrow::before{content:"";width:7px;height:7px;flex-shrink:0;background:var(--signal)}
 .intro > .eyebrow{color:var(--ink-2)}
@@ -541,7 +543,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   <nav class="topnav" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px" aria-label="Principal">
     <div class="n-brand" style="display: flex; align-items: center; gap: 10px">
-      <a href="#" class="logo">favent<span class="logo-cur" aria-hidden="true"></span></a>
+      <a href="#" class="logo"><img class="logo-mark" src="img/logo-mark-neg.png" alt="" width="42" height="28">favent<span class="logo-cur" aria-hidden="true"></span></a>
       <span class="n-badge" style="white-space: nowrap; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--ink-2); border: 1px solid var(--chipline); padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
     <div class="n-cta" style="display: flex; gap: 8px; align-items: center">
@@ -956,7 +958,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   <footer style="border-top: 1px solid var(--line)">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-3)">
-      <span class="logo logo-sm">favent<span class="logo-cur" aria-hidden="true"></span></span>
+      <span class="logo logo-sm"><img class="logo-mark" src="img/logo-mark-neg.png" alt="" width="30" height="20" loading="lazy">favent<span class="logo-cur" aria-hidden="true"></span></span>
       <!-- Oculto hasta que existan privacidad.html, condiciones.html y un email de contacto: rellenar los href y quitar «hidden» -->
       <div hidden style="display: flex; flex-wrap: wrap; gap: 20px"><a href="privacidad.html" style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" style="text-decoration: none; color: var(--ink-3)">Condiciones</a><a href="mailto:" style="text-decoration: none; color: var(--ink-3)">Contacto</a></div>    </div>
   </footer>

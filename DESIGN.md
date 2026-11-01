@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Favent-design-system
-description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo en Michroma (extendida y técnica) con punto rosa. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». En el inicio, pistas de procesador recorridas por pulsos de energía azul."
+description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». En el inicio, pistas de procesador recorridas por pulsos de energía azul."
 
 colors:
   primary: "#FF4F9A"
@@ -280,7 +280,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 ### Font Family
 - **Geist** (Google Fonts, 400/500/600): titulares, texto y botones.
 - **Geist Mono** (400/500): etiquetas de sección, códigos (FV-7K2Q), importes, estados, selector de idioma.
-- **Michroma** (400, único grosor): solo el logotipo «favent.» y el icono «f.».
+- **Michroma** (400, único grosor): solo la palabra «favent.» del logotipo.
 
 ### Hierarchy
 
@@ -367,6 +367,12 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 **`button-chip`**: cápsula pequeña en mono con relieve («Pausar fondo»). 30 px.
 
 Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` al pulsar.
+
+### Logo
+- **Monograma «fv»** en negativo: trazo `{colors.ink}` y punto interior `{colors.primary}`, fondo transparente (`img/logo-mark-neg.png`, 194 × 128 px, generado a partir del original `img/logo-mark.png`). Va delante de la palabra: 28 px de alto en la cabecera y 20 px en el pie.
+- **Palabra** «favent.» en Michroma con el punto final rosa (`.logo` + `.logo-cur`, en HTML/CSS).
+- **Iconos** (`img/favicon-32.png`, `img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
+- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y la línea de recorrido sobre el lienzo oscuro.
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
