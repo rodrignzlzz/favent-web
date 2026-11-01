@@ -442,7 +442,7 @@ body > div:first-of-type{overflow-x:clip}
 .route-in{max-width:1200px;margin:0 auto;padding:var(--sp) 24px;display:flex;flex-direction:column;gap:56px}
 .route-head{display:flex;flex-direction:column;gap:20px}
 .route-track{position:relative}
-.route-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.route-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .route-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .rt-base{fill:none;stroke:var(--chipline);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
 .rt-stub{fill:none;stroke:var(--chipline);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;opacity:.8}
@@ -468,7 +468,7 @@ html:not(.cine) .rt-halo,html:not(.cine) .rt-head{display:none}
 #step-detail{margin:0;font-size:17px;line-height:1.6;max-width:720px;color:var(--ink)}
 .route-state{font-family:'Geist Mono',monospace;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--chipline);color:var(--eyebrow);white-space:nowrap}
 /* Con movimiento y en escritorio la sección se fija mientras la línea avanza */
-.cine .route{height:240vh}
+.cine .route{height:200vh}
 .cine .route-pin{position:sticky;top:0;min-height:100vh;min-height:100svh;display:flex;align-items:center}
 .cine .route-in{width:100%;padding-top:64px;padding-bottom:64px}
 @media (max-width: 860px){
@@ -1083,6 +1083,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Tú': 'You',
     'Proponer acuerdo': 'Propose agreement',
     'Así se mueve una reserva.': 'How a booking moves.',
+    'Acuerdo': 'Agreement',
+    'Las dos empresas pactan la comisión.': 'Both businesses agree on the commission.',
+    'Reserva y señal': 'Booking and deposit',
+    'El cliente recibe el enlace y paga una señal.': 'The client gets the link and pays a deposit.',
+    'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal igual a la comisión, que queda retenida, y las dos empresas reciben la confirmación al momento.': 'Whoever refers creates the booking with the client’s email or mobile number. The client pays a deposit equal to the commission through Stripe, which is held, and both businesses get the confirmation instantly.',
+    'La comisión llega a quien recomendó.': 'The commission reaches whoever referred.',
     'Paso reservas': 'I pass on bookings',
     'Grupo de amigos disfrutando de una salida en barco': 'Group of friends enjoying a boat trip',
     'Pausar animaciones': 'Pause animations',
@@ -1379,12 +1385,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   var NAV = [['home', 'Inicio'], ['map', 'Mapa'], ['res', 'Reservas'], ['ag', 'Acuerdos'], ['rep', 'Informes'], ['msg', 'Mensajes']];
   var STEPS = [
-    { n: '01', t: 'Encuentro', d: 'Quien tiene clientes encuentra a quien tiene el servicio.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
-    { n: '02', t: 'Reserva', d: 'El cliente recibe su link de pago por email o SMS.', x: 'Quien recomienda elige servicio, fecha y plazas y añade el email o el móvil del cliente. Favent le envía el link de pago al momento.', e: 'creada' },
-    { n: '03', t: 'Señal', d: 'El cliente paga una señal al reservar.', x: 'El cliente paga con Stripe una señal igual a la comisión. El pago queda retenido hasta que se presta el servicio.', e: 'pagada · retenida' },
-    { n: '04', t: 'Confirmación', d: 'Todos reciben la confirmación del pago.', x: 'En cuanto el cliente paga, todos reciben la confirmación: el cliente, la de su reserva; las dos empresas, en su panel de Favent. Quien recomienda ve su comisión justo después del pago.', e: 'confirmada' },
-    { n: '05', t: 'Canje', d: 'Se escanea el código al prestar el servicio.', x: 'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.', e: 'canjeada' },
-    { n: '06', t: 'Liberación', d: 'La comisión llega a la empresa.', x: 'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.', e: 'liquidada' }
+    { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan la comisión.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
+    { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal igual a la comisión, que queda retenida, y las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
+    { n: '03', t: 'Canje', d: 'Se escanea el código al prestar el servicio.', x: 'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.', e: 'canjeada' },
+    { n: '04', t: 'Liberación', d: 'La comisión llega a quien recomendó.', x: 'Favent transfiere la comisión a la cuenta de quien recomendó. Si es una empresa, ella decide el reparto interno.', e: 'liquidada' }
   ];
   var SVCS = [
     { name: 'Velas del Norte', desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
@@ -2453,7 +2457,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   // Scroll: línea de recorrido en «Así se mueve una reserva», texto que se revela, panel en 3D y botones magnéticos
   var CINE = { on: !matchMedia('(prefers-reduced-motion: reduce)').matches, raf: 0 };
-  var ROUTE = { sec: $('como'), base: $('rt-base'), stub: $('rt-stub'), fill: $('rt-fill'), halo: $('rt-halo'), head: $('rt-head'), nodeF: [0, 0.2, 0.4, 0.6, 0.8, 1], len: 0, reached: 5 };
+  var ROUTE = { sec: $('como'), base: $('rt-base'), stub: $('rt-stub'), fill: $('rt-fill'), halo: $('rt-halo'), head: $('rt-head'), nodeF: [0, 1 / 3, 2 / 3, 1], len: 0, reached: 5 };
   var RV = { el: $('reveal'), src: $('reveal-src'), out: $('reveal-words'), words: [], n: -1 };
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function routeNarrow() { return innerWidth <= 860; }
@@ -2488,7 +2492,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function routeGo(i) {
     if (routeNarrow()) return;
-    var top = ROUTE.sec.getBoundingClientRect().top + scrollY + (0.06 + 0.86 * i / 5) * (ROUTE.sec.offsetHeight - innerHeight);
+    var top = ROUTE.sec.getBoundingClientRect().top + scrollY + (0.06 + 0.86 * i / (STEPS.length - 1)) * (ROUTE.sec.offsetHeight - innerHeight);
     window.scrollTo({ top: top, behavior: 'smooth' });
   }
   function revealBuild() {

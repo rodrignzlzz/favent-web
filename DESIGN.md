@@ -318,7 +318,7 @@ Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (Google Fon
 
 ### Grid & Container
 - Contenedor de 1200 px con 24 px de margen lateral; el panel inicial se reduce a 12 px de margen en móvil.
-- Rejillas con `auto-fit` y `minmax()`: tarjetas de 200–300 px, tres tarjetas de perfil en 3 columnas iguales (1 por debajo de 720 px), pasos del recorrido en 6 columnas (vertical por debajo de 860 px).
+- Rejillas con `auto-fit` y `minmax()`: tarjetas de 200–300 px, tres tarjetas de perfil en 3 columnas iguales (1 por debajo de 720 px), pasos del recorrido en 4 columnas (vertical por debajo de 860 px).
 
 ### Whitespace Philosophy
 Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justificar su borde: si basta con el espacio, no se dibuja contorno.
@@ -398,7 +398,7 @@ Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px dela
 - Nota de privacidad bajo cada formulario en `{typography.caption}`.
 
 ### Route (Así se mueve una reserva)
-Seis pasos unidos por una **curva suave** (SVG, curvas de Bézier): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la curva ondula de uno a otro. La parte recorrida se rellena en rosa y en su punta va un punto rosa luminoso con halo. Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La curva se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Sin quiebros de circuito. Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
+Cuatro pasos (Acuerdo, Reserva y señal, Canje, Liberación; antes eran seis, se fusionaron reserva, señal y confirmación) unidos por una **curva suave** (SVG, curvas de Bézier): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la curva ondula de uno a otro. La parte recorrida se rellena en rosa y en su punta va un punto rosa luminoso con halo. Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La curva se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Sin quiebros de circuito. Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
 
 ### Statement (texto que se revela)
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
@@ -417,7 +417,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 | Rejilla del inicio | Continuo mientras se ve | Dos ondas (radial desde el centro y diagonal) más un anillo brillante cada 3,2 s; se para fuera de pantalla, con la pestaña oculta o con el botón de pausa |
 | Panel inicial | Scroll | De inclinado 12° en 3D a plano |
 | Frase que se revela | Scroll | Palabra a palabra |
-| Línea de recorrido | Scroll | Fija en escritorio (240vh); vertical en móvil |
+| Línea de recorrido | Scroll | Fija en escritorio (200vh); vertical en móvil |
 | Etiquetas | Al aparecer | Descifrado de 0,65 s, una vez |
 | Tarjetas de vidrio | Ratón | Inclinación de hasta 5° |
 
@@ -465,7 +465,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 
 ### Collapsing Strategy
 - Menú: sin enlaces a secciones en ningún tamaño; por debajo de 640 px tampoco el botón.
-- Recorrido: de 6 columnas fijas a lista vertical con la línea a la izquierda.
+- Recorrido: de 4 columnas fijas a lista vertical con la línea a la izquierda.
 - Panel inicial: se escala para que quepa y pasa a un diseño compacto por debajo de 760 px.
 - Nunca scroll horizontal, ni siquiera a 320 px.
 
