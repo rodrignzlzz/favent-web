@@ -435,7 +435,7 @@ body > div:first-of-type{overflow-x:clip}
 /* Las interfaces de ejemplo son pantallas encendidas: conservan los colores claros */
 .screen,.fx-win,#demo{--bg:#F6F6F3;--ink:#1E2226;--ink-2:#50565C;--ink-3:#656B71;--line:#E6E7E3;--card:#FFFFFF;--eyebrow:#0B2A4A;--chipline:#D5D7D3;--err:#A12A1F;color:#1E2226}
 /* ===== Texto que se revela palabra a palabra con el scroll ===== */
-.reveal-sec{max-width:1200px;margin:0 auto;padding:calc(var(--sp) * .6) 24px 0}
+.reveal-sec{max-width:1200px;margin:0 auto;padding:var(--sp) 24px 0}
 .reveal{margin:0;max-width:980px;font-size:clamp(28px,4vw,48px);line-height:1.2;font-weight:500;letter-spacing:-0.03em;color:var(--ink)}
 #reveal-words span{color:#66707F;transition:color 240ms ease}
 #reveal-words span.on,#reveal-words.all span{color:var(--ink)}
@@ -448,10 +448,10 @@ body > div:first-of-type{overflow-x:clip}
 .rt-base{fill:none;stroke:var(--chipline);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
 .rt-stub{fill:none;stroke:var(--chipline);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;opacity:.8}
 .rt-fill{fill:none;stroke:var(--signal);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1 1}
-.rt-halo{fill:rgba(77,168,255,.22)}
-.rt-head{fill:#D4ECFF}
+.rt-halo{fill:rgba(255,79,154,.22)}
+.rt-head{fill:#FFD6E8}
 html:not(.cine) .rt-halo,html:not(.cine) .rt-head{display:none}
-/* Los pasos se alternan a dos alturas para que la pista quiebre como en una placa */
+/* Los pasos se alternan a dos alturas y una curva suave los une */
 .route-steps .step:nth-child(even){margin-top:48px}
 .step.done::before{box-shadow:0 0 0 5px rgba(255,79,154,.16),3px 3px 8px var(--neu-lo)}
 .step{position:relative;border:0;background:none;padding:40px 4px 0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;font-family:'Geist',sans-serif;color:var(--ink);border-radius:12px}
@@ -529,6 +529,15 @@ html{scroll-padding-top:84px}
   .map-side{display:none !important}
   .map-badge{top:10px;left:10px}
 }
+/* ===== Alternancia: secciones claras sobre el lienzo oscuro ===== */
+.light{--bg:#F6F6F3;--ink:#1E2226;--ink-2:#50565C;--ink-3:#656B71;--line:#E3E4DF;--card:#FFFFFF;--eyebrow:#0B2A4A;--chipline:#D0D3CD;--err:#A12A1F;--glass:rgba(255,255,255,.62);--glass-line:rgba(30,34,38,.09);--neu-lo:rgba(30,34,38,.14);--neu-hi:rgba(255,255,255,.95);
+  color:var(--ink);background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='11' cy='11' r='1' fill='%231E2226' fill-opacity='.09'/%3E%3C/svg%3E");
+  box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax)}
+.light .glass{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 20px 50px rgba(30,34,38,.08)}
+.light .trust-grid{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 20px 50px rgba(30,34,38,.08)}
+.light .trust-grid .tg-ic{color:#2B6CA8}
+.light .route-foot{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 16px 40px rgba(30,34,38,.07)}
+.light .screen{box-shadow:0 0 0 1px rgba(30,34,38,.06)}
 /* ===== Entrada del inicio ===== */
 .cine .intro > *{animation:rise 800ms var(--ease-out) both;animation-delay:calc(var(--i, 0) * 70ms + 120ms)}
 .cine .intro > h1{animation:none}
@@ -655,11 +664,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="idea" class="reveal-sec" aria-label="La idea">
+  <section id="idea" class="light reveal-sec" aria-label="La idea">
     <p class="reveal" id="reveal"><span class="fx-sr" id="reveal-src">Quien recomienda y quien presta el servicio pactan la comisión. El cliente paga una señal al reservar. La comisión se libera sola cuando se presta el servicio.</span><span id="reveal-words" aria-hidden="true"></span></p>
   </section>
 
-  <section id="como" class="route" aria-label="Cómo funciona">
+  <section id="como" class="light route" aria-label="Cómo funciona">
     <div class="route-pin">
       <div class="route-in">
         <div class="route-head">
@@ -728,7 +737,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="app" style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp); display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
+  <section id="app" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Geist', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
@@ -756,7 +765,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="mapa" style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp); display: flex; flex-direction: column; gap: 28px" aria-label="Mapa de servicios">
+  <section id="mapa" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Mapa de servicios">
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
         <span class="eyebrow">Mapa de servicios</span>
@@ -817,7 +826,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         <div class="sel-bar" style="background: #FFFFFF; border-radius: 18px; border: 1px solid #E3E5E0; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
           <div style="display: flex; flex-direction: column; gap: 2px"><span id="sel-name" style="font-size: 15px; font-weight: 600"></span><span id="sel-meta" style="font-size: 13px; color: var(--ink-3)"></span></div>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-            <span style="font-size: 12px; font-weight: 600; background: #FFE0EE; color: #9D0F4E; padding: 5px 10px; border-radius: 999px"><span id="sel-comm"></span></span>
+            <span id="sel-chip" style="font-size: 12px; font-weight: 600; background: #D3E6F4; color: #0B2A4A; padding: 5px 10px; border-radius: 999px"><span id="sel-comm"></span></span>
             <a href="#acceso" data-perfil="recomienda" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #1E2226; color: #FFFFFF; display: flex; align-items: center; text-decoration: none; font-size: 13px; font-weight: 600">Solicitar acceso</a>
           </div>
         </div>
@@ -830,7 +839,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="confianza" style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp); display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
+  <section id="confianza" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Confianza y calidad</span>
       <h2 style="margin: 0; font-family: 'Geist', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
@@ -887,7 +896,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: 0 24px var(--sp); display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
+  <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Para equipos</span>
       <h2 style="margin: 0; font-family: 'Geist', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
@@ -977,7 +986,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FORM_ENDPOINT = '';
 
   var A = { accent: '#2B6CA8', on: '#FFFFFF', tint: '#EAF2F8', soft: '#D3E6F4', bright: '#A9D3F0', text: '#0B2A4A' };
-  var S = { nav: 0, step: 2, mtype: 'Todas', msort: 'rating', pin: 0, lang: 'es', member: 0, share: 40, trust: 'rel' };
+  var S = { nav: 0, step: 2, mtype: 'Todas', mapPink: false, msort: 'rating', pin: 0, lang: 'es', member: 0, share: 40, trust: 'rel' };
   function $(id) { return document.getElementById(id); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function eur(v) {
@@ -1433,7 +1442,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('pins').innerHTML = SVCS.map(function (s, i) {
       if (!visible(s)) return '';
       var on = i === S.pin, xy = proj(s.lat, s.lng), dot = S.mtype === 'Todas' && !on;
-      return '<button type="button" class="fv-pin' + (dot ? ' dot' : '') + '" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; --c: ' + FXCOL[s.type] + '; transform: translate(-50%, -100%); height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? '#FF4F9A' : '#2B6CA8') + '; color: ' + (on ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price) + ' | ' + s.pct + (S.lang === 'en' ? '%' : ' %') + '</button>';
+      return '<button type="button" class="fv-pin' + (dot ? ' dot' : '') + '" data-act="pin" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(s.name + ', ' + s.place + (S.lang === 'en' ? ', commission ' : ', comisión ') + comm(s)) + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; --c: ' + FXCOL[s.type] + '; transform: translate(-50%, -100%); height: 32px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#0B2A4A') : '#2B6CA8') + '; color: ' + (on && S.mapPink ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); cursor: pointer; white-space: nowrap">' + eur(s.price) + ' | ' + s.pct + (S.lang === 'en' ? '%' : ' %') + '</button>';
     }).join('');
   }
   var TRUST = [
@@ -1536,9 +1545,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function catChip(c) {
     var on = c[0] === S.mtype;
     var n = c[0] === 'Todas' ? SVCS.length : SVCS.filter(function (s) { return s.type === c[0]; }).length;
-    return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? '#FF4F9A' : '#D5D7D3') + '; background: ' + (on ? '#FF4F9A' : '#FFFFFF') + '; color: ' + (on ? '#0B0F17' : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Geist\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
+    return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#D5D7D3') + '; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#FFFFFF') + '; color: ' + (on ? (S.mapPink ? '#0B0F17' : '#FFFFFF') : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Geist\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
       + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
-      + T(c[0]) + '<span style="font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? '#3D0A22' : '#656B71') + '">' + n + '</span></button>';
+      + T(c[0]) + '<span style="font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? (S.mapPink ? '#3D0A22' : '#FFFFFF') : '#656B71') + '">' + n + '</span></button>';
   }
   function popHtml(s) {
     var en = S.lang === 'en';
@@ -1590,7 +1599,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var rating = !s.reviews ? T('Nuevo · aún sin reseñas')
         : S.lang === 'en' ? s.rating.toFixed(1) + ' · ' + s.reviews + ' reviews'
         : s.rating.toFixed(1).replace('.', ',') + ' · ' + s.reviews + ' reseñas';
-      return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" class="ml" style="text-align: left; width: 100%; background: ' + (on ? '#FFE8F2' : '#FFFFFF') + '; border: ' + (on ? '2px solid #FF4F9A' : '1px solid #E6E7E3') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Geist\', sans-serif; color: #1E2226">'
+      return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" class="ml" style="text-align: left; width: 100%; background: ' + (on ? (S.mapPink ? '#FFE8F2' : '#EAF2F8') : '#FFFFFF') + '; border: ' + (on ? (S.mapPink ? '2px solid #FF4F9A' : '2px solid #2B6CA8') : '1px solid #E6E7E3') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Geist\', sans-serif; color: #1E2226">'
         + '<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><span class="ml-name" style="font-size: 15px; font-weight: 600">' + s.name + '</span><span class="ml-place" style="font-size: 12px; color: #656B71">' + s.place + '</span></div>'
         + '<span class="ml-svc" style="font-size: 13px; color: #50565C">' + T(s.svc) + '</span>'
         + '<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">'
@@ -1603,6 +1612,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('sel-name').textContent = sel.name;
     $('sel-meta').textContent = T(sel.svc) + ' · ' + sel.place;
     $('sel-comm').textContent = T('Comisión') + ' ' + comm(sel);
+    $('sel-chip').style.background = S.mapPink ? '#FFE0EE' : '#D3E6F4';
+    $('sel-chip').style.color = S.mapPink ? '#9D0F4E' : '#0B2A4A';
   }
 
   function setLang(l) {
@@ -1639,12 +1650,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'step') { S.step = +v; renderSteps(); if (CINE.on) routeGo(+v); }
     if (act === 'sort') { S.msort = v; renderMap(); }
     if (act === 'type') {
-      S.mtype = v; S.popup = false;
+      S.mtype = v; S.popup = false; S.mapPink = true;
       if (!visible(SVCS[S.pin])) { for (var k = 0; k < SVCS.length; k++) if (visible(SVCS[k])) { S.pin = k; break; } }
       renderMap();
     }
     if (act === 'pin') {
-      S.pin = +v; S.popup = true; renderMap();
+      S.pin = +v; S.popup = true; S.mapPink = true; renderMap();
       // renderMap() rehace pins y lista: devolver el foco para no perderlo
       var px = document.querySelector('#pin-pop:not([hidden]) .pp-x');
       var nb = b.classList.contains('fv-pin') ? px : document.querySelector('.' + b.classList[0] + '[data-act="pin"][data-v="' + v + '"]');
@@ -2296,7 +2307,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var HPINS = [0, 1, 2, 4, 5, 6, 3, 7], HSEL = 2, HMAP_W = 600;
   function heroPin(i, on) {
     var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
-    return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? '#FF4F9A' : '#2B6CA8') + '; color: ' + (on ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
+    return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#0B2A4A') : '#2B6CA8') + '; color: ' + (on && S.mapPink ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
   }
   function heroMap() {
     var svg = document.querySelector('#map svg').innerHTML;
@@ -2474,33 +2485,28 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function routeNarrow() { return innerWidth <= 860; }
   function routeLayout() {
-    // La pista une los puntos con tramos rectos y quiebros a 45°, como una pista de circuito
+    // Curva suave que pasa por los puntos (que se alternan a dos alturas)
     var st = document.querySelectorAll('#steps .step'), tr = $('steps').parentNode.getBoundingClientRect(), narrow = routeNarrow();
     if (!st.length) return;
     var pts = [].map.call(st, function (b) {
       var r = b.getBoundingClientRect(), nl = parseFloat(getComputedStyle(b, '::before').left) || 0;
       return narrow ? [r.left - tr.left + nl + 8, r.top - tr.top + 11] : [r.left - tr.left + r.width / 2, r.top - tr.top + 8];
     });
-    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1), stub = '', acc = [0], tot = 0;
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1), parts = [d];
     for (var k = 1; k < pts.length; k++) {
-      var a = pts[k - 1], b = pts[k], dx = b[0] - a[0], dy = b[1] - a[1], seg;
-      if (narrow) {
-        var my = (Math.abs(dy) - Math.abs(dx)) / 2 * Math.sign(dy);
-        seg = [[a[0], a[1] + my], [b[0], b[1] - my], b];
-      } else {
-        var mx = (Math.abs(dx) - Math.abs(dy)) / 2 * Math.sign(dx);
-        seg = [[a[0] + mx, a[1]], [b[0] - mx, b[1]], b];
-      }
-      var prev = a;
-      seg.forEach(function (q) { d += ' L' + q[0].toFixed(1) + ' ' + q[1].toFixed(1); tot += Math.hypot(q[0] - prev[0], q[1] - prev[1]); prev = q; });
-      acc.push(tot);
-      // Derivación decorativa con su contacto, a mitad de cada tramo
-      var c = narrow ? [seg[0][0], (a[1] + seg[0][1]) / 2] : [(a[0] + seg[0][0]) / 2, seg[0][1]], sg = k % 2 ? 1 : -1;
-      var e = narrow ? [c[0] + 18 * sg + (sg < 0 ? 0 : 0), c[1] + 14] : [c[0] + 14, c[1] - 18 * sg];
-      if (!narrow || e[0] > 4) stub += 'M' + c[0].toFixed(1) + ' ' + c[1].toFixed(1) + ' L' + e[0].toFixed(1) + ' ' + e[1].toFixed(1) + ' m-2.5 0 a2.5 2.5 0 1 0 5 0 a2.5 2.5 0 1 0 -5 0';
+      var a = pts[k - 1], b = pts[k], c1, c2;
+      if (narrow) { var my = (a[1] + b[1]) / 2; c1 = [a[0], my]; c2 = [b[0], my]; }
+      else { var mx = (a[0] + b[0]) / 2; c1 = [mx, a[1]]; c2 = [mx, b[1]]; }
+      d += ' C' + [c1, c2, b].map(function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' ');
+      parts.push(d);
     }
-    ROUTE.base.setAttribute('d', d); ROUTE.fill.setAttribute('d', d); ROUTE.stub.setAttribute('d', stub);
-    ROUTE.len = tot; ROUTE.nodeF = acc.map(function (v) { return tot ? v / tot : 0; });
+    ROUTE.base.setAttribute('d', d); ROUTE.fill.setAttribute('d', d); ROUTE.stub.setAttribute('d', '');
+    // Posición de cada punto a lo largo de la curva, para saber cuándo la alcanza el relleno
+    var tot = ROUTE.base.getTotalLength();
+    ROUTE.nodeF = parts.map(function (pd) { ROUTE.stub.setAttribute('d', pd); return tot ? ROUTE.stub.getTotalLength() / tot : 0; });
+    ROUTE.nodeF[0] = 0;
+    ROUTE.stub.setAttribute('d', '');
+    ROUTE.len = tot;
   }
   function routeProgress() {
     if (routeNarrow()) { var t = $('steps').getBoundingClientRect(); return clamp01((innerHeight * 0.62 - t.top) / t.height); }
@@ -2535,7 +2541,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var f = routeProgress();
     ROUTE.fill.style.strokeDashoffset = (1 - f).toFixed(4);
     if (ROUTE.len) {
-      // El pulso azul va en la punta de la parte recorrida
+      // Un punto rosa luminoso va en la punta de la parte recorrida
       var hp = ROUTE.fill.getPointAtLength(f * ROUTE.fill.getTotalLength());
       ROUTE.head.setAttribute('cx', hp.x.toFixed(1)); ROUTE.head.setAttribute('cy', hp.y.toFixed(1));
       ROUTE.halo.setAttribute('cx', hp.x.toFixed(1)); ROUTE.halo.setAttribute('cy', hp.y.toFixed(1));
@@ -2565,89 +2571,42 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
 
 
-  // Fondo del inicio: pistas de un procesador recorridas por pulsos de energía azul eléctrico
-  var FINE = matchMedia('(hover: hover) and (pointer: fine)').matches, PTR = { x: -1e4, y: -1e4, raf: 0 };
-  var NET = { c: $('net'), ctx: null, base: null, traces: [], pulses: [], w: 0, h: 0, raf: 0, next: 0, near: 0, paused: false, seen: true };
+  // Fondo del inicio: líneas onduladas que se mueven despacio, del azul al rosa, y se apartan del ratón
+  var FINE = matchMedia('(hover: hover) and (pointer: fine)').matches, PTR = { x: -1e4, y: -1e4 };
+  var NET = { c: $('net'), ctx: null, w: 0, h: 0, raf: 0, paused: false, seen: true, t0: performance.now(), lines: [] };
   function netBuild() {
-    var r = NET.c.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1), G = 24;
-    NET.w = r.width; NET.h = r.height; NET.dpr = dpr;
+    var r = NET.c.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    NET.w = r.width; NET.h = r.height;
     NET.c.width = Math.round(NET.w * dpr); NET.c.height = Math.round(NET.h * dpr);
     NET.ctx = NET.c.getContext('2d'); NET.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var seed = 5, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
-    var DIRS = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
-    var n = Math.max(18, Math.min(70, Math.round(NET.w * NET.h / (NET.w < 768 ? 16000 : 11000))));
-    NET.traces = []; NET.pulses = [];
-    for (var t = 0; t < n; t++) {
-      var x = Math.round(rnd() * NET.w / G) * G, y = Math.round(rnd() * NET.h / G) * G, d = Math.floor(rnd() * 4) * 2;
-      var pts = [[x, y]], segs = 3 + Math.floor(rnd() * 5);
-      for (var k = 0; k < segs; k++) {
-        var len = (2 + Math.floor(rnd() * 6)) * G, dx = DIRS[d][0], dy = DIRS[d][1];
-        x += dx * len; y += dy * len;
-        if (x < 0 || y < 0 || x > NET.w || y > NET.h) break;
-        pts.push([x, y]);
-        d = (d + (rnd() < 0.5 ? 1 : 7) * (rnd() < 0.7 ? 1 : 2)) % 8;
-        if (d % 2 && rnd() < 0.5) d = (d + 1) % 8;
-      }
-      if (pts.length < 2) continue;
-      var acc = [0];
-      for (var q = 1; q < pts.length; q++) acc.push(acc[q - 1] + Math.hypot(pts[q][0] - pts[q - 1][0], pts[q][1] - pts[q - 1][1]));
-      NET.traces.push({ pts: pts, acc: acc, len: acc[acc.length - 1], flash: 0 });
+    var n = NET.w < 768 ? 16 : 26, A = [77, 168, 255], B = [255, 79, 154];
+    NET.lines = [];
+    for (var k = 0; k < n; k++) {
+      var u = k / (n - 1), col = A.map(function (c, q) { return Math.round(c + (B[q] - c) * u); });
+      NET.lines.push({ y: NET.h * (0.12 + 0.82 * u), amp: 14 + 22 * Math.sin(Math.PI * u), ph: k * 0.55, col: col, a: 0.16 + 0.2 * Math.sin(Math.PI * u) });
     }
-    // Capa fija: las pistas y sus contactos se dibujan una vez
-    NET.base = document.createElement('canvas'); NET.base.width = NET.c.width; NET.base.height = NET.c.height;
-    var b = NET.base.getContext('2d'); b.setTransform(dpr, 0, 0, dpr, 0, 0);
-    b.lineWidth = 1.2; b.lineJoin = 'round'; b.strokeStyle = 'rgba(108,184,255,.13)'; b.fillStyle = 'rgba(108,184,255,.3)';
-    NET.traces.forEach(function (tr) {
-      b.beginPath(); tr.pts.forEach(function (pt, i) { if (i) b.lineTo(pt[0], pt[1]); else b.moveTo(pt[0], pt[1]); }); b.stroke();
-      var s0 = tr.pts[0], e = tr.pts[tr.pts.length - 1];
-      b.fillRect(s0[0] - 2.5, s0[1] - 2.5, 5, 5);
-      b.beginPath(); b.arc(e[0], e[1], 3, 0, 6.283); b.stroke();
-    });
     netDraw();
-  }
-  function tracePoint(tr, d) {
-    for (var i = 1; i < tr.acc.length; i++) if (d <= tr.acc[i]) {
-      var a = tr.pts[i - 1], b = tr.pts[i], u = (d - tr.acc[i - 1]) / (tr.acc[i] - tr.acc[i - 1] || 1);
-      return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, i];
-    }
-    var e = tr.pts[tr.pts.length - 1]; return [e[0], e[1], tr.pts.length - 1];
-  }
-  function netPulse(tr) {
-    if (!tr) tr = NET.traces[Math.floor(Math.random() * NET.traces.length)];
-    if (tr) NET.pulses.push({ tr: tr, t0: performance.now(), v: 0.22 + Math.random() * 0.14 });
   }
   function netRunning() { return CINE.on && !NET.paused && NET.seen && !document.hidden; }
   function netDraw() {
     NET.raf = 0;
-    var ctx = NET.ctx, now = performance.now(), TRAIL = 110;
+    var ctx = NET.ctx, t = (performance.now() - NET.t0) / 1000, r = NET.c.getBoundingClientRect();
+    var mx = PTR.x - r.left, my = PTR.y - r.top, step = NET.w < 768 ? 14 : 18, still = !CINE.on;
     ctx.clearRect(0, 0, NET.w, NET.h);
-    ctx.drawImage(NET.base, 0, 0, NET.w, NET.h);
-    if (netRunning() && now > NET.next && NET.pulses.length < 12) { netPulse(); NET.next = now + 220 + Math.random() * 380; }
-    NET.pulses = NET.pulses.filter(function (pl) { return (now - pl.t0) * pl.v < pl.tr.len + TRAIL; });
-    NET.pulses.forEach(function (pl) {
-      var tr = pl.tr, d = (now - pl.t0) * pl.v, head = Math.min(d, tr.len), tail = Math.max(0, d - TRAIL);
-      // Estela: tres tramos cada vez más tenues detrás de la cabeza
-      for (var k = 0; k < 3; k++) {
-        var from = tail + (head - tail) * k / 3, to = tail + (head - tail) * (k + 1) / 3;
-        if (to <= from) continue;
-        var a = tracePoint(tr, from), z = tracePoint(tr, to);
-        ctx.strokeStyle = 'rgba(77,168,255,' + (0.18 + k * 0.28).toFixed(2) + ')'; ctx.lineWidth = 1.6;
-        ctx.beginPath(); ctx.moveTo(a[0], a[1]);
-        for (var i = a[2]; i < z[2]; i++) ctx.lineTo(tr.pts[i][0], tr.pts[i][1]);
-        ctx.lineTo(z[0], z[1]); ctx.stroke();
+    ctx.lineWidth = 1.4;
+    NET.lines.forEach(function (ln) {
+      ctx.strokeStyle = 'rgba(' + ln.col.join(',') + ',' + ln.a.toFixed(3) + ')';
+      ctx.beginPath();
+      for (var x = -step; x <= NET.w + step; x += step) {
+        var y = ln.y + Math.sin(x * 0.006 + ln.ph + (still ? 0 : t * 0.35)) * ln.amp + Math.sin(x * 0.013 - ln.ph * 0.7 + (still ? 0 : t * 0.22)) * ln.amp * 0.35;
+        // Cerca del ratón las líneas se apartan suavemente
+        var dx = x - mx, dy = y - my, d2 = dx * dx + dy * dy;
+        if (d2 < 32400) y += (dy >= 0 ? 1 : -1) * 26 * (1 - Math.sqrt(d2) / 180);
+        if (x === -step) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      if (d <= tr.len) {
-        var h = tracePoint(tr, head);
-        ctx.fillStyle = 'rgba(77,168,255,.22)'; ctx.beginPath(); ctx.arc(h[0], h[1], 7, 0, 6.283); ctx.fill();
-        ctx.fillStyle = '#D4ECFF'; ctx.beginPath(); ctx.arc(h[0], h[1], 2.1, 0, 6.283); ctx.fill();
-      } else if (!pl.done) { pl.done = 1; tr.flash = now; }
+      ctx.stroke();
     });
-    // El contacto final se enciende un instante cuando llega el pulso
-    NET.traces.forEach(function (tr) {
-      var f = 1 - (now - tr.flash) / 450;
-      if (f > 0) { var e = tr.pts[tr.pts.length - 1]; ctx.fillStyle = 'rgba(124,196,255,' + (0.7 * f).toFixed(2) + ')'; ctx.beginPath(); ctx.arc(e[0], e[1], 3 + 3 * f, 0, 6.283); ctx.fill(); }
-    });
-    if (netRunning() || NET.pulses.length) NET.raf = requestAnimationFrame(netDraw);
+    if (netRunning()) NET.raf = requestAnimationFrame(netDraw);
   }
   function netKick() { if (!NET.raf) NET.raf = requestAnimationFrame(netDraw); }
   function netPause(pz) {
@@ -2655,27 +2614,15 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('bg-pause').setAttribute('aria-pressed', pz);
     if (!pz) netKick();
   }
-  function ptrFrame() {
-    PTR.raf = 0;
-    if (!netRunning()) return;
-    var r = NET.c.getBoundingClientRect(), mx = PTR.x - r.left, my = PTR.y - r.top, now = performance.now();
-    // Cerca del ratón salen más pulsos, desde las pistas más próximas
-    if (my > 0 && my < NET.h && now - NET.near > 140) {
-      NET.near = now;
-      var close = NET.traces.filter(function (tr) { var p0 = tr.pts[0]; return Math.hypot(p0[0] - mx, p0[1] - my) < 180; });
-      if (close.length) netPulse(close[Math.floor(Math.random() * close.length)]);
-    }
-  }
   netBuild();
   var netT = 0;
   addEventListener('resize', function () { clearTimeout(netT); netT = setTimeout(netBuild, 200); });
   if (CINE.on) {
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { NET.seen = es[es.length - 1].isIntersecting; netKick(); }).observe(NET.c);
     document.addEventListener('visibilitychange', netKick);
-    for (var nk = 0; nk < 4; nk++) netPulse();
     netKick();
     if (FINE) {
-      addEventListener('pointermove', function (e) { PTR.x = e.clientX; PTR.y = e.clientY; if (!PTR.raf) PTR.raf = requestAnimationFrame(ptrFrame); }, { passive: true });
+      addEventListener('pointermove', function (e) { PTR.x = e.clientX; PTR.y = e.clientY; }, { passive: true });
       document.addEventListener('pointerleave', function () { PTR.x = PTR.y = -1e4; });
     }
   }

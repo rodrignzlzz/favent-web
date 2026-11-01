@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Favent-design-system
-description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». En el inicio, pistas de procesador recorridas por pulsos de energía azul."
+description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Geist en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». La página alterna secciones oscuras y claras. En el inicio, líneas onduladas del azul al rosa que se mueven despacio."
 
 colors:
   primary: "#FF4F9A"
@@ -221,16 +221,16 @@ components:
 
 Favent es el canal de ventas profesional B2B entre empresas de servicios: quien recomienda clientes y quien presta el servicio pactan una comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio. El diseño tiene que transmitir eso: **un sistema técnico, fiable y en movimiento**, no una campaña de marketing.
 
-El lienzo es oscuro: `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro. Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
+La página **alterna secciones oscuras y claras** («dark & white»). Oscuras: inicio y panel, perfiles, mapa, equipos, acceso y pie. Claras (`.light`): la frase, «Así se mueve una reserva», el panel interactivo y confianza. El lienzo oscuro es `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro; el claro, `{colors.screen-canvas}` (#F6F6F3). Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
 
 Hay dos acentos con funciones que no se mezclan:
 - **Rosa señal** `{colors.primary}` (#FF4F9A): marca y progreso. Punto del logotipo, cuadrado de las etiquetas, línea y puntos completados del recorrido.
-- **Azul eléctrico** `{colors.electric}` / `{colors.electric-soft}`: energía y énfasis. Pulsos del circuito del inicio, la palabra «cobrado.» del titular, estados en mono y etiquetas sobre fondo oscuro.
+- **Azul eléctrico** `{colors.electric}` / `{colors.electric-soft}`: energía y énfasis. Las ondas del inicio (junto al rosa), la palabra «cobrado.» del titular, estados en mono y etiquetas sobre fondo oscuro.
 
 Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloque final de acceso) son «pantallas encendidas»: conservan una paleta clara propia (`screen-*`) dentro del lienzo oscuro. Son las protagonistas visuales, como las capturas de producto en Linear, y siempre llevan la etiqueta «Vista de ejemplo».
 
 **Características clave:**
-- Lienzo oscuro `{colors.canvas}` con textura de puntos y grano; nunca un fondo plano sin materia.
+- Secciones oscuras y claras alternas, ambas con textura de puntos (blanca al 7 % sobre oscuro, grafito al 9 % sobre claro); nunca un fondo plano sin materia.
 - Rosa para la marca y el progreso, azul eléctrico para la energía. Ningún otro color de acento en el lienzo.
 - Vidrio esmerilado para tarjetas y paneles de contenido; relieve neumórfico solo en controles e iconos.
 - Geist 500 con tracking negativo en titulares; Geist Mono en todo lo que es dato, código o estado.
@@ -244,9 +244,8 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 ### Brand & Accent
 - **Rosa señal** ({colors.primary}): marca, progreso y selección (logotipo, etiquetas, recorrido, lo seleccionado en el mapa). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
 - **Rosa profundo** ({colors.primary-deep}): versión para rellenos con texto blanco encima (categoría Ciclismo del mapa, unos 5,9:1).
-- **Azul eléctrico** ({colors.electric}): pulsos y estelas del circuito; foco de los botones.
+- **Azul eléctrico** ({colors.electric}): extremo azul de las ondas del inicio.
 - **Azul eléctrico suave** ({colors.electric-soft}): texto de énfasis («cobrado.»), etiquetas de sección sobre bloques oscuros, estados en mono.
-- **Destello** ({colors.electric-glow}): solo la cabeza de los pulsos del circuito.
 
 ### Surface
 - **Canvas** ({colors.canvas}): fondo de toda la página.
@@ -335,8 +334,8 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 | Foco | Contorno de 2 px `#2B6CA8` con 2 px de separación | Botones, enlaces y campos con `:focus-visible` |
 
 ### Decorative Depth
-- **Circuito del inicio** (canvas `#net`): pistas de procesador en ángulos de 45° y 90° (`{colors.electric}` al 13 %) con contactos cuadrados y circulares. Pulsos de energía azul con estela en tres tramos y destello al llegar al contacto final. El centro va enmascarado para que el texto se lea limpio.
-- **Paralaje**: el circuito se desplaza a un cuarto de la velocidad del scroll.
+- **Ondas del inicio** (canvas `#net`): 26 líneas finas (16 en móvil) que ondulan despacio, con color del azul eléctrico al rosa y opacidad de 16–36 %. Cerca del ratón se apartan suavemente. El centro va enmascarado para que el texto se lea limpio. Nada de pistas de circuito: se probaron y resultaban demasiado tech.
+- **Paralaje**: las ondas se desplazan a un cuarto de la velocidad del scroll.
 - **No usar** degradados de color visibles como fondo ni brillos de neón alrededor del texto.
 
 ## Shapes
@@ -374,7 +373,7 @@ Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` a
 - **Iconos** (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
 - **Favicon** (`img/favicon-32.png` y `favicon.ico` con 16, 32 y 48 px): el monograma al 90 % del ancho con el punto rosa agrandado para que se vea en la pestaña.
 - Los enlaces a iconos e imagen social llevan `?v=N` para que navegadores y redes descarguen la versión nueva; súbelo cada vez que cambien los archivos.
-- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y la línea de recorrido sobre el lienzo oscuro.
+- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y la línea de recorrido sobre el lienzo oscuro. (Si se rehace, usar la curva suave del recorrido.)
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
@@ -397,13 +396,13 @@ Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px dela
 - Nota de privacidad bajo cada formulario en `{typography.caption}`.
 
 ### Route (Así se mueve una reserva)
-Seis pasos unidos por una **pista de circuito** (SVG): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la pista los une con tramos rectos y quiebros a 45°, con una derivación corta y su contacto en cada tramo. La parte recorrida se rellena en rosa y en su punta va un pulso azul eléctrico (`{colors.electric-glow}` con halo). Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La pista se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
+Seis pasos unidos por una **curva suave** (SVG, curvas de Bézier): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la curva ondula de uno a otro. La parte recorrida se rellena en rosa y en su punta va un punto rosa luminoso con halo. Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La curva se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Sin quiebros de circuito. Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
 
 ### Statement (texto que se revela)
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
 ### Map (mapa de servicios)
-Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`) y el **rosa marca solo lo seleccionado**: la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
+Solo filtros por categoría (sin botones de orden). **Todo va en azul** (`{colors.screen-accent}`). Al cargar no hay nada en rosa: la categoría y el punto seleccionados por defecto van en azul (`{colors.screen-accent}` / `{colors.screen-accent-deep}`). En cuanto el usuario pulsa una categoría o un punto (`S.mapPink`), el **rosa marca solo lo seleccionado**: la categoría elegida, el punto pulsado (fondo `{colors.primary}` con texto `{colors.canvas}`), el borde de su ficha emergente, su tarjeta en la lista y la etiqueta de comisión de la barra inferior. El mapa es una pantalla clara con la etiqueta «Servicios de ejemplo» (`map-badge`) arriba a la izquierda. En escritorio, la lista de servicios va a la derecha; en móvil se oculta, el mapa ocupa todo el ancho y las categorías van en una sola fila deslizable, sin contador.
 
 ### Footer
 Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlineado 1,25 para que no se corte) con el punto rosa, el lema y «B2B SERVICE · MALLORCA». Debajo, el logotipo pequeño. Los enlaces legales están ocultos hasta que existan las páginas.
@@ -413,7 +412,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 | Elemento | Disparador | Detalle |
 |---|---|---|
 | Entrada del titular | Carga | Líneas que suben desde una máscara, 900 ms |
-| Circuito del inicio | Continuo mientras se ve | Pulsos cada 0,2–0,6 s; más cerca del ratón; se para fuera de pantalla, con la pestaña oculta o con «Pausar fondo» |
+| Ondas del inicio | Continuo mientras se ve | Ondulación lenta; se apartan del ratón; se paran fuera de pantalla, con la pestaña oculta o con «Pausar fondo» |
 | Panel inicial | Scroll | De inclinado 12° en 3D a plano |
 | Frase que se revela | Scroll | Palabra a palabra |
 | Línea de recorrido | Scroll | Fija en escritorio (240vh); vertical en móvil |
@@ -422,8 +421,8 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 
 - Curva estándar `cubic-bezier(.23,1,.32,1)` (ease-out). Nunca `ease-in` en la interfaz.
 - Animar solo `transform` y `opacity` (y el color de las palabras de la frase). Nada de animar `width`, `top` o `box-shadow` en bucle.
-- Nada se mueve solo durante más de 5 s sin control para pausarlo (WCAG 2.2.2): el circuito tiene «Pausar fondo» y el panel inicial, «Pausar animación».
-- Con `prefers-reduced-motion`: nada se fija, el circuito se dibuja estático, la frase aparece completa, la línea del recorrido dibujada entera y sin inclinaciones.
+- Nada se mueve solo durante más de 5 s sin control para pausarlo (WCAG 2.2.2): las ondas tienen «Pausar fondo» y el panel inicial, «Pausar animación».
+- Con `prefers-reduced-motion`: nada se fija, las ondas se dibujan estáticas, la frase aparece completa, la línea del recorrido dibujada entera y sin inclinaciones.
 
 ## Do's and Don'ts
 
@@ -436,7 +435,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 - Comprobar el contraste: 4.5:1 en texto normal, 3:1 en texto grande y en bordes de controles.
 
 ### Don't
-- No volver a un tema claro ni a una transición de día y noche (ya se probaron y se descartaron).
+- No volver a un tema todo claro ni todo oscuro, ni a la transición de día y noche ni a los circuitos de procesador (ya se probaron y se descartaron).
 - No usar naranja ni un tercer color de acento en el lienzo.
 - No usar el rosa en párrafos ni como fondo de secciones.
 - No usar `#000000` puro ni degradados de color visibles como fondo.
