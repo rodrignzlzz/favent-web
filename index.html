@@ -158,6 +158,12 @@ button[disabled]{opacity:.6;cursor:progress}
 .hx-mapcard .map-town,.hx-mapcard .map-bay,.hx-mapcard .map-sea,.hx-mapcard .map-tram{display:inline !important}
 .hx-mapcard .map-city{font-size:11.5px !important}
 .hx-mapbox{position:relative;flex-shrink:0}
+.hx-mapgrid{display:flex;gap:12px;align-items:stretch}
+.hx-detail{order:2;width:250px;flex-shrink:0;box-sizing:border-box}
+.hx-detail.fx-detail{gap:8px;padding:12px;align-self:flex-start}
+.hx-detail.fx-detail img{height:130px}
+.hx-detail.fx-detail p{font-size:12.5px}
+.hx-detail-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px;border-radius:18px;background:#FFFFFF;border:1px dashed #C9D6E2;color:#50565C;font-size:13.5px;line-height:1.45}
 .hx-mapbox>svg{position:absolute;inset:0;width:100%;height:100%}
 .hx-mapbox .pin-pop{position:absolute !important;right:auto !important;bottom:auto !important;width:270px !important;display:block !important;z-index:4 !important;box-shadow:0 22px 50px rgba(30,34,38,.18) !important}
 .hx-mapbox .pin-pop .pp-ph{height:130px;min-height:0}
@@ -1441,6 +1447,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Al canjear el QR se libera la comisión a quien recomendó. Con el 50 %, también recibes el resto de la señal.': 'When the QR is redeemed, the commission is released to whoever referred the client. With 50%, you also receive the rest of the deposit.',
     'Bajar comisión': 'Lower commission', 'Subir comisión': 'Raise commission',
     'Al reservar': 'On booking', 'En la oficina': 'At the office', 'Para ti al canjear': 'For you on redemption',
+    'Pulsa un servicio del mapa para ver su ficha.': 'Tap a service on the map to see its details.',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
@@ -2848,12 +2855,21 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var hplc = placeTags(ids);
     var pins = ids.map(function (i) { return svcTag(i, LIVE.pin && i === pick, null, hplc[i]).replace('class="fx-tag', 'class="fx-tag' + (LIVE.tagIn ? ' in' : '')); }).join('');
     var pop = '';
-    var bar = '<div class="hx-selbar"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sv.name + '</span><span style="font-size: 13px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
-      + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: ' + (LIVE.pin ? '#FFE0EE' : '#D3E6F4') + '; color: ' + (LIVE.pin ? '#9D0F4E' : '#0B2A4A') + '; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
-      + '<span id="hx-propose" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #2B6CA8; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T('Ir al chat para reservar') + '</span></div></div>';
+    // Ficha con foto, como en el mapa interactivo de abajo (fx-detail), a la derecha del mapa
+    var side;
+    if (LIVE.pin) {
+      var dcom = sv.price * sv.pct / 100;
+      side = '<div class="fx-detail hx-detail">' + (sv.img ? '<img src="' + sv.img + '" alt="">' : '')
+        + '<div><b style="display: block; font-size: 16px">' + sv.name + '</b><span style="font-size: 12.5px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
+        + '<p>' + T(sv.desc) + '</p>'
+        + '<dl><dt>' + T('Precio total') + '</dt><dd class="fx-mono">' + eur(sv.price) + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + comm(sv) + '</dd><dt>' + T('Señal al reservar') + '</dt><dd><span class="fx-mono">' + eur(depAmount(sv.dep, sv.price, dcom)) + '</span></dd></dl>'
+        + '<span id="hx-propose" class="fx-btn accent" style="justify-content: center">' + T('Ir al chat para reservar') + '</span></div>';
+    } else {
+      side = '<div class="hx-detail hx-detail-empty"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"></path><circle cx="12" cy="11" r="2.2"></circle></svg>' + T('Pulsa un servicio del mapa para ver su ficha.') + '</div>';
+    }
     return '<div class="hx-mapfit" id="hx-mapfit"><div class="hx-mapcard" id="hx-mapcard"><div style="display: flex; gap: 8px; align-items: center">' + chips + '</div>'
-      + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
-      + bar + '</div></div>';
+      + '<div class="hx-mapgrid">' + side + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
+      + '</div></div></div>';
   }
   function heroCol() {
     var en = S.lang === 'en';
