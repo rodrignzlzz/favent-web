@@ -285,7 +285,11 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-cal-note{font-size:12px;color:#656B71;padding:12px 18px 0;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .fx-cal-g{display:grid;grid-template-columns:140px repeat(7,minmax(70px,1fr));gap:6px;min-width:660px}
 .fx-cal-h{font-size:11px;font-weight:600;color:#656B71;text-align:center;padding:4px 0}
-.fx-cal-s{font-size:12.5px;font-weight:600;display:flex;align-items:center;padding-right:6px}
+.fx-cal-s{font-size:12.5px;font-weight:600;display:flex;flex-direction:column;justify-content:center;padding-right:6px;min-width:0}.fx-cal-s small{font-size:11px;font-weight:500;color:#656B71}
+.fx-slot i{font:normal 600 9.5px 'Geist Mono',monospace;color:#2B6CA8}
+.fp-tt{display:flex;flex-direction:column;gap:2px;min-width:0}.fp-tt span{font-size:12.5px;color:#3D4248}
+.fp-cal{align-self:flex-start;border:0;background:none;padding:0;font:600 12px 'Funnel Display',sans-serif;color:#2B6CA8;cursor:pointer}
+.fp-note{margin:0;font-size:12px;color:#50565C}
 .fx-slot{height:62px;border-radius:12px;border:1px solid #E6E7E3;background:#FFFFFF;font:11px 'Funnel Display',sans-serif;color:#656B71;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;padding:6px 8px;text-align:left;min-width:0}
 .fx-slot:hover{border-color:#A9D3F0}
 .fx-slot b{font-weight:600;color:#1E2226;font-size:11.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -1453,6 +1457,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Bajar comisión': 'Lower commission', 'Subir comisión': 'Raise commission',
     'Al reservar': 'On booking', 'En la oficina': 'At the office', 'Para ti al canjear': 'For you on redemption',
     'Mejor valorados': 'Top rated',
+    'Barco privado · 12 pax · bebida incluida': 'Private boat · 12 pax · drinks included',
+    'Neumática privada · 10 pax · al atardecer': 'Private RIB · 10 pax · at sunset',
+    'Lancha privada · 6 pax · día completo': 'Private motorboat · 6 pax · full day',
+    'Lancha privada · 8 pax · medio día': 'Private motorboat · 8 pax · half day',
+    'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.': 'Full day with skipper around Pollença bay and Cape Formentor.',
+    'Salida al atardecer con patrón, baño en una cala y bebida incluida.': 'Sunset trip with skipper, a swim in a cove and drinks included.',
+    'Lancha con patrón por las calas del norte, para grupos pequeños.': 'Skippered motorboat around the northern coves, for small groups.',
+    'Barco privado': 'Private boat', 'Neumática al atardecer': 'Sunset RIB', 'Lancha privada': 'Private motorboat',
+    'Nombre del barco': 'Boat name', 'La disponibilidad se marca en la Agenda.': 'Availability is set in the Calendar.',
+    'Disponibilidad en la Agenda': 'Availability in the Calendar', 'Ocupado': 'Booked', 'Reserva externa': 'Outside booking',
+    'Toca un hueco libre para marcarlo como ocupado, aunque la reserva venga de fuera de Favent. Las reservas hechas con Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.': 'Tap a free slot to mark it as booked, even if the booking came from outside Favent. Bookings made with Favent are added to their trip automatically, with the client, party size and who referred them.',
     'En cada servicio eliges la comisión y la señal; los cambios valen para las reservas nuevas.': 'For each service you choose the commission and the deposit; changes apply to new bookings.',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
@@ -1929,7 +1944,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       if (!visible(SVCS[S.pin])) { for (var q = 0; q < SVCS.length; q++) if (visible(SVCS[q])) { S.pin = q; break; } }
       renderMap(); if (FX.view === 'map') fxRender();
     }
-    if (act === 'fpnew') { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
+    if (act === 'fpnew') { FX.form = { b: '', n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
     if (act === 'fpcancel') { FX.form = null; fxRender(); }
     if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
     if (act === 'fptoggle') { if (!FPS[+v].on && FPS.filter(function (x) { return x.on; }).length >= 2) FX.srvMsg = 'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.'; else FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
@@ -2351,10 +2366,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   var TOUR_PRO = [
     { v: 'srv', d: 13000, at: [
-      [1300, function () { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
-      [1800, function () { fpType('fpf-n', 'n', T('Excursión a Formentor · medio día'), 1100); }],
+      [1100, function () { FX.form = { b: '', n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
+      [1500, function () { fpType('fpf-b', 'b', 'Es Vedrà', 400); }],
+      [2100, function () { fpType('fpf-n', 'n', T('Lancha privada · 8 pax · medio día'), 1000); }],
       [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
-      [3700, function () { [4, 5, 6].forEach(function (d, k) { TOUR.timers.push(ctxT(function () { if (FX.form) { FX.form.d[d] = 1; fxRender(); } }, k * 250)); }); }],
       [4350, function () { if (FX.form) { FX.form.dep = '50'; fxRender(); } }],
       [4700, function () { fpType('fpf-d', 't', T('Media jornada hasta el cabo de Formentor con baño en una cala.'), 1300); }],
       [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); ctxT(fpPublish, 350); } }],
@@ -2423,13 +2438,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   // Perfil «Si ofreces servicios» (Velas del Norte, datos de ejemplo)
   var FPB0 = [
-    { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', s: 0, from: 'Hotel Miramar', date: '2026-04-12', pax: 8, total: 1500, com: 180, st: 'held' },
-    { id: 'FV-9JK3', cli: 'C. Dupont', svc: 'Chárter privado · día completo', s: 0, from: 'Hotel Can Ribes', date: '2026-04-10', pax: 8, total: 1500, com: 180, st: 'held' },
-    { id: 'FV-8DD2', cli: 'T. Bianchi', svc: 'Chárter privado · día completo', s: 0, from: 'Mar Blau Yachting', date: '2026-04-11', pax: 6, total: 1500, com: 150, st: 'pend' },
-    { id: 'FV-6QA1', cli: 'Familia Weber', svc: 'Velero privado al atardecer', s: 1, from: 'Hotel Miramar', date: '2026-04-07', pax: 7, total: 1300, com: 156, st: 'released' },
-    { id: 'FV-1LC5', cli: 'K. Jansen', svc: 'Velero privado al atardecer', s: 1, from: 'Tramuntana Travel', date: '2026-04-11', pax: 10, total: 1300, com: 130, st: 'held' },
-    { id: 'FV-2HN7', cli: 'R. Costa', svc: 'Velero · día completo', s: 2, from: 'Conserjería Port Blau', date: '2026-04-08', pax: 5, total: 1100, com: 132, st: 'released' },
-    { id: 'FV-3RS4', cli: 'E. Larsen', svc: 'Velero · día completo', s: 2, from: 'Tramuntana Travel', date: '2026-04-12', pax: 4, total: 1100, com: 110, st: 'pend' }
+    { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Hotel Miramar', date: '2026-04-12', pax: 8, total: 1500, com: 180, st: 'held' },
+    { id: 'FV-9JK3', cli: 'C. Dupont', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Hotel Can Ribes', date: '2026-04-10', pax: 8, total: 1500, com: 180, st: 'held' },
+    { id: 'FV-8DD2', cli: 'T. Bianchi', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Mar Blau Yachting', date: '2026-04-11', pax: 6, total: 1500, com: 150, st: 'pend' },
+    { id: 'FV-6QA1', cli: 'Familia Weber', svc: 'Neumática privada · 10 pax · al atardecer', s: 1, from: 'Hotel Miramar', date: '2026-04-07', pax: 7, total: 1300, com: 156, st: 'released' },
+    { id: 'FV-1LC5', cli: 'K. Jansen', svc: 'Neumática privada · 10 pax · al atardecer', s: 1, from: 'Tramuntana Travel', date: '2026-04-11', pax: 10, total: 1300, com: 130, st: 'held' },
+    { id: 'FV-2HN7', cli: 'R. Costa', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Conserjería Port Blau', date: '2026-04-08', pax: 5, total: 1100, com: 132, st: 'released' },
+    { id: 'FV-3RS4', cli: 'E. Larsen', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Tramuntana Travel', date: '2026-04-12', pax: 4, total: 1100, com: 110, st: 'pend' }
   ];
   var FPB = FPB0.map(function (b) { return Object.assign({}, b); });
   var FPP = [
@@ -2496,17 +2511,18 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function isCollab(name) { return FXA.some(function (a) { return a.emp === name && a.st === 'active'; }); }
   var FPTYPE = { 'Hotel': '#1E2226', 'Agencia': '#0B2A4A', 'Conserjería': '#2B6CA8', 'Colega': '#A9D3F0' };
-  var FPSV = ['Chárter privado', 'Velero atardecer', 'Velero'];
-  var FPSVFULL = ['Chárter privado · día completo', 'Velero privado al atardecer', 'Velero · día completo'];
+  var FPSV = ['Barco privado', 'Neumática al atardecer', 'Lancha privada'];
+  var FPBOAT = ['Formentor', 'Dragonera', 'Cala Murta'];
+  var FPSVFULL = ['Barco privado · 12 pax · bebida incluida', 'Neumática privada · 10 pax · al atardecer', 'Lancha privada · 6 pax · día completo'];
   var FPDAYS = ['2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-12'];
   var FPBLOCK0 = { '0|2026-04-06': 1, '1|2026-04-09': 1 };
   var FPBLOCK = Object.assign({}, FPBLOCK0);
   var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], start: 4 };
   var FPSHARE = [['Hotel Miramar', 38], ['Hotel Can Ribes', 24], ['Tramuntana Travel', 18], ['Conserjería Port Blau', 12], ['Mar Blau Yachting', 8]];
   var FPS0 = [
-    { n: 'Chárter privado · día completo', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', clicks: 312, on: true },
-    { n: 'Velero privado al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida en velero al atardecer, con bebida incluida.', clicks: 198, on: true },
-    { n: 'Velero · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Velero con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
+    { boat: 'Formentor', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
+    { boat: 'Dragonera', n: 'Neumática privada · 10 pax · al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida al atardecer con patrón, baño en una cala y bebida incluida.', clicks: 198, on: true },
+    { boat: 'Cala Murta', n: 'Lancha privada · 6 pax · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Lancha con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
   ];
   var FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); });
   function fpDayL() { return S.lang === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'X', 'J', 'V', 'S', 'D']; }
@@ -2523,22 +2539,23 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var f = FX.form, form = '';
     if (f) {
       form = '<form class="fp-form" id="fpf">'
-        + '<label class="nm">' + T('Nombre del servicio') + '<input id="fpf-n" required maxlength="60" value="' + esc(f.n) + '"></label>'
+        + '<label>' + T('Nombre del barco') + '<input id="fpf-b" required maxlength="40" placeholder="Formentor" value="' + esc(f.b || '') + '"></label>'
+        + '<label class="nm">' + T('Servicio') + '<input id="fpf-n" required maxlength="60" placeholder="' + T('Barco privado · 12 pax · bebida incluida') + '" value="' + esc(f.n) + '"></label>'
         + '<label>' + T('Precio') + ' (€)<input id="fpf-p" type="number" min="1" required value="' + esc(f.p) + '"></label>'
         + '<label>' + T('Comisión') + ' (%)<input id="fpf-c" type="number" min="1" max="50" required value="' + esc(f.c) + '"></label>'
         + '<fieldset class="full"><legend>' + T('Señal que paga el cliente') + '</legend><div class="fp-days">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpdep" data-v="' + d[0] + '" aria-pressed="' + ((f.dep || 'com') === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></fieldset>'
-        + '<fieldset class="full"><legend>' + T('Días disponibles') + '</legend><div class="fp-days">' + dl.map(function (d, i) { return '<button type="button" class="fp-day" data-act="fpday" data-v="' + i + '" aria-pressed="' + !!f.d[i] + '">' + d + '</button>'; }).join('') + '</div></fieldset>'
+        + '<p class="full fp-note">' + T('La disponibilidad se marca en la Agenda.') + '</p>'
         + '<label class="full">' + T('Descripción corta') + '<textarea id="fpf-d" rows="2" maxlength="120">' + esc(f.t) + '</textarea></label>'
         + '<div class="acts"><button type="button" class="fx-btn ghost" data-act="fpcancel">' + T('Cancelar') + '</button><button type="submit" class="fx-btn accent" id="fpf-go">' + T('Publicar') + '</button></div></form>';
     }
     var cards = FPS.map(function (x, i) {
       var name = x.raw ? esc(x.n) : T(x.n), desc = x.raw ? esc(x.desc) : T(x.desc);
-      return '<div class="fp-card' + (x.on ? '' : ' off') + (FX.freshSrv === i ? ' fresh' : '') + '"><img src="img/ofreces.jpg" alt=""><div class="fp-b">'
-        + '<div class="fp-meta"><b style="color: #1E2226">' + name + '</b>' + (x.isNew ? '<span class="fx-pill" style="background: #2B6CA8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '') + '</div>'
+      return '<div class="fp-card' + (x.on ? '' : ' off') + (FX.freshSrv === i ? ' fresh' : '') + '"><img src="' + (x.img || 'img/ofreces.jpg') + '" alt=""><div class="fp-b">'
+        + '<div class="fp-meta"><span class="fp-tt"><b style="color: #1E2226">' + esc(x.boat || '') + '</b><span>' + name + '</span></span>' + (x.isNew ? '<span class="fx-pill" style="background: #2B6CA8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '') + '</div>'
         + '<p>' + desc + '</p>'
         + '<div class="fp-meta"><span class="fp-price">' + T('desde') + ' ' + eur(x.price) + '</span></div>'
         + fpComBox(x, i)
-        + '<div class="fp-days" aria-label="' + T('Días disponibles') + '">' + dl.map(function (d, k) { return '<span class="fp-day' + (x.days[k] ? ' on' : '') + '">' + d + '</span>'; }).join('') + '</div>'
+        + '<button type="button" class="fp-cal" data-act="fxv" data-v="cal">' + T('Disponibilidad en la Agenda') + ' →</button>'
         + '<div class="fp-meta"><span style="display: flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>' + fpNum(x.clicks) + ' ' + T('clics este mes') + '</span>'
         + '<button type="button" class="fp-sw" role="switch" data-act="fptoggle" data-v="' + i + '" aria-checked="' + x.on + '"><i></i>' + T(x.on ? 'Publicado' : 'Oculto') + '</button></div>'
         + '</div></div>';
@@ -2560,8 +2577,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpPublish() {
     var f = FX.form; if (!f) return;
     FPS.unshift(f.tour
-      ? { n: 'Excursión a Formentor · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
-      : { n: f.n.trim(), desc: f.t.trim(), dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
+      ? { boat: 'Es Vedrà', n: 'Lancha privada · 8 pax · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
+      : { boat: (f.b || '').trim(), n: f.n.trim(), desc: f.t.trim(), dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
     if (FPS.filter(function (x) { return x.on; }).length > 2) { FPS[0].on = false; FX.srvMsg = 'Guardado como oculto: ya tienes 2 servicios publicados.'; }
     FX.form = null; FX.freshSrv = 0; fxRender();
   }
@@ -2610,17 +2627,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpCal() {
     var head = '<span></span>' + FPDAYS.map(function (d) { return '<span class="fx-cal-h">' + fxDate(d, true) + '</span>'; }).join('');
     var rows = FPSV.map(function (sv, si) {
-      return '<span class="fx-cal-s">' + T(sv) + '</span>' + FPDAYS.map(function (d) {
+      return '<span class="fx-cal-s"><b>' + FPBOAT[si] + '</b><small>' + T(sv) + '</small></span>' + FPDAYS.map(function (d) {
         var bi = -1;
         FPB.forEach(function (b, i) { if (b.s === si && b.date === d && bi < 0) bi = i; });
         var key = si + '|' + d, fresh = FX.fresh === key ? ' fresh' : '';
-        if (bi >= 0) { var b = FPB[bi]; return '<button type="button" class="fx-slot bk' + fresh + '" data-act="fprow" data-v="' + bi + '"><b>' + b.cli + '</b><span>' + b.from + '</span></button>'; }
-        if (FPBLOCK[key]) return '<button type="button" class="fx-slot bl' + fresh + '" data-act="fpslot" data-v="' + key + '">' + T('Bloqueado') + '</button>';
+        if (bi >= 0) { var b = FPB[bi]; return '<button type="button" class="fx-slot bk' + fresh + '" data-act="fprow" data-v="' + bi + '"><b>' + b.cli + '</b><span>' + b.pax + ' pax · ' + b.from + '</span><i>Favent</i></button>'; }
+        if (FPBLOCK[key]) return '<button type="button" class="fx-slot bl' + fresh + '" data-act="fpslot" data-v="' + key + '"><b>' + T('Ocupado') + '</b><span>' + T('Reserva externa') + '</span></button>';
         return '<button type="button" class="fx-slot' + fresh + '" data-act="fpslot" data-v="' + key + '">' + T('Libre') + '</button>';
       }).join('');
     }).join('');
     return '<div class="fx-bar"><span class="fx-title">' + T('Agenda') + '</span><span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #0B2A4A"><span style="width: 8px; height: 8px; border-radius: 4px; background: #2B6CA8"></span>' + T('Agenda conectada') + '</span></div>'
-      + '<div class="fx-cal-note"><span>' + T('Semana del 6 al 12 de abril') + '</span><span>' + T('Toca un hueco libre para bloquearlo.') + '</span></div>'
+      + '<div class="fx-cal-note"><span>' + T('Semana del 6 al 12 de abril') + '</span><span>' + T('Toca un hueco libre para marcarlo como ocupado, aunque la reserva venga de fuera de Favent. Las reservas hechas con Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.') + '</span></div>'
       + '<div class="fx-cal"><div class="fx-cal-g">' + head + rows + '</div></div>'
       + colSvcs();
   }
