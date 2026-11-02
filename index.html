@@ -305,6 +305,36 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-wk .fx-btn.ghost{width:34px;padding:0;justify-content:center}
 .fx-cal-lg{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}.fx-cal-lg i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-left:6px}.fx-cal-lg i:first-child{margin-left:0}
 .fx-cal-lg .lg-f{background:#EAF2F8;border:1px solid #A9D3F0}.fx-cal-lg .lg-o{background:#F0F1ED;border:1px solid #D5D7D3}
+.fx-slot.q{height:auto;padding:3px;gap:2px;cursor:default;display:grid;grid-template-rows:repeat(4,22px);grid-template-columns:minmax(0,1fr);align-items:stretch;justify-items:stretch;justify-content:stretch;align-content:start}
+.fx-slot.q:hover{border-color:#E6E7E3}
+.qb{width:100%;border:0;border-radius:6px;background:#F7F7F5;padding:0 6px;font:11px 'Funnel Display',sans-serif;color:#A3ABB8;cursor:pointer;display:flex;align-items:center;gap:5px;min-width:0;overflow:hidden;text-align:left}
+.qb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qb:hover,.qb:focus-visible{background:#EAF2F8;color:#2B6CA8}
+.qb.fv{background:#D3E6F4;color:#0B2A4A}.qb.own{background:#E3E5E0;color:#3D4248}
+.qb.fv:hover,.qb.fv:focus-visible{background:#A9D3F0}.qb.own:hover,.qb.own:focus-visible{background:#D5D7D3}
+.qb.cont{border-top-left-radius:0;border-top-right-radius:0;margin-top:-2px;height:24px}
+.qb b{font-weight:600;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.fx-cal-q{width:100%;font-size:11.5px}.fx-cal-q b{font-weight:600;color:#3D4248}
+.fx-cal-hb{border:0;background:none;cursor:pointer;font:600 12px 'Funnel Display',sans-serif;color:#3D4248;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;border-radius:8px}
+.fx-cal-hb small{font-size:10px;font-weight:600;color:#2B6CA8;opacity:0;transition:opacity .15s}
+.fx-cal-hb:hover,.fx-cal-hb:focus-visible{background:#EAF2F8}.fx-cal-hb:hover small,.fx-cal-hb:focus-visible small{opacity:1}
+.fd-wrap{padding:12px 18px 18px;overflow-x:auto}
+.fd-grid{display:grid;gap:0 8px;min-width:560px}
+.fd-ch{height:48px;display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:0 4px}
+.fd-ch b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fd-ch b em{font:normal 600 9.5px 'Geist Mono',monospace;color:#656B71;background:#F0F1ED;border-radius:999px;padding:1px 6px}
+.fd-ch small{font-size:11px;color:#656B71;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-gut span{display:block;font:500 11px 'Geist Mono',monospace;color:#656B71;transform:translateY(-7px)}
+.fd-body{position:relative;border-left:1px solid #EEEFEB}
+.fd-cell{display:block;width:100%;border:0;border-top:1px solid #EEEFEB;background:#FFFFFF;cursor:pointer;padding:0}
+.fd-cell:hover,.fd-cell:focus-visible{background:#F7F9FD}
+.fd-bk{position:absolute;left:4px;right:4px;border-radius:10px;border:1px solid #A9D3F0;background:#EAF2F8;color:#0B2A4A;padding:6px 8px;display:flex;flex-direction:column;gap:2px;text-align:left;cursor:pointer;overflow:hidden;font:12px 'Funnel Display',sans-serif;animation:rowin .3s cubic-bezier(.2,.7,.2,1)}
+.fd-bk.own{background:#F0F1ED;border-color:#D5D7D3;color:#3D4248}
+.fd-bk.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1);border-color:#2B6CA8}
+.fd-bk b{font-size:13px;font-weight:600;color:#1E2226}
+.fd-bk span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.fd-t{display:flex;justify-content:space-between;gap:6px;font:500 11px 'Geist Mono',monospace}.fd-t i{font-style:normal;font-weight:600;color:#2B6CA8}.fd-bk.own .fd-t i{color:#50565C}
+.fd-s{color:#656B71;font-size:11.5px}
+.fp-own-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fp-own{padding:6px 18px 18px;display:flex;flex-direction:column;gap:12px}
 .fp-own label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600;color:#3D4248}
 .fp-own input,.fp-own select,.fp-own textarea{height:42px;border:1px solid #D5D7D3;border-radius:10px;padding:0 12px;font:15px 'Funnel Display',sans-serif;color:#1E2226;background:#FFFFFF}
@@ -1481,6 +1511,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Escribe el nombre del cliente.': 'Enter the client’s name.', 'Ese hueco ya tiene una reserva de Favent.': 'That slot already has a Favent booking.', 'Ese hueco ya tiene una reserva propia.': 'That slot already has an own booking.',
     'Reserva apuntada en tu agenda.': 'Booking added to your calendar.', 'Reserva actualizada.': 'Booking updated.', 'Reserva eliminada de tu agenda.': 'Booking removed from your calendar.',
     'Recogida en el puerto a las 10:00': 'Pick-up at the port at 10:00',
+    'Primera hora': 'Early morning', 'Mañana': 'Morning', 'Tarde': 'Afternoon', 'Atardecer y noche': 'Sunset & night', 'Cada hueco se divide en 4 franjas:': 'Each slot is split into 4 time bands:',
+    'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
+    'reserva': 'booking', 'reservas': 'bookings', 'Toca una hora libre para apuntar una reserva.': 'Tap a free hour to add a booking.', 'Desde': 'From', 'Hasta': 'To',
+    'La hora de fin tiene que ser posterior a la de inicio.': 'The end time must be after the start time.', 'A esa hora ya hay una reserva de Favent.': 'There is already a Favent booking at that time.', 'A esa hora ya hay otra reserva.': 'There is already another booking at that time.',
     'Barco privado · 12 pax · bebida incluida': 'Private boat · 12 pax · drinks included',
     'Velero privado · 10 pax · al atardecer': 'Private sailboat · 10 pax · at sunset',
     'Lancha privada · 6 pax · día completo': 'Private motorboat · 6 pax · full day',
@@ -1972,10 +2006,16 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fpcancel') { FX.form = null; fxRender(); }
     if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
     if (act === 'fptoggle') { if (!FPS[+v].on && FPS.filter(function (x) { return x.on; }).length >= 2) FX.srvMsg = 'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.'; else FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
-    if (act === 'fpown') { var ow = FPOWN[v]; FX.own = ow ? Object.assign({ key: v }, ow) : { key: v, isNew: true, cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
-    if (act === 'fpownnew') { FX.own = { key: null, isNew: true, cli: '', pax: '', src: 'Teléfono', note: '', s: FPS[0].k, d: fpWeek()[0] }; fxOpen({ t: 'own' }); }
+    if (act === 'fpown' || act === 'fpdnew') {
+      var nv = v.split('|'), nk = isNaN(+nv[0]) ? nv[0] : +nv[0], dh = fpDefH(nk), h1 = nv[2] ? nv[2] : dh[0], len = fpMin(dh[1]) - fpMin(dh[0]);
+      FX.own = { id: null, isNew: true, k: nk, d: nv[1], h1: h1, h2: nv[3] || fpHH(Math.min(FPHR[1] * 60, fpMin(h1) + len)), cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' });
+    }
+    if (act === 'fpownedit') { var oe = FPOWN.filter(function (o) { return o.id === v; })[0]; if (oe) { FX.own = Object.assign({ isNew: false }, oe); fxOpen({ t: 'own' }); } }
+    if (act === 'fpownnew') { var d0 = FX.day || fpWeek()[0], k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
     if (act === 'fposrc' && FX.own) { FX.own.src = v; fxRender(); var sb = document.querySelector('#fx-drawer [data-act="fposrc"][data-v="' + v + '"]'); if (sb) sb.focus({ preventScroll: true }); }
-    if (act === 'fpodel' && FX.own && FX.own.key) { delete FPOWN[FX.own.key]; FX.calMsg = 'Reserva eliminada de tu agenda.'; FX.own = null; FX.open = null; fxRender(); }
+    if (act === 'fpodel' && FX.own && FX.own.id) { var did = FX.own.id; FPOWN = FPOWN.filter(function (o) { return o.id !== did; }); FX.calMsg = 'Reserva eliminada de tu agenda.'; FX.own = null; FX.open = null; fxRender(); }
+    if (act === 'fpday') { FX.day = v || null; FX.open = null; fxRender(); var dt = $('fp-daytitle'); if (dt) dt.focus({ preventScroll: true }); }
+    if (act === 'fpdstep' && FX.day) { FX.day = fpIso(FX.day, +v); fxRender(); }
     if (act === 'fpwk') { FX.wk = (FX.wk || 0) + (+v); fxRender(); var wb = document.querySelector('#fx-main [data-act="fpwk"][data-v="' + v + '"]'); if (wb) wb.focus({ preventScroll: true }); }
     if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
     if (act === 'fxaccept') { fxAccept(); }
@@ -2395,7 +2435,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var TOUR_PRO = [
     { v: 'srv', d: 13000, at: [
       [1100, function () { FX.form = { b: '', n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
-      [1500, function () { fpType('fpf-b', 'b', 'Es Vedrà', 400); }],
+      [1500, function () { fpType('fpf-b', 'b', 'Diamante', 400); }],
       [2100, function () { fpType('fpf-n', 'n', T('Lancha privada · 8 pax · medio día'), 1000); }],
       [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
       [4350, function () { if (FX.form) { FX.form.dep = '50'; fxRender(); } }],
@@ -2407,13 +2447,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [11400, function () { FPS[1].dep = '50'; FX.csFresh = 1; fxRender(); }]
     ] },
     { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); ctxT(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
-    { v: 'cal', d: 9500, at: [
-      [1200, function () { FX.wk = 0; FX.own = { key: '2|2026-04-10', isNew: true, cli: '', pax: '4', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
+    { v: 'cal', d: 12500, at: [
+      [1200, function () { FX.wk = 0; FX.day = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
       [1700, function () { var n = 0, t = 'Familia Roig'; (function tick() { if (!TOUR.on || !FX.own) return; n++; FX.own.cli = t.slice(0, n); var el = $('fpo-c'); if (el) el.value = FX.own.cli; if (n < t.length) TOUR.timers.push(ctxT(tick, 70)); })(); }],
       [3000, function () { if (FX.own) { FX.own.note = T('Recogida en el puerto a las 10:00'); var el = $('fpo-n'); if (el) el.value = FX.own.note; } }],
       [4000, function () { var b = $('fpo-go'); if (b) { b.classList.add('press'); TOUR.timers.push(ctxT(fpOwnSave, 350)); } }],
-      [6000, function () { fxOpen({ t: 'pres', i: 4 }, true); }],
-      [8600, function () { FX.open = null; fxRender(); }]
+      [5600, function () { var h = document.querySelector('#fx-main [data-act="fpday"][data-v="2026-04-11"]'); if (h) h.classList.add('press'); TOUR.timers.push(ctxT(function () { FX.day = '2026-04-11'; fxRender(); }, 350)); }],
+      [8600, function () { fxOpen({ t: 'pres', i: 4 }, true); }],
+      [11000, function () { FX.open = null; FX.day = null; fxRender(); }]
     ] },
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 10; fxRender(); }]] }
   ];
@@ -2481,6 +2522,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { id: 'FV-2HN7', cli: 'R. Costa', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Conserjería Port Blau', date: '2026-04-08', pax: 5, total: 1100, com: 132, st: 'released' },
     { id: 'FV-3RS4', cli: 'E. Larsen', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Tramuntana Travel', date: '2026-04-12', pax: 4, total: 1100, com: 110, st: 'pend' }
   ];
+  // Horario de cada salida (las reservas de Favent llevan la hora del servicio)
+  var FPH = { 0: ['10:00', '18:00'], 1: ['18:30', '21:00'], 2: ['10:00', '17:00'] };
+  FPB0.forEach(function (b) { b.h1 = FPH[b.s][0]; b.h2 = FPH[b.s][1]; });
   var FPB = FPB0.map(function (b) { return Object.assign({}, b); });
   var FPP = [
     { n: 'Hotel Miramar', type: 'Hotel', pct: 12, bk: 14, sales: 19600, rating: 4.9 },
@@ -2547,23 +2591,38 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function isCollab(name) { return FXA.some(function (a) { return a.emp === name && a.st === 'active'; }); }
   var FPTYPE = { 'Hotel': '#1E2226', 'Agencia': '#0B2A4A', 'Conserjería': '#2B6CA8', 'Colega': '#A9D3F0' };
   var FPSV = ['Barco privado', 'Velero al atardecer', 'Lancha privada'];
-  var FPBOAT = ['Formentor', 'Dragonera', 'Cala Murta'];
+  var FPBOAT = ['Zafiro', 'Esmeralda', 'Turquesa'];
   var FPSVFULL = ['Barco privado · 12 pax · bebida incluida', 'Velero privado · 10 pax · al atardecer', 'Lancha privada · 6 pax · día completo'];
   var FPDAYS = ['2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-12'];
   // Reservas propias de la agenda (fuera de Favent): las apunta quien presta el servicio
-  var FPOWN0 = { '0|2026-04-06': { cli: 'Grupo Hansen', pax: 10, src: 'Teléfono', note: '' }, '1|2026-04-09': { cli: 'Sra. Ortega', pax: 5, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' } };
-  var FPOWN = fpOwnCopy(FPOWN0), FPN = 0;
+  var FPOWN0 = [
+    { id: 'o1', k: 0, d: '2026-04-06', h1: '10:00', h2: '18:00', cli: 'Grupo Hansen', pax: 10, src: 'Teléfono', note: '' },
+    { id: 'o2', k: 1, d: '2026-04-09', h1: '18:30', h2: '21:00', cli: 'Sra. Ortega', pax: 5, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' },
+    { id: 'o3', k: 1, d: '2026-04-11', h1: '10:00', h2: '13:00', cli: 'Familia Puig', pax: 6, src: 'Teléfono', note: 'Salida de mañana' }
+  ];
+  var FPOWN = fpOwnCopy(FPOWN0), FPN = 0, FPON = 3;
   var FPSRC = ['Teléfono', 'Web propia', 'En persona', 'Otra agencia'];
-  function fpOwnCopy(o) { var r = {}; Object.keys(o).forEach(function (k) { r[k] = Object.assign({}, o[k]); }); return r; }
+  var FPHR = [8, 22];
+  var FPQ = [['Primera hora', '08:00', '10:00'], ['Mañana', '10:00', '14:00'], ['Tarde', '14:00', '18:00'], ['Atardecer y noche', '18:00', '22:00']];
+  function fpOwnCopy(o) { return o.map(function (x) { return Object.assign({}, x); }); }
   function fpIso(iso, add) { var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + add); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
   function fpWeek() { var w = FX.wk || 0; return FPDAYS.map(function (d) { return fpIso(d, w * 7); }); }
-  function fpSlotBk(k, d) { for (var i = 0; i < FPB.length; i++) if (FPB[i].s === k && FPB[i].date === d) return i; return -1; }
+  function fpMin(h) { var p = String(h).split(':'); return +p[0] * 60 + (+p[1] || 0); }
+  function fpHH(m) { return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
+  function fpDefH(k) { return FPH[k] || ['10:00', '14:00']; }
+  // Todo lo que ocupa un barco un día: reservas de Favent y propias, por hora de inicio
+  function fpItems(k, d) {
+    var l = [];
+    FPB.forEach(function (b, i) { if (b.s === k && b.date === d) l.push({ t: 'fv', i: i, h1: b.h1, h2: b.h2, cli: b.cli, pax: b.pax, sub: b.from }); });
+    FPOWN.forEach(function (o) { if (String(o.k) === String(k) && o.d === d) l.push({ t: 'own', id: o.id, h1: o.h1, h2: o.h2, cli: o.cli, pax: o.pax, sub: T(o.src), note: o.note }); });
+    return l.sort(function (a, b) { return fpMin(a.h1) - fpMin(b.h1); });
+  }
   var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], start: 4 };
   var FPSHARE = [['Hotel Miramar', 38], ['Hotel Can Ribes', 24], ['Tramuntana Travel', 18], ['Conserjería Port Blau', 12], ['Mar Blau Yachting', 8]];
   var FPS0 = [
-    { k: 0, img: 'img/flota-1.jpg', boat: 'Formentor', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
-    { k: 1, img: 'img/flota-2.jpg', boat: 'Dragonera', n: 'Velero privado · 10 pax · al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida al atardecer con patrón, baño en una cala y bebida incluida.', clicks: 198, on: true },
-    { k: 2, img: 'img/flota-3.jpg', boat: 'Cala Murta', n: 'Lancha privada · 6 pax · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Lancha con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
+    { k: 0, img: 'img/flota-1.jpg', boat: 'Zafiro', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
+    { k: 1, img: 'img/flota-2.jpg', boat: 'Esmeralda', n: 'Velero privado · 10 pax · al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida al atardecer con patrón, baño en una cala y bebida incluida.', clicks: 198, on: true },
+    { k: 2, img: 'img/flota-3.jpg', boat: 'Turquesa', n: 'Lancha privada · 6 pax · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Lancha con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
   ];
   var FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); });
   function fpDayL() { return S.lang === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'X', 'J', 'V', 'S', 'D']; }
@@ -2580,7 +2639,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var f = FX.form, form = '';
     if (f) {
       form = '<form class="fp-form" id="fpf">'
-        + '<label>' + T('Nombre del barco') + '<input id="fpf-b" required maxlength="40" placeholder="Formentor" value="' + esc(f.b || '') + '"></label>'
+        + '<label>' + T('Nombre del barco') + '<input id="fpf-b" required maxlength="40" placeholder="Zafiro" value="' + esc(f.b || '') + '"></label>'
         + '<label class="nm">' + T('Servicio') + '<input id="fpf-n" required maxlength="60" placeholder="' + T('Barco privado · 12 pax · bebida incluida') + '" value="' + esc(f.n) + '"></label>'
         + '<label>' + T('Precio') + ' (€)<input id="fpf-p" type="number" min="1" required value="' + esc(f.p) + '"></label>'
         + '<label>' + T('Comisión') + ' (%)<input id="fpf-c" type="number" min="1" max="50" required value="' + esc(f.c) + '"></label>'
@@ -2619,7 +2678,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var f = FX.form; if (!f) return;
     FPN++;
     FPS.unshift(f.tour
-      ? { k: 'n' + FPN, boat: 'Es Vedrà', n: 'Lancha privada · 8 pax · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
+      ? { k: 'n' + FPN, boat: 'Diamante', n: 'Lancha privada · 8 pax · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
       : { k: 'n' + FPN, boat: (f.b || '').trim(), n: f.n.trim(), desc: f.t.trim(), dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
     if (FPS.filter(function (x) { return x.on; }).length > 2) { FPS[0].on = false; FX.srvMsg = 'Guardado como oculto: ya tienes 2 servicios publicados.'; }
     FX.form = null; FX.freshSrv = 0; fxRender();
@@ -2667,37 +2726,66 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function fpPartner(n) { return FPP.filter(function (p) { return p.n === n; })[0] || FPP[0]; }
   function fpCal() {
+    if (FX.day) return fpDayView();
     var days = fpWeek(), en = S.lang === 'en';
-    var head = '<span></span>' + days.map(function (d) { return '<span class="fx-cal-h">' + fxDate(d, true) + '</span>'; }).join('');
+    var head = '<span></span>' + days.map(function (d) { return '<button type="button" class="fx-cal-h fx-cal-hb" data-act="fpday" data-v="' + d + '" aria-label="' + T('Ver el día') + ' ' + fxDate(d, true) + '">' + fxDate(d, true) + '<small>' + T('Ver el día') + '</small></button>'; }).join('');
     // Una fila por servicio dado de alta, publicado o no
     var rows = FPS.map(function (x) {
       var name = x.raw ? esc(x.n) : T(x.n);
       return '<span class="fx-cal-s"><b>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small title="' + name + '">' + name + '</small></span>' + days.map(function (d) {
-        var key = x.k + '|' + d, fresh = FX.fresh === key ? ' fresh' : '', bi = fpSlotBk(x.k, d), ow = FPOWN[key];
-        if (bi >= 0) { var b = FPB[bi]; return '<button type="button" class="fx-slot bk' + fresh + '" data-act="fprow" data-v="' + bi + '"><b>' + b.cli + '</b><span>' + b.pax + ' pax · ' + b.from + '</span><i>Favent</i></button>'; }
-        if (ow) return '<button type="button" class="fx-slot own' + fresh + '" data-act="fpown" data-v="' + key + '"><b>' + esc(ow.cli) + '</b><span>' + (ow.pax ? ow.pax + ' pax · ' : '') + T(ow.src) + '</span><i>' + T('Propia') + '</i></button>';
-        return '<button type="button" class="fx-slot free' + fresh + '" data-act="fpown" data-v="' + key + '" aria-label="' + T('Añadir reserva') + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true) + '"><span class="fl">' + T('Libre') + '</span><span class="ad">+ ' + T('Añadir') + '</span></button>';
+        // La celda se divide en 4 franjas: se llena solo la parte del día que está reservada
+        var key = x.k + '|' + d, fresh = FX.fresh === key ? ' fresh' : '', it = fpItems(x.k, d);
+        return '<div class="fx-slot q' + fresh + '">' + FPQ.map(function (q) {
+          var q1 = fpMin(q[1]), q2 = fpMin(q[2]), a = it.filter(function (b) { return fpMin(b.h1) < q2 && q1 < fpMin(b.h2); })[0];
+          var lab = T(q[0]) + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true);
+          if (!a) return '<button type="button" class="qb" data-act="fpdnew" data-v="' + key + '|' + q[1] + '|' + q[2] + '" aria-label="' + T('Añadir reserva') + ' · ' + lab + '"><span>+</span></button>';
+          var prev = FPQ.indexOf(q) > 0 ? FPQ[FPQ.indexOf(q) - 1] : null, cont = prev && fpMin(a.h1) < fpMin(prev[2]) && fpMin(prev[1]) < fpMin(a.h2);
+          return '<button type="button" class="qb ' + (a.t === 'fv' ? 'fv' : 'own') + (cont ? ' cont' : '') + '" data-act="' + (a.t === 'fv' ? 'fprow' : 'fpownedit') + '" data-v="' + (a.t === 'fv' ? a.i : a.id) + '" aria-label="' + esc(a.cli) + ' · ' + a.h1 + '–' + a.h2 + ' · ' + lab + '" title="' + esc(a.cli) + ' · ' + a.h1 + '–' + a.h2 + '">' + (cont ? '' : '<b>' + esc(a.cli) + '</b>') + '</button>';
+        }).join('') + '</div>';
       }).join('');
     }).join('');
     var msg = FX.calMsg ? '<div class="fx-ok" role="status" style="margin: 10px 18px 0">' + T(FX.calMsg) + '</div>' : '';
     FX.calMsg = null;
     return '<div class="fx-bar"><span class="fx-title">' + T('Agenda') + '</span><div class="fx-wk"><button type="button" class="fx-btn ghost" data-act="fpwk" data-v="-1" aria-label="' + T('Semana anterior') + '">‹</button><span>' + fxDate(days[0], false) + ' – ' + fxDate(days[6], false) + '</span><button type="button" class="fx-btn ghost" data-act="fpwk" data-v="1" aria-label="' + T('Semana siguiente') + '">›</button><button type="button" class="fx-btn" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
-      + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Lleva aquí todas tus reservas, como en cualquier agenda. Toca un hueco libre para apuntar una reserva que te llega por teléfono, por tu web o en persona; las que entran por Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.') + '</span></div>'
+      + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Lleva aquí todas tus reservas, como en cualquier agenda. Toca un hueco libre para apuntar una reserva que te llega por teléfono, por tu web o en persona; las que entran por Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.') + ' ' + T('Pulsa un día para verlo por horas.') + '</span><span class="fx-cal-q">' + T('Cada hueco se divide en 4 franjas:') + ' ' + FPQ.map(function (q) { return '<b>' + T(q[0]) + '</b> ' + q[1] + '–' + q[2]; }).join(' · ') + '</span></div>'
       + msg + '<div class="fx-cal"><div class="fx-cal-g">' + head + rows + '</div></div>'
       + colSvcs();
+  }
+  // Un día por horas: una columna por barco y un recuadro por reserva, de la hora de inicio a la de fin
+  function fpDayView() {
+    var d = FX.day, H = 44, h0 = FPHR[0], hN = FPHR[1], en = S.lang === 'en';
+    var hours = []; for (var h = h0; h < hN; h++) hours.push(h);
+    var gut = '<div class="fd-gut">' + hours.map(function (h) { return '<span style="height: ' + H + 'px">' + ('0' + h).slice(-2) + ':00</span>'; }).join('') + '</div>';
+    var cols = FPS.map(function (x) {
+      var cells = hours.map(function (h) { return '<button type="button" class="fd-cell" data-act="fpdnew" data-v="' + x.k + '|' + d + '|' + ('0' + h).slice(-2) + ':00" style="height: ' + H + 'px" aria-label="' + T('Añadir reserva') + ' · ' + esc(x.boat || '') + ' · ' + ('0' + h).slice(-2) + ':00"></button>'; }).join('');
+      var blocks = fpItems(x.k, d).map(function (a) {
+        var top = (fpMin(a.h1) - h0 * 60) / 60 * H, ht = Math.max(H * 0.75, (fpMin(a.h2) - fpMin(a.h1)) / 60 * H - 4);
+        var fv = a.t === 'fv', svc = x.raw ? esc(x.n) : T(x.n);
+        return '<button type="button" class="fd-bk' + (fv ? ' fv' : ' own') + (FX.fresh === a.id ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px">'
+          + '<span class="fd-t">' + a.h1 + ' – ' + a.h2 + '<i>' + (fv ? 'Favent' : T('Propia')) + '</i></span><b>' + esc(a.cli) + '</b>'
+          + '<span>' + (a.pax ? a.pax + ' pax · ' : '') + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>'
+          + '<span class="fd-s">' + svc + '</span>' + (a.note ? '<span class="fd-s">' + esc(a.note) + '</span>' : '') + '</button>';
+      }).join('');
+      return '<div class="fd-col"><div class="fd-ch"><b>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small>' + (x.raw ? esc(x.n) : T(x.n)) + '</small></div><div class="fd-body" style="height: ' + (hours.length * H) + 'px">' + cells + blocks + '</div></div>';
+    }).join('');
+    var n = FPS.reduce(function (a, x) { return a + fpItems(x.k, d).length; }, 0);
+    var msg = FX.calMsg ? '<div class="fx-ok" role="status" style="margin: 10px 18px 0">' + T(FX.calMsg) + '</div>' : '';
+    FX.calMsg = null;
+    return '<div class="fx-bar"><div style="display: flex; align-items: center; gap: 10px; min-width: 0"><button type="button" class="fx-btn ghost" data-act="fpday" data-v="">← ' + T('Semana') + '</button><span class="fx-title" id="fp-daytitle" tabindex="-1">' + fxDate(d, true) + '</span></div>'
+      + '<div class="fx-wk"><button type="button" class="fx-btn ghost" data-act="fpdstep" data-v="-1" aria-label="' + T('Día anterior') + '">‹</button><span>' + n + ' ' + T(n === 1 ? 'reserva' : 'reservas') + '</span><button type="button" class="fx-btn ghost" data-act="fpdstep" data-v="1" aria-label="' + T('Día siguiente') + '">›</button><button type="button" class="fx-btn" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
+      + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Toca una hora libre para apuntar una reserva.') + '</span></div>'
+      + msg + '<div class="fd-wrap"><div class="fd-grid" style="grid-template-columns: 56px repeat(' + FPS.length + ', minmax(150px, 1fr))"><div class="fd-col fd-gc"><div class="fd-ch"></div>' + gut + '</div>' + cols + '</div></div>';
   }
   function fpOwnDrawer() {
     var o = FX.own; if (!o) return '';
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
-    var where = '';
-    if (o.key) {
-      var kp = o.key.split('|'), sv = FPS.filter(function (y) { return String(y.k) === kp[0]; })[0];
-      where = '<span style="font-size: 13px; color: #656B71">' + esc(sv ? sv.boat : '') + ' · ' + fxDate(kp[1], true) + '</span>';
-    }
-    var pick = o.key ? '' : '<label>' + T('Servicio') + '<select id="fpo-s">' + FPS.map(function (y) { return '<option value="' + y.k + '"' + (String(o.s) === String(y.k) ? ' selected' : '') + '>' + esc(y.boat || '') + ' · ' + (y.raw ? esc(y.n) : T(y.n)) + '</option>'; }).join('') + '</select></label>'
-      + '<label>' + T('Fecha') + '<select id="fpo-d">' + fpWeek().map(function (d) { return '<option value="' + d + '"' + (o.d === d ? ' selected' : '') + '>' + fxDate(d, true) + '</option>'; }).join('') + '</select></label>';
+    var sv = FPS.filter(function (y) { return String(y.k) === String(o.k); })[0];
+    var where = o.pick ? '' : '<span style="font-size: 13px; color: #656B71">' + esc(sv ? sv.boat : '') + ' · ' + fxDate(o.d, true) + '</span>';
+    var pick = !o.pick ? '' : '<label>' + T('Servicio') + '<select id="fpo-s">' + FPS.map(function (y) { return '<option value="' + y.k + '"' + (String(o.k) === String(y.k) ? ' selected' : '') + '>' + esc(y.boat || '') + ' · ' + (y.raw ? esc(y.n) : T(y.n)) + '</option>'; }).join('') + '</select></label>'
+      + '<label>' + T('Fecha') + '<input id="fpo-d" type="date" value="' + o.d + '"></label>';
     return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T('Reserva propia') + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600">' + T(o.isNew ? 'Nueva reserva' : 'Editar reserva') + '</span>' + where + '</div>' + x + '</div>'
       + '<form class="fp-own" id="fpo">' + pick
+      + '<div class="fp-own-2"><label>' + T('Desde') + '<input id="fpo-h1" type="time" step="900" required value="' + o.h1 + '"></label><label>' + T('Hasta') + '<input id="fpo-h2" type="time" step="900" required value="' + o.h2 + '"></label></div>'
       + '<label>' + T('Cliente') + '<input id="fpo-c" required maxlength="50" autocomplete="off" value="' + esc(o.cli) + '"></label>'
       + '<label>' + T('Personas') + '<input id="fpo-p" type="number" min="1" max="99" value="' + esc(String(o.pax || '')) + '"></label>'
       + '<fieldset><legend>' + T('Origen') + '</legend><div class="fp-days">' + FPSRC.map(function (r) { return '<button type="button" class="fx-chip" data-act="fposrc" data-v="' + r + '" aria-pressed="' + (o.src === r) + '">' + T(r) + '</button>'; }).join('') + '</div></fieldset>'
@@ -2708,22 +2796,29 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function fpOwnSave() {
     var o = FX.own; if (!o) return;
-    if (!String(o.cli).trim()) { o.err = 'Escribe el nombre del cliente.'; fxRender(); var ci = $('fpo-c'); if (ci) ci.focus(); return; }
-    var key = o.key || (o.s + '|' + o.d), kp = key.split('|'), k = isNaN(+kp[0]) ? kp[0] : +kp[0];
-    if (fpSlotBk(k, kp[1]) >= 0) { o.err = 'Ese hueco ya tiene una reserva de Favent.'; fxRender(); return; }
-    if (!o.key && FPOWN[key]) { o.err = 'Ese hueco ya tiene una reserva propia.'; fxRender(); return; }
-    FPOWN[key] = { cli: String(o.cli).trim(), pax: +o.pax || '', src: o.src, note: String(o.note || '').trim() };
+    o.err = null;
+    var k = isNaN(+o.k) ? o.k : +o.k, a1 = fpMin(o.h1), a2 = fpMin(o.h2);
+    if (!String(o.cli).trim()) o.err = 'Escribe el nombre del cliente.';
+    else if (!o.d || !o.h1 || !o.h2 || a2 <= a1) o.err = 'La hora de fin tiene que ser posterior a la de inicio.';
+    else {
+      var clash = fpItems(k, o.d).filter(function (it) { return !(it.t === 'own' && it.id === o.id) && fpMin(it.h1) < a2 && a1 < fpMin(it.h2); })[0];
+      if (clash) o.err = clash.t === 'fv' ? 'A esa hora ya hay una reserva de Favent.' : 'A esa hora ya hay otra reserva.';
+    }
+    if (o.err) { fxRender(); var ci = $('fpo-c'); if (ci && !String(o.cli).trim()) ci.focus(); return; }
+    var rec = { k: k, d: o.d, h1: o.h1, h2: o.h2, cli: String(o.cli).trim(), pax: +o.pax || '', src: o.src, note: String(o.note || '').trim() };
+    if (o.id) FPOWN = FPOWN.map(function (x) { return x.id === o.id ? Object.assign({ id: o.id }, rec) : x; });
+    else { rec.id = 'o' + (++FPON); FPOWN.push(rec); }
     FX.calMsg = o.isNew ? 'Reserva apuntada en tu agenda.' : 'Reserva actualizada.';
-    FX.own = null; FX.open = null; FX.fresh = key; fxRender();
-    var sb = document.querySelector('#fx-main [data-act="fpown"][data-v="' + key + '"]'); if (sb) sb.focus({ preventScroll: true });
+    FX.fresh = FX.day ? (o.id || rec.id) : k + '|' + o.d;
+    FX.own = null; FX.open = null; fxRender();
   }
   document.addEventListener('input', function (e) {
     var id = e.target.id; if (!FX || !FX.own || !id || id.indexOf('fpo-') !== 0) return;
-    var f = { 'fpo-c': 'cli', 'fpo-p': 'pax', 'fpo-n': 'note', 'fpo-s': 's', 'fpo-d': 'd' }[id]; if (f) FX.own[f] = e.target.value;
+    var f = { 'fpo-c': 'cli', 'fpo-p': 'pax', 'fpo-n': 'note', 'fpo-s': 'k', 'fpo-d': 'd', 'fpo-h1': 'h1', 'fpo-h2': 'h2' }[id]; if (f) FX.own[f] = e.target.value;
   });
   document.addEventListener('change', function (e) {
-    var id = e.target.id; if (!FX || !FX.own || (id !== 'fpo-s' && id !== 'fpo-d')) return;
-    FX.own[id === 'fpo-s' ? 's' : 'd'] = e.target.value;
+    var id = e.target.id; if (!FX || !FX.own || !id || id.indexOf('fpo-') !== 0) return;
+    var f = { 'fpo-s': 'k', 'fpo-d': 'd', 'fpo-h1': 'h1', 'fpo-h2': 'h2' }[id]; if (f) FX.own[f] = e.target.value;
   });
   document.addEventListener('submit', function (e) { if (e.target.id !== 'fpo') return; e.preventDefault(); fpOwnSave(); });
   function fpPar() {
@@ -2806,7 +2901,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     b.st = 'redeemed'; FX.scanned = i; fxRender();
     ctxT(function () { b.st = 'released'; fxRender(); }, 900);
   }
-  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPOWN = fpOwnCopy(FPOWN0); FX.own = null; FX.wk = 0; FX.calMsg = null; FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
+  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPOWN = fpOwnCopy(FPOWN0); FX.own = null; FX.wk = 0; FX.calMsg = null; FX.day = null; FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
 
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
