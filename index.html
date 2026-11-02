@@ -1369,7 +1369,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Propuesta enviada': 'Proposal sent',
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
-    'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator', 'Ver todos': 'See all', 'Ir al chat para reservar': 'Go to chat to book', 'Hola, nos gustaría reservar:': 'Hi, we would like to book:', 'Reservar': 'Book', 'Colaboración aceptada': 'Collaboration accepted',
+    'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator',
+    'Servicios de tus colaboradores': 'Your collaborators’ services',
+    'Recomienda a tus clientes los servicios de tus colaboradores o pásales reservas.': 'Refer your clients to your collaborators’ services or pass them bookings.',
+    'Recomendar a un cliente': 'Refer a client', 'Cliente recomendado': 'Client referred', 'Ver todos': 'See all', 'Ir al chat para reservar': 'Go to chat to book', 'Hola, nos gustaría reservar:': 'Hi, we would like to book:', 'Reservar': 'Book', 'Colaboración aceptada': 'Collaboration accepted',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
@@ -1790,6 +1793,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }
     if (act === 'fxpin') { S.pin = +v; S.popup = true; S.mapPink = true; renderMap(); fxRender(); var fdb = document.querySelector('.fx-detail [data-act="fxchat"]'); if (fdb) fdb.focus({ preventScroll: true }); }
     if (act === 'fxlist') { S.popup = false; renderMap(); fxRender(); }
+    if (act === 'fppin') { FX.ppin = +v; fxRender(); var pd = document.querySelector('.fx-detail [data-act="fpref"]'); if (pd) pd.focus({ preventScroll: true }); }
+    if (act === 'fplist') { FX.ppin = null; fxRender(); }
+    if (act === 'fpref') { FX.refd = FX.refd || {}; FX.refd[+v] = true; fxRender(); }
+    if (act === 'fppasssvc') { FX.passedSvc = FX.passedSvc || {}; FX.passedSvc[+v] = true; fxRender(); }
     if (act === 'fxchat') {
       var cs = SVCS[+v], key = { 'Velas del Norte': 'vn', 'Llevant Transfers': 'lt', 'Finques del Pla': 'fp' }[cs.name] || ('s' + v);
       if (!FXCH[key]) {
@@ -1975,16 +1982,20 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     return '<' + (act ? 'button type="button" data-act="' + act + '" data-v="' + i + '" aria-pressed="' + on + '" aria-label="' + esc(sv.name + ', ' + sv.place + ', ' + eur(sv.price) + ', ' + T('Comisión') + ' ' + sv.pct + (en ? '%' : ' %')) + '"' : 'span data-hpin="' + i + '"')
       + ' class="fx-tag' + (on ? ' on' : '') + pos + '" style="left: ' + xy[0] + '%; top: ' + xy[1] + '%"><b>' + sv.place + '</b><span>' + eur(sv.price) + ' | ' + sv.pct + (en ? '%' : ' %') + '</span></' + (act ? 'button' : 'span') + '>';
   }
-  function svcDetail(i) {
+  function svcDetail(i, pro) {
     var sv = SVCS[i], en = S.lang === 'en', cat = CATS.filter(function (c) { return c[0] === sv.type; })[0];
     var rating = sv.reviews ? '★ ' + (en ? sv.rating.toFixed(1) : sv.rating.toFixed(1).replace('.', ',')) + ' (' + sv.reviews + ' ' + T('reseñas') + ')' : T('Nuevo · aún sin reseñas');
     var row = function (k, v) { return '<dt>' + T(k) + '</dt><dd>' + v + '</dd>'; };
-    return '<div class="fx-detail"><button type="button" class="fx-btn ghost" data-act="fxlist" style="height: 30px; font-size: 12px; align-self: flex-start">← ' + T('Ver todos') + '</button>'
+    var acts = pro
+      ? (FX.refd && FX.refd[i] ? '<span class="fx-pill" style="align-self: flex-start; background: #2B6CA8; color: #FFFFFF">' + T('Cliente recomendado') + '</span>' : '<button type="button" class="fx-btn accent" data-act="fpref" data-v="' + i + '" style="justify-content: center">' + T('Recomendar a un cliente') + '</button>')
+        + (FX.passedSvc && FX.passedSvc[i] ? '<span class="fx-pill" style="align-self: flex-start; background: #EAF2F8; color: #0B2A4A">' + T('Traspaso enviado') + '</span>' : '<button type="button" class="fx-btn ghost" data-act="fppasssvc" data-v="' + i + '" style="justify-content: center">' + T('Pasar reserva') + '</button>')
+      : '<button type="button" class="fx-btn accent" data-act="fxchat" data-v="' + i + '" style="justify-content: center">' + T('Ir al chat para reservar') + '</button>';
+    return '<div class="fx-detail"><button type="button" class="fx-btn ghost" data-act="' + (pro ? 'fplist' : 'fxlist') + '" style="height: 30px; font-size: 12px; align-self: flex-start">← ' + T('Ver todos') + '</button>'
       + (sv.type === 'Náutica' ? '<img src="img/ofreces.jpg" alt="">' : '<span class="fx-detail-ic" style="background: ' + FXCOL[sv.type] + '"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + cat[1] + '</svg></span>')
       + '<div><b style="display: block; font-size: 16px">' + sv.name + '</b><span style="font-size: 12.5px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
       + '<p>' + T(sv.desc) + '</p>'
       + '<dl>' + row('Precio total', '<span class="fx-mono">' + eur(sv.price) + '</span>') + row('Comisión', '<span class="fx-mono">' + comm(sv) + '</span>') + row('Señal al reservar', '<span class="fx-mono">' + eur(depAmount(sv.dep, sv.price, sv.price * sv.pct / 100)) + '</span> · ' + depLabel(sv.dep)) + row('Valoración', rating) + '</dl>'
-      + '<button type="button" class="fx-btn accent" data-act="fxchat" data-v="' + i + '" style="justify-content: center">' + T('Ir al chat para reservar') + '</button></div>';
+      + acts + '</div>';
   }
   function fxMap() {
     // El mismo mapa que la sección «Mapa de servicios», con acciones propias para no mover el foco a la otra copia
@@ -2301,6 +2312,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { n: 'Conserjería Port Blau', type: 'Conserjería', pct: 12, bk: 5, sales: 6100, rating: 4.9 },
     { n: 'Mar Blau Yachting', type: 'Colega', pct: 10, bk: 3, sales: 4500, rating: 4.6 },
     { n: 'Yates Formentor', type: 'Colega', pct: 10, bk: 2, sales: 3000, rating: 4.8 },
+    { n: 'Llevant Transfers', type: 'Colega', pct: 15, bk: 4, sales: 760, rating: 4.8 },
+    { n: 'Tramuntana Cycling', type: 'Colega', pct: 15, bk: 3, sales: 720, rating: 4.9 },
     { n: 'Hotel Sa Torre', type: 'Hotel', pct: 12, bk: 0, sales: 0, rating: 4.7, st: 'pending' },
     { n: 'Cala d’Or Charters', type: 'Colega', pct: 10, bk: 0, sales: 0, rating: 4.6, st: 'sent' }
   ];
@@ -2325,10 +2338,26 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     return '<div class="fx-bar"><span class="fx-title">' + T(title) + '</span><span style="display: flex; gap: 10px; align-items: center"><span style="font-size: 13px; color: #656B71">' + n + ' ' + T('colaboradores') + '</span>'
       + (canInv ? '<button type="button" class="fx-btn" data-act="' + inv + '" style="height: 32px; font-size: 12.5px">' + T('+ Invitar empresa') + '</button>' : '') + '</span></div>';
   }
+  function fpColIds() {
+    var names = FPP.filter(function (p) { return p.type === 'Colega' && p.st === 'active'; }).map(function (p) { return p.n; });
+    return SVCS.map(function (sv, i) { return i; }).filter(function (i) { return names.indexOf(SVCS[i].name) >= 0; });
+  }
+  function fpMap() {
+    var ids = fpColIds(), plc = placeTags(ids), sel = FX.ppin;
+    var pins = ids.map(function (i) { return svcTag(i, sel === i, 'fppin', plc[i]); }).join('');
+    var list = sel != null ? svcDetail(sel, true) : ids.map(function (i) {
+      return '<button type="button" class="ml" data-act="fppin" data-v="' + i + '" style="text-align: left; width: 100%; background: #FFFFFF; border: 1px solid #E6E7E3; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Funnel Display\', sans-serif; color: #1E2226">' + mlInner(SVCS[i], true) + '</button>';
+    }).join('');
+    return '<div class="cl-sub">' + T('Servicios de tus colaboradores') + '</div>'
+      + '<div class="cl-note" style="padding-top: 6px">' + T('Recomienda a tus clientes los servicios de tus colaboradores o pásales reservas.') + '</div>'
+      + '<div class="fx-mapv" style="padding-top: 6px"><div class="fx-mapgrid"><div class="fx-mapbox"><svg viewBox="0 0 600 473" aria-hidden="true">' + document.querySelector('#map svg').innerHTML + '</svg>' + pins
+      + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
+      + '<div class="fx-maplist' + (sel != null ? ' det' : '') + '">' + list + '</div></div></div>';
+  }
   function colSvcs() {
     var html = FPP.map(function (p, i) {
       if (p.type !== 'Colega' || p.st !== 'active') return '';
-      var sv = svcDep(p.n); if (!sv) return '';
+      var sv = svcDep(p.n); if (!sv || sv.type !== 'Náutica') return '';
       var sent = FX.passed && FX.passed[i];
       return '<div>' + mlInner(sv, true)
         + '<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; border-top: 1px solid #ECEDE9; padding-top: 10px"><span style="font-size: 12px; color: #656B71">' + T('Señal') + ': ' + depLabel(sv.dep) + '</span>'
@@ -2470,7 +2499,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }).join('');
     var reqs = FPP.map(function (p, i) { return { i: i, n: p.n, sub: T(p.type), c: FPTYPE[p.type], st: p.st }; }).filter(function (x) { return x.st === 'pending' || x.st === 'sent'; });
     var act = FPP.filter(function (p) { return p.st === 'active'; }).length;
-    return clBar('Colaboradores', act, 'fpinv', FPP_INV.length > 0) + clBlock(reqs, 'fpacc', 'fprej') + head + rows + colSvcs();
+    return clBar('Colaboradores', act, 'fpinv', FPP_INV.length > 0) + clBlock(reqs, 'fpacc', 'fprej') + head + rows + fpMap();
   }
   function fpRep() {
     var n = FX.range, v = FPM.v.slice(-n), c = FPM.n.slice(-n), off = 12 - n, en = S.lang === 'en';
@@ -2534,7 +2563,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     b.st = 'redeemed'; FX.scanned = i; fxRender();
     setTimeout(function () { b.st = 'released'; fxRender(); }, 900);
   }
-  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.scanned = null; FX.fresh = null; }
+  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
 
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
