@@ -233,7 +233,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-detail dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0;font-size:12.5px}
 .fx-detail dt{color:#656B71}.fx-detail dd{margin:0;font-weight:500}
 @media (max-width: 860px){.fx-maplist.det{display:flex !important;max-height:none}}
-@media (max-width: 640px){.fx-tag{padding:2px 5px 3px;border-radius:5px}.fx-tag b{font-size:7.5px}.fx-tag span{font-size:8.5px}}
+@media (max-width: 640px){.fx-tag{padding:2px 6px;border-radius:5px}.fx-tag b{display:none}.fx-tag span{font-size:9px}}
 .cl-req{margin:14px 18px 2px;border:1px solid #D3E6F4;background:#F5F9FC;border-radius:16px;overflow:hidden}
 .cl-h{display:block;padding:10px 14px;font:500 11px 'Geist Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:#0B2A4A;border-bottom:1px solid #DCE8F2}
 .cl-r{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #E6EEF5;flex-wrap:wrap}
@@ -1965,7 +1965,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   // Coloca las etiquetas para que no se pisen: prueba arriba, abajo y desplazada a cada lado (unidades del viewBox 600×473)
   function placeTags(ids) {
-    var opts = [['', -52, -40, 52, -7], [' b', -52, 7, 52, 40], [' r', -93, -40, 12, -7], [' l', -12, -40, 93, -7], [' r b', -93, 7, 12, 40], [' l b', -12, 7, 93, 40]];
+    // En móvil la etiqueta es de una sola línea («precio | %»), más baja pero proporcionalmente más ancha
+    var mob = window.innerWidth <= 640, w = mob ? 66 : 52, h = mob ? 36 : 40, ww = 2 * w - 12;
+    var opts = [['', -w, -h, w, -7], [' b', -w, 7, w, h], [' r', -ww, -h, 12, -7], [' l', -12, -h, ww, -7], [' r b', -ww, 7, 12, h], [' l b', -12, 7, ww, h]];
     var placed = [], out = {};
     ids.slice().sort(function (a, b) { return SVCS[a].lat < SVCS[b].lat ? 1 : -1; }).forEach(function (i) {
       var xy = proj(SVCS[i].lat, SVCS[i].lng), x = xy[0] * 6, y = xy[1] * 4.73, best = null, bestHit = 1e9;
@@ -1976,7 +1978,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         placed.forEach(function (q) { var w = Math.min(r[2], q[2]) - Math.max(r[0], q[0]), h = Math.min(r[3], q[3]) - Math.max(r[1], q[1]); if (w > 0 && h > 0) hit += w * h; });
         if (hit < bestHit) { bestHit = hit; best = [o[0], r]; }
       });
-      if (!best) best = ['', [x - 52, y - 40, x + 52, y - 7]];
+      if (!best) best = ['', [x - w, y - h, x + w, y - 7]];
       placed.push(best[1]); out[i] = best[0];
     });
     return out;
