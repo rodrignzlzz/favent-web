@@ -207,7 +207,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-mini.r::after{left:auto;right:16px;transform:rotate(45deg)}.fx-mini.l::after{left:16px;transform:rotate(45deg)}
 .fx-mini.r.b::after,.fx-mini.l.b::after{transform:rotate(225deg)}
 .fx-mini-ic{display:flex;align-items:center;justify-content:center}
-.hx-mapbox .fx-tag{padding:4px 9px 5px;border-radius:8px}.hx-mapbox .fx-tag b{font-size:10.5px}.hx-mapbox .fx-tag span{font-size:12px}
+.hx-mapbox .fx-tag{padding:4px 9px 5px;border-radius:8px}.hx-mapbox .fx-tag span{font-size:12px}
 .hx-mapbox .fx-mini{padding:5px 10px 5px 5px;gap:8px;max-width:190px}.hx-mapbox .fx-mini img,.hx-mapbox .fx-mini-ic{width:34px;height:34px;border-radius:8px}.hx-mapbox .fx-mini-t b{font-size:12px}.hx-mapbox .fx-mini-t span{font-size:11px}
 .fx-mini.on{border-color:#FF4F9A;box-shadow:0 0 0 2px #FF4F9A,0 10px 24px rgba(11,15,23,.14)}
 .fx-mini img,.fx-mini-ic{width:34px;height:34px;border-radius:8px;object-fit:cover;flex-shrink:0}
@@ -217,8 +217,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 @media (max-width: 640px){.fx-mini{padding:3px 8px 3px 3px;gap:5px;max-width:132px}.fx-mini img,.fx-mini-ic{width:22px;height:22px;border-radius:6px}.fx-mini-t b{font-size:10.5px}.fx-mini-t span{font-size:9.5px}}
 .cl-svc{padding:4px 18px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
 .cl-svc>div{background:#FFFFFF;border:1px solid #E6E7E3;border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-.fx-tag{position:absolute;z-index:2;transform:translate(-50%,calc(-100% - 7px));display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:3px 7px 4px;border:0;border-radius:7px;background:#2B6CA8;color:#FFFFFF;font-family:'Funnel Display',sans-serif;line-height:1.15;white-space:nowrap;cursor:pointer;box-shadow:0 4px 10px rgba(11,42,74,.22);text-align:left}
-.fx-tag b{font-size:9px;font-weight:600;letter-spacing:.02em;opacity:.85}
+.fx-tag{position:absolute;z-index:2;transform:translate(-50%,calc(-100% - 7px));display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:3px 8px;border:0;border-radius:7px;background:#2B6CA8;color:#FFFFFF;font-family:'Funnel Display',sans-serif;line-height:1.15;white-space:nowrap;cursor:pointer;box-shadow:0 4px 10px rgba(11,42,74,.22);text-align:left}
+.fx-tag b{display:none}
 .fx-tag span{font:500 10px 'Geist Mono',monospace}
 .fx-tag::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;background:inherit;transform:translateX(-50%) rotate(45deg)}
 .fx-tag:hover{z-index:5;background:#0B2A4A}
@@ -233,7 +233,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-detail dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0;font-size:12.5px}
 .fx-detail dt{color:#656B71}.fx-detail dd{margin:0;font-weight:500}
 @media (max-width: 860px){.fx-maplist.det{display:flex !important;max-height:none}}
-@media (max-width: 640px){.fx-tag{padding:2px 6px;border-radius:5px}.fx-tag b{display:none}.fx-tag span{font-size:9px}}
+@media (max-width: 640px){.fx-tag{padding:2px 6px;border-radius:5px}.fx-tag span{font-size:9px}}
 .cl-req{margin:14px 18px 2px;border:1px solid #D3E6F4;background:#F5F9FC;border-radius:16px;overflow:hidden}
 .cl-h{display:block;padding:10px 14px;font:500 11px 'Geist Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:#0B2A4A;border-bottom:1px solid #DCE8F2}
 .cl-r{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #E6EEF5;flex-wrap:wrap}
@@ -1965,8 +1965,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   // Coloca las etiquetas para que no se pisen: prueba arriba, abajo y desplazada a cada lado (unidades del viewBox 600×473)
   function placeTags(ids) {
-    // En móvil la etiqueta es de una sola línea («precio | %»), más baja pero proporcionalmente más ancha
-    var mob = window.innerWidth <= 640, w = mob ? 66 : 52, h = mob ? 36 : 40, ww = 2 * w - 12;
+    // La etiqueta es de una sola línea («precio | %»); en móvil es proporcionalmente más ancha
+    var mob = window.innerWidth <= 640, w = mob ? 66 : 52, h = mob ? 36 : 30, ww = 2 * w - 12;
     var opts = [['', -w, -h, w, -7], [' b', -w, 7, w, h], [' r', -ww, -h, 12, -7], [' l', -12, -h, ww, -7], [' r b', -ww, 7, 12, h], [' l b', -12, 7, ww, h]];
     var placed = [], out = {};
     ids.slice().sort(function (a, b) { return SVCS[a].lat < SVCS[b].lat ? 1 : -1; }).forEach(function (i) {
