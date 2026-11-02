@@ -189,7 +189,7 @@ button[disabled]{opacity:.6;cursor:progress}
 .fp-card{border:1px solid #E6E7E3;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:#FFFFFF;transition:opacity .25s}
 .fp-card.off{opacity:.55}
 .fp-card.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1);border-color:#2B6CA8}
-.fp-card img{height:92px;width:100%;object-fit:cover;display:block}
+.fp-card img{height:130px;width:100%;object-fit:cover;display:block}
 .fp-b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .fp-b b{font-size:14px;font-weight:600}
 .fp-b p{margin:0;font-size:12.5px;line-height:1.45;color:#3D4248}
@@ -1482,13 +1482,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Reserva apuntada en tu agenda.': 'Booking added to your calendar.', 'Reserva actualizada.': 'Booking updated.', 'Reserva eliminada de tu agenda.': 'Booking removed from your calendar.',
     'Recogida en el puerto a las 10:00': 'Pick-up at the port at 10:00',
     'Barco privado · 12 pax · bebida incluida': 'Private boat · 12 pax · drinks included',
-    'Neumática privada · 10 pax · al atardecer': 'Private RIB · 10 pax · at sunset',
+    'Velero privado · 10 pax · al atardecer': 'Private sailboat · 10 pax · at sunset',
     'Lancha privada · 6 pax · día completo': 'Private motorboat · 6 pax · full day',
     'Lancha privada · 8 pax · medio día': 'Private motorboat · 8 pax · half day',
     'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.': 'Full day with skipper around Pollença bay and Cape Formentor.',
     'Salida al atardecer con patrón, baño en una cala y bebida incluida.': 'Sunset trip with skipper, a swim in a cove and drinks included.',
     'Lancha con patrón por las calas del norte, para grupos pequeños.': 'Skippered motorboat around the northern coves, for small groups.',
-    'Barco privado': 'Private boat', 'Neumática al atardecer': 'Sunset RIB', 'Lancha privada': 'Private motorboat',
+    'Barco privado': 'Private boat', 'Velero al atardecer': 'Sunset sailboat', 'Lancha privada': 'Private motorboat',
     'Nombre del barco': 'Boat name', 'La disponibilidad se marca en la Agenda.': 'Availability is set in the Calendar.',
     'Disponibilidad en la Agenda': 'Availability in the Calendar', 'Ocupado': 'Booked', 'Reserva externa': 'Outside booking',
     'Toca un hueco libre para marcarlo como ocupado, aunque la reserva venga de fuera de Favent. Las reservas hechas con Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.': 'Tap a free slot to mark it as booked, even if the booking came from outside Favent. Bookings made with Favent are added to their trip automatically, with the client, party size and who referred them.',
@@ -2476,8 +2476,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Hotel Miramar', date: '2026-04-12', pax: 8, total: 1500, com: 180, st: 'held' },
     { id: 'FV-9JK3', cli: 'C. Dupont', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Hotel Can Ribes', date: '2026-04-10', pax: 8, total: 1500, com: 180, st: 'held' },
     { id: 'FV-8DD2', cli: 'T. Bianchi', svc: 'Barco privado · 12 pax · bebida incluida', s: 0, from: 'Mar Blau Yachting', date: '2026-04-11', pax: 6, total: 1500, com: 150, st: 'pend' },
-    { id: 'FV-6QA1', cli: 'Familia Weber', svc: 'Neumática privada · 10 pax · al atardecer', s: 1, from: 'Hotel Miramar', date: '2026-04-07', pax: 7, total: 1300, com: 156, st: 'released' },
-    { id: 'FV-1LC5', cli: 'K. Jansen', svc: 'Neumática privada · 10 pax · al atardecer', s: 1, from: 'Tramuntana Travel', date: '2026-04-11', pax: 10, total: 1300, com: 130, st: 'held' },
+    { id: 'FV-6QA1', cli: 'Familia Weber', svc: 'Velero privado · 10 pax · al atardecer', s: 1, from: 'Hotel Miramar', date: '2026-04-07', pax: 7, total: 1300, com: 156, st: 'released' },
+    { id: 'FV-1LC5', cli: 'K. Jansen', svc: 'Velero privado · 10 pax · al atardecer', s: 1, from: 'Tramuntana Travel', date: '2026-04-11', pax: 10, total: 1300, com: 130, st: 'held' },
     { id: 'FV-2HN7', cli: 'R. Costa', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Conserjería Port Blau', date: '2026-04-08', pax: 5, total: 1100, com: 132, st: 'released' },
     { id: 'FV-3RS4', cli: 'E. Larsen', svc: 'Lancha privada · 6 pax · día completo', s: 2, from: 'Tramuntana Travel', date: '2026-04-12', pax: 4, total: 1100, com: 110, st: 'pend' }
   ];
@@ -2546,9 +2546,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function isCollab(name) { return FXA.some(function (a) { return a.emp === name && a.st === 'active'; }); }
   var FPTYPE = { 'Hotel': '#1E2226', 'Agencia': '#0B2A4A', 'Conserjería': '#2B6CA8', 'Colega': '#A9D3F0' };
-  var FPSV = ['Barco privado', 'Neumática al atardecer', 'Lancha privada'];
+  var FPSV = ['Barco privado', 'Velero al atardecer', 'Lancha privada'];
   var FPBOAT = ['Formentor', 'Dragonera', 'Cala Murta'];
-  var FPSVFULL = ['Barco privado · 12 pax · bebida incluida', 'Neumática privada · 10 pax · al atardecer', 'Lancha privada · 6 pax · día completo'];
+  var FPSVFULL = ['Barco privado · 12 pax · bebida incluida', 'Velero privado · 10 pax · al atardecer', 'Lancha privada · 6 pax · día completo'];
   var FPDAYS = ['2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-12'];
   // Reservas propias de la agenda (fuera de Favent): las apunta quien presta el servicio
   var FPOWN0 = { '0|2026-04-06': { cli: 'Grupo Hansen', pax: 10, src: 'Teléfono', note: '' }, '1|2026-04-09': { cli: 'Sra. Ortega', pax: 5, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' } };
@@ -2561,9 +2561,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], start: 4 };
   var FPSHARE = [['Hotel Miramar', 38], ['Hotel Can Ribes', 24], ['Tramuntana Travel', 18], ['Conserjería Port Blau', 12], ['Mar Blau Yachting', 8]];
   var FPS0 = [
-    { k: 0, boat: 'Formentor', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
-    { k: 1, boat: 'Dragonera', n: 'Neumática privada · 10 pax · al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida al atardecer con patrón, baño en una cala y bebida incluida.', clicks: 198, on: true },
-    { k: 2, boat: 'Cala Murta', n: 'Lancha privada · 6 pax · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Lancha con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
+    { k: 0, img: 'img/flota-1.jpg', boat: 'Formentor', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
+    { k: 1, img: 'img/flota-2.jpg', boat: 'Dragonera', n: 'Velero privado · 10 pax · al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida al atardecer con patrón, baño en una cala y bebida incluida.', clicks: 198, on: true },
+    { k: 2, img: 'img/flota-3.jpg', boat: 'Cala Murta', n: 'Lancha privada · 6 pax · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Lancha con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
   ];
   var FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); });
   function fpDayL() { return S.lang === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'X', 'J', 'V', 'S', 'D']; }
