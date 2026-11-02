@@ -203,17 +203,15 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fp-sw i{width:34px;height:20px;border-radius:10px;background:#2B6CA8;position:relative;transition:background-color .2s}
 .fp-sw i::after{content:"";position:absolute;top:2px;left:16px;width:16px;height:16px;border-radius:8px;background:#FFFFFF;transition:left .2s}
 .fp-sw[aria-checked="false"]{color:#656B71}.fp-sw[aria-checked="false"] i{background:#D5D7D3}.fp-sw[aria-checked="false"] i::after{left:2px}
-.fp-cs{margin:4px 18px 18px;border:1px solid #E6E7E3;border-radius:16px;background:#FFFFFF;overflow:hidden}
-.fp-cs-h{padding:14px 16px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid #EEEFEB}
-.fp-cs-h b{font-size:14px;font-weight:600}.fp-cs-h span{font-size:12.5px;line-height:1.45;color:#50565C}
-.fp-cs-row{display:grid;grid-template-columns:minmax(0,1.4fr) auto auto minmax(0,1fr);gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid #EEEFEB}
-.fp-cs-row:last-child{border-bottom:0}.fp-cs-row.fresh{animation:rowin .35s cubic-bezier(.2,.7,.2,1);background:#F7F9FD}
-.fp-cs-n{display:flex;flex-direction:column;gap:2px;min-width:0}.fp-cs-n b{font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fp-cs-n span{font:500 12px 'Geist Mono',monospace;color:#656B71}
+.fp-cs{border:1px solid #D3E6F4;background:#F7F9FD;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.fp-cs.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1);border-color:#2B6CA8}
+.fp-cs-r{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#3D4248}
+.fp-cs-r.col{flex-direction:column;align-items:flex-start;gap:6px}
 .fp-cs-c{display:inline-flex;align-items:center;gap:6px}
-.fp-cs-c button{width:32px;height:32px;border-radius:16px;border:1px solid #D5D7D3;background:#FFFFFF;font:600 16px 'Funnel Display',sans-serif;color:#1E2226;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.fp-cs-c button{width:30px;height:30px;border-radius:15px;border:1px solid #D5D7D3;background:#FFFFFF;font:600 16px 'Funnel Display',sans-serif;color:#1E2226;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
 .fp-cs-c button:disabled{opacity:.4;cursor:default}
-.fp-cs-c output{min-width:64px;text-align:center;font:500 14px 'Geist Mono',monospace;color:#1E2226;display:flex;flex-direction:column;line-height:1.2}.fp-cs-c output small{font-size:11px;color:#2B6CA8}
-.fp-cs-s{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#656B71}.fp-cs-s b{font:500 12.5px 'Geist Mono',monospace;color:#1E2226}
+.fp-cs-c output{min-width:58px;text-align:center;font:500 14px 'Geist Mono',monospace;color:#1E2226;display:flex;flex-direction:column;line-height:1.2}.fp-cs-c output small{font-size:11px;color:#2B6CA8}
+.fp-cs-s{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:#656B71}.fp-cs-s b{font:500 12px 'Geist Mono',monospace;color:#1E2226}
 .fp-form{margin:0 18px 14px;border:1px solid #D3E6F4;background:#F7F9FD;border-radius:16px;padding:14px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
 .fp-form label,.fp-form fieldset{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#50565C;margin:0;padding:0;border:0;min-width:0}
 .fp-form legend{padding:0;margin-bottom:5px}
@@ -433,7 +431,6 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   .fx-tabs .fx-tab{flex:0 0 auto}
   .fp-grid{grid-template-columns:1fr}
   .fp-form{grid-template-columns:1fr 1fr}
-  .fp-cs{margin:4px 12px 14px}.fp-cs-row{grid-template-columns:1fr auto;gap:10px 12px}.fp-cs-row .fp-days,.fp-cs-s{grid-column:1 / -1}.fp-cs-n b{white-space:normal}
   .fp-form .nm{grid-column:1 / -1}
   .fx-role{display:grid;grid-template-columns:1fr 1fr;align-self:stretch;margin-bottom:-8px}
   .fx-role button{justify-content:center;padding:0 8px;font-size:12.5px;height:40px}
@@ -1456,6 +1453,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Bajar comisión': 'Lower commission', 'Subir comisión': 'Raise commission',
     'Al reservar': 'On booking', 'En la oficina': 'At the office', 'Para ti al canjear': 'For you on redemption',
     'Mejor valorados': 'Top rated',
+    'En cada servicio eliges la comisión y la señal; los cambios valen para las reservas nuevas.': 'For each service you choose the commission and the deposit; changes apply to new bookings.',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
@@ -2519,7 +2517,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var kpis = '<div class="fx-kpis" style="grid-template-columns: repeat(3, minmax(0, 1fr))">' + [['Visitas al perfil', fpNum(1284), 'este mes'], ['Clics en tus servicios', fpNum(clicks), 'este mes'], ['Servicios publicados', pub + ' / 2', 'máximo a la vez']].map(function (k) {
       return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] ? '<span style="font-size: 11px">' + T(k[2]) + '</span>' : '') + '</div>';
     }).join('') + '</div>';
-    kpis += '<div class="cl-note" style="padding-top: 0">' + T('Puedes registrar todos los servicios que quieras; como máximo 2 se publican a la vez.') + '</div>'
+    kpis += '<div class="cl-note" style="padding-top: 0">' + T('Puedes registrar todos los servicios que quieras; como máximo 2 se publican a la vez.') + ' ' + T('En cada servicio eliges la comisión y la señal; los cambios valen para las reservas nuevas.') + '</div>'
       + (FX.srvMsg ? '<div class="fx-ok" role="status" style="margin: 4px 18px 12px">' + T(FX.srvMsg) + '</div>' : '');
     FX.srvMsg = null;
     var f = FX.form, form = '';
@@ -2538,31 +2536,26 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       return '<div class="fp-card' + (x.on ? '' : ' off') + (FX.freshSrv === i ? ' fresh' : '') + '"><img src="img/ofreces.jpg" alt=""><div class="fp-b">'
         + '<div class="fp-meta"><b style="color: #1E2226">' + name + '</b>' + (x.isNew ? '<span class="fx-pill" style="background: #2B6CA8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '') + '</div>'
         + '<p>' + desc + '</p>'
-        + '<div class="fp-meta"><span class="fp-price">' + T('desde') + ' ' + eur(x.price) + '</span><span class="fx-pill" style="background: #D3E6F4; color: #0B2A4A">' + T('Comisión') + ' ' + x.pct + (en ? '%' : ' %') + '</span></div>'
-        + '<div class="fp-meta"><span>' + T('Señal') + ': <b style="color: #1E2226; font-weight: 600">' + depLabel(x.dep) + '</b></span><span style="font-family: \'Geist Mono\', monospace; color: #1E2226">' + eur(depAmount(x.dep, x.price, x.price * x.pct / 100)) + '</span></div>'
+        + '<div class="fp-meta"><span class="fp-price">' + T('desde') + ' ' + eur(x.price) + '</span></div>'
+        + fpComBox(x, i)
         + '<div class="fp-days" aria-label="' + T('Días disponibles') + '">' + dl.map(function (d, k) { return '<span class="fp-day' + (x.days[k] ? ' on' : '') + '">' + d + '</span>'; }).join('') + '</div>'
         + '<div class="fp-meta"><span style="display: flex; align-items: center; gap: 5px"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" fill="none" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"></circle></svg>' + fpNum(x.clicks) + ' ' + T('clics este mes') + '</span>'
         + '<button type="button" class="fp-sw" role="switch" data-act="fptoggle" data-v="' + i + '" aria-checked="' + x.on + '"><i></i>' + T(x.on ? 'Publicado' : 'Oculto') + '</button></div>'
         + '</div></div>';
     }).join('');
-    FX.freshSrv = null;
+    FX.freshSrv = null; FX.csFresh = null;
     return '<div class="fx-bar"><span class="fx-title">' + T('Mis servicios') + '</span>' + (f ? '' : '<button type="button" class="fx-btn" data-act="fpnew" id="fp-new">' + T('+ Publicar servicio') + '</button>') + '</div>'
-      + kpis + form + '<div class="fp-grid">' + cards + '</div>' + fpComSec();
+      + kpis + form + '<div class="fp-grid">' + cards + '</div>';
   }
-  // Comisión y señal de los servicios que ya tienes: se cambian aquí, para las reservas nuevas
-  function fpComSec() {
-    var en = S.lang === 'en';
-    var rows = FPS.map(function (x, i) {
-      var dep = x.dep || 'com', com = x.price * x.pct / 100, now = depAmount(dep, x.price, com), name = x.raw ? esc(x.n) : T(x.n);
-      return '<div class="fp-cs-row' + (FX.csFresh === i ? ' fresh' : '') + '"><div class="fp-cs-n"><b>' + name + '</b><span>' + eur(x.price) + '</span></div>'
-        + '<div class="fp-cs-c" role="group" aria-label="' + T('Comisión') + '"><button type="button" data-act="fpcom" data-v="' + i + '|-1" aria-label="' + T('Bajar comisión') + '"' + (x.pct <= 1 ? ' disabled' : '') + '>−</button>'
-        + '<output aria-live="polite">' + x.pct + (en ? '%' : ' %') + '<small>' + eur(com) + '</small></output>'
-        + '<button type="button" data-act="fpcom" data-v="' + i + '|1" aria-label="' + T('Subir comisión') + '"' + (x.pct >= 50 ? ' disabled' : '') + '>+</button></div>'
-        + '<div class="fp-days" role="group" aria-label="' + T('Señal que paga el cliente') + '">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpcsdep" data-v="' + i + '|' + d[0] + '" aria-pressed="' + (dep === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div>'
-        + '<div class="fp-cs-s"><span>' + T('Al reservar') + ': <b>' + eur(now) + '</b></span>' + (dep === '50' ? '<span>' + T('Para ti al canjear') + ': <b>' + eur(now - com) + '</b></span>' : '') + '<span>' + T('En la oficina') + ': <b>' + eur(x.price - now) + '</b></span></div></div>';
-    }).join('');
-    FX.csFresh = null;
-    return '<section class="fp-cs" aria-label="' + T('Comisión y señal de tus servicios') + '"><div class="fp-cs-h"><b>' + T('Comisión y señal de tus servicios') + '</b><span>' + T('Cambia la comisión que ofreces y la señal que paga el cliente al reservar. Se aplica a las reservas nuevas; las ya hechas mantienen sus condiciones.') + '</span><span>' + T('Al canjear el QR se libera la comisión a quien recomendó. Con el 50 %, también recibes el resto de la señal.') + '</span></div>' + rows + '</section>';
+  // Comisión y señal de cada servicio, dentro de su tarjeta: se cambian aquí, para las reservas nuevas
+  function fpComBox(x, i) {
+    var en = S.lang === 'en', dep = x.dep || 'com', com = x.price * x.pct / 100, now = depAmount(dep, x.price, com);
+    return '<div class="fp-cs' + (FX.csFresh === i ? ' fresh' : '') + '">'
+      + '<div class="fp-cs-r"><span>' + T('Comisión') + '</span><div class="fp-cs-c" role="group" aria-label="' + T('Comisión') + '"><button type="button" data-act="fpcom" data-v="' + i + '|-1" aria-label="' + T('Bajar comisión') + '"' + (x.pct <= 1 ? ' disabled' : '') + '>−</button>'
+      + '<output aria-live="polite">' + x.pct + (en ? '%' : ' %') + '<small>' + eur(com) + '</small></output>'
+      + '<button type="button" data-act="fpcom" data-v="' + i + '|1" aria-label="' + T('Subir comisión') + '"' + (x.pct >= 50 ? ' disabled' : '') + '>+</button></div></div>'
+      + '<div class="fp-cs-r col"><span>' + T('Señal que paga el cliente') + '</span><div class="fp-days" role="group" aria-label="' + T('Señal que paga el cliente') + '">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpcsdep" data-v="' + i + '|' + d[0] + '" aria-pressed="' + (dep === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></div>'
+      + '<div class="fp-cs-s"><span>' + T('Al reservar') + ' <b>' + eur(now) + '</b></span>' + (dep === '50' ? '<span>' + T('Para ti al canjear') + ' <b>' + eur(now - com) + '</b></span>' : '') + '<span>' + T('En la oficina') + ' <b>' + eur(x.price - now) + '</b></span></div></div>';
   }
   function fpPublish() {
     var f = FX.form; if (!f) return;
