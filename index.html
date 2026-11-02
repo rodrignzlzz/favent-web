@@ -151,7 +151,8 @@ button[disabled]{opacity:.6;cursor:progress}
 .hx-row{--cols:minmax(0,1fr) auto 128px;cursor:default}
 .hx-row:hover{background:#FFFFFF}
 .hx-sub{display:block;font-size:11.5px;color:#656B71;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#hx-alt{height:100%;display:flex;flex-direction:column;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+#hx-alt>*{flex-shrink:0}
+#hx-alt{height:100%;overflow:hidden;display:flex;flex-direction:column;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
 .hx-mapfit{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#FFFFFF}
 .hx-mapcard{flex-shrink:0;transform-origin:top left;background:#EAF2F8;border-radius:24px;padding:14px;display:flex;flex-direction:column;gap:12px}
 .hx-mapcard .map-town,.hx-mapcard .map-bay,.hx-mapcard .map-sea,.hx-mapcard .map-tram{display:inline !important}
@@ -586,7 +587,7 @@ html:not(.cine) .motion-btn{display:none}
 .fx-mapbox{position:relative;aspect-ratio:600 / 473;background:#EAF2F8;border-radius:16px;overflow:hidden}
 .fx-mapbox>svg{position:absolute;inset:0;width:100%;height:100%}
 .fx-mapbox .fv-pin{height:26px !important;padding:0 8px !important;font-size:11px !important}
-.fx-mapbox .fv-pin.dot{height:13px !important;width:13px !important;padding:0 !important}
+.fx-mapbox .fv-pin.dot{height:13px !important;width:13px !important;padding:0 !important;font-size:0 !important}
 .fx-maplist{display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;padding-right:2px}
 .fx-maplist .ml{padding:10px 12px !important;border-radius:14px !important;gap:6px !important}
 .fx-mapsel{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border:1px solid #E6E7E3;border-radius:14px;padding:12px 14px}
@@ -1349,7 +1350,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Propuesta enviada': 'Proposal sent',
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
-    'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator',
+    'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator', 'Colaboración aceptada': 'Collaboration accepted',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
@@ -1781,7 +1782,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'lang') { setLang(v); }
     if (act === 'member') { S.member = +v; renderTeam(); }
     if (act === 'trust') { S.trust = v; renderTrust(); }
-    if (act === 'fxv') { FX.view = v; FX.cat = null; FX.open = null; if (v === 'rep') FX.grow = true; fxRender(); if (v === 'msg') fxChatPlay(); }
+    if (act === 'fxv') { if (v === 'map') S.popup = true; FX.view = v; FX.cat = null; FX.open = null; if (v === 'rep') FX.grow = true; fxRender(); if (v === 'msg') fxChatPlay(); }
     if (act === 'fxrole' && FX.role !== v) {
       FX.role = v; FX.view = v === 'pro' ? 'srv' : 'res'; FX.cat = null; FX.st = 'all'; FX.open = null; FX.q = ''; $('fx-q').value = '';
       if (TOUR.on && TOUR.visible) tourGo(0); else fxRender();
@@ -2199,6 +2200,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var steps = tourSteps(), st = steps[i];
     FX.view = st.v; FX.open = null; FX.cat = null; FX.st = 'all'; FX.q = ''; $('fx-q').value = '';
     if (st.v === 'rep') { FX.range = 12; FX.mon = null; FX.grow = true; }
+    if (st.v === 'map') S.popup = true;
     if (st.v === 'msg') fxChatReset();
     if (FX.role === 'pro' && i === 0) fpReset();
     fxRender();
@@ -2623,6 +2625,23 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
       + bar + '</div></div>';
   }
+  function heroCol() {
+    var en = S.lang === 'en';
+    var list = [];
+    if (LIVE.colAcc) list.push({ n: 'Finques del Pla', cat: 'Eventos', pct: 10, fresh: true });
+    list.push({ n: 'Cala d’Or Charters', cat: 'Náutica', pct: 13, fresh: !LIVE.colAcc });
+    FXA.forEach(function (a) { if (a.st === 'active' && a.emp !== 'Finques del Pla' && !a.fix) list.push({ n: a.emp, cat: a.cat, pct: a.val }); });
+    var rows = list.slice(0, 5).map(function (r) {
+      return '<div class="fx-row hx-row' + (r.fresh ? ' live-in' : '') + '"><span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[r.cat] + '">' + fxInit(r.n) + '</span><span style="min-width: 0"><span class="fx-cell" style="display: block; font-weight: 600">' + r.n + '</span><span class="hx-sub">' + T(r.cat) + '</span></span></span>'
+        + '<span class="fx-mono">' + r.pct + (en ? '%' : ' %') + '</span>'
+        + (r.fresh ? '<span class="fx-pill" style="background: #2B6CA8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Colaborador') + '</span>') + '</div>';
+    }).join('');
+    var req = '<div class="cl-req" style="margin-top: 12px"><span class="cl-h">' + T('Solicitudes') + '</span>'
+      + (LIVE.colAcc ? '' : '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + FXCOL['Eventos'] + '">FD</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">Finques del Pla</b><small style="font-size: 12px; color: #656B71">' + T('Eventos') + '</small></span></span><span class="fx-pill" style="background: #FFFFFF; color: #0B2A4A; border-color: #2B6CA8">' + T('Solicitud recibida') + '</span><span class="cl-acts"><span class="fx-btn accent" id="hx-colacc" style="height: 30px; font-size: 12px">' + T('Aceptar') + '</span><span class="fx-btn ghost" style="height: 30px; font-size: 12px">' + T('Rechazar') + '</span></span></div>')
+      + '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + FXCOL['Náutica'] + '">SB</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">Sóller Boats</b><small style="font-size: 12px; color: #656B71">' + T('Náutica') + '</small></span></span><span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Solicitud enviada') + '</span><span style="font-size: 12px; color: #656B71">' + T('Esperando respuesta') + '</span></div></div>';
+    return '<div class="fx-bar"><span class="fx-title">' + T('Colaboradores') + '</span><span style="font-size: 13px; color: #656B71">' + list.length + ' ' + T('colaboradores') + '</span></div>'
+      + req + '<div class="fx-row hx-row fx-head" role="presentation" style="margin-top: 10px"><span>' + T('Empresa') + '</span><span>' + T('Comisión') + '</span><span>' + T('Estado') + '</span></div>' + rows;
+  }
   function heroChat() {
     var en = S.lang === 'en', msgs = [];
     if (LIVE.chat >= 1) msgs.push('<div class="fx-msg me">' + T('Hola, nos interesa vuestro catamarán para nuestros huéspedes.') + '</div>');
@@ -2656,7 +2675,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var st = LIVE.step, home = LIVE.view === 'home', content = $('hx-content');
     $('hx-home').hidden = !home; $('hx-alt').hidden = home;
     if (home) { content.style.height = ''; }
-    else { $('hx-alt').innerHTML = LIVE.view === 'map' ? heroMap() : heroChat(); if (LIVE.view === 'map') layoutHeroMap(); }
+    else { $('hx-alt').innerHTML = LIVE.view === 'map' ? heroMap() : LIVE.view === 'col' ? heroCol() : heroChat(); if (LIVE.view === 'map') layoutHeroMap(); }
     renderFlow();
     $('k-held').textContent = money(LIVE.held); $('k-rel').textContent = money(LIVE.rel);
     var rows = HERO_ROWS.map(function (i) { return heroRow(FXB[i], FXB[i].st); });
@@ -2688,7 +2707,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var SCENE = [
     [0, function () {
       LIVE.view = 'home'; LIVE.step = -1; LIVE.held = BASE.held; LIVE.rel = BASE.rel;
-      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false;
+      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false;
       S.nav = 0; renderNav(); renderLive(); $('cursor').classList.remove('on');
     }],
     [900, function () { cursorTo(navBtn(1), true); }],
@@ -2703,26 +2722,30 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     [9000, function () { LIVE.chat = 3; renderLive(); }],
     [10000, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
     [10950, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
-    [12400, function () { cursorTo(navBtn(0), true); }],
-    [13350, function () { goNav(0, 'home'); }],
-    [14300, function () { cursorTo($('new-btn'), true); }],
-    [15550, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
-    [18300, function () {
+    [12300, function () { cursorTo(navBtn(3), true); }],
+    [13250, function () { goNav(3, 'col'); }],
+    [14600, function () { var b = $('hx-colacc'); if (b) cursorTo(b, true); }],
+    [15550, function () { LIVE.colAcc = true; renderLive(); setNotif('ok', T('Colaboración aceptada'), 'Finques del Pla', true); }],
+    [16900, function () { cursorTo(navBtn(0), true); }],
+    [17850, function () { goNav(0, 'home'); }],
+    [18800, function () { cursorTo($('new-btn'), true); }],
+    [20050, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
+    [22800, function () {
       LIVE.step = 1; renderLive(); setNotif(LIVE_ST[1].ico, LIVE_ST[1].t(), LIVE_ST[1].sub(), true);
       countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false);
     }],
-    [21000, function () {
+    [25500, function () {
       LIVE.step = 2; renderLive(); setNotif(LIVE_ST[2].ico, LIVE_ST[2].t(), LIVE_ST[2].sub(), true);
       var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false);
     }],
-    [23700, function () {
+    [28200, function () {
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
       cursorTo(navBtn(5), true);
     }],
-    [24700, function () { S.nav = 5; renderNav(); }],
-    [28000, function () { sceneRun(); }]
+    [29200, function () { S.nav = 5; renderNav(); }],
+    [32500, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
   function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
