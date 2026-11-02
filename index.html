@@ -189,6 +189,17 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fp-sw i{width:34px;height:20px;border-radius:10px;background:#2B6CA8;position:relative;transition:background-color .2s}
 .fp-sw i::after{content:"";position:absolute;top:2px;left:16px;width:16px;height:16px;border-radius:8px;background:#FFFFFF;transition:left .2s}
 .fp-sw[aria-checked="false"]{color:#656B71}.fp-sw[aria-checked="false"] i{background:#D5D7D3}.fp-sw[aria-checked="false"] i::after{left:2px}
+.fp-cs{margin:4px 18px 18px;border:1px solid #E6E7E3;border-radius:16px;background:#FFFFFF;overflow:hidden}
+.fp-cs-h{padding:14px 16px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid #EEEFEB}
+.fp-cs-h b{font-size:14px;font-weight:600}.fp-cs-h span{font-size:12.5px;line-height:1.45;color:#50565C}
+.fp-cs-row{display:grid;grid-template-columns:minmax(0,1.4fr) auto auto minmax(0,1fr);gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid #EEEFEB}
+.fp-cs-row:last-child{border-bottom:0}.fp-cs-row.fresh{animation:rowin .35s cubic-bezier(.2,.7,.2,1);background:#F7F9FD}
+.fp-cs-n{display:flex;flex-direction:column;gap:2px;min-width:0}.fp-cs-n b{font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fp-cs-n span{font:500 12px 'Geist Mono',monospace;color:#656B71}
+.fp-cs-c{display:inline-flex;align-items:center;gap:6px}
+.fp-cs-c button{width:32px;height:32px;border-radius:16px;border:1px solid #D5D7D3;background:#FFFFFF;font:600 16px 'Funnel Display',sans-serif;color:#1E2226;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.fp-cs-c button:disabled{opacity:.4;cursor:default}
+.fp-cs-c output{min-width:64px;text-align:center;font:500 14px 'Geist Mono',monospace;color:#1E2226;display:flex;flex-direction:column;line-height:1.2}.fp-cs-c output small{font-size:11px;color:#2B6CA8}
+.fp-cs-s{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#656B71}.fp-cs-s b{font:500 12.5px 'Geist Mono',monospace;color:#1E2226}
 .fp-form{margin:0 18px 14px;border:1px solid #D3E6F4;background:#F7F9FD;border-radius:16px;padding:14px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
 .fp-form label,.fp-form fieldset{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#50565C;margin:0;padding:0;border:0;min-width:0}
 .fp-form legend{padding:0;margin-bottom:5px}
@@ -408,6 +419,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   .fx-tabs .fx-tab{flex:0 0 auto}
   .fp-grid{grid-template-columns:1fr}
   .fp-form{grid-template-columns:1fr 1fr}
+  .fp-cs{margin:4px 12px 14px}.fp-cs-row{grid-template-columns:1fr auto;gap:10px 12px}.fp-cs-row .fp-days,.fp-cs-s{grid-column:1 / -1}.fp-cs-n b{white-space:normal}
   .fp-form .nm{grid-column:1 / -1}
   .fx-role{display:grid;grid-template-columns:1fr 1fr;align-self:stretch;margin-bottom:-8px}
   .fx-role button{justify-content:center;padding:0 8px;font-size:12.5px;height:40px}
@@ -1424,6 +1436,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Servicios de tus colaboradores': 'Your collaborators’ services',
     'Recomienda a tus clientes los servicios de tus colaboradores o pásales reservas.': 'Refer your clients to your collaborators’ services or pass them bookings.',
     'Recomendar a un cliente': 'Refer a client', 'Cliente recomendado': 'Client referred', 'Ver todos': 'See all', 'Ir al chat para reservar': 'Go to chat to book', 'Hola, nos gustaría reservar:': 'Hi, we would like to book:', 'Reservar': 'Book', 'Colaboración aceptada': 'Collaboration accepted',
+    'Comisión y señal de tus servicios': 'Commission and deposit for your services',
+    'Cambia la comisión que ofreces y la señal que paga el cliente al reservar. Se aplica a las reservas nuevas; las ya hechas mantienen sus condiciones.': 'Change the commission you offer and the deposit the client pays when booking. It applies to new bookings; existing ones keep their terms.',
+    'Al canjear el QR se libera la comisión a quien recomendó. Con el 50 %, también recibes el resto de la señal.': 'When the QR is redeemed, the commission is released to whoever referred the client. With 50%, you also receive the rest of the deposit.',
+    'Bajar comisión': 'Lower commission', 'Subir comisión': 'Raise commission',
+    'Al reservar': 'On booking', 'En la oficina': 'At the office', 'Para ti al canjear': 'For you on redemption',
     'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
@@ -1886,6 +1903,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fpacc') { FPP[+v].st = 'active'; fxRender(); }
     if (act === 'fprej') { FPP[+v].st = 'rejected'; fxRender(); }
     if (act === 'fpinv' && FPP_INV.length) { FPP.push(FPP_INV.shift()); fxRender(); }
+    if (act === 'fpcom' || act === 'fpcsdep') {
+      var cv = v.split('|'), cx = FPS[+cv[0]];
+      if (act === 'fpcom') cx.pct = Math.max(1, Math.min(50, cx.pct + (+cv[1]))); else cx.dep = cv[1];
+      FX.csFresh = +cv[0]; fxRender();
+      var cb = document.querySelector('#fx-main [data-act="' + act + '"][data-v="' + v + '"]'); if (cb && !cb.disabled) cb.focus({ preventScroll: true });
+    }
     if (act === 'fpdep' && FX.form) { FX.form.dep = v; fxRender(); var dbn = document.querySelector('[data-act="fpdep"][data-v="' + v + '"]'); if (dbn) dbn.focus({ preventScroll: true }); }
     if (act === 'fppass') { FX.passed = FX.passed || {}; FX.passed[+v] = true; fxRender(); }
     if (act === 'collab') {
@@ -2314,7 +2337,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     })();
   }
   var TOUR_PRO = [
-    { v: 'srv', d: 11500, at: [
+    { v: 'srv', d: 13000, at: [
       [1300, function () { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
       [1800, function () { fpType('fpf-n', 'n', T('Excursión a Formentor · medio día'), 1100); }],
       [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
@@ -2323,7 +2346,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [4700, function () { fpType('fpf-d', 't', T('Media jornada hasta el cabo de Formentor con baño en una cala.'), 1300); }],
       [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); ctxT(fpPublish, 350); } }],
       [8300, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="2"]'); if (t) { t.classList.add('press'); FPS[2].on = false; fxRender(); } }],
-      [9600, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="0"]'); if (t) { FPS[0].on = true; FX.freshSrv = 0; fxRender(); } }]
+      [9600, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="0"]'); if (t) { FPS[0].on = true; FX.freshSrv = 0; fxRender(); } }],
+      [10600, function () { var b = document.querySelector('#fx-main [data-act="fpcom"][data-v="1|1"]'); if (b) b.classList.add('press'); FPS[1].pct = 13; FX.csFresh = 1; fxRender(); }],
+      [11400, function () { FPS[1].dep = '50'; FX.csFresh = 1; fxRender(); }]
     ] },
     { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); ctxT(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
     { v: 'cal', d: 5500, at: [[1800, function () { FPBLOCK['2|2026-04-10'] = 1; FX.fresh = '2|2026-04-10'; fxRender(); }], [3600, function () { fxOpen({ t: 'pres', i: 4 }, true); }]] },
@@ -2507,7 +2532,22 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }).join('');
     FX.freshSrv = null;
     return '<div class="fx-bar"><span class="fx-title">' + T('Mis servicios') + '</span>' + (f ? '' : '<button type="button" class="fx-btn" data-act="fpnew" id="fp-new">' + T('+ Publicar servicio') + '</button>') + '</div>'
-      + kpis + form + '<div class="fp-grid">' + cards + '</div>';
+      + kpis + form + '<div class="fp-grid">' + cards + '</div>' + fpComSec();
+  }
+  // Comisión y señal de los servicios que ya tienes: se cambian aquí, para las reservas nuevas
+  function fpComSec() {
+    var en = S.lang === 'en';
+    var rows = FPS.map(function (x, i) {
+      var dep = x.dep || 'com', com = x.price * x.pct / 100, now = depAmount(dep, x.price, com), name = x.raw ? esc(x.n) : T(x.n);
+      return '<div class="fp-cs-row' + (FX.csFresh === i ? ' fresh' : '') + '"><div class="fp-cs-n"><b>' + name + '</b><span>' + eur(x.price) + '</span></div>'
+        + '<div class="fp-cs-c" role="group" aria-label="' + T('Comisión') + '"><button type="button" data-act="fpcom" data-v="' + i + '|-1" aria-label="' + T('Bajar comisión') + '"' + (x.pct <= 1 ? ' disabled' : '') + '>−</button>'
+        + '<output aria-live="polite">' + x.pct + (en ? '%' : ' %') + '<small>' + eur(com) + '</small></output>'
+        + '<button type="button" data-act="fpcom" data-v="' + i + '|1" aria-label="' + T('Subir comisión') + '"' + (x.pct >= 50 ? ' disabled' : '') + '>+</button></div>'
+        + '<div class="fp-days" role="group" aria-label="' + T('Señal que paga el cliente') + '">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpcsdep" data-v="' + i + '|' + d[0] + '" aria-pressed="' + (dep === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div>'
+        + '<div class="fp-cs-s"><span>' + T('Al reservar') + ': <b>' + eur(now) + '</b></span>' + (dep === '50' ? '<span>' + T('Para ti al canjear') + ': <b>' + eur(now - com) + '</b></span>' : '') + '<span>' + T('En la oficina') + ': <b>' + eur(x.price - now) + '</b></span></div></div>';
+    }).join('');
+    FX.csFresh = null;
+    return '<section class="fp-cs" aria-label="' + T('Comisión y señal de tus servicios') + '"><div class="fp-cs-h"><b>' + T('Comisión y señal de tus servicios') + '</b><span>' + T('Cambia la comisión que ofreces y la señal que paga el cliente al reservar. Se aplica a las reservas nuevas; las ya hechas mantienen sus condiciones.') + '</span><span>' + T('Al canjear el QR se libera la comisión a quien recomendó. Con el 50 %, también recibes el resto de la señal.') + '</span></div>' + rows + '</section>';
   }
   function fpPublish() {
     var f = FX.form; if (!f) return;
