@@ -7,6 +7,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 
 - Mercado inicial: Mallorca (náutico: chárter privado, yates, catamaranes; también ciclismo, eventos, alquiler de material). Test en Varsovia en estudio.
 - Dos flujos: (1) quien recomienda → quien presta el servicio; (2) entre colegas: un proveedor lleno pasa la reserva (o parte) a otro y cobra comisión.
+- Colaboradores: dos empresas colaboran solo cuando ambas aceptan la solicitud. Quien ofrece servicios solo puede pasar reservas a sus colaboradores. Quien recomienda puede filtrar el mapa por «Solo colaboradores».
 - Fundadores: Rodrigo (negocio) y un socio ingeniero (producto).
 
 ## Este repositorio

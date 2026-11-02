@@ -195,6 +195,16 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fp-form textarea{height:auto;padding:8px 10px;resize:none}
 .fp-form .full{grid-column:1 / -1}
 .fp-form .acts{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end}
+.cl-req{margin:14px 18px 2px;border:1px solid #D3E6F4;background:#F5F9FC;border-radius:16px;overflow:hidden}
+.cl-h{display:block;padding:10px 14px;font:500 11px 'Geist Mono',monospace;text-transform:uppercase;letter-spacing:.06em;color:#0B2A4A;border-bottom:1px solid #DCE8F2}
+.cl-r{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #E6EEF5;flex-wrap:wrap}
+.cl-r:last-child{border-bottom:0}
+.cl-r .who{flex:1 1 170px;display:flex;align-items:center;gap:9px;min-width:0}
+.cl-acts{display:flex;gap:6px}
+.cl-note{padding:10px 18px 6px;font-size:12px;color:#656B71;display:flex;align-items:center;gap:6px}
+.cl-pass{padding:2px 18px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cl-card{border:1px solid #ECEDE9;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;background:#FFFFFF}
+.cl-sub{padding:16px 18px 4px;font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase;letter-spacing:.06em;border-top:1px solid #ECEDE9}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
 .fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Funnel Display',sans-serif;color:#50565C;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#1E2226;color:#FFFFFF;box-shadow:0 4px 12px rgba(30,34,38,.18)}
@@ -1320,6 +1330,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Propuesta enviada': 'Proposal sent',
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
+    'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator',
+    'Con quién colaboras y a qué comisión.': 'Who you collaborate with and at what commission.',
+    'Quién vende tus servicios y con quién compartes reservas.': 'Who sells your services and who you share bookings with.',
+    'Solicitudes': 'Requests', 'Solicitud enviada': 'Request sent', 'Solicitud recibida': 'Request received',
+    'Rechazar': 'Decline', 'Esperando respuesta': 'Awaiting reply', '+ Invitar empresa': '+ Invite business',
+    'Las dos empresas deben aceptar la solicitud para colaborar.': 'Both businesses must accept the request to collaborate.',
+    'Solo colaboradores': 'Collaborators only',
+    'Colaboradores para pasar reservas': 'Collaborators you can pass bookings to',
+    'Solo puedes pasar reservas a empresas con las que colaboras.': 'You can only pass bookings to businesses you collaborate with.',
+    'Pasar reserva': 'Pass booking', 'Traspaso enviado': 'Transfer sent',
+    'colaboradores': 'collaborators',
     'Mis servicios': 'My services',
     'Publica lo que ofreces, a qué precio y qué días.': 'Publish what you offer, at what price and on which days.',
     '+ Publicar servicio': '+ Publish service',
@@ -1474,7 +1495,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     });
   })();
 
-  var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['msg', 'Mensajes'], ['rep', 'Informes']];
+  var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['col', 'Colaboradores'], ['msg', 'Mensajes'], ['rep', 'Informes']];
   var STEPS = [
     { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan la comisión.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
     { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal igual a la comisión, que queda retenida, y las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
@@ -1584,7 +1605,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     $('t-company').textContent = eur(m.c - person);
   }
   function comm(s) { return s.pct + (S.lang === 'en' ? '% · ' : ' % · ') + eur(s.price * s.pct / 100); }
-  function visible(s) { return S.mtype === 'Todas' || s.type === S.mtype; }
+  function visible(s) { return (S.mtype === 'Todas' || s.type === S.mtype) && (!S.collab || isCollab(s.name)); }
 
   function renderNav() {
     $('app-nav').innerHTML = NAV.map(function (n, i) {
@@ -1618,7 +1639,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   ];
   function catChip(c) {
     var on = c[0] === S.mtype;
-    var n = c[0] === 'Todas' ? SVCS.length : SVCS.filter(function (s) { return s.type === c[0]; }).length;
+    var n = SVCS.filter(function (s) { return (c[0] === 'Todas' || s.type === c[0]) && (!S.collab || isCollab(s.name)); }).length;
     return '<button type="button" data-act="type" data-v="' + c[0] + '" aria-pressed="' + on + '" style="height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#D5D7D3') + '; background: ' + (on ? (S.mapPink ? '#FF4F9A' : '#2B6CA8') : '#FFFFFF') + '; color: ' + (on ? (S.mapPink ? '#0B0F17' : '#FFFFFF') : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Funnel Display\', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">'
       + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (c[0] === 'Todas' ? (on ? A.accent : A.tint) : FXCOL[c[0]]) + '; color: ' + (c[0] === 'Todas' && !on ? A.text : '#FFFFFF') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></span>'
       + T(c[0]) + '<span style="font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; color: ' + (on ? (S.mapPink ? '#3D0A22' : '#FFFFFF') : '#656B71') + '">' + n + '</span></button>';
@@ -1676,7 +1697,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       return '<button type="button" data-act="pin" data-v="' + s.i + '" aria-pressed="' + on + '" class="ml" style="text-align: left; width: 100%; background: ' + (on ? (S.mapPink ? '#FFE8F2' : '#EAF2F8') : '#FFFFFF') + '; border: ' + (on ? (S.mapPink ? '2px solid #FF4F9A' : '2px solid #2B6CA8') : '1px solid #E6E7E3') + '; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; font-family: \'Funnel Display\', sans-serif; color: #1E2226">'
         + '<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><span class="ml-name" style="font-size: 15px; font-weight: 600">' + s.name + '</span><span class="ml-place" style="font-size: 12px; color: #656B71">' + s.place + '</span></div>'
         + '<span class="ml-svc" style="font-size: 13px; color: #50565C">' + T(s.svc) + '</span>'
-        + '<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">'
+        + '<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">' + (isCollab(s.name) ? '<span style="font-size: 11px; font-weight: 600; background: #EAF2F8; color: #0B2A4A; padding: 4px 8px; border-radius: 999px">' + T('Colaborador') + '</span>' : '')
         + '<span class="ml-price" style="font-family: \'Geist Mono\', monospace; font-size: 12px; background: #F3F3F0; padding: 4px 8px; border-radius: 999px">' + T('desde') + ' ' + eur(s.price) + '</span>'
         + '<span style="font-family: \'Geist Mono\', monospace; font-size: 12px; background: ' + A.soft + '; color: ' + A.text + '; padding: 4px 8px; border-radius: 999px">' + comm(s) + '</span>'
         + '<span style="display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: ' + (s.reviews ? '#1E2226' : '#656B71') + '"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="' + (s.reviews ? '#1E2226' : '#C9CBC5') + '"></path></svg>' + rating + '</span>'
@@ -1749,6 +1770,18 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fprow') { fxOpen({ t: 'pres', i: +v }); }
     if (act === 'fppar') { fxOpen({ t: 'ppar', i: +v }); }
     if (act === 'fpscan') { fpScan(+v); }
+    if (act === 'clacc') { if (+v === 6) fxAccept(); else FXA[+v].st = 'active'; FX.open = null; fxRender(); renderMap(); }
+    if (act === 'clrej') { FXA[+v].st = 'rejected'; fxRender(); }
+    if (act === 'clinv' && FXA_INV.length) { FXA.push(FXA_INV.shift()); fxRender(); }
+    if (act === 'fpacc') { FPP[+v].st = 'active'; fxRender(); }
+    if (act === 'fprej') { FPP[+v].st = 'rejected'; fxRender(); }
+    if (act === 'fpinv' && FPP_INV.length) { FPP.push(FPP_INV.shift()); fxRender(); }
+    if (act === 'fppass') { FX.passed = FX.passed || {}; FX.passed[+v] = true; fxRender(); }
+    if (act === 'collab') {
+      S.collab = !S.collab; S.popup = false; S.mapPink = true;
+      if (!visible(SVCS[S.pin])) { for (var q = 0; q < SVCS.length; q++) if (visible(SVCS[q])) { S.pin = q; break; } }
+      renderMap(); if (FX.view === 'map') fxRender();
+    }
     if (act === 'fpnew') { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
     if (act === 'fpcancel') { FX.form = null; fxRender(); }
     if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
@@ -1757,7 +1790,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
     if (act === 'fxaccept') { fxAccept(); }
     if (act === 'fxchange') { FXCH.fp.msgs.push({ who: 'me', t: '¿Podríamos ajustar la comisión?', extra: true }, { who: 'them', t: 'Claro, lo vemos y te mando una nueva propuesta.', extra: true }); CHAT.shown = FXCH.fp.msgs.length; fxRender(); }
-    if (act === 'fxgoag') { FX.view = 'ag'; fxOpen({ t: 'ag', i: 6 }); }
+    if (act === 'fxgoag') { FX.view = 'col'; fxOpen({ t: 'ag', i: 6 }); }
     if (act === 'fxtour') { TOUR.on = true; $('fx-replay').hidden = true; tourGo(0); }
     if (act === 'fxcat') { FX.view = 'res'; FX.cat = String(FX.cat) === v ? null : v; FX.open = null; fxRender(); }
     if (act === 'fxst') { FX.st = v; fxRender(); }
@@ -1801,7 +1834,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { emp: 'Tramuntana Cycling', cat: 'Ciclismo', fix: 0, val: 15, svcs: ['Ruta guiada en bici de carretera', 'Alquiler de bici eléctrica · día'], bk: 11, rating: 4.9, st: 'active' },
     { emp: 'Llevant Transfers', cat: 'Traslados', fix: 0, val: 15, svcs: ['Traslado privado aeropuerto–hotel'], bk: 21, rating: 4.8, st: 'active' },
     { emp: 'Badia Bike Rental', cat: 'Alquiler', fix: 0, val: 20, svcs: ['Alquiler de bici eléctrica · día'], bk: 6, rating: 4.5, st: 'active' },
-    { emp: 'Finques del Pla', cat: 'Eventos', fix: 0, val: 10, svcs: ['Cena privada en finca · grupo'], bk: 0, rating: 0, st: 'pending' }
+    { emp: 'Finques del Pla', cat: 'Eventos', fix: 0, val: 10, svcs: ['Cena privada en finca · grupo'], bk: 0, rating: 0, st: 'pending' },
+    { emp: 'Sóller Boats', cat: 'Náutica', fix: 0, val: 15, svcs: ['Lancha privada · día completo'], bk: 0, rating: 4.9, st: 'sent' }
   ];
   var FXM = { v: [420, 610, 880, 1150, 760, 520, 1240, 980, 1610, 2140, 3020, 3860], n: [6, 9, 13, 16, 11, 8, 17, 14, 22, 29, 41, 52], start: 4 };
   var FXCAT = [['Náutica', 62], ['Traslados', 14], ['Ciclismo', 11], ['Eventos', 8], ['Alquiler', 5]];
@@ -1823,6 +1857,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     msg: '<path d="M4 5h16v11H9l-5 4z"/>',
     cal: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8 14h3"/>',
     srv: '<path d="M3.5 12.5l8-8h8v8l-8 8z"/><circle cx="15.5" cy="8.5" r="1.4"/>',
+    col: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><circle cx="17" cy="8" r="2.5"/><path d="M16 13.2c2.3 0 4 1.3 4.6 3.8"/>',
     par: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><circle cx="17" cy="8" r="2.5"/><path d="M16 13.2c2.3 0 4 1.3 4.6 3.8"/>'
   };
   function fxDate(iso, long) {
@@ -1848,6 +1883,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="fx-row hx-row fx-head" role="presentation"><span>' + T('Cliente') + '</span><span>' + T('Comisión') + '</span><span>' + T('Estado') + '</span></div>'
       + FXB.slice(0, 5).map(function (b) { return heroRow(b, b.st); }).join('');
   }
+  function collabBtn() {
+    return '<button type="button" data-act="collab" aria-pressed="' + !!S.collab + '" style="height: 36px; padding: 0 14px 0 6px; border-radius: 999px; border: 1px solid ' + (S.collab ? '#FF4F9A' : '#D5D7D3') + '; background: ' + (S.collab ? '#FF4F9A' : '#FFFFFF') + '; color: ' + (S.collab ? '#0B0F17' : '#1E2226') + '; display: flex; align-items: center; gap: 8px; font-family: \'Funnel Display\', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap">'
+      + '<span style="width: 28px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: ' + (S.collab ? 'rgba(255,255,255,0.35)' : A.tint) + '; color: ' + (S.collab ? '#0B0F17' : A.text) + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/><circle cx="17" cy="8" r="2.5"/><path d="M16 13.2c2.3 0 4 1.3 4.6 3.8"/></svg></span>'
+      + T('Solo colaboradores') + '</button>';
+  }
   function fxMap() {
     // El mismo mapa que la sección «Mapa de servicios», con acciones propias para no mover el foco a la otra copia
     var en = S.lang === 'en', sel = SVCS[S.pin], n = SVCS.filter(visible).length;
@@ -1855,7 +1895,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var pins = $('pins').innerHTML.replace(/data-act="pin"/g, 'data-act="fxpin"');
     var list = $('map-list').innerHTML.replace(/data-act="pin"/g, 'data-act="fxpin"');
     var pop = S.popup && visible(sel) ? '<div class="pin-pop fx-pop" role="dialog" aria-label="' + esc(sel.name) + '">' + popHtml(sel).replace('data-act="popclose"', 'data-act="fxpopclose"') + '</div>' : '';
-    return '<div class="fx-bar"><span class="fx-title">' + T('Buscar servicios') + '</span><span style="font-size: 13px; color: #656B71">' + n + ' ' + (en ? 'sample services' : 'servicios de ejemplo') + '</span></div>'
+    return '<div class="fx-bar"><span class="fx-title">' + T('Buscar servicios') + '</span><span style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 13px; color: #656B71">' + n + ' ' + (en ? 'sample services' : 'servicios de ejemplo') + '</span>' + collabBtn() + '</span></div>'
       + '<div class="fx-mapv"><div class="fx-mapchips" role="group" aria-label="' + T('Categorías') + '">' + chips + '</div>'
       + '<div class="fx-mapgrid"><div class="fx-mapbox"><svg viewBox="0 0 600 473" aria-hidden="true">' + document.querySelector('#map svg').innerHTML + '</svg>' + pins + pop
       + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
@@ -1905,8 +1945,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fxAgs() {
     var head = '<div class="fx-row fx-ag fx-head" role="presentation"><span>' + T('Empresa') + '</span><span class="fx-hm">' + T('Categoría') + '</span><span>' + T('Comisión') + '</span><span class="fx-hm">' + T('Servicios') + '</span><span class="fx-hm">' + T('Reservas/mes') + '</span><span class="fx-hm">' + T('Valoración') + '</span><span>' + T('Estado') + '</span></div>';
     var rows = FXA.map(function (a, i) {
+      if (a.st !== 'active') return '';
       var c = a.fix ? money(a.val) : a.val + (S.lang === 'en' ? '%' : ' %');
-      var st = a.st === 'active' ? '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Activo') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Pendiente de firma') + '</span>';
+      var st = '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Colaborador') + '</span>';
       return '<button type="button" class="fx-row fx-ag" data-act="fxag" data-v="' + i + '" aria-pressed="' + (FX.open && FX.open.t === 'ag' && FX.open.i === i) + '">'
         + '<span class="fx-who"><span class="fx-av" style="background: ' + FXCOL[a.cat] + '">' + fxInit(a.emp) + '</span><span><span class="fx-cell" style="font-weight: 600">' + a.emp + '</span><small>' + T(a.cat) + '</small></span></span>'
         + '<span class="fx-cell fx-hm"><span class="fx-pill" style="background: #F3F3F0; color: #3D4248">' + T(a.cat) + '</span></span>'
@@ -1916,7 +1957,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         + '<span class="fx-cell fx-hm">' + (a.reviews === 0 || !a.rating ? '—' : '★ ' + (S.lang === 'en' ? a.rating.toFixed(1) : a.rating.toFixed(1).replace('.', ','))) + '</span>'
         + st + '</button>';
     }).join('');
-    return '<div class="fx-bar"><span class="fx-title">' + T('Acuerdos') + '</span><span style="font-size: 13px; color: #656B71">' + FXA.length + ' ' + (S.lang === 'en' ? 'partners' : 'socios') + '</span></div>' + head + rows;
+    var reqs = FXA.map(function (a, i) { return { i: i, n: a.emp, sub: T(a.cat), c: FXCOL[a.cat], st: a.st }; }).filter(function (x) { return x.st === 'pending' || x.st === 'sent'; });
+    var act = FXA.filter(function (a) { return a.st === 'active'; }).length;
+    return clBar('Colaboradores', act, 'clinv', FXA_INV.length > 0) + clBlock(reqs, 'clacc', 'clrej') + head + rows;
   }
   // Gráficos de los informes (datos de ejemplo): línea, dónut, embudo y barras
   function repLine(vals, start) {
@@ -2156,8 +2199,33 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { n: 'Hotel Can Ribes', type: 'Hotel', pct: 12, bk: 9, sales: 12400, rating: 4.8 },
     { n: 'Tramuntana Travel', type: 'Agencia', pct: 10, bk: 7, sales: 9300, rating: 4.7 },
     { n: 'Conserjería Port Blau', type: 'Conserjería', pct: 12, bk: 5, sales: 6100, rating: 4.9 },
-    { n: 'Mar Blau Yachting', type: 'Colega', pct: 10, bk: 3, sales: 4500, rating: 4.6 }
+    { n: 'Mar Blau Yachting', type: 'Colega', pct: 10, bk: 3, sales: 4500, rating: 4.6 },
+    { n: 'Yates Formentor', type: 'Colega', pct: 10, bk: 2, sales: 3000, rating: 4.8 },
+    { n: 'Hotel Sa Torre', type: 'Hotel', pct: 12, bk: 0, sales: 0, rating: 4.7, st: 'pending' },
+    { n: 'Cala d’Or Charters', type: 'Colega', pct: 10, bk: 0, sales: 0, rating: 4.6, st: 'sent' }
   ];
+  FPP.forEach(function (p) { p.st = p.st || 'active'; });
+  var FPP_INV = [{ n: 'Andratx Sailing', type: 'Colega', pct: 10, bk: 0, sales: 0, rating: 4.7, st: 'sent' }, { n: 'Hotel Port Nou', type: 'Hotel', pct: 12, bk: 0, sales: 0, rating: 4.5, st: 'sent' }];
+  var FXA_INV = [
+    { emp: 'Portocolom Catamarans', cat: 'Náutica', fix: 0, val: 12, svcs: ['Catamarán al atardecer · 3 h'], bk: 0, rating: 4.6, st: 'sent' },
+    { emp: 'Pla Bike Tours', cat: 'Ciclismo', fix: 0, val: 15, svcs: ['Ruta en bici por el Pla de Mallorca'], bk: 0, rating: 4.7, st: 'sent' },
+    { emp: 'Celler Events', cat: 'Eventos', fix: 0, val: 12, svcs: ['Cata de vinos en bodega · grupo'], bk: 0, rating: 4.8, st: 'sent' }
+  ];
+  function clBlock(items, acc, rej) {
+    if (!items.length) return '';
+    return '<div class="cl-req"><span class="cl-h">' + T('Solicitudes') + '</span>' + items.map(function (it) {
+      return '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + it.c + '">' + fxInit(it.n) + '</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">' + it.n + '</b><small style="font-size: 12px; color: #656B71">' + it.sub + '</small></span></span>'
+        + (it.st === 'pending'
+          ? '<span class="fx-pill" style="background: #FFFFFF; color: #0B2A4A; border-color: #2B6CA8">' + T('Solicitud recibida') + '</span><span class="cl-acts"><button type="button" class="fx-btn accent" data-act="' + acc + '" data-v="' + it.i + '" style="height: 30px; font-size: 12px">' + T('Aceptar') + '</button><button type="button" class="fx-btn ghost" data-act="' + rej + '" data-v="' + it.i + '" style="height: 30px; font-size: 12px">' + T('Rechazar') + '</button></span>'
+          : '<span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Solicitud enviada') + '</span><span style="font-size: 12px; color: #656B71">' + T('Esperando respuesta') + '</span>')
+        + '</div>';
+    }).join('') + '</div><div class="cl-note"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>' + T('Las dos empresas deben aceptar la solicitud para colaborar.') + '</div>';
+  }
+  function clBar(title, n, inv, canInv) {
+    return '<div class="fx-bar"><span class="fx-title">' + T(title) + '</span><span style="display: flex; gap: 10px; align-items: center"><span style="font-size: 13px; color: #656B71">' + n + ' ' + T('colaboradores') + '</span>'
+      + (canInv ? '<button type="button" class="fx-btn" data-act="' + inv + '" style="height: 32px; font-size: 12.5px">' + T('+ Invitar empresa') + '</button>' : '') + '</span></div>';
+  }
+  function isCollab(name) { return FXA.some(function (a) { return a.emp === name && a.st === 'active'; }); }
   var FPTYPE = { 'Hotel': '#1E2226', 'Agencia': '#0B2A4A', 'Conserjería': '#2B6CA8', 'Colega': '#A9D3F0' };
   var FPSV = ['Chárter privado', 'Catamarán atardecer', 'Velero'];
   var FPSVFULL = ['Chárter privado · día completo', 'Catamarán privado al atardecer', 'Velero · día completo'];
@@ -2268,12 +2336,22 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }).join('');
     return '<div class="fx-bar"><span class="fx-title">' + T('Agenda') + '</span><span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #0B2A4A"><span style="width: 8px; height: 8px; border-radius: 4px; background: #2B6CA8"></span>' + T('Agenda conectada') + '</span></div>'
       + '<div class="fx-cal-note"><span>' + T('Semana del 6 al 12 de abril') + '</span><span>' + T('Toca un hueco libre para bloquearlo.') + '</span></div>'
-      + '<div class="fx-cal"><div class="fx-cal-g">' + head + rows + '</div></div>';
+      + '<div class="fx-cal"><div class="fx-cal-g">' + head + rows + '</div></div>'
+      + '<div class="cl-sub">' + T('Colaboradores para pasar reservas') + '</div>'
+      + '<div class="cl-note" style="padding-top: 6px">' + T('Solo puedes pasar reservas a empresas con las que colaboras.') + '</div>'
+      + '<div class="cl-pass">' + FPP.map(function (p, i) {
+        if (p.type !== 'Colega' || p.st !== 'active') return '';
+        var sent = FX.passed && FX.passed[i];
+        return '<div class="cl-card"><div style="display: flex; align-items: center; gap: 9px"><span class="fx-av" style="background: ' + FPTYPE[p.type] + '">' + fxInit(p.n) + '</span><span style="min-width: 0; flex: 1"><b style="display: block; font-size: 13.5px">' + p.n + '</b><small style="font-size: 12px; color: #656B71">' + T('Náutica') + '</small></span><span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Colaborador') + '</span></div>'
+          + (sent ? '<span class="fx-pill" style="align-self: flex-start; background: #2B6CA8; color: #FFFFFF">' + T('Traspaso enviado') + '</span>' : '<button type="button" class="fx-btn ghost" data-act="fppass" data-v="' + i + '" style="height: 32px; font-size: 12.5px; align-self: flex-start">' + T('Pasar reserva') + '</button>')
+          + '</div>';
+      }).join('') + '</div>';
   }
   function fpPar() {
     var en = S.lang === 'en';
-    var head = '<div class="fx-row fx-ag fx-head" role="presentation"><span>' + T('Socios') + '</span><span class="fx-hm">' + T('Tipo') + '</span><span>' + T('Comisión') + '</span><span class="fx-hm">' + T('Reservas/mes') + '</span><span class="fx-hm">' + T('Ventas') + '</span><span class="fx-hm">' + T('Valoración') + '</span><span class="fx-hm"></span></div>';
+    var head = '<div class="fx-row fx-ag fx-head" role="presentation"><span>' + T('Colaboradores') + '</span><span class="fx-hm">' + T('Tipo') + '</span><span>' + T('Comisión') + '</span><span class="fx-hm">' + T('Reservas/mes') + '</span><span class="fx-hm">' + T('Ventas') + '</span><span class="fx-hm">' + T('Valoración') + '</span><span class="fx-hm"></span></div>';
     var rows = FPP.map(function (p, i) {
+      if (p.st !== 'active') return '';
       return '<button type="button" class="fx-row fx-ag" data-act="fppar" data-v="' + i + '" aria-pressed="' + (FX.open && FX.open.t === 'ppar' && FX.open.i === i) + '">'
         + '<span class="fx-who"><span class="fx-av" style="background: ' + FPTYPE[p.type] + '">' + fxInit(p.n) + '</span><span><span class="fx-cell" style="font-weight: 600">' + p.n + '</span><small>' + T(p.type) + '</small></span></span>'
         + '<span class="fx-cell fx-hm"><span class="fx-pill" style="background: #F3F3F0; color: #3D4248">' + T(p.type) + '</span></span>'
@@ -2283,7 +2361,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         + '<span class="fx-cell fx-hm">★ ' + (en ? p.rating.toFixed(1) : p.rating.toFixed(1).replace('.', ',')) + '</span>'
         + '<span class="fx-hm"></span></button>';
     }).join('');
-    return '<div class="fx-bar"><span class="fx-title">' + T('Socios') + '</span><span style="font-size: 13px; color: #656B71">' + FPP.length + ' ' + (en ? 'partners' : 'socios') + '</span></div>' + head + rows;
+    var reqs = FPP.map(function (p, i) { return { i: i, n: p.n, sub: T(p.type), c: FPTYPE[p.type], st: p.st }; }).filter(function (x) { return x.st === 'pending' || x.st === 'sent'; });
+    var act = FPP.filter(function (p) { return p.st === 'active'; }).length;
+    return clBar('Colaboradores', act, 'fpinv', FPP_INV.length > 0) + clBlock(reqs, 'fpacc', 'fprej') + head + rows;
   }
   function fpRep() {
     var n = FX.range, v = FPM.v.slice(-n), c = FPM.n.slice(-n), off = 12 - n, en = S.lang === 'en';
@@ -2346,7 +2426,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     b.st = 'redeemed'; FX.scanned = i; fxRender();
     setTimeout(function () { b.st = 'released'; fxRender(); }, 900);
   }
-  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.scanned = null; FX.fresh = null; }
+  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.scanned = null; FX.fresh = null; }
 
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
@@ -2366,7 +2446,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var a = FXA[o.i];
       var c = a.fix ? money(a.val) + ' ' + T('fijo') : a.val + (en ? '%' : ' %');
       h = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T(a.cat) + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.02em">' + a.emp + '</span>'
-        + (a.st === 'active' ? '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Activo') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Pendiente de firma') + '</span>') + '</div>' + x + '</div>'
+        + (a.st === 'active' ? '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Colaborador') + '</span>' : '<span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T(a.st === 'sent' ? 'Solicitud enviada' : 'Solicitud recibida') + '</span>') + '</div>' + x + '</div>'
         + '<dl class="fx-fields"><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + c + '</dd><dt>' + T('Reservas/mes') + '</dt><dd>' + a.bk + '</dd><dt>' + T('Valoración') + '</dt><dd>' + (a.rating ? '★ ' + (en ? a.rating.toFixed(1) : a.rating.toFixed(1).replace('.', ',')) : T('Nuevo · aún sin reseñas')) + '</dd></dl>'
         + '<div style="padding: 16px 18px 6px; font-size: 12px; font-weight: 600; color: #656B71; text-transform: uppercase; letter-spacing: .05em">' + T('Servicios incluidos') + '</div>'
         + '<div style="padding: 0 18px 12px; display: flex; flex-direction: column; gap: 6px">' + a.svcs.map(function (sv) { return '<span style="font-size: 13px; border: 1px solid #E6E7E3; border-radius: 12px; padding: 9px 12px; display: flex; justify-content: space-between; gap: 8px"><span>' + T(sv) + '</span><span class="fx-mono" style="color: #0B2A4A">' + c + '</span></span>'; }).join('') + '</div>'
@@ -2379,8 +2459,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var en = S.lang === 'en';
     var pro = FX.role === 'pro';
     var views = pro
-      ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
-      : [['home', 'Inicio', 'Tu resumen: comisiones y últimas reservas.'], ['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.']];
+      ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['col', 'Colaboradores', 'Quién vende tus servicios y con quién compartes reservas.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
+      : [['home', 'Inicio', 'Tu resumen: comisiones y últimas reservas.'], ['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['col', 'Colaboradores', 'Con quién colaboras y a qué comisión.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
     $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
       return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
@@ -2394,13 +2474,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var cur = views.filter(function (v) { return v[0] === FX.view; })[0] || views[0];
     $('fx-crumb').innerHTML = ws[1] + ' / <b>' + T(cur[1]) + '</b>';
     var side = '<div class="fx-ws"><i>' + ws[0] + '</i>' + ws[1] + '</div>' + views.map(function (v) {
-      var n = pro ? (v[0] === 'srv' ? FPS.length : v[0] === 'res' ? FPB.length : v[0] === 'par' ? FPP.length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'ag' ? FXA.length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
+      var n = pro ? (v[0] === 'srv' ? FPS.length : v[0] === 'res' ? FPB.length : v[0] === 'col' ? FPP.filter(function (p) { return p.st === 'active'; }).length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'col' ? FXA.filter(function (a) { return a.st === 'active'; }).length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
       return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && FX.cat == null) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
     }).join('');
     $('fx-side').innerHTML = side + '<div class="side-foot"><span class="hx-li">' + fxSvg('set') + T('Ajustes') + '</span><span class="hx-li">' + fxSvg('acc') + T('Cuenta') + '</span></div>';
     $('fx-main').innerHTML = pro
-      ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'par' ? fpPar() : fpRep())
-      : (FX.view === 'home' ? fxHome() : FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'rep' ? fxRep() : fxChat());
+      ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'col' ? fpPar() : fpRep())
+      : (FX.view === 'home' ? fxHome() : FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'col' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat());
     FX.fresh = null;
     fxDrawer();
     if (FX.view === 'msg') fxScrollMsgs();
@@ -2480,9 +2560,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var svg = document.querySelector('#map svg').innerHTML;
     var sel = LIVE.pin ? HSEL : 0, sv = SVCS[sel];
     var chips = CATS.filter(function (c) { return c[0] === 'Todas' || c[0] === 'Náutica'; }).map(function (c) {
-      var keep = S.mtype, keepP = S.mapPink; S.mtype = 'Náutica'; S.mapPink = !!LIVE.pin;
+      var keep = S.mtype, keepP = S.mapPink, keepC = S.collab; S.mtype = 'Náutica'; S.mapPink = !!LIVE.pin; S.collab = false;
       var h = catChip(c).replace('<button type="button"', '<span').replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
-      S.mtype = keep; S.mapPink = keepP; return h;
+      S.mtype = keep; S.mapPink = keepP; S.collab = keepC; return h;
     }).join('');
     var pins = HPINS.map(function (i) { return heroPin(i, LIVE.pin && i === HSEL); }).join('');
     var pop = LIVE.pin ? '<div class="pin-pop hx-pop2" id="hx-pop">' + popHtml(SVCS[HSEL]).replace(' data-act="popclose"', '') + '</div>' : '';
@@ -2566,7 +2646,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     [2900, function () { var p = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (p) cursorTo(p, true); }],
     [3850, function () { LIVE.pin = true; renderLive(); }],
     [5000, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(3, 'msg'); }],
+    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
     [6500, function () { LIVE.chat = 1; renderLive(); }],
     [7100, function () { LIVE.typing = true; renderLive(); }],
     [8300, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
@@ -2589,9 +2669,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
-      cursorTo(navBtn(4), true);
+      cursorTo(navBtn(5), true);
     }],
-    [24700, function () { S.nav = 4; renderNav(); }],
+    [24700, function () { S.nav = 5; renderNav(); }],
     [28000, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
