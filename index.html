@@ -2820,7 +2820,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var HPINS = [0, 1, 2, 4, 5, 6, 3, 7], HSEL = 2, HMAP_W = 600;
   function heroCollabIds() {
     var ids = [];
-    SVCS.forEach(function (m, i) { if (isCollab(m.name) || (LIVE.signed && i === HSEL)) ids.push(i); });
+    SVCS.forEach(function (m, i) { if ((isCollab(m.name) || i === HSEL) && (!LIVE.nau || m.type === 'Náutica')) ids.push(i); });
     return ids;
   }
   function heroPin(i, on) {
@@ -2829,23 +2829,26 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function heroMap() {
     var svg = document.querySelector('#map svg').innerHTML;
-    var col = LIVE.collab, all = LIVE.allTags && !col, ids = col ? heroCollabIds() : all ? SVCS.map(function (m, i) { return i; }) : HPINS;
+    // Recorrido: todas las etiquetas → «Náutica» → «Solo colaboradores» → elige Cala d’Or y va al chat
+    var col = LIVE.collab, all = true, nau = LIVE.nau;
+    var ids = col ? heroCollabIds() : SVCS.map(function (m, i) { return i; }).filter(function (i) { return !nau || SVCS[i].type === 'Náutica'; });
     var sel = LIVE.pin ? HSEL : ids[0], sv = SVCS[sel], en = S.lang === 'en';
+    var base = SVCS.map(function (m, i) { return i; }).filter(function (i) { return !col || isCollab(SVCS[i].name) || i === HSEL; });
     var chips = CATS.filter(function (c) { return c[0] === 'Todas' || c[0] === 'Náutica'; }).map(function (c) {
-      var keep = S.mtype, keepP = S.mapPink, keepC = S.collab; S.mtype = col || all ? 'Todas' : 'Náutica'; S.mapPink = !!LIVE.pin || col; S.collab = false;
-      var h = catChip(c).replace('<button type="button"', '<span').replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
-      if (col) h = h.replace(/>\d+<\/span><\/span>$/, '>' + (c[0] === 'Todas' ? ids.length : ids.filter(function (i) { return SVCS[i].type === 'Náutica'; }).length) + '</span></span>');
+      var keep = S.mtype, keepP = S.mapPink, keepC = S.collab; S.mtype = nau ? 'Náutica' : 'Todas'; S.mapPink = nau; S.collab = false;
+      var h = catChip(c).replace('<button type="button"', '<span' + (c[0] === 'Náutica' ? ' id="hx-nau"' : '')).replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
+      h = h.replace(/>\d+<\/span><\/span>$/, '>' + (c[0] === 'Todas' ? base.length : base.filter(function (i) { return SVCS[i].type === 'Náutica'; }).length) + '</span></span>');
       S.mtype = keep; S.mapPink = keepP; S.collab = keepC; return h;
     }).join('');
     var keepSC = S.collab; S.collab = col;
     chips += '<span style="flex: 1"></span>' + collabBtn().replace('<button type="button" data-act="collab"', '<span id="hx-collab"').replace('</button>', '</span>');
     S.collab = keepSC;
-    var hplc = col || all ? placeTags(ids) : {};
-    var pins = col || all ? ids.map(function (i) { return svcTag(i, LIVE.pin && i === HSEL, null, hplc[i]).replace('class="fx-tag', 'class="fx-tag' + (col ? ' in' : '')); }).join('') : ids.map(function (i) { return heroPin(i, LIVE.pin && i === HSEL); }).join('');
-    var pop = LIVE.pin && !col ? '<div class="pin-pop hx-pop2" id="hx-pop">' + popHtml(SVCS[HSEL]).replace(' data-act="popclose"', '') + '</div>' : '';
+    var hplc = placeTags(ids);
+    var pins = ids.map(function (i) { return svcTag(i, LIVE.pin && i === HSEL, null, hplc[i]).replace('class="fx-tag', 'class="fx-tag' + (LIVE.tagIn ? ' in' : '')); }).join('');
+    var pop = '';
     var bar = '<div class="hx-selbar"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sv.name + '</span><span style="font-size: 13px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
       + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: ' + (LIVE.pin ? '#FFE0EE' : '#D3E6F4') + '; color: ' + (LIVE.pin ? '#9D0F4E' : '#0B2A4A') + '; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
-      + '<span id="' + (col ? 'hx-book' : 'hx-propose') + '" style="height: 36px; padding: 0 16px; border-radius: 999px; background: ' + (col ? '#2B6CA8' : '#1E2226') + '; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T(col ? 'Reservar' : 'Proponer acuerdo') + '</span></div></div>';
+      + '<span id="hx-propose" style="height: 36px; padding: 0 16px; border-radius: 999px; background: #2B6CA8; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; white-space: nowrap">' + T('Ir al chat para reservar') + '</span></div></div>';
     return '<div class="hx-mapfit" id="hx-mapfit"><div class="hx-mapcard" id="hx-mapcard"><div style="display: flex; gap: 8px; align-items: center">' + chips + '</div>'
       + '<div class="hx-mapbox" id="hx-mapbox" style="width: ' + HMAP_W + 'px; height: ' + (HMAP_W * GEO.h / GEO.w).toFixed(1) + 'px"><svg viewBox="0 0 ' + GEO.w + ' ' + GEO.h + '" aria-hidden="true">' + svg + '</svg>' + pins + pop + '<span style="position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: #50565C">© OpenStreetMap</span></div>'
       + bar + '</div></div>';
@@ -2862,7 +2865,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         + (r.fresh ? '<span class="fx-pill" style="background: #2B6CA8; color: #FFFFFF">' + T('Nuevo') + '</span>' : '<span class="fx-pill" style="background: #EAF2F8; color: #0B2A4A">' + T('Colaborador') + '</span>') + '</div>';
     }).join('');
     var req = '<div class="cl-req" style="margin-top: 12px"><span class="cl-h">' + T('Solicitudes') + '</span>'
-      + (LIVE.colAcc ? '' : '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + FXCOL['Servicios privados'] + '">FD</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">Finques del Pla</b><small style="font-size: 12px; color: #656B71">' + T('Eventos') + '</small></span></span><span class="fx-pill" style="background: #FFFFFF; color: #0B2A4A; border-color: #2B6CA8">' + T('Solicitud recibida') + '</span><span class="cl-acts"><span class="fx-btn accent" id="hx-colacc" style="height: 30px; font-size: 12px">' + T('Aceptar') + '</span><span class="fx-btn ghost" style="height: 30px; font-size: 12px">' + T('Rechazar') + '</span></span></div>')
+      + (LIVE.colAcc ? '' : '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + FXCOL['Servicios privados'] + '">FD</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">Finques del Pla</b><small style="font-size: 12px; color: #656B71">' + T('Servicios privados') + '</small></span></span><span class="fx-pill" style="background: #FFFFFF; color: #0B2A4A; border-color: #2B6CA8">' + T('Solicitud recibida') + '</span><span class="cl-acts"><span class="fx-btn accent" id="hx-colacc" style="height: 30px; font-size: 12px">' + T('Aceptar') + '</span><span class="fx-btn ghost" style="height: 30px; font-size: 12px">' + T('Rechazar') + '</span></span></div>')
       + '<div class="cl-r"><span class="who"><span class="fx-av" style="background: ' + FXCOL['Náutica'] + '">SB</span><span style="min-width: 0"><b style="display: block; font-size: 13.5px; font-weight: 600">Sóller Boats</b><small style="font-size: 12px; color: #656B71">' + T('Náutica') + '</small></span></span><span class="fx-pill" style="background: #F0F1ED; color: #3D4248">' + T('Solicitud enviada') + '</span><span style="font-size: 12px; color: #656B71">' + T('Esperando respuesta') + '</span></div></div>';
     return '<div class="fx-bar"><span class="fx-title">' + T('Colaboradores') + '</span><span style="font-size: 13px; color: #656B71">' + list.length + ' ' + T('colaboradores') + '</span></div>'
       + req + '<div class="fx-row hx-row fx-head" role="presentation" style="margin-top: 10px"><span>' + T('Empresa') + '</span><span>' + T('Comisión') + '</span><span>' + T('Estado') + '</span></div>' + rows;
@@ -2932,50 +2935,44 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var SCENE = [
     [0, function () {
       LIVE.view = 'home'; LIVE.step = -1; LIVE.held = BASE.held; LIVE.rel = BASE.rel;
-      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.allTags = false;
+      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.nau = false;
       S.nav = 0; renderNav(); renderLive(); $('cursor').classList.remove('on');
     }],
     [900, function () { cursorTo(navBtn(1), true); }],
     [1900, function () { goNav(1, 'map'); }],
-    [2900, function () { var p = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (p) cursorTo(p, true); }],
-    [3850, function () { LIVE.pin = true; renderLive(); }],
-    [5000, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [5950, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
-    [6500, function () { LIVE.chat = 1; renderLive(); }],
-    [7100, function () { LIVE.typing = true; renderLive(); }],
-    [8300, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
-    [9000, function () { LIVE.chat = 3; renderLive(); }],
-    [10000, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
-    [10950, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
-    [12300, function () { cursorTo(navBtn(3), true); }],
-    [13250, function () { goNav(3, 'col'); }],
-    [14600, function () { var b = $('hx-colacc'); if (b) cursorTo(b, true); }],
-    [15550, function () { LIVE.colAcc = true; renderLive(); setNotif('ok', T('Colaboración aceptada'), 'Finques del Pla', true); }],
-    [16900, function () { cursorTo(navBtn(1), true); }],
-    [17850, function () { LIVE.pin = false; LIVE.collab = false; LIVE.allTags = true; goNav(1, 'map'); }],
-    [18900, function () { var b = $('hx-collab'); if (b) cursorTo(b, true); }],
-    [19850, function () { LIVE.collab = true; renderLive(); }],
-    [22500, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
-    [23450, function () { LIVE.pin = true; renderLive(); }],
-    [24700, function () { var b = $('hx-book'); if (b) cursorTo(b, true); }],
-    [25650, function () { goNav(0, 'home'); }],
-    [26400, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
-    [29150, function () {
+    [3400, function () { var b = $('hx-nau'); if (b) cursorTo(b, true); }],
+    [4350, function () { LIVE.nau = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
+    [5800, function () { var b = $('hx-collab'); if (b) cursorTo(b, true); }],
+    [6750, function () { LIVE.collab = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
+    [8600, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
+    [9550, function () { LIVE.pin = true; renderLive(); }],
+    [10600, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
+    [11550, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
+    [12100, function () { LIVE.chat = 1; renderLive(); }],
+    [12700, function () { LIVE.typing = true; renderLive(); }],
+    [13900, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
+    [14600, function () { LIVE.chat = 3; renderLive(); }],
+    [15600, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
+    [16550, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
+    [17900, function () { cursorTo(navBtn(0), true); }],
+    [18850, function () { goNav(0, 'home'); }],
+    [19600, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
+    [22350, function () {
       LIVE.step = 1; renderLive(); setNotif(LIVE_ST[1].ico, LIVE_ST[1].t(), LIVE_ST[1].sub(), true);
       countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false);
     }],
-    [31850, function () {
+    [25050, function () {
       LIVE.step = 2; renderLive(); setNotif(LIVE_ST[2].ico, LIVE_ST[2].t(), LIVE_ST[2].sub(), true);
       var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false);
     }],
-    [34550, function () {
+    [27750, function () {
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
       cursorTo(navBtn(5), true);
     }],
-    [35550, function () { S.nav = 5; renderNav(); }],
-    [38850, function () { sceneRun(); }]
+    [28750, function () { S.nav = 5; renderNav(); }],
+    [32050, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
   function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
