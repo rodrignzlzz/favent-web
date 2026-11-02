@@ -1370,6 +1370,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Perfil': 'Profile',
     'Agenda': 'Calendar', 'Socios': 'Partners',
     'Colaboradores': 'Collaborators', 'Colaborador': 'Collaborator',
+    'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.': 'Up to 2 services published at once. Hide one to publish this one.',
+    'Guardado como oculto: ya tienes 2 servicios publicados.': 'Saved as hidden: you already have 2 published services.',
+    'Puedes registrar todos los servicios que quieras; como máximo 2 se publican a la vez.': 'You can register as many services as you like; up to 2 are published at once.',
+    'máximo a la vez': 'maximum at once',
     'Servicios de tus colaboradores': 'Your collaborators’ services',
     'Recomienda a tus clientes los servicios de tus colaboradores o pásales reservas.': 'Refer your clients to your collaborators’ services or pass them bookings.',
     'Recomendar a un cliente': 'Refer a client', 'Cliente recomendado': 'Client referred', 'Ver todos': 'See all', 'Ir al chat para reservar': 'Go to chat to book', 'Hola, nos gustaría reservar:': 'Hi, we would like to book:', 'Reservar': 'Book', 'Colaboración aceptada': 'Collaboration accepted',
@@ -1576,7 +1580,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { name: 'Mar i Cel Events', dep: '50', desc: 'Cóctel privado con vistas al mar para empresas y grupos.', svc: 'Cóctel privado frente al mar', type: 'Eventos', place: 'Portals Nous', lat: 39.5330, lng: 2.5740, price: 3200, pct: 8, rating: 4.7, reviews: 15 },
     { name: 'Celler Events', desc: 'Visita a la bodega y cata de vinos de Binissalem.', svc: 'Cata de vinos en bodega · grupo', type: 'Eventos', place: 'Binissalem', lat: 39.6870, lng: 2.8440, price: 600, pct: 12, rating: 4.8, reviews: 31 },
     { name: 'Badia Bike Rental', desc: 'Bici eléctrica por días, con casco y entrega en el hotel.', svc: 'Alquiler de bici eléctrica · día', type: 'Alquiler', place: 'Can Picafort', lat: 39.7672, lng: 3.1560, price: 45, pct: 20, rating: 4.5, reviews: 11 },
-    { name: 'Migjorn Kayak', desc: 'Kayak doble para recorrer las calas de Cala Figuera.', svc: 'Alquiler de kayak · medio día', type: 'Alquiler', place: 'Cala Figuera', lat: 39.3330, lng: 3.1770, price: 40, pct: 20, rating: 4.6, reviews: 19 }
+    { name: 'Migjorn Kayak', desc: 'Kayak doble para recorrer las calas de Cala Figuera.', svc: 'Alquiler de kayak · medio día', type: 'Alquiler', place: 'Cala Figuera', lat: 39.3330, lng: 3.1770, price: 40, pct: 20, rating: 4.6, reviews: 19 },
+    { name: 'Velas del Norte', desc: 'Salida en catamarán al atardecer, con bebida incluida.', svc: 'Catamarán privado al atardecer', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1300, pct: 12, rating: 4.9, reviews: 38 }
   ];
   var ME = [39.7210, 2.9100]; // "Tú": Inca
   // Proyección del contorno de Mallorca (OpenStreetMap, ODbL) al SVG de 600×494
@@ -1842,7 +1847,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fpnew') { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
     if (act === 'fpcancel') { FX.form = null; fxRender(); }
     if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
-    if (act === 'fptoggle') { FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
+    if (act === 'fptoggle') { if (!FPS[+v].on && FPS.filter(function (x) { return x.on; }).length >= 2) FX.srvMsg = 'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.'; else FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
     if (act === 'fpslot') { if (FPBLOCK[v]) delete FPBLOCK[v]; else FPBLOCK[v] = 1; FX.fresh = v; fxRender(); }
     if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
     if (act === 'fxaccept') { fxAccept(); }
@@ -2245,14 +2250,16 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     })();
   }
   var TOUR_PRO = [
-    { v: 'srv', d: 9000, at: [
+    { v: 'srv', d: 11500, at: [
       [1300, function () { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
       [1800, function () { fpType('fpf-n', 'n', T('Excursión a Formentor · medio día'), 1100); }],
       [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
       [3700, function () { [4, 5, 6].forEach(function (d, k) { TOUR.timers.push(setTimeout(function () { if (FX.form) { FX.form.d[d] = 1; fxRender(); } }, k * 250)); }); }],
       [4350, function () { if (FX.form) { FX.form.dep = '50'; fxRender(); } }],
       [4700, function () { fpType('fpf-d', 't', T('Media jornada hasta el cabo de Formentor con baño en una cala.'), 1300); }],
-      [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); setTimeout(fpPublish, 350); } }]
+      [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); setTimeout(fpPublish, 350); } }],
+      [8300, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="2"]'); if (t) { t.classList.add('press'); FPS[2].on = false; fxRender(); } }],
+      [9600, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="0"]'); if (t) { FPS[0].on = true; FX.freshSrv = 0; fxRender(); } }]
     ] },
     { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); setTimeout(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
     { v: 'cal', d: 5500, at: [[1800, function () { FPBLOCK['2|2026-04-10'] = 1; FX.fresh = '2|2026-04-10'; fxRender(); }], [3600, function () { fxOpen({ t: 'pres', i: 4 }, true); }]] },
@@ -2379,7 +2386,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FPS0 = [
     { n: 'Chárter privado · día completo', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', clicks: 312, on: true },
     { n: 'Catamarán privado al atardecer', price: 1300, pct: 12, days: [0, 0, 1, 1, 1, 1, 1], desc: 'Salida en catamarán al atardecer, con bebida incluida.', clicks: 198, on: true },
-    { n: 'Velero · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Velero con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: true }
+    { n: 'Velero · día completo', price: 1100, pct: 12, days: [1, 1, 1, 1, 1, 1, 0], desc: 'Velero con patrón por las calas del norte, para grupos pequeños.', clicks: 132, on: false }
   ];
   var FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); });
   function fpDayL() { return S.lang === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'X', 'J', 'V', 'S', 'D']; }
@@ -2387,9 +2394,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpSrv() {
     var en = S.lang === 'en', dl = fpDayL();
     var clicks = FPS.reduce(function (a, x) { return a + x.clicks; }, 0), pub = FPS.filter(function (x) { return x.on; }).length;
-    var kpis = '<div class="fx-kpis" style="grid-template-columns: repeat(3, minmax(0, 1fr))">' + [['Visitas al perfil', fpNum(1284), 'este mes'], ['Clics en tus servicios', fpNum(clicks), 'este mes'], ['Servicios publicados', pub + ' / ' + FPS.length, '']].map(function (k) {
+    var kpis = '<div class="fx-kpis" style="grid-template-columns: repeat(3, minmax(0, 1fr))">' + [['Visitas al perfil', fpNum(1284), 'este mes'], ['Clics en tus servicios', fpNum(clicks), 'este mes'], ['Servicios publicados', pub + ' / 2', 'máximo a la vez']].map(function (k) {
       return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] ? '<span style="font-size: 11px">' + T(k[2]) + '</span>' : '') + '</div>';
     }).join('') + '</div>';
+    kpis += '<div class="cl-note" style="padding-top: 0">' + T('Puedes registrar todos los servicios que quieras; como máximo 2 se publican a la vez.') + '</div>'
+      + (FX.srvMsg ? '<div class="fx-ok" role="status" style="margin: 4px 18px 12px">' + T(FX.srvMsg) + '</div>' : '');
+    FX.srvMsg = null;
     var f = FX.form, form = '';
     if (f) {
       form = '<form class="fp-form" id="fpf">'
@@ -2422,6 +2432,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     FPS.unshift(f.tour
       ? { n: 'Excursión a Formentor · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
       : { n: f.n.trim(), desc: f.t.trim(), dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
+    if (FPS.filter(function (x) { return x.on; }).length > 2) { FPS[0].on = false; FX.srvMsg = 'Guardado como oculto: ya tienes 2 servicios publicados.'; }
     FX.form = null; FX.freshSrv = 0; fxRender();
   }
   document.addEventListener('input', function (e) {
