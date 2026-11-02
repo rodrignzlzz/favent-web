@@ -246,6 +246,15 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .cl-pass{padding:2px 18px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
 .cl-card{border:1px solid #ECEDE9;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;background:#FFFFFF}
 .cl-sub{padding:16px 18px 4px;font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase;letter-spacing:.06em;border-top:1px solid #ECEDE9}
+.fx-panel{display:flex;flex-direction:column;gap:28px}
+.fx-panel + .fx-panel{margin-top:36px;padding-top:64px;border-top:1px solid #DCDDD8}
+.fx-who-t{display:flex;flex-direction:column;gap:12px;min-width:0;max-width:820px}
+.fx-who-l{align-self:flex-start;height:32px;padding:0 14px 0 4px;gap:10px;border-radius:999px;background:#0B0F17;color:#FFFFFF;display:inline-flex;align-items:center;font:500 13px 'Geist Mono',monospace}
+.fx-who-l b{width:24px;height:24px;border-radius:12px;background:#FFFFFF;color:#0B0F17;display:flex;align-items:center;justify-content:center;font-weight:600}
+.fx-panel[data-role="pro"] .fx-who-l{background:#2B6CA8}
+.fx-panel[data-role="pro"] .fx-who-l b{color:#2B6CA8}
+.fx-intro h3{margin:0;font:500 clamp(22px,2.6vw,30px)/1.15 'Funnel Display',sans-serif;letter-spacing:-.025em}
+.fx-intro p{margin:0;font-size:16px;line-height:1.55;color:var(--ink-2)}
 .fx-role{display:inline-flex;gap:4px;background:#F3F3F0;padding:4px;border-radius:999px;align-self:flex-start;margin-bottom:-12px}
 .fx-role button{height:42px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:600 14px 'Funnel Display',sans-serif;color:#50565C;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .fx-role button[aria-pressed="true"]{background:#1E2226;color:#FFFFFF;box-shadow:0 4px 12px rgba(30,34,38,.18)}
@@ -839,27 +848,51 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2)">Un panel para cada lado del acuerdo. Explóralos: filtra, ordena y abre cualquier reserva.</p>
     </div>
-    <div id="fx-role" class="fx-role" role="group" aria-label="Perfil"></div>
-    <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
-    <button type="button" id="fx-replay" class="fx-replay" data-act="fxtour" hidden><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"></path></svg>Ver el recorrido automático</button>
-    <div class="fx-win">
-      <div class="fx-top">
-        <span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span id="fx-crumb" class="fx-crumb"></span>
-        <label class="fx-search">
-          <span class="fx-sr">Buscar</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-          <input id="fx-q" type="search" placeholder="Buscar reservas…" autocomplete="off">
-        </label>
-        <span class="fx-badge">Vista de ejemplo</span>
+    <div class="fx-panel" data-role="rec" role="region" aria-label="Panel de ejemplo: si recomiendas clientes">
+      <div class="fx-intro"><div class="fx-who-t"><span class="fx-who-l"><b aria-hidden="true">1</b>Si recomiendas clientes</span><h3>Para hoteles, agencias y conserjerías que recomiendan servicios a sus clientes.</h3><p>Busca servicios en el mapa, filtra por tus colaboradores, reserva por chat y cobra tu comisión automáticamente cuando se presta el servicio.</p></div></div>
+      <div id="fx-tabs" class="fx-tabs" role="group" aria-label="Vistas"></div>
+      <button type="button" id="fx-replay" class="fx-replay" data-act="fxtour" hidden><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"></path></svg>Ver el recorrido automático</button>
+      <div class="fx-win">
+        <div class="fx-top">
+          <span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span id="fx-crumb" class="fx-crumb"></span>
+          <label class="fx-search">
+            <span class="fx-sr">Buscar</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <input id="fx-q" type="search" placeholder="Buscar reservas…" autocomplete="off">
+          </label>
+          <span class="fx-badge">Vista de ejemplo</span>
+        </div>
+        <div class="fx-body">
+          <nav id="fx-side" class="fx-side" aria-label="Menú de la aplicación de ejemplo"></nav>
+          <div id="fx-main" class="fx-main"></div>
+        </div>
+        <div id="fx-drawer" class="fx-drawer" role="region" aria-label="Detalle"></div>
       </div>
-      <div class="fx-body">
-        <nav id="fx-side" class="fx-side" aria-label="Menú de la aplicación de ejemplo"></nav>
-        <div id="fx-main" class="fx-main"></div>
+    </div>
+    <div class="fx-panel" data-role="pro" role="region" aria-label="Panel de ejemplo: si ofreces servicios">
+      <div class="fx-intro"><div class="fx-who-t"><span class="fx-who-l"><b aria-hidden="true">2</b>Si ofreces servicios</span><h3>Para las empresas que prestan el servicio: barcos, traslados, rutas en bici y servicios privados.</h3><p>Publica hasta 2 servicios a la vez, elige la señal, recibe reservas, canjea el código QR cuando llega el cliente y pasa reservas a tus colaboradores.</p></div></div>
+      <div id="fx-tabs--pro" class="fx-tabs" role="group" aria-label="Vistas"></div>
+      <button type="button" id="fx-replay--pro" class="fx-replay" data-act="fxtour" hidden><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"></path></svg>Ver el recorrido automático</button>
+      <div class="fx-win">
+        <div class="fx-top">
+          <span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span id="fx-crumb--pro" class="fx-crumb"></span>
+          <label class="fx-search">
+            <span class="fx-sr">Buscar</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <input id="fx-q--pro" type="search" placeholder="Buscar reservas…" autocomplete="off">
+          </label>
+          <span class="fx-badge">Vista de ejemplo</span>
+        </div>
+        <div class="fx-body">
+          <nav id="fx-side--pro" class="fx-side" aria-label="Menú de la aplicación de ejemplo"></nav>
+          <div id="fx-main--pro" class="fx-main"></div>
+        </div>
+        <div id="fx-drawer--pro" class="fx-drawer" role="region" aria-label="Detalle"></div>
       </div>
-      <div id="fx-drawer" class="fx-drawer" role="region" aria-label="Detalle"></div>
     </div>
   </section>
 
@@ -1340,7 +1373,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Cala d’Or Charters · Sáb 19 abr · 6 personas': 'Cala d’Or Charters · Sat 19 Apr · 6 guests',
     'Cala d’Or Charters · Sáb 19 abr': 'Cala d’Or Charters · Sat 19 Apr',
     'Cala d’Or Charters canjeó FV-9M4T': 'Cala d’Or Charters redeemed FV-9M4T',
-    'Elige tu perfil y explóralo: filtra, ordena y abre cualquier reserva.': 'Pick your profile and explore: filter, sort and open any booking.',
+    'Un panel para cada lado del acuerdo. Explóralos: filtra, ordena y abre cualquier reserva.': 'One panel for each side of the deal. Explore them: filter, sort and open any booking.',
+    'Para hoteles, agencias y conserjerías que recomiendan servicios a sus clientes.': 'For hotels, agencies and concierges who recommend services to their guests.',
+    'Busca servicios en el mapa, filtra por tus colaboradores, reserva por chat y cobra tu comisión automáticamente cuando se presta el servicio.': 'Find services on the map, filter by your partners, book through chat and get your commission automatically once the service is delivered.',
+    'Para las empresas que prestan el servicio: barcos, traslados, rutas en bici y servicios privados.': 'For the businesses that deliver the service: boats, transfers, bike tours and private services.',
+    'Publica hasta 2 servicios a la vez, elige la señal, recibe reservas, canjea el código QR cuando llega el cliente y pasa reservas a tus colaboradores.': 'Publish up to 2 services at a time, choose the deposit, receive bookings, redeem the QR code when the guest arrives and pass bookings to your partners.',
+    'Panel de ejemplo: si recomiendas clientes': 'Sample panel: if you refer clients',
+    'Panel de ejemplo: si ofreces servicios': 'Sample panel: if you offer services',
     'Vistas': 'Views',
     'Buscar': 'Search',
     'Buscar reservas…': 'Search bookings…',
@@ -1787,7 +1826,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     renderNav(); renderSteps(); renderMap(); renderTeam(); renderTrust();
     if (RV) revealBuild();
     if (LIVE) renderLive();
-    if (FX) fxRender();
+    if (FX) fxRenderAll();
     if (PS) fitPanel();
   }
 
@@ -1888,6 +1927,19 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   // Aparición suave de los bloques al hacer scroll
 
   // Dashboard interactivo (datos de ejemplo)
+  var CTX = null, CUR = null;
+  function ctxIds(c, on) {
+    var suf = '--' + c.k;
+    c.root.querySelectorAll('[id], [for], [aria-labelledby], [aria-controls], [aria-describedby]').forEach(function (el) {
+      ['id', 'for', 'aria-labelledby', 'aria-controls', 'aria-describedby'].forEach(function (a) {
+        var v = el.getAttribute(a); if (!v) return;
+        el.setAttribute(a, v.split(' ').map(function (x) { var has = x.slice(-suf.length) === suf; return on ? (has ? x.slice(0, -suf.length) : x) : (has || !x ? x : x + suf); }).join(' '));
+      });
+    });
+  }
+  function ctxUse(c) { if (!c || !CUR || c === CUR) return; ctxIds(CUR, false); ctxIds(c, true); CUR = c; FX = c.fx; TOUR = c.tour; }
+  function ctxT(fn, ms) { var c = CUR; return setTimeout(function () { ctxUse(c); fn(); }, ms); }
+  function fxRenderAll() { if (!CTX) { fxRender(); return; } var c = CUR; CTX.forEach(function (x) { ctxUse(x); fxRender(); }); ctxUse(c); }
   var FX = { role: 'rec', view: 'home', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null };
   var FXB = [
     { id: 'FV-7K2Q', cli: 'Familia Müller', svc: 'Chárter privado · día completo', emp: 'Velas del Norte', cat: 'Náutica', date: '2026-04-12', pax: 8, com: 180, st: 'held', by: 1 },
@@ -2216,7 +2268,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (CHAT.shown >= 4 || FX.view !== 'msg' || CHAT.th !== 'fp') { CHAT.typing = false; return; }
     if (FX_STILL) { CHAT.shown = 4; fxRender(); return; }
     CHAT.typing = true; fxRender();
-    CHAT.timer = setTimeout(function () { CHAT.typing = false; CHAT.shown++; if (FX.view === 'msg') fxRender(); CHAT.timer = setTimeout(fxChatPlay, 500); }, 900);
+    CHAT.timer = ctxT(function () { CHAT.typing = false; CHAT.shown++; if (FX.view === 'msg') fxRender(); CHAT.timer = ctxT(fxChatPlay, 500); }, 900);
   }
   function fxAccept() {
     if (CHAT.signed) return;
@@ -2249,7 +2301,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     { v: 'home', d: 4500, at: [] },
     { v: 'map', d: 5000, at: [] },
     { v: 'res', d: 6500, at: [[1800, function () { fxOpen({ t: 'res', i: 0 }, true); }], [5200, function () { FX.open = null; fxRender(); }]] },
-    { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); setTimeout(fxAccept, 350); } }]] },
+    { v: 'msg', d: 9500, at: [[200, fxChatPlay], [6800, function () { var b = document.querySelector('[data-act="fxaccept"]'); if (b) { b.classList.add('press'); ctxT(fxAccept, 350); } }]] },
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 9; fxRender(); }]] }
   ];
   function fpType(id, key, text, ms) {
@@ -2258,7 +2310,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       if (!TOUR.on || !FX.form) return;
       n++; FX.form[key] = text.slice(0, n);
       var el = $(id); if (el) el.value = FX.form[key];
-      if (n < text.length) TOUR.timers.push(setTimeout(tick, step));
+      if (n < text.length) TOUR.timers.push(ctxT(tick, step));
     })();
   }
   var TOUR_PRO = [
@@ -2266,14 +2318,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [1300, function () { FX.form = { n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '', tour: true }; fxRender(); }],
       [1800, function () { fpType('fpf-n', 'n', T('Excursión a Formentor · medio día'), 1100); }],
       [3100, function () { fpType('fpf-p', 'p', '900', 400); }],
-      [3700, function () { [4, 5, 6].forEach(function (d, k) { TOUR.timers.push(setTimeout(function () { if (FX.form) { FX.form.d[d] = 1; fxRender(); } }, k * 250)); }); }],
+      [3700, function () { [4, 5, 6].forEach(function (d, k) { TOUR.timers.push(ctxT(function () { if (FX.form) { FX.form.d[d] = 1; fxRender(); } }, k * 250)); }); }],
       [4350, function () { if (FX.form) { FX.form.dep = '50'; fxRender(); } }],
       [4700, function () { fpType('fpf-d', 't', T('Media jornada hasta el cabo de Formentor con baño en una cala.'), 1300); }],
-      [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); setTimeout(fpPublish, 350); } }],
+      [6400, function () { var b = $('fpf-go'); if (b) { b.classList.add('press'); ctxT(fpPublish, 350); } }],
       [8300, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="2"]'); if (t) { t.classList.add('press'); FPS[2].on = false; fxRender(); } }],
       [9600, function () { var t = document.querySelector('[data-act="fptoggle"][data-v="0"]'); if (t) { FPS[0].on = true; FX.freshSrv = 0; fxRender(); } }]
     ] },
-    { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); setTimeout(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
+    { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); ctxT(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
     { v: 'cal', d: 5500, at: [[1800, function () { FPBLOCK['2|2026-04-10'] = 1; FX.fresh = '2|2026-04-10'; fxRender(); }], [3600, function () { fxOpen({ t: 'pres', i: 4 }, true); }]] },
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 10; fxRender(); }]] }
   ];
@@ -2290,13 +2342,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (st.v === 'msg') fxChatReset();
     if (FX.role === 'pro' && i === 0) fpReset();
     fxRender();
-    st.at.forEach(function (a) { TOUR.timers.push(setTimeout(function () { if (TOUR.on) a[1](); }, a[0])); });
-    TOUR.timers.push(setTimeout(function () { tourGo((i + 1) % steps.length); }, st.d));
+    st.at.forEach(function (a) { TOUR.timers.push(ctxT(function () { if (TOUR.on) a[1](); }, a[0])); });
+    TOUR.timers.push(ctxT(function () { tourGo((i + 1) % steps.length); }, st.d));
   }
   function tourStop() {
     if (!TOUR.on) return;
     TOUR.on = false; tourClear();
-    document.querySelectorAll('.fx-tab.run').forEach(function (t) { t.classList.remove('run'); });
+    CUR.root.querySelectorAll('.fx-tab.run').forEach(function (t) { t.classList.remove('run'); });
     $('fx-replay').hidden = false;
   }
   $('app').addEventListener('pointerdown', function (e) {
@@ -2304,14 +2356,32 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }, true);
   $('app').addEventListener('keydown', function (e) { if (TOUR.on && e.target.closest('.fx-win, #fx-tabs')) tourStop(); }, true);
   $('app').addEventListener('focusin', function (e) { if (TOUR.on && e.target.matches('input')) tourStop(); });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (es) {
-      var v = es[es.length - 1].isIntersecting;
-      if (v && !TOUR.visible) { TOUR.visible = true; if (TOUR.on) tourGo(TOUR.i); }
-      if (!v) { TOUR.visible = false; tourClear(); }
-    }, { threshold: 0.3 }).observe(document.querySelector('#app .fx-win'));
-  }
-  if (!TOUR.on) $('fx-replay').hidden = false;
+  // Dos paneles a la vez («Si recomiendas» y «Si ofreces servicios»), uno debajo del otro.
+  // Comparten el mismo código: el panel activo tiene los ids sin sufijo; el otro los lleva con «--rol».
+  var CTX = [
+    { k: 'rec', root: document.querySelector('.fx-panel[data-role="rec"]'), fx: FX, tour: TOUR },
+    { k: 'pro', root: document.querySelector('.fx-panel[data-role="pro"]'), fx: { role: 'pro', view: 'srv', st: 'all', cat: null, q: '', sort: 'date', dir: 1, open: null, range: 6, mon: null, grow: false, scanned: null, fresh: null }, tour: { on: !FX_STILL, i: 0, t0: 0, timers: [], visible: false } }
+  ];
+  CUR = CTX[0];
+  CTX.forEach(function (c) {
+    c.root.querySelector('.fx-search input').addEventListener('input', function (e) { ctxUse(c); FX.q = e.target.value; if (FX.view !== 'res') FX.view = 'res'; FX.open = null; fxRender(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        var v = es[es.length - 1].isIntersecting, prev = CUR;
+        ctxUse(c);
+        if (v && !TOUR.visible) { TOUR.visible = true; if (TOUR.on) tourGo(TOUR.i); }
+        if (!v) { TOUR.visible = false; tourClear(); }
+        ctxUse(prev);
+      }, { threshold: 0.3 }).observe(c.root.querySelector('.fx-win'));
+    }
+    if (!c.tour.on) c.root.querySelector('.fx-replay').hidden = false;
+  });
+  ['click', 'pointerdown', 'keydown', 'input', 'submit', 'focusin', 'change'].forEach(function (t) {
+    window.addEventListener(t, function (e) {
+      var p = e.target && e.target.closest && e.target.closest('.fx-panel');
+      if (p) ctxUse(CTX.filter(function (c) { return c.root === p; })[0]);
+    }, true);
+  });
 
   // Perfil «Si ofreces servicios» (Velas del Norte, datos de ejemplo)
   var FPB0 = [
@@ -2584,7 +2654,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var b = FPB[i];
     if (b.st !== 'held') return;
     b.st = 'redeemed'; FX.scanned = i; fxRender();
-    setTimeout(function () { b.st = 'released'; fxRender(); }, 900);
+    ctxT(function () { b.st = 'released'; fxRender(); }, 900);
   }
   function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPBLOCK = Object.assign({}, FPBLOCK0); FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
 
@@ -2622,9 +2692,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       ? [['srv', 'Servicios', 'Publica lo que ofreces, a qué precio y qué días.'], ['res', 'Reservas', 'Recibe reservas, confírmalas y canjea el código.'], ['cal', 'Agenda', 'Tu disponibilidad, sincronizada.'], ['col', 'Colaboradores', 'Quién vende tus servicios y con quién compartes reservas.'], ['rep', 'Informes', 'Tus ventas por socio y tu extracto mensual.']]
       : [['home', 'Inicio', 'Tu resumen: comisiones y últimas reservas.'], ['map', 'Buscar servicios', 'Encuentra servicios y compara.'], ['res', 'Reservas', 'Cada cliente, de la reserva al cobro.'], ['col', 'Colaboradores', 'Con quién colaboras y a qué comisión.'], ['msg', 'Mensajes', 'Habla con tus socios y cerrad acuerdos.'], ['rep', 'Informes', 'Lo que vende tu red y tu extracto mensual.']];
     var ws = pro ? ['VN', 'Velas del Norte'] : ['HM', 'Hotel Miramar'];
-    $('fx-role').innerHTML = [['rec', 'Si recomiendas clientes'], ['pro', 'Si ofreces servicios']].map(function (r) {
-      return '<button type="button" data-act="fxrole" data-v="' + r[0] + '" aria-pressed="' + (FX.role === r[0]) + '">' + T(r[1]) + '</button>';
-    }).join('');
     var run = TOUR.on && TOUR.visible, el = Date.now() - TOUR.t0, dur = tourSteps()[TOUR.i].d;
     $('fx-tabs').style.gridTemplateColumns = 'repeat(' + views.length + ', minmax(0, 1fr))';
     $('fx-tabs').innerHTML = views.map(function (v) {
@@ -2654,13 +2721,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   function fxOpen(o, quiet) {
     FX.open = o; fxRender();
-    if (!quiet) setTimeout(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
+    if (!quiet) ctxT(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
   }
   function fxClose() {
     var o = FX.open; FX.open = null; fxRender();
     if (o) { var b = document.querySelector('#fx-main [data-act="' + ({ res: 'fxrow', ag: 'fxag', pres: 'fprow', ppar: 'fppar' })[o.t] + '"][data-v="' + o.i + '"]'); if (b) b.focus({ preventScroll: true }); }
   }
-  $('fx-q').addEventListener('input', function (e) { FX.q = e.target.value; if (FX.view !== 'res') FX.view = 'res'; FX.open = null; fxRender(); });
 
   // Panel de ejemplo animado: recorrido de una comisión en bucle
   var LIVE = { view: 'home', pin: false, chat: 0, typing: false, signed: false, step: -1, held: 1430, rel: 3860, timer: 0, visible: false, still: matchMedia('(prefers-reduced-motion: reduce)').matches };
