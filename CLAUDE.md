@@ -5,7 +5,7 @@
 ## Qué es Favent
 Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien recomienda clientes y quien presta el servicio pactan una comisión; la reserva se paga por adelantado con una señal (vía Stripe), queda retenida y la comisión se libera automáticamente cuando se presta el servicio (canje por código QR).
 
-- Mercado inicial: Mallorca (náutico: chárter privado, yates, catamaranes; también ciclismo, eventos, alquiler de material). Test en Varsovia en estudio.
+- Mercado inicial: Mallorca (náutico: chárter privado, yates, veleros, lanchas; también traslados, ciclismo y servicios privados). Test en Varsovia en estudio.
 - Dos flujos: (1) quien recomienda → quien presta el servicio; (2) entre colegas: un proveedor lleno pasa la reserva (o parte) a otro y cobra comisión.
 - Señal (en prueba): la elige quien presta el servicio, en cada servicio. (a) Solo la comisión: al canjear el QR se libera la comisión a quien recomendó y el resto se cobra en la oficina. (b) 50 % del total: al canjear el QR se liberan la comisión a quien recomendó y el resto de ese 50 % a quien presta el servicio; el otro 50 % se cobra en la oficina.
 - Servicios publicados: cada empresa puede registrar todos los servicios que quiera, pero publicar como máximo 2 a la vez; cada servicio publicado se presenta por separado (su propia etiqueta y ficha en el mapa).
