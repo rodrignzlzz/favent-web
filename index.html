@@ -2827,12 +2827,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var sv = SVCS[i], xy = proj(sv.lat, sv.lng);
     return '<span class="hx-pin" data-hpin="' + i + '" style="position: absolute; left: ' + xy[0] + '%; top: ' + xy[1] + '%; z-index: ' + (on ? 3 : 1) + '; transform: translate(-50%, -100%); height: 32px; line-height: 28px; padding: 0 12px; border-radius: 999px; border: 2px solid #FFFFFF; background: ' + (on ? '#FF4F9A' : '#2B6CA8') + '; color: ' + (on ? '#0B0F17' : '#FFFFFF') + '; font-family: \'Geist Mono\', monospace; font-size: 12px; font-weight: 500; box-shadow: 0 6px 16px rgba(30, 34, 38, 0.18); white-space: nowrap">' + eur(sv.price) + ' | ' + sv.pct + (S.lang === 'en' ? '%' : ' %') + '</span>';
   }
+  // Otras opciones que el cursor prueba antes de elegir Cala d’Or
+  function heroAlt(k) { return heroCollabIds().filter(function (i) { return i !== HSEL; })[k]; }
   function heroMap() {
     var svg = document.querySelector('#map svg').innerHTML;
     // Recorrido: todas las etiquetas → «Náutica» → «Solo colaboradores» → elige Cala d’Or y va al chat
     var col = LIVE.collab, all = true, nau = LIVE.nau;
     var ids = col ? heroCollabIds() : SVCS.map(function (m, i) { return i; }).filter(function (i) { return !nau || SVCS[i].type === 'Náutica'; });
-    var sel = LIVE.pin ? HSEL : ids[0], sv = SVCS[sel], en = S.lang === 'en';
+    var pick = LIVE.sel != null ? LIVE.sel : HSEL, sel = LIVE.pin ? pick : ids[0], sv = SVCS[sel], en = S.lang === 'en';
     var base = SVCS.map(function (m, i) { return i; }).filter(function (i) { return !col || isCollab(SVCS[i].name) || i === HSEL; });
     var chips = CATS.filter(function (c) { return c[0] === 'Todas' || c[0] === 'Náutica'; }).map(function (c) {
       var keep = S.mtype, keepP = S.mapPink, keepC = S.collab; S.mtype = nau ? 'Náutica' : 'Todas'; S.mapPink = nau; S.collab = false;
@@ -2844,7 +2846,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     chips += '<span style="flex: 1"></span>' + collabBtn().replace('<button type="button" data-act="collab"', '<span id="hx-collab"').replace('</button>', '</span>');
     S.collab = keepSC;
     var hplc = placeTags(ids);
-    var pins = ids.map(function (i) { return svcTag(i, LIVE.pin && i === HSEL, null, hplc[i]).replace('class="fx-tag', 'class="fx-tag' + (LIVE.tagIn ? ' in' : '')); }).join('');
+    var pins = ids.map(function (i) { return svcTag(i, LIVE.pin && i === pick, null, hplc[i]).replace('class="fx-tag', 'class="fx-tag' + (LIVE.tagIn ? ' in' : '')); }).join('');
     var pop = '';
     var bar = '<div class="hx-selbar"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">' + sv.name + '</span><span style="font-size: 13px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
       + '<div style="display: flex; gap: 8px; align-items: center"><span style="font-size: 12px; font-weight: 600; background: ' + (LIVE.pin ? '#FFE0EE' : '#D3E6F4') + '; color: ' + (LIVE.pin ? '#9D0F4E' : '#0B2A4A') + '; padding: 5px 10px; border-radius: 999px; white-space: nowrap">' + T('Comisión') + ' ' + comm(sv) + '</span>'
@@ -2935,7 +2937,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var SCENE = [
     [0, function () {
       LIVE.view = 'home'; LIVE.step = -1; LIVE.held = BASE.held; LIVE.rel = BASE.rel;
-      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.nau = false;
+      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.nau = false; LIVE.sel = null;
       S.nav = 0; renderNav(); renderLive(); $('cursor').classList.remove('on');
     }],
     [900, function () { cursorTo(navBtn(1), true); }],
@@ -2944,35 +2946,39 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     [4350, function () { LIVE.nau = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
     [5800, function () { var b = $('hx-collab'); if (b) cursorTo(b, true); }],
     [6750, function () { LIVE.collab = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
-    [8600, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
-    [9550, function () { LIVE.pin = true; renderLive(); }],
-    [10600, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [11550, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
-    [12100, function () { LIVE.chat = 1; renderLive(); }],
-    [12700, function () { LIVE.typing = true; renderLive(); }],
-    [13900, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
-    [14600, function () { LIVE.chat = 3; renderLive(); }],
-    [15600, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
-    [16550, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
-    [17900, function () { cursorTo(navBtn(0), true); }],
-    [18850, function () { goNav(0, 'home'); }],
-    [19600, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
-    [22350, function () {
+    [7900, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(0) + '"]'); if (m) cursorTo(m, true); }],
+    [8750, function () { LIVE.sel = heroAlt(0); LIVE.pin = true; renderLive(); }],
+    [9800, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(1) + '"]'); if (m) cursorTo(m, true); }],
+    [10650, function () { LIVE.sel = heroAlt(1); renderLive(); }],
+    [11500, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
+    [12450, function () { LIVE.sel = HSEL; LIVE.pin = true; renderLive(); }],
+    [13500, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
+    [14450, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
+    [15000, function () { LIVE.chat = 1; renderLive(); }],
+    [15600, function () { LIVE.typing = true; renderLive(); }],
+    [16800, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
+    [17500, function () { LIVE.chat = 3; renderLive(); }],
+    [18500, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
+    [19450, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
+    [20800, function () { cursorTo(navBtn(0), true); }],
+    [21750, function () { goNav(0, 'home'); }],
+    [22500, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
+    [25250, function () {
       LIVE.step = 1; renderLive(); setNotif(LIVE_ST[1].ico, LIVE_ST[1].t(), LIVE_ST[1].sub(), true);
       countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false);
     }],
-    [25050, function () {
+    [27950, function () {
       LIVE.step = 2; renderLive(); setNotif(LIVE_ST[2].ico, LIVE_ST[2].t(), LIVE_ST[2].sub(), true);
       var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false);
     }],
-    [27750, function () {
+    [30650, function () {
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
       cursorTo(navBtn(5), true);
     }],
-    [28750, function () { S.nav = 5; renderNav(); }],
-    [32050, function () { sceneRun(); }]
+    [31650, function () { S.nav = 5; renderNav(); }],
+    [34950, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
   function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
