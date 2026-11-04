@@ -3446,7 +3446,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       btn.disabled = true; err.hidden = true;
       fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: input.value, perfil: S.perfil || '', origen: f[0], idioma: S.lang, _subject: 'Nueva solicitud de acceso · favent', _template: 'table' }) })
         .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (j) { if (j && String(j.success) === 'true') done(); else fail(); }).catch(fail);
+        .then(function (j) { if (j && String(j.success) === 'true') done(); else { if (j && j.message && window.console) console.warn('FormSubmit: ' + j.message); fail(); } }).catch(fail);
     });
   });
 
