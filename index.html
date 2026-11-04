@@ -481,6 +481,11 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-bar-b i{display:block;width:100%;max-width:34px;border-radius:7px 7px 3px 3px;background:#D3E6F4;transition:background-color .2s,height .45s cubic-bezier(.2,.7,.2,1)}
 .fx-bar-b:hover i,.fx-bar-b[aria-pressed="true"] i{background:#2B6CA8}
 .fx-bar-b[aria-pressed="true"]{color:#1E2226;font-weight:600}
+.fx-bar-b.st i,.fx-bar-b.st:hover i,.fx-bar-b.st[aria-pressed="true"] i{display:flex;flex-direction:column;background:transparent;overflow:hidden}
+.fx-bar-b.st u{display:block;background:#A9D3F0;transition:background-color .2s}.fx-bar-b.st s{display:block;flex:1;background:#E3E5E0;transition:background-color .2s}
+.fx-bar-b.st:hover u,.fx-bar-b.st[aria-pressed="true"] u{background:#2B6CA8}.fx-bar-b.st:hover s,.fx-bar-b.st[aria-pressed="true"] s{background:#8E959C}
+.fx-lg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11.5px;color:#50565C;margin:-4px 0 6px}.fx-lg i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-left:6px}.fx-lg i:first-child{margin-left:0}
+.fx-kpis6{grid-template-columns:repeat(3,minmax(0,1fr))}
 .fx-cap{font-size:13px;color:#50565C}.fx-cap b{font-family:'Geist Mono',monospace;font-weight:500;color:#1E2226}
 .fx-hb{display:flex;flex-direction:column;gap:10px}
 .fx-hb div{display:grid;grid-template-columns:78px minmax(0,1fr) 38px;gap:8px;align-items:center;font-size:12px}
@@ -1544,6 +1549,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'A cobrar en la oficina': 'To collect at the office', 'Señal pagada': 'Deposit paid', 'Comisión que se libera': 'Commission released',
     'Confirmar canje y liberar comisión': 'Confirm and release commission', 'El cliente aún no ha pagado la señal: no se puede canjear.': 'The client hasn’t paid the deposit yet: it can’t be redeemed.',
     'Canje confirmado.': 'Redeemed.', 'Comisión liberada a': 'Commission released to', 'Este código ya se canjeó.': 'This code has already been redeemed.', 'Escanear otro código': 'Scan another code',
+    'Ventas totales': 'Total sales', 'Vía Favent': 'Via Favent', 'Reservas propias': 'Own bookings', 'Propias': 'Own', 'Por canal': 'By channel',
+    'Vía Favent, por socio': 'Via Favent, by partner', 'Vía Favent, neto': 'Via Favent, net',
+    'Todo lo que llevas en la agenda: reservas de Favent y reservas propias (teléfono, web, en persona u otras agencias).': 'Everything in your calendar: Favent bookings and your own bookings (phone, website, in person or other agencies).',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
     'reserva': 'booking', 'reservas': 'bookings', 'Toca una hora libre para apuntar una reserva.': 'Tap a free hour to add a booking.', 'Desde': 'From', 'Hasta': 'To',
     'La hora de fin tiene que ser posterior a la de inicio.': 'The end time must be after the start time.', 'A esa hora ya hay una reserva de Favent.': 'There is already a Favent booking at that time.', 'A esa hora ya hay otra reserva.': 'There is already another booking at that time.',
@@ -2040,14 +2048,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fptoggle') { if (!FPS[+v].on && FPS.filter(function (x) { return x.on; }).length >= 2) FX.srvMsg = 'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.'; else FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
     if (act === 'fpown' || act === 'fpdnew') {
       var nv = v.split('|'), nk = isNaN(+nv[0]) ? nv[0] : +nv[0], dh = fpDefH(nk), h1 = nv[2] ? nv[2] : dh[0], len = fpMin(dh[1]) - fpMin(dh[0]);
-      FX.own = { id: null, isNew: true, k: nk, d: nv[1], h1: h1, h2: nv[3] || fpHH(Math.min(FPHR[1] * 60, fpMin(h1) + len)), cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' });
+      FX.own = { id: null, isNew: true, k: nk, d: nv[1], h1: h1, h2: nv[3] || fpHH(Math.min(FPHR[1] * 60, fpMin(h1) + len)), cli: '', pax: '', amt: fpPrice(nk), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' });
     }
     if (act === 'fpownedit') { var oe = FPOWN.filter(function (o) { return o.id === v; })[0]; if (oe) { FX.own = Object.assign({ isNew: false }, oe); fxOpen({ t: 'own' }); } }
     if (act === 'fpqr') { FX.qr = { code: '', i: null, err: null }; fxOpen({ t: 'qr' }); }
     if (act === 'fpqrsim' && FX.qr) { fpQrFind('FV-1LC5'); }
     if (act === 'fpqrok' && FX.qr && FX.qr.i != null) { fpScan(FX.qr.i); var qb = $('fx-dtitle'); if (qb) qb.focus({ preventScroll: true }); }
     if (act === 'fpqrnew' && FX.qr) { FX.qr = { code: '', i: null, err: null }; fxRender(); var qi = $('fpq-c'); if (qi) qi.focus({ preventScroll: true }); }
-    if (act === 'fpownnew') { var d0 = FX.day || fpWeek()[0], k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
+    if (act === 'fpownnew') { var d0 = FX.day || fpWeek()[0], k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', amt: fpPrice(k0), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
     if (act === 'fposrc' && FX.own) { FX.own.src = v; fxRender(); var sb = document.querySelector('#fx-drawer [data-act="fposrc"][data-v="' + v + '"]'); if (sb) sb.focus({ preventScroll: true }); }
     if (act === 'fpodel' && FX.own && FX.own.id) { var did = FX.own.id; FPOWN = FPOWN.filter(function (o) { return o.id !== did; }); FX.calMsg = 'Reserva eliminada de tu agenda.'; FX.own = null; FX.open = null; fxRender(); }
     if (act === 'fpday') { FX.day = v || null; FX.open = null; fxRender(); var dt = $('fp-daytitle'); if (dt) dt.focus({ preventScroll: true }); }
@@ -2489,7 +2497,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [8200, function () { FX.open = null; FX.qr = null; fxRender(); }]
     ] },
     { v: 'cal', d: 12500, at: [
-      [1200, function () { FX.wk = 0; FX.day = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
+      [1200, function () { FX.wk = 0; FX.day = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', amt: 1100, src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
       [1700, function () { var n = 0, t = 'Familia Roig'; (function tick() { if (!TOUR.on || !FX.own) return; n++; FX.own.cli = t.slice(0, n); var el = $('fpo-c'); if (el) el.value = FX.own.cli; if (n < t.length) TOUR.timers.push(ctxT(tick, 70)); })(); }],
       [3000, function () { if (FX.own) { FX.own.note = T('Recogida en el puerto a las 10:00'); var el = $('fpo-n'); if (el) el.value = FX.own.note; } }],
       [4000, function () { var b = $('fpo-go'); if (b) { b.classList.add('press'); TOUR.timers.push(ctxT(fpOwnSave, 350)); } }],
@@ -2637,9 +2645,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FPDAYS = ['2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-12'];
   // Reservas propias de la agenda (fuera de Favent): las apunta quien presta el servicio
   var FPOWN0 = [
-    { id: 'o1', k: 0, d: '2026-04-06', h1: '10:00', h2: '18:00', cli: 'Grupo Hansen', pax: 10, src: 'Teléfono', note: '' },
-    { id: 'o2', k: 1, d: '2026-04-09', h1: '18:30', h2: '21:00', cli: 'Sra. Ortega', pax: 5, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' },
-    { id: 'o3', k: 1, d: '2026-04-11', h1: '10:00', h2: '13:00', cli: 'Familia Puig', pax: 6, src: 'Teléfono', note: 'Salida de mañana' }
+    { id: 'o1', k: 0, d: '2026-04-06', h1: '10:00', h2: '18:00', cli: 'Grupo Hansen', pax: 10, amt: 1500, src: 'Teléfono', note: '' },
+    { id: 'o2', k: 1, d: '2026-04-09', h1: '18:30', h2: '21:00', cli: 'Sra. Ortega', pax: 5, amt: 1300, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' },
+    { id: 'o3', k: 1, d: '2026-04-11', h1: '10:00', h2: '13:00', cli: 'Familia Puig', pax: 6, amt: 750, src: 'Teléfono', note: 'Salida de mañana' }
   ];
   var FPOWN = fpOwnCopy(FPOWN0), FPN = 0, FPON = 3;
   var FPSRC = ['Teléfono', 'Web propia', 'En persona', 'Otra agencia'];
@@ -2650,15 +2658,18 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpWeek() { var w = FX.wk || 0; return FPDAYS.map(function (d) { return fpIso(d, w * 7); }); }
   function fpMin(h) { var p = String(h).split(':'); return +p[0] * 60 + (+p[1] || 0); }
   function fpHH(m) { return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
+  function fpPrice(k) { var x = FPS.filter(function (y) { return String(y.k) === String(k); })[0]; return x ? x.price : ''; }
   function fpDefH(k) { return FPH[k] || ['10:00', '14:00']; }
   // Todo lo que ocupa un barco un día: reservas de Favent y propias, por hora de inicio
   function fpItems(k, d) {
     var l = [];
-    FPB.forEach(function (b, i) { if (b.s === k && b.date === d) l.push({ t: 'fv', i: i, h1: b.h1, h2: b.h2, cli: b.cli, pax: b.pax, sub: b.from }); });
-    FPOWN.forEach(function (o) { if (String(o.k) === String(k) && o.d === d) l.push({ t: 'own', id: o.id, h1: o.h1, h2: o.h2, cli: o.cli, pax: o.pax, sub: T(o.src), note: o.note }); });
+    FPB.forEach(function (b, i) { if (b.s === k && b.date === d) l.push({ t: 'fv', i: i, h1: b.h1, h2: b.h2, cli: b.cli, pax: b.pax, amt: b.total, sub: b.from }); });
+    FPOWN.forEach(function (o) { if (String(o.k) === String(k) && o.d === d) l.push({ t: 'own', id: o.id, h1: o.h1, h2: o.h2, cli: o.cli, pax: o.pax, amt: o.amt, sub: T(o.src), note: o.note }); });
     return l.sort(function (a, b) { return fpMin(a.h1) - fpMin(b.h1); });
   }
-  var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], start: 4 };
+  // v/n: ventas y reservas vía Favent; o/on: reservas propias de la agenda (teléfono, web, en persona…). Datos de ejemplo
+  var FPM = { v: [2100, 2900, 4300, 5600, 3900, 2600, 1800, 1500, 3200, 5400, 7900, 9800], n: [2, 3, 4, 5, 4, 2, 2, 1, 3, 5, 7, 9], o: [3800, 4600, 6200, 8100, 6400, 4200, 3100, 2700, 5200, 8600, 11900, 14300], on: [4, 5, 7, 9, 7, 4, 3, 3, 6, 9, 12, 15], start: 4 };
+  var FPCH = [['Teléfono', 45], ['Web propia', 30], ['En persona', 15], ['Otra agencia', 10]];
   var FPSHARE = [['Hotel Miramar', 38], ['Hotel Can Ribes', 24], ['Tramuntana Travel', 18], ['Conserjería Port Blau', 12], ['Mar Blau Yachting', 8]];
   var FPS0 = [
     { k: 0, img: 'img/flota-1.jpg', boat: 'Zafiro', n: 'Barco privado · 12 pax · bebida incluida', dep: '50', price: 1500, pct: 12, days: [1, 1, 1, 1, 0, 1, 1], desc: 'Día completo con patrón por la bahía de Pollença y el cabo de Formentor.', clicks: 312, on: true },
@@ -2804,7 +2815,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         var fv = a.t === 'fv', svc = x.raw ? esc(x.n) : T(x.n);
         return '<button type="button" class="fd-bk' + (fv ? ' fv' : ' own') + (FX.fresh === a.id ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px">'
           + '<span class="fd-t">' + a.h1 + ' – ' + a.h2 + '<i>' + (fv ? 'Favent' : T('Propia')) + '</i></span><b>' + esc(a.cli) + '</b>'
-          + '<span>' + (a.pax ? a.pax + ' pax · ' : '') + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>'
+          + '<span>' + (a.pax ? a.pax + ' pax · ' : '') + (a.amt ? money(+a.amt) + ' · ' : '') + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>'
           + '<span class="fd-s">' + svc + '</span>' + (a.note ? '<span class="fd-s">' + esc(a.note) + '</span>' : '') + '</button>';
       }).join('');
       return '<div class="fd-col"><div class="fd-ch"><b>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small>' + (x.raw ? esc(x.n) : T(x.n)) + '</small></div><div class="fd-body" style="height: ' + (hours.length * H) + 'px">' + cells + blocks + '</div></div>';
@@ -2869,7 +2880,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<form class="fp-own" id="fpo">' + pick
       + '<div class="fp-own-2"><label>' + T('Desde') + '<input id="fpo-h1" type="time" step="900" required value="' + o.h1 + '"></label><label>' + T('Hasta') + '<input id="fpo-h2" type="time" step="900" required value="' + o.h2 + '"></label></div>'
       + '<label>' + T('Cliente') + '<input id="fpo-c" required maxlength="50" autocomplete="off" value="' + esc(o.cli) + '"></label>'
-      + '<label>' + T('Personas') + '<input id="fpo-p" type="number" min="1" max="99" value="' + esc(String(o.pax || '')) + '"></label>'
+      + '<div class="fp-own-2"><label>' + T('Personas') + '<input id="fpo-p" type="number" min="1" max="99" value="' + esc(String(o.pax || '')) + '"></label><label>' + T('Importe') + ' (€)<input id="fpo-a" type="number" min="0" step="10" value="' + esc(String(o.amt == null ? '' : o.amt)) + '"></label></div>'
       + '<fieldset><legend>' + T('Origen') + '</legend><div class="fp-days">' + FPSRC.map(function (r) { return '<button type="button" class="fx-chip" data-act="fposrc" data-v="' + r + '" aria-pressed="' + (o.src === r) + '">' + T(r) + '</button>'; }).join('') + '</div></fieldset>'
       + '<label>' + T('Notas') + '<textarea id="fpo-n" rows="2" maxlength="120">' + esc(o.note || '') + '</textarea></label>'
       + (o.err ? '<div class="fx-ok" role="alert" style="background: #FFF1F6; color: #7A0B3D">' + T(o.err) + '</div>' : '')
@@ -2887,7 +2898,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       if (clash) o.err = clash.t === 'fv' ? 'A esa hora ya hay una reserva de Favent.' : 'A esa hora ya hay otra reserva.';
     }
     if (o.err) { fxRender(); var ci = $('fpo-c'); if (ci && !String(o.cli).trim()) ci.focus(); return; }
-    var rec = { k: k, d: o.d, h1: o.h1, h2: o.h2, cli: String(o.cli).trim(), pax: +o.pax || '', src: o.src, note: String(o.note || '').trim() };
+    var rec = { k: k, d: o.d, h1: o.h1, h2: o.h2, cli: String(o.cli).trim(), pax: +o.pax || '', amt: o.amt === '' || o.amt == null ? '' : +o.amt, src: o.src, note: String(o.note || '').trim() };
     if (o.id) FPOWN = FPOWN.map(function (x) { return x.id === o.id ? Object.assign({ id: o.id }, rec) : x; });
     else { rec.id = 'o' + (++FPON); FPOWN.push(rec); }
     FX.calMsg = o.isNew ? 'Reserva apuntada en tu agenda.' : 'Reserva actualizada.';
@@ -2896,7 +2907,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   document.addEventListener('input', function (e) {
     var id = e.target.id; if (!FX || !FX.own || !id || id.indexOf('fpo-') !== 0) return;
-    var f = { 'fpo-c': 'cli', 'fpo-p': 'pax', 'fpo-n': 'note', 'fpo-s': 'k', 'fpo-d': 'd', 'fpo-h1': 'h1', 'fpo-h2': 'h2' }[id]; if (f) FX.own[f] = e.target.value;
+    var f = { 'fpo-c': 'cli', 'fpo-p': 'pax', 'fpo-a': 'amt', 'fpo-n': 'note', 'fpo-s': 'k', 'fpo-d': 'd', 'fpo-h1': 'h1', 'fpo-h2': 'h2' }[id]; if (f) FX.own[f] = e.target.value;
   });
   document.addEventListener('change', function (e) {
     var id = e.target.id; if (!FX || !FX.own || !id || id.indexOf('fpo-') !== 0) return;
@@ -2921,36 +2932,40 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var act = FPP.filter(function (p) { return p.st === 'active'; }).length;
     return clBar('Colaboradores', act, 'fpinv', FPP_INV.length > 0) + clBlock(reqs, 'fpacc', 'fprej') + head + rows + fpMap();
   }
+  // Informes de todo lo que hay en la agenda: reservas de Favent y reservas propias
   function fpRep() {
-    var n = FX.range, v = FPM.v.slice(-n), c = FPM.n.slice(-n), off = 12 - n, en = S.lang === 'en';
-    var sum = v.reduce(function (a, b) { return a + b; }, 0), max = Math.max.apply(null, v);
+    var n = FX.range, off = 12 - n, en = S.lang === 'en';
+    var vf = FPM.v.slice(-n), vo = FPM.o.slice(-n), tot = vf.map(function (x, i) { return x + vo[i]; });
+    var sumF = vf.reduce(function (a, b) { return a + b; }, 0), sumO = vo.reduce(function (a, b) { return a + b; }, 0), sum = sumF + sumO, com = sumF * 0.115, max = Math.max.apply(null, tot);
     var sel = FX.mon == null || FX.mon < off ? 11 : FX.mon;
-    var kpis = [['Ventas vía Favent', money(sum)], ['Comisiones pagadas', money(sum * 0.115)], ['Ingresos netos', money(sum * 0.885)], ['Ocupación', en ? '82%' : '82 %']].map(function (k) {
+    var kpis = [['Ventas totales', money(sum)], ['Vía Favent', money(sumF)], ['Reservas propias', money(sumO)], ['Comisiones pagadas', money(com)], ['Ingresos netos', money(sum - com)], ['Ocupación', en ? '86%' : '86 %']].map(function (k) {
       return '<div class="fx-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b></div>';
     }).join('');
-    var bars = v.map(function (x, i) {
-      var gi = off + i, on = gi === sel, m = fxMon(FPM.start + gi), h = Math.max(4, Math.round(x / max * 100));
-      return '<button type="button" class="fx-bar-b" data-act="fxmon" data-v="' + gi + '" aria-pressed="' + on + '" aria-label="' + m + ': ' + money(x) + '"><i data-h="' + h + '" style="height: ' + (FX.grow ? 0 : h) + '%"></i>' + m + '</button>';
+    var bars = tot.map(function (x, i) {
+      var gi = off + i, on = gi === sel, m = fxMon(FPM.start + gi), h = Math.max(4, Math.round(x / max * 100)), pf = Math.round(vf[i] / x * 100);
+      return '<button type="button" class="fx-bar-b st" data-act="fxmon" data-v="' + gi + '" aria-pressed="' + on + '" aria-label="' + m + ': ' + money(x) + ' (' + T('Vía Favent') + ' ' + money(vf[i]) + ', ' + T('Reservas propias') + ' ' + money(vo[i]) + ')"><i data-h="' + h + '" style="height: ' + (FX.grow ? 0 : h) + '%"><u style="height: ' + pf + '%"></u><s></s></i>' + m + '</button>';
     }).join('');
-    var cap = fxMon(FPM.start + sel) + ' · <b>' + money(FPM.v[sel]) + '</b> · ' + bookings(FPM.n[sel]);
+    var cap = fxMon(FPM.start + sel) + ' · <b>' + money(FPM.v[sel] + FPM.o[sel]) + '</b> · ' + T('Vía Favent') + ' <b>' + money(FPM.v[sel]) + '</b> · ' + T('Propias') + ' <b>' + money(FPM.o[sel]) + '</b> · ' + bookings(FPM.n[sel] + FPM.on[sel]);
+    var lg = '<span class="fx-lg"><i style="background: #2B6CA8"></i>' + T('Vía Favent') + '<i style="background: #8E959C"></i>' + T('Reservas propias') + '</span>';
     var ranges = [3, 6, 12].map(function (r) { return '<button type="button" class="fx-chip" data-act="fxrange" data-v="' + r + '" aria-pressed="' + (FX.range === r) + '">' + r + 'M</button>'; }).join('');
+    var pF = Math.round(sumF / sum * 100), ch = [['Favent', pF, '#2B6CA8']].concat(FPCH.map(function (c) { return [T(c[0]), Math.round((100 - pF) * c[1] / 100), '#8E959C']; }));
+    var hc = ch.map(function (k) { return '<div style="grid-template-columns: 104px minmax(0,1fr) 38px"><span class="fx-cell">' + k[0] + '</span><s><i data-w="' + k[1] + '" style="width: ' + (FX.grow ? 0 : k[1]) + '%; background: ' + k[2] + '; transition: width .6s cubic-bezier(.2,.7,.2,1)"></i></s><em>' + k[1] + (en ? '%' : ' %') + '</em></div>'; }).join('');
     var hb = FPSHARE.map(function (k) { return '<div style="grid-template-columns: 128px minmax(0,1fr) 38px"><span class="fx-cell">' + k[0] + '</span><s><i data-w="' + k[1] + '" style="width: ' + (FX.grow ? 0 : k[1]) + '%; background: ' + FPTYPE[fpPartner(k[0]).type] + '; transition: width .6s cubic-bezier(.2,.7,.2,1)"></i></s><em>' + k[1] + (en ? '%' : ' %') + '</em></div>'; }).join('');
     return '<div class="fx-bar"><span class="fx-title">' + T('Informes') + '</span><div class="fx-chips">' + ranges + '</div></div>'
-      + '<div class="fx-kpis">' + kpis + '</div>'
-      + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Ventas por mes') + '</h4><div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
-      + '<div class="fx-card"><h4>' + T('Por socio') + '</h4><div class="fx-hb">' + hb + '</div></div></div>'
-      + fpRepMore(n, off, sum);
+      + '<div class="cl-note" style="padding: 12px 18px 0">' + T('Todo lo que llevas en la agenda: reservas de Favent y reservas propias (teléfono, web, en persona u otras agencias).') + '</div>'
+      + '<div class="fx-kpis fx-kpis6">' + kpis + '</div>'
+      + '<div class="fx-rep"><div class="fx-card"><h4>' + T('Ventas por mes') + '</h4>' + lg + '<div class="fx-chart">' + bars + '</div><span class="fx-cap">' + cap + '</span></div>'
+      + '<div class="fx-card"><h4>' + T('Por canal') + '</h4><div class="fx-hb">' + hc + '</div></div></div>'
+      + fpRepMore(n, off, sum, sumF, sumO, com)
+      + '<div class="fx-rep" style="grid-template-columns: 1fr"><div class="fx-card"><h4>' + T('Vía Favent, por socio') + '</h4><div class="fx-hb">' + hb + '</div></div></div>';
   }
-  function fpRepMore(n, off, sum) {
-    var en = S.lang === 'en', bk = FPM.n.slice(-n).reduce(function (a, b) { return a + b; }, 0);
-    var money2 = donutMoney(sum);
+  function fpRepMore(n, off, sum, sumF, sumO, com) {
+    var en = S.lang === 'en', all = FPM.n.slice(-n).map(function (x, i) { return x + FPM.on.slice(-n)[i]; });
+    var pO = Math.round(sumO / sum * 100), pC = Math.round(com / sum * 100);
     return '<div class="fx-rep2">'
-      + '<div class="fx-card"><h4>' + T('Reservas por mes') + '</h4>' + repLine(FPM.n.slice(-n), FPM.start + off) + '</div>'
-      + '<div class="fx-card"><h4>' + T('Ocupación por día') + '</h4>' + repCols([52, 48, 61, 70, 88, 97, 92], fpDayL()) + '</div>'
-      + '<div class="fx-card"><h4>' + T('Ingresos y comisiones') + '</h4>' + repDonut([[T('Ingresos netos'), 88, '#2B6CA8'], [T('Comisiones'), 12, '#FF4F9A']], money2, T('ventas')) + '</div></div>'
-      + '<div class="fx-rep3">'
-      + '<div class="fx-card"><h4>' + T('Canjes y no-shows') + '</h4>' + repDonut([[T('Canjeadas'), 94, '#2B6CA8'], [T('Canceladas'), 4, '#A9D3F0'], [T('No-shows'), 2, '#FF4F9A']], en ? '94%' : '94 %', T('canjeadas').toLowerCase()) + '</div>'
-      + '<div class="fx-card"><h4>' + T('Del perfil a la reserva') + '</h4>' + repFunnel([[T('Visitas al perfil'), 1284], [T('Clics en tus servicios'), 642], [T('Reservas'), bk]]) + '</div></div>';
+      + '<div class="fx-card"><h4>' + T('Reservas por mes') + '</h4>' + repLine(all, FPM.start + off) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Ocupación por día') + '</h4>' + repCols([58, 54, 66, 75, 91, 98, 95], fpDayL()) + '</div>'
+      + '<div class="fx-card"><h4>' + T('Ingresos y comisiones') + '</h4>' + repDonut([[T('Reservas propias'), pO, '#8E959C'], [T('Vía Favent, neto'), 100 - pO - pC, '#2B6CA8'], [T('Comisiones'), pC, '#FF4F9A']], donutMoney(sum), T('ventas')) + '</div></div>';
   }
   function donutMoney(v) { return v >= 1000 ? (S.lang === 'en' ? '€' + (v / 1000).toFixed(1) + 'k' : (v / 1000).toFixed(1).replace('.', ',') + ' k€') : money(v); }
   function fpDrawer(o) {
