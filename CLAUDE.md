@@ -52,7 +52,8 @@ Resumen (el detalle está en `DESIGN.md`):
 - Respetar `prefers-reduced-motion`.
 
 ## Pendientes conocidos
-1. Conectar el formulario de acceso: rellenar `FORM_ENDPOINT` en el script (Formspree o Supabase).
+1. Formulario de acceso conectado a **info@favent.es** con FormSubmit (`FORM_ENDPOINT` = `https://formsubmit.co/ajax/info@favent.es`). La primera solicitud envía un correo de activación a info@favent.es que hay que confirmar; hasta entonces el formulario muestra el error. Email de contacto en el pie: info@favent.es. Al publicar la política de privacidad, mencionar FormSubmit como encargado del tratamiento.
+1b. Dominio favent.es: redirigir (301) a https://www.favent.app desde el proveedor del dominio; GitHub Pages solo admite un dominio por repositorio y el `CNAME` se queda en www.favent.app.
 2. Páginas legales: aviso legal, política de privacidad y cookies (RGPD/LSSI). Enlazarlas desde el pie.
 3. Sustituir marcadores de logos y fotos cuando haya material real.
 4. Versión en inglés (y quizá polaco) de la web.

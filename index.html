@@ -790,7 +790,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         Gracias. Te escribimos en cuanto abramos tu zona.
       </div>
-    <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
+    <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:info@favent.es">info@favent.es</a>.</p>
     <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-3)">Gratis durante el piloto · Tu email, solo para darte acceso.</p>
     <button type="button" class="motion-btn" id="motion-btn" data-act="motion" aria-pressed="false" aria-label="Pausar animaciones"><svg class="i-pause" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"></path></svg><svg class="i-play" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2l8 5-8 5z" fill="currentColor"></path></svg></button>
   </header>
@@ -1163,7 +1163,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         Gracias. Te escribimos en cuanto abramos tu zona.
       </div>
-      <p id="err-final" class="form-err" role="alert" hidden style="flex-basis: 100%">No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
+      <p id="err-final" class="form-err" role="alert" hidden style="flex-basis: 100%">No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:info@favent.es">info@favent.es</a>.</p>
       <p style="margin: 0; flex-basis: 100%; font-size: 13px; line-height: 1.5; color: var(--ink-2)">Gratis durante el piloto · Tu email, solo para darte acceso.</p>
     </div>
   </section>
@@ -1178,8 +1178,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   <footer style="border-top: 1px solid var(--line)">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-3)">
       <span class="logo logo-sm">favent<span class="logo-cur" aria-hidden="true"></span></span>
-      <!-- Oculto hasta que existan privacidad.html, condiciones.html y un email de contacto: rellenar los href y quitar «hidden» -->
-      <div hidden style="display: flex; flex-wrap: wrap; gap: 20px"><a href="privacidad.html" style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" style="text-decoration: none; color: var(--ink-3)">Condiciones</a><a href="mailto:" style="text-decoration: none; color: var(--ink-3)">Contacto</a></div>    </div>
+      <!-- Privacidad y Condiciones siguen ocultas hasta que existan privacidad.html y condiciones.html -->
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center"><a href="privacidad.html" hidden style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" hidden style="text-decoration: none; color: var(--ink-3)">Condiciones</a><span>Contacto: <a href="mailto:info@favent.es" style="color: var(--ink-2)">info@favent.es</a></span></div>    </div>
   </footer>
 
 </div>
@@ -1187,7 +1187,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 <script>
 (function () {
   // Conecta aquí el formulario (Formspree, Supabase, etc.). Vacío = solo muestra el mensaje.
-  var FORM_ENDPOINT = '';
+  // Las solicitudes de acceso llegan por email a info@favent.es (FormSubmit; la primera exige confirmar el correo de activación)
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@favent.es';
 
   var A = { accent: '#2B6CA8', on: '#FFFFFF', tint: '#EAF2F8', soft: '#D3E6F4', bright: '#A9D3F0', text: '#0B2A4A' };
   var S = { nav: 0, step: 2, mtype: 'Todas', mapPink: false, msort: 'rating', pin: 0, lang: 'es', member: 0, share: 40, trust: 'rel' };
@@ -1222,7 +1223,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Gratis durante el piloto · Pagos procesados con Stripe': 'Free during the pilot · Payments processed by Stripe',
     'Solo usaremos tu email para darte acceso al piloto.': 'We’ll only use your email to give you access to the pilot.',
     'Gratis durante el piloto · Tu email, solo para darte acceso.': 'Free during the pilot · Your email is only used to give you access.',
-    'No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.': 'We couldn’t send your request. Please try again in a few minutes.',
+    'No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a': 'We couldn’t send your request. Please try again in a few minutes or email us at',
+    'Contacto:': 'Contact:',
     'Producto': 'Product',
     'Vista de ejemplo': 'Sample view',
     'Panel de ejemplo': 'Sample dashboard',
@@ -3442,8 +3444,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       // Sin FORM_ENDPOINT no se guarda nada: se avisa del error en vez de fingir que se ha enviado
       if (!FORM_ENDPOINT) { fail(); return; }
       btn.disabled = true; err.hidden = true;
-      fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: input.value, perfil: S.perfil || '', origen: f[0], idioma: S.lang }) })
-        .then(function (r) { if (r.ok) done(); else fail(); }).catch(fail);
+      fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: input.value, perfil: S.perfil || '', origen: f[0], idioma: S.lang, _subject: 'Nueva solicitud de acceso · favent', _template: 'table' }) })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { if (j && String(j.success) === 'true') done(); else fail(); }).catch(fail);
     });
   });
 
