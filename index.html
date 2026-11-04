@@ -494,7 +494,13 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-hb em{font:500 11px 'Geist Mono',monospace;font-style:normal;text-align:right}
 @media (max-width: 860px){
   .fx-body{grid-template-columns:1fr;min-height:0}
-  .fx-side{display:none}
+  .fx-side{flex-direction:row;align-items:center;overflow-x:auto;border-right:0;border-bottom:1px solid #E6E7E3;padding:8px 10px;gap:6px;scrollbar-width:none}
+  .fx-side::-webkit-scrollbar{display:none}
+  .fx-side .fx-ws,.fx-side .fx-scanbtn{display:none}
+  .fx-side button{width:auto;flex:0 0 auto;white-space:nowrap;padding:8px 12px;border-radius:999px;border:1px solid #E6E7E3;background:#FFFFFF}
+  .fx-side button[aria-pressed="true"]{border-color:#A9D3F0}
+  .fx-side button em{margin-left:2px}
+  .fx-panel > .fx-tabs{display:none}
   .fx-scanm{display:block}
   .fx-res,.fx-ag{--cols:minmax(0,1fr) auto auto}
   .fx-hm{display:none !important}
@@ -3057,6 +3063,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     FX.fresh = null;
     fxDrawer();
     var fwin = $('fx-main').closest('.fx-win'); if (fwin && fwin.scrollLeft) fwin.scrollLeft = 0;
+    // En móvil el menú es una fila deslizable: deja a la vista la pestaña activa
+    var sd = $('fx-side'), sa = sd && sd.querySelector('button[aria-pressed="true"]'); if (sa && sd.scrollWidth > sd.clientWidth) sd.scrollLeft = Math.max(0, sa.offsetLeft - 10);
     if (FX.view === 'msg') fxScrollMsgs();
     if (FX.grow) {
       FX.grow = false;

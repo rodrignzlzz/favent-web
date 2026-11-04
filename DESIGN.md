@@ -463,7 +463,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 |---|---|---|
 | Desktop | ≥ 1021px | Menú completo, recorrido horizontal fijo |
 | Tablet | ≤ 960px | Panel de confianza en filas |
-| Tablet-sm | ≤ 860px | Recorrido vertical sin fijar; panel interactivo sin barra lateral |
+| Tablet-sm | ≤ 860px | Recorrido vertical sin fijar; en el panel interactivo la barra lateral pasa a ser una fila deslizable de pestañas en píldora dentro de la ventana (sin nombre de empresa ni Ajustes/Cuenta; la activa queda a la vista) y se ocultan las tarjetas de pestañas de encima |
 | Mobile-lg | ≤ 720px | Perfiles en una columna |
 | Mobile | ≤ 640px | Separación de 80 px, sin botón en el menú, mapa a todo el ancho sin lista lateral |
 | Mobile-sm | ≤ 440px | Desaparece la cápsula «B2B SERVICE» |
