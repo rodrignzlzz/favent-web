@@ -401,6 +401,25 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fx-body{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:540px}
 .fx-side{border-right:1px solid #E6E7E3;background:#F8F8F6;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
 .fx-ws{display:flex;align-items:center;gap:8px;padding:2px 10px 12px;font-size:14px;font-weight:600}
+.fx-side .fx-scanbtn,.fx-scanbtn{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 10px;padding:10px 12px;border:0;border-radius:14px;background:#FF4F9A;color:#0B0F17;text-align:left;cursor:pointer;box-shadow:0 6px 16px rgba(255,79,154,.28);transition:transform .15s,box-shadow .15s;font:600 14px 'Funnel Display',sans-serif}
+.fx-side .fx-scanbtn:hover,.fx-scanbtn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(255,79,154,.34);background:#FF4F9A}
+.fx-scanbtn span{display:flex;flex-direction:column;gap:1px;min-width:0}.fx-scanbtn b{font-size:14.5px;font-weight:600}.fx-scanbtn small{font-size:11.5px;font-weight:500;color:#3D0A22}
+.fx-scanbtn.press{transform:scale(.97)}
+.fx-scanm{display:none;padding:12px 14px 0}.fx-scanm .fx-scanbtn{margin:0}
+.fq{padding:6px 18px 18px;display:flex;flex-direction:column;gap:12px}
+.fq.fresh .fq-res{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+.fq-cam{position:relative;height:200px;border-radius:16px;background:#0B0F17;overflow:hidden}
+.fq-cam i{position:absolute;width:34px;height:34px;border:3px solid #FF4F9A}
+.fq-cam .c1{top:28px;left:calc(50% - 76px);border-right:0;border-bottom:0;border-radius:8px 0 0 0}.fq-cam .c2{top:28px;right:calc(50% - 76px);border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.fq-cam .c3{bottom:28px;left:calc(50% - 76px);border-right:0;border-top:0;border-radius:0 0 0 8px}.fq-cam .c4{bottom:28px;right:calc(50% - 76px);border-left:0;border-top:0;border-radius:0 0 8px 0}
+.fq-line{position:absolute;left:calc(50% - 64px);width:128px;height:2px;background:#FF4F9A;box-shadow:0 0 12px #FF4F9A;top:40px;animation:fqscan 2s ease-in-out infinite alternate}
+@keyframes fqscan{from{top:40px}to{top:158px}}
+.fq-help{margin:0;font-size:13px;color:#50565C;text-align:center}
+.fq-or{display:flex;align-items:center;gap:10px;font-size:12px;color:#656B71}.fq-or::before,.fq-or::after{content:"";flex:1;height:1px;background:#E6E7E3}
+.fq-form{display:flex;gap:8px}.fq-form input{flex:1;min-width:0;height:42px;border:1px solid #D5D7D3;border-radius:10px;padding:0 12px;font:500 15px 'Geist Mono',monospace;text-transform:uppercase;color:#1E2226}
+.fq-res{display:flex;flex-direction:column;gap:12px}
+.fq-due{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#FFF1F6;border:1px solid #FFC2DC}.fq-due span{font-size:13px;font-weight:600;color:#7A0B3D}.fq-due b{font-size:20px;font-weight:500;color:#1E2226}
+.fq-go{justify-content:center;height:46px}
 .fx-ws i{width:24px;height:24px;border-radius:7px;background:#1E2226;color:#FFFFFF;font:700 10px 'Funnel Display',sans-serif;font-style:normal;display:flex;align-items:center;justify-content:center}
 .fx-side button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Funnel Display',sans-serif;color:#2A2D2B;cursor:pointer}
 .fx-side button:hover{background:#EFEFEC}
@@ -471,6 +490,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 @media (max-width: 860px){
   .fx-body{grid-template-columns:1fr;min-height:0}
   .fx-side{display:none}
+  .fx-scanm{display:block}
   .fx-res,.fx-ag{--cols:minmax(0,1fr) auto auto}
   .fx-hm{display:none !important}
   .fx-who small{display:block}
@@ -1516,6 +1536,14 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Reserva apuntada en tu agenda.': 'Booking added to your calendar.', 'Reserva actualizada.': 'Booking updated.', 'Reserva eliminada de tu agenda.': 'Booking removed from your calendar.',
     'Recogida en el puerto a las 10:00': 'Pick-up at the port at 10:00',
     'Primera hora': 'Early morning', 'Mañana': 'Morning', 'Tarde': 'Afternoon', 'Atardecer y noche': 'Sunset & night', 'Cada hueco se divide en 4 franjas:': 'Each slot is split into 4 time bands:',
+    'Escanear QR': 'Scan QR', 'o introducir código': 'or enter code', 'Canje de reservas': 'Redeem bookings',
+    'Apunta la cámara al código QR que el cliente tiene en su móvil.': 'Point the camera at the QR code on the client’s phone.', 'Simular escaneo': 'Simulate scan',
+    'o introduce el código': 'or enter the code', 'Código de la reserva': 'Booking code', 'Buscar': 'Search', 'Códigos de ejemplo': 'Sample codes',
+    'No encontramos ninguna reserva con ese código.': 'We couldn’t find a booking with that code.', 'Escribe el código que aparece bajo el QR del cliente.': 'Enter the code shown under the client’s QR.',
+    'Señal pagada · lista para canjear': 'Deposit paid · ready to redeem', 'Pago pendiente': 'Payment pending', 'Ya canjeada': 'Already redeemed',
+    'A cobrar en la oficina': 'To collect at the office', 'Señal pagada': 'Deposit paid', 'Comisión que se libera': 'Commission released',
+    'Confirmar canje y liberar comisión': 'Confirm and release commission', 'El cliente aún no ha pagado la señal: no se puede canjear.': 'The client hasn’t paid the deposit yet: it can’t be redeemed.',
+    'Canje confirmado.': 'Redeemed.', 'Comisión liberada a': 'Commission released to', 'Este código ya se canjeó.': 'This code has already been redeemed.', 'Escanear otro código': 'Scan another code',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
     'reserva': 'booking', 'reservas': 'bookings', 'Toca una hora libre para apuntar una reserva.': 'Tap a free hour to add a booking.', 'Desde': 'From', 'Hasta': 'To',
     'La hora de fin tiene que ser posterior a la de inicio.': 'The end time must be after the start time.', 'A esa hora ya hay una reserva de Favent.': 'There is already a Favent booking at that time.', 'A esa hora ya hay otra reserva.': 'There is already another booking at that time.',
@@ -2015,6 +2043,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       FX.own = { id: null, isNew: true, k: nk, d: nv[1], h1: h1, h2: nv[3] || fpHH(Math.min(FPHR[1] * 60, fpMin(h1) + len)), cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' });
     }
     if (act === 'fpownedit') { var oe = FPOWN.filter(function (o) { return o.id === v; })[0]; if (oe) { FX.own = Object.assign({ isNew: false }, oe); fxOpen({ t: 'own' }); } }
+    if (act === 'fpqr') { FX.qr = { code: '', i: null, err: null }; fxOpen({ t: 'qr' }); }
+    if (act === 'fpqrsim' && FX.qr) { fpQrFind('FV-1LC5'); }
+    if (act === 'fpqrok' && FX.qr && FX.qr.i != null) { fpScan(FX.qr.i); var qb = $('fx-dtitle'); if (qb) qb.focus({ preventScroll: true }); }
+    if (act === 'fpqrnew' && FX.qr) { FX.qr = { code: '', i: null, err: null }; fxRender(); var qi = $('fpq-c'); if (qi) qi.focus({ preventScroll: true }); }
     if (act === 'fpownnew') { var d0 = FX.day || fpWeek()[0], k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
     if (act === 'fposrc' && FX.own) { FX.own.src = v; fxRender(); var sb = document.querySelector('#fx-drawer [data-act="fposrc"][data-v="' + v + '"]'); if (sb) sb.focus({ preventScroll: true }); }
     if (act === 'fpodel' && FX.own && FX.own.id) { var did = FX.own.id; FPOWN = FPOWN.filter(function (o) { return o.id !== did; }); FX.calMsg = 'Reserva eliminada de tu agenda.'; FX.own = null; FX.open = null; fxRender(); }
@@ -2450,7 +2482,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [10600, function () { var b = document.querySelector('#fx-main [data-act="fpcom"][data-v="1|1"]'); if (b) b.classList.add('press'); FPS[1].pct = 13; FX.csFresh = 1; fxRender(); }],
       [11400, function () { FPS[1].dep = '50'; FX.csFresh = 1; fxRender(); }]
     ] },
-    { v: 'res', d: 7500, at: [[1500, function () { fxOpen({ t: 'pres', i: 1 }, true); }], [3400, function () { var b = document.querySelector('[data-act="fpscan"]'); if (b) { b.classList.add('press'); ctxT(function () { fpScan(1); }, 350); } }], [6600, function () { FX.open = null; fxRender(); }]] },
+    { v: 'res', d: 9000, at: [
+      [1000, function () { var b = document.querySelector('#fx-side .fx-scanbtn, #fx-main .fx-scanbtn'); if (b) b.classList.add('press'); TOUR.timers.push(ctxT(function () { FX.qr = { code: '', i: null, err: null }; fxOpen({ t: 'qr' }, true); }, 300)); }],
+      [3000, function () { if (FX.qr) fpQrFind('FV-9JK3'); }],
+      [5400, function () { var b = document.querySelector('#fx-drawer [data-act="fpqrok"]'); if (b) { b.classList.add('press'); TOUR.timers.push(ctxT(function () { fpScan(1); }, 350)); } }],
+      [8200, function () { FX.open = null; FX.qr = null; fxRender(); }]
+    ] },
     { v: 'cal', d: 12500, at: [
       [1200, function () { FX.wk = 0; FX.day = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
       [1700, function () { var n = 0, t = 'Familia Roig'; (function tick() { if (!TOUR.on || !FX.own) return; n++; FX.own.cli = t.slice(0, n); var el = $('fpo-c'); if (el) el.value = FX.own.cli; if (n < t.length) TOUR.timers.push(ctxT(tick, 70)); })(); }],
@@ -2780,6 +2817,47 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Toca una hora libre para apuntar una reserva.') + '</span></div>'
       + msg + '<div class="fd-wrap"><div class="fd-grid" style="grid-template-columns: 56px repeat(' + FPS.length + ', minmax(150px, 1fr))"><div class="fd-col fd-gc"><div class="fd-ch"></div>' + gut + '</div>' + cols + '</div></div>';
   }
+  // Escanear el QR del cliente (o escribir su código) y ver su reserva: lo que queda por cobrar y la comisión que se libera
+  function fpBDep(b) { var x = FPS.filter(function (y) { return y.k === b.s; })[0] || FPS0[b.s]; return (x && x.dep) || 'com'; }
+  function fpQrFind(code) {
+    var c = String(code || '').toUpperCase().replace(/\s+/g, ''); if (c && c.indexOf('FV-') !== 0) c = 'FV-' + c.replace(/^FV/, '');
+    FX.qr.code = c; FX.qr.err = null; FX.qr.i = null;
+    for (var i = 0; i < FPB.length; i++) if (FPB[i].id === c) FX.qr.i = i;
+    if (FX.qr.i == null) FX.qr.err = c ? 'No encontramos ninguna reserva con ese código.' : 'Escribe el código que aparece bajo el QR del cliente.';
+    FX.qr.fresh = true; fxRender();
+    var t = FX.qr.i != null ? document.querySelector('#fx-drawer [data-act="fpqrok"]') : $('fpq-c'); if (t) t.focus({ preventScroll: true });
+  }
+  function fpQrDrawer() {
+    var q = FX.qr || {}, en = S.lang === 'en';
+    var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
+    var head = '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T('Canje de reservas') + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600">' + T('Escanear QR') + '</span></div>' + x + '</div>';
+    if (q.i == null) {
+      return head + '<div class="fq">'
+        + '<div class="fq-cam" aria-hidden="true"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span class="fq-line"></span></div>'
+        + '<p class="fq-help">' + T('Apunta la cámara al código QR que el cliente tiene en su móvil.') + '</p>'
+        + '<button type="button" class="fx-btn accent" data-act="fpqrsim" style="justify-content: center">' + T('Simular escaneo') + '</button>'
+        + '<div class="fq-or"><span>' + T('o introduce el código') + '</span></div>'
+        + '<form class="fq-form" id="fpq"><label class="fx-sr" for="fpq-c">' + T('Código de la reserva') + '</label><input id="fpq-c" autocomplete="off" autocapitalize="characters" placeholder="FV-7K2Q" value="' + esc(q.code || '') + '"><button type="submit" class="fx-btn">' + T('Buscar') + '</button></form>'
+        + (q.err ? '<div class="fx-ok" role="alert" style="background: #FFF1F6; color: #7A0B3D; margin: 0">' + T(q.err) + '</div>' : '')
+        + '<p class="fp-note">' + T('Códigos de ejemplo') + ': FV-1LC5, FV-7K2Q, FV-8DD2</p></div>';
+    }
+    var b = FPB[q.i], sv = FPS.filter(function (y) { return y.k === b.s; })[0] || {}, dep = fpBDep(b), paid = depAmount(dep, b.total, b.com), rest = b.total - paid, mine = paid - b.com;
+    var st = b.st === 'held' ? ['Señal pagada · lista para canjear', '#EAF2F8', '#0B2A4A'] : b.st === 'pend' ? ['Pago pendiente', '#FFF1F6', '#7A0B3D'] : ['Ya canjeada', '#F0F1ED', '#3D4248'];
+    var row = function (k, v) { return '<dt>' + T(k) + '</dt><dd>' + v + '</dd>'; };
+    var act = b.st === 'held'
+      ? '<button type="button" class="fx-btn accent fq-go" data-act="fpqrok">' + T('Confirmar canje y liberar comisión') + '</button>'
+      : b.st === 'pend' ? '<div class="fx-ok" style="background: #FFF1F6; color: #7A0B3D; margin: 0">' + T('El cliente aún no ha pagado la señal: no se puede canjear.') + '</div>'
+      : '<div class="fx-ok" style="margin: 0">' + (FX.scanned === q.i ? T('Canje confirmado.') + ' ' + T('Comisión liberada a') + ' ' + b.from + ': ' + money(b.com) + '.' : T('Este código ya se canjeó.')) + '</div>';
+    return head + '<div class="fq' + (q.fresh ? ' fresh' : '') + '">'
+      + '<div class="fq-res"><span class="fx-pill" style="align-self: flex-start; background: ' + st[1] + '; color: ' + st[2] + '">' + T(st[0]) + '</span>'
+      + '<div><span class="fx-mono" style="font-size: 12px; color: #656B71">' + b.id + '</span><b style="display: block; font-size: 20px; font-weight: 600">' + b.cli + '</b><span style="font-size: 13px; color: #50565C">' + esc(sv.boat || '') + ' · ' + T(b.svc) + '</span></div>'
+      + '<div class="fq-due"><span>' + T('A cobrar en la oficina') + '</span><b class="fx-mono">' + money(rest) + '</b></div>'
+      + '<dl class="fx-fields" style="padding: 0">' + row('Fecha', fxDate(b.date, true) + ' · ' + b.h1 + '–' + b.h2) + row('Personas', b.pax) + row('Recomendado por', b.from)
+      + row('Precio total', '<span class="fx-mono">' + money(b.total) + '</span>') + row('Señal pagada', '<span class="fx-mono">' + money(paid) + '</span> · ' + depLabel(dep))
+      + row('Comisión que se libera', '<span class="fx-mono">' + money(b.com) + '</span>') + (dep === '50' ? row('Para ti al canjear', '<span class="fx-mono">' + money(mine) + '</span>') : '') + '</dl>'
+      + act + '<button type="button" class="fx-btn ghost" data-act="fpqrnew" style="justify-content: center">' + T('Escanear otro código') + '</button></div></div>';
+  }
+  document.addEventListener('submit', function (e) { if (e.target.id !== 'fpq') return; e.preventDefault(); var i = $('fpq-c'); fpQrFind(i ? i.value : ''); });
   function fpOwnDrawer() {
     var o = FX.own; if (!o) return '';
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
@@ -2902,7 +2980,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpScan(i) {
     var b = FPB[i];
     if (b.st !== 'held') return;
-    b.st = 'redeemed'; FX.scanned = i; fxRender();
+    b.st = 'redeemed'; FX.scanned = i; if (FX.qr) FX.qr.fresh = false; fxRender();
     ctxT(function () { b.st = 'released'; fxRender(); }, 900);
   }
   function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPOWN = fpOwnCopy(FPOWN0); FX.own = null; FX.wk = 0; FX.calMsg = null; FX.day = null; FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
@@ -2911,6 +2989,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
     if (!o) { d.classList.remove('open'); return; }
     if (o.t === 'own') { d.innerHTML = fpOwnDrawer(); d.classList.add('open'); return; }
+    if (o.t === 'qr') { d.innerHTML = fpQrDrawer(); d.classList.add('open'); return; }
     if (o.t === 'pres' || o.t === 'ppar') { d.innerHTML = fpDrawer(o); d.classList.add('open'); return; }
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
     var h;
@@ -2954,10 +3033,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var n = pro ? (v[0] === 'srv' ? FPS.length : v[0] === 'res' ? FPB.length : v[0] === 'col' ? FPP.filter(function (p) { return p.st === 'active'; }).length : '') : (v[0] === 'res' ? FXB.length : v[0] === 'col' ? FXA.filter(function (a) { return a.st === 'active'; }).length : v[0] === 'msg' && !CHAT.signed ? 1 : '');
       return '<button type="button" data-act="fxv" data-v="' + v[0] + '" aria-pressed="' + (FX.view === v[0] && FX.cat == null) + '">' + fxSvg(v[0]) + T(v[1]) + (n ? '<em>' + n + '</em>' : '') + '</button>';
     }).join('');
+    var scan = '<button type="button" class="fx-scanbtn" data-act="fpqr">' + '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"></path><rect x="8" y="8" width="3" height="3"></rect><rect x="13" y="8" width="3" height="3"></rect><rect x="8" y="13" width="3" height="3"></rect><path d="M13 13h3v3"></path></svg>' + '<span><b>' + T('Escanear QR') + '</b><small>' + T('o introducir código') + '</small></span></button>';
+    if (pro) side = side.replace('</div>', '</div>' + scan);
     $('fx-side').innerHTML = side + '<div class="side-foot"><span class="hx-li">' + fxSvg('set') + T('Ajustes') + '</span><span class="hx-li">' + fxSvg('acc') + T('Cuenta') + '</span></div>';
-    $('fx-main').innerHTML = pro
+    $('fx-main').innerHTML = (pro ? '<div class="fx-scanm">' + scan + '</div>' : '') + (pro
       ? (FX.view === 'srv' ? fpSrv() : FX.view === 'res' ? fpRes() : FX.view === 'cal' ? fpCal() : FX.view === 'col' ? fpPar() : fpRep())
-      : (FX.view === 'home' ? fxHome() : FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'col' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat());
+      : (FX.view === 'home' ? fxHome() : FX.view === 'map' ? fxMap() : FX.view === 'res' ? fxRes() : FX.view === 'col' ? fxAgs() : FX.view === 'rep' ? fxRep() : fxChat()));
     FX.fresh = null;
     fxDrawer();
     var fwin = $('fx-main').closest('.fx-win'); if (fwin && fwin.scrollLeft) fwin.scrollLeft = 0;
@@ -2975,7 +3056,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (!quiet) ctxT(function () { var t = $('fx-dtitle'); if (t) t.focus({ preventScroll: true }); }, 60);
   }
   function fxClose() {
-    var o = FX.open; FX.open = null; FX.own = null; fxRender();
+    var o = FX.open; FX.open = null; FX.own = null; FX.qr = null; fxRender();
     if (o) { var b = document.querySelector('#fx-main [data-act="' + ({ res: 'fxrow', ag: 'fxag', pres: 'fprow', ppar: 'fppar' })[o.t] + '"][data-v="' + o.i + '"]'); if (b) b.focus({ preventScroll: true }); }
   }
 
