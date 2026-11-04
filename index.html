@@ -3440,7 +3440,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       var input = $(f[1]), err = $(f[3]), btn = form.querySelector('button[type="submit"]');
       if (!input.checkValidity()) { input.reportValidity(); return; }
       function done() { form.style.display = 'none'; err.hidden = true; var s = $(f[2]); s.hidden = false; s.style.display = 'flex'; }
-      function fail() { btn.disabled = false; err.hidden = false; }
+      // Si el envío falla, el enlace del aviso abre un email a info@favent.es ya escrito con la solicitud
+      function fail() {
+        btn.disabled = false; err.hidden = false;
+        var en = S.lang === 'en', a = err.querySelector('a[href^="mailto:"]');
+        if (a) a.href = 'mailto:info@favent.es?subject=' + encodeURIComponent(en ? 'Access request · favent' : 'Solicitud de acceso · favent')
+          + '&body=' + encodeURIComponent((en ? 'Hi, I would like early access to Favent.\nEmail: ' : 'Hola, quiero acceso anticipado a Favent.\nEmail: ') + input.value + (S.perfil ? (en ? '\nProfile: ' : '\nPerfil: ') + S.perfil : ''));
+      }
       // Sin FORM_ENDPOINT no se guarda nada: se avisa del error en vez de fingir que se ha enviado
       if (!FORM_ENDPOINT) { fail(); return; }
       btn.disabled = true; err.hidden = true;
