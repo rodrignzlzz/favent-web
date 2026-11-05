@@ -60,6 +60,11 @@ Resumen (el detalle está en `DESIGN.md`):
 4. Versión en inglés (y quizá polaco) de la web.
 5. Metadatos para compartir (Open Graph, imagen social).
 
+## Favent 2.0: expansión futura (no reflejar en la web todavía)
+- Favent Catalog (`catalog.favent.app`, escaparate para el cliente final) y Connect Spot (establecimientos físicos que recomiendan) son una capa aparte que se introducirá más adelante, sobre el mismo motor: servicios publicados, Agenda, señal, QR y comisiones. No cambian el núcleo B2B.
+- Detalle y equivalencias con lo que ya existe: [`docs/favent-2.0-auditoria-y-plan.md`](docs/favent-2.0-auditoria-y-plan.md).
+- No mencionarlos en `index.html` hasta que se decida lanzarlos. Catalog no se construye en este repositorio.
+
 ## Contexto legal y de negocio (no reflejar en la web sin validar)
 - Marca: existe una marca española registrada "Faventy" (clase 42). Pendiente opinión de un agente de marcas antes de registrar "Favent".
 - Pagos previstos: Stripe Connect (cargos y transferencias separados). En Polonia, BLIK (solo PLN).
