@@ -14,7 +14,9 @@ Hasta que se lancen, **la web pública sigue igual** y no los menciona.
 ### La regla que lo define todo
 > **El huésped, desde su habitación, solo ve precios totales. Nada de comisiones. Pero la comisión de cada reserva que hace va para el hotel.**
 
-- El hotel (Connect Spot) pone su acceso a Catalog en la habitación (QR, enlace o pantalla). Todo lo que el huésped reserva desde ahí queda **atribuido a ese hotel**.
+- **A Catalog solo se entra desde un Connect Spot.** No hay acceso público ni registro libre: sin el QR o enlace de un spot, no se puede entrar.
+- **Los Connect Spots los da de alta Favent** en su propio software. Ningún establecimiento se apunta solo.
+- El hotel (Connect Spot) pone su acceso a Catalog en la habitación (QR, enlace o pantalla). Todo lo que el huésped reserva queda **atribuido a ese hotel, también si entra más tarde desde fuera** (en casa, en la playa, otro día).
 - El huésped ve el **precio total** del servicio, el mismo que en cualquier canal. La comisión ya va dentro de ese precio; no se suma ni se muestra.
 - Para el hotel es exactamente el flujo actual de quien recomienda: comisión pactada con quien presta el servicio, liberada al canjear el QR. La diferencia es que el huésped reserva solo, sin que nadie del hotel intervenga.
 
@@ -46,7 +48,7 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 
 ## 2. Favent Catalog: un canal de venta más para quien ofrece servicios
 
-**Qué es:** el escaparate público, para el cliente final, de los servicios **publicados** en Favent. Dirección prevista: `catalog.favent.app`. Lema: «Discover more. Experience better.». Catalog se dirige a turistas y puede ir en inglés; en la web de Favent (en español) se presentaría como «Descubre más. Vívelo mejor.» o con el lema en inglés como nombre de submarca.
+**Qué es:** el escaparate, para el cliente final y **solo con acceso desde un Connect Spot**, de los servicios **publicados** en Favent. Dirección prevista: `catalog.favent.app`. Lema: «Discover more. Experience better.». Catalog se dirige a turistas y puede ir en inglés; en la web de Favent (en español) se presentaría como «Descubre más. Vívelo mejor.» o con el lema en inglés como nombre de submarca.
 
 **Cómo encaja con lo que ya hay:**
 - **Mismos servicios:** lo que una empresa publica (máximo 2 a la vez) aparece en el mapa B2B y en Catalog. No hay un alta aparte.
@@ -68,13 +70,19 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 
 **Home de Catalog** (según el documento): hero con foto, buscador, ubicación, fecha, categorías, destacados, populares, empresas recomendadas, descubrir y ayuda. Mobile-first y con el mismo sistema visual (`DESIGN.md`), en versión «pantalla clara».
 
-**Reserva desde un hotel:** la comisión va al hotel (ver 0). **Por definir:** qué pasa si alguien entra en Catalog sin pasar por ningún hotel (¿sin comisión, o para Favent?).
+**Acceso y atribución (decidido):**
+- Toda reserva de Catalog tiene un spot de origen, porque solo se entra desde uno. La comisión va siempre a ese spot.
+- La primera entrada por el QR o enlace del spot vincula al huésped con ese spot de forma permanente: si vuelve más tarde desde fuera, sigue contando para el mismo hotel.
+- Hace falta reconocer al huésped cuando vuelve: un enlace personal que se guarda en su móvil y, al reservar, su email o teléfono vinculados al spot. Esto hay que diseñarlo en la app.
+- Sin acceso público, `catalog.favent.app` no se indexa en buscadores (`noindex`): sin un código de spot válido solo se ve una pantalla de entrada.
 
 ---
 
 ## 3. Connect Spot: quien recomienda, con un punto físico
 
-**Qué es:** un establecimiento (hotel, conserjería, bar de playa, tienda, alquiler…) que se une a la red como **quien recomienda**, pero con presencia física: un código QR o un enlace propio que lleva al cliente a Catalog.
+**Qué es:** un establecimiento (hotel, conserjería, bar de playa, tienda, alquiler…) que se une a la red como **quien recomienda**, pero con presencia física: un código QR o un enlace propio que lleva al cliente a Catalog. Es **la única puerta de entrada** a Catalog.
+
+**Alta:** la hace **Favent** desde su software interno (panel de administración de Favent): crea el spot, lo vincula a la empresa del hotel y genera sus QR y enlaces (uno por spot o, si se quiere, uno por habitación o punto). El establecimiento no puede darse de alta solo.
 
 **Cómo encaja con lo que ya hay:**
 - Es el mismo perfil «Si recomiendas clientes». No es un tercer papel; es una forma nueva de recomendar.
@@ -122,8 +130,13 @@ Nadie ve las condiciones privadas de otros participantes.
 | **Al lanzar** | Presentar Catalog y Connect Spot en www.favent.app: una sección después de «Para quién es» y un perfil «Tengo un establecimiento» en la lista de espera. Actualizar `CLAUDE.md` y `DESIGN.md`. | Este repositorio |
 
 ## 7. Decisiones abiertas
-1. Comisión en reservas de Catalog que no llegan desde ningún hotel. (Las que llegan desde un hotel: la comisión es del hotel; está decidido.)
-1b. Cuánto dura la atribución al hotel: ¿solo durante la estancia?, ¿qué pasa si el huésped vuelve a entrar desde fuera?
+Decidido:
+- A Catalog solo se entra desde un Connect Spot; los spots los da de alta Favent.
+- La comisión va siempre al spot de origen, también si el huésped vuelve más tarde desde fuera.
+
+Pendiente:
+1. Si un huésped entra por dos spots distintos (dos hoteles en dos viajes), ¿cuenta el primero o el último?
+1b. ¿QR por establecimiento o por habitación? (El segundo permite saber desde dónde se reserva, pero exige más trabajo de alta.)
 2. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
 3. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
 4. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.

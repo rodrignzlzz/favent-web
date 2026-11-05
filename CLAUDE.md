@@ -63,6 +63,7 @@ Resumen (el detalle está en `DESIGN.md`):
 ## Favent 2.0: expansión futura (no reflejar en la web todavía)
 - Favent Catalog (`catalog.favent.app`, escaparate para el cliente final; p. ej. el huésped desde su habitación) y Connect Spot (establecimientos físicos, como hoteles, que recomiendan) son una capa aparte que se introducirá más adelante, sobre el mismo motor: servicios publicados, Agenda, señal, QR y comisiones. No cambian el núcleo B2B.
 - Regla clave: el cliente final solo ve precios totales, nunca comisiones; aun así, la comisión de lo que reserva desde un hotel va para ese hotel.
+- A Catalog solo se entra desde un Connect Spot (sin acceso público). Los spots los da de alta Favent en su software. La atribución al spot es permanente: si el huésped entra más tarde desde fuera, la comisión sigue siendo de ese hotel.
 - Detalle y equivalencias con lo que ya existe: [`docs/favent-2.0-auditoria-y-plan.md`](docs/favent-2.0-auditoria-y-plan.md).
 - No mencionarlos en `index.html` hasta que se decida lanzarlos. Catalog no se construye en este repositorio.
 
