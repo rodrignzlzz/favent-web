@@ -352,9 +352,9 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .ag-f[aria-pressed="true"]{background:#0B2A4A;border-color:#0B2A4A;color:#FFFFFF}
 .ag-f i{width:8px;height:8px;border-radius:4px;flex:none}.ag-f i.sq{width:11px;height:11px;border-radius:3px}
 .sq{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none}.sq.fv{background:#E3EEF7;box-shadow:inset 3px 0 0 #2B6CA8}.sq.own{background:#EEEFEB;box-shadow:inset 3px 0 0 #8E959C}.sq.pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px}
-.ag-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px 18px 2px}
+.ag-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px 18px 2px}
 .ag-kpi{border:1px solid #E6E7E3;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:#FFFFFF}
-.ag-kpi span{font-size:12px;color:#656B71}.ag-kpi b{font:500 18px 'Geist Mono',monospace;color:#1E2226}
+.ag-kpi span{font-size:12px;color:#656B71}.ag-kpi b{font:500 18px 'Geist Mono',monospace;color:#1E2226;white-space:nowrap}
 .ag-kpi i,.ag-occ i,.ag-dh i,.mo-o{display:block;height:4px;border-radius:999px;background:#EEEFEB;overflow:hidden}
 .ag-kpi u,.ag-occ u,.ag-dh u,.mo-o u{display:block;height:100%;background:#2B6CA8;border-radius:999px}
 .ag-legend{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding:12px 18px 0;font-size:12px;color:#50565C}.ag-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -489,7 +489,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 @media (max-width: 640px){
   .ag-top{padding:14px 14px 12px}.ag-title{font-size:20px}.ag-ctl{width:100%}.ag-ctl .fx-btn.accent{margin-left:auto}
   .ag-filters,.ag-legend{padding-left:14px;padding-right:14px}.ag-q{display:none}
-  .ag-kpis{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px 14px 2px}
+  .ag-kpis{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:12px 14px 2px}.ag-kpi{padding:8px 10px}.ag-kpi b{font-size:14px}
   .ag-filters{flex-direction:column;gap:6px}.ag-fg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}.ag-fg::-webkit-scrollbar{display:none}.ag-f{flex:none}
   .ag-note{margin:6px 14px 14px}
   .fd-wrap{padding:12px 14px 6px}
@@ -1723,7 +1723,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Día': 'Day', 'Mes': 'Month', 'Hoy': 'Today', 'Anterior': 'Previous', 'Siguiente': 'Next', 'Vista': 'View', 'Barco': 'Boat', 'Todos los barcos': 'All boats',
     'Todas': 'All', 'Propias': 'Own', 'Franjas libres': 'Free slots', 'Ingresos': 'Revenue', 'Señal pagada': 'Deposit paid', 'Pendiente de pago': 'Payment pending', 'Completada': 'Completed',
     'Favent · se apunta sola': 'Favent · added automatically', 'Propia · la apuntas tú': 'Own · you add it', 'La barra de cada día es su ocupación.': 'Each day’s bar shows its occupancy.',
-    'más': 'more', 'ahora': 'now', 'reserva que se apunta sola': 'booking added automatically',
+    'más': 'more', 'ahora': 'now', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
     'Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.': 'Keep all your bookings here, like in any calendar. Favent bookings are added automatically with the client, party size and who referred them; you add your own (phone, website, in person or other agencies) by tapping a free slot.',
     'Hora': 'Time',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
@@ -3014,7 +3014,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       FPQ.forEach(function (q) { if (it.some(function (a) { return fpMin(a.h1) < fpMin(q[2]) && fpMin(q[1]) < fpMin(a.h2); })) used++; });
     }); });
     var en = S.lang === 'en', occ = tot ? Math.round(used / tot * 100) : 0;
-    return '<div class="ag-kpis">' + [['Reservas', String(n)], ['Ocupación', occ + (en ? '%' : ' %'), occ], ['Ingresos', money(amt)], ['Franjas libres', String(tot - used)]].map(function (k) {
+    return '<div class="ag-kpis">' + [['Reservas', String(n)], ['Ingresos', eur(amt)], ['Franjas libres', String(tot - used)]].map(function (k) {
       return '<div class="ag-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] != null ? '<i><u style="width: ' + k[2] + '%"></u></i>' : '') + '</div>';
     }).join('') + '</div>';
   }
@@ -3064,7 +3064,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var head = '<div class="g2-head" style="' + cols + '"><span class="g2-corner">' + T('Hora') + '</span>' + boats.map(function (x) {
       var busy = 0; days.forEach(function (d) { fpItemsF(x.k, d).forEach(function (a) { busy += fpMin(a.h2) - fpMin(a.h1); }); });
       var occ = Math.round(busy / (days.length * (hN - h0) * 60) * 100), name = x.raw ? esc(x.n) : T(x.n);
-      return '<div class="g2-bh" style="--c: ' + fpBoatC(x.k) + '"><b><i></i>' + esc(x.boat || '') + '</b><small title="' + name + '">' + name + '</small><span class="ag-occ"><i><u style="width: ' + occ + '%; background: ' + fpBoatC(x.k) + '"></u></i>' + occ + (en ? '%' : ' %') + (x.on ? '' : ' · ' + T('Oculto')) + '</span></div>';
+      return '<div class="g2-bh" style="--c: ' + fpBoatC(x.k) + '"><b><i></i>' + esc(x.boat || '') + '</b><small title="' + name + '">' + name + '</small>' + (x.on ? '' : '<span class="ag-occ">' + T('Oculto') + '</span>') + '</div>';
     }).join('') + '</div>';
     var body = days.map(function (d) {
       var dn = fpDayN(d), tdy = d === FPTODAY, n = boats.reduce(function (a, x) { return a + fpItemsF(x.k, d).length; }, 0);
@@ -3103,13 +3103,13 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       its.sort(function (p, q) { return fpMin(p.a.h1) - fpMin(q.a.h1); });
       var occ = boats.length ? Math.round(used / (boats.length * FPQ.length) * 100) : 0;
       var lines = its.slice(0, 3).map(function (o) { return '<span class="mo-e ' + o.a.t + ' st-' + fpStat(o.a)[1] + '"><i style="background: ' + fpBoatC(o.x.k) + '"></i>' + o.a.h1 + ' ' + esc(o.a.cli) + '</span>'; }).join('') + (its.length > 3 ? '<span class="mo-more">+' + (its.length - 3) + ' ' + T('más') + '</span>' : '');
-      cells.push('<button type="button" class="mo-d' + (dt.getMonth() !== mo ? ' out' : '') + (d === FPTODAY ? ' today' : '') + '" data-act="fpday" data-v="' + d + '" aria-label="' + fxDate(d, true) + ' · ' + its.length + ' ' + T(its.length === 1 ? 'reserva' : 'reservas') + '"><span class="mo-n"><b>' + dt.getDate() + '</b>' + (its.length ? '<em>' + its.length + '</em>' : '') + '</span><i class="mo-o"><u style="width: ' + occ + '%"></u></i>' + lines + '</button>');
+      cells.push('<button type="button" class="mo-d' + (dt.getMonth() !== mo ? ' out' : '') + (d === FPTODAY ? ' today' : '') + '" data-act="fpday" data-v="' + d + '" aria-label="' + fxDate(d, true) + ' · ' + its.length + ' ' + T(its.length === 1 ? 'reserva' : 'reservas') + '"><span class="mo-n"><b>' + dt.getDate() + '</b>' + (its.length ? '<em>' + its.length + '</em>' : '') + '</span>' + lines + '</button>');
     }
     var wd = (en ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] : ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']).map(function (w) { return '<span class="mo-h">' + w + '</span>'; }).join('');
     var title = fpMonLong(m); title = title.charAt(0).toUpperCase() + title.slice(1);
     return fpCalBar(title, '')
       + fpKpis(all)
-      + '<div class="ag-legend"><span><i class="sq fv"></i>' + T('Favent · se apunta sola') + '</span><span><i class="sq own"></i>' + T('Propia · la apuntas tú') + '</span><span>' + T('La barra de cada día es su ocupación.') + '</span></div>'
+      + '<div class="ag-legend"><span><i class="sq fv"></i>' + T('Favent · se apunta sola') + '</span><span><i class="sq own"></i>' + T('Propia · la apuntas tú') + '</span><span>' + T('Toca un día para verlo por horas.') + '</span></div>'
       + '<div class="mo-wrap"><div class="mo-g">' + wd + cells.join('') + '</div></div>' + fpCalNote();
   }
   // Escanear el QR del cliente (o escribir su código) y ver su reserva: lo que queda por cobrar y la comisión que se libera
