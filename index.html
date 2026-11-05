@@ -328,13 +328,136 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .fd-cell{display:block;width:100%;border:0;border-top:1px solid #EEEFEB;background:#FFFFFF;cursor:pointer;padding:0}
 .fd-cell:hover,.fd-cell:focus-visible{background:#F7F9FD}
 .fd-bk{position:absolute;left:4px;right:4px;border-radius:10px;border:1px solid #A9D3F0;background:#EAF2F8;color:#0B2A4A;padding:6px 8px;display:flex;flex-direction:column;gap:2px;text-align:left;cursor:pointer;overflow:hidden;font:12px 'Funnel Display',sans-serif;animation:rowin .3s cubic-bezier(.2,.7,.2,1)}
-.fd-bk.own{background:#F0F1ED;border-color:#D5D7D3;color:#3D4248}
 .fd-bk.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1);border-color:#2B6CA8}
 .fd-bk b{font-size:13px;font-weight:600;color:#1E2226}
 .fd-bk span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .fd-t{display:flex;justify-content:space-between;gap:6px;font:500 11px 'Geist Mono',monospace}.fd-t i{font-style:normal;font-weight:600;color:#2B6CA8}.fd-bk.own .fd-t i{color:#50565C}
 .fd-s{color:#656B71;font-size:11.5px}
 .fp-own-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ag-top{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;padding:18px 18px 14px;border-bottom:1px solid #EEEFEB}
+.ag-tt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ag-eb{font:500 11px 'Geist Mono',monospace;color:#656B71;letter-spacing:.04em;text-transform:uppercase}
+.ag-title{font:600 24px/1.15 'Funnel Display',sans-serif;letter-spacing:-.02em;color:#1E2226;outline:none}
+.ag-sub{font-size:12.5px;color:#656B71}
+.ag-ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ag-seg{display:inline-flex;background:#F0F1ED;border-radius:999px;padding:3px}
+.ag-seg button{height:32px;padding:0 14px;border:0;border-radius:999px;background:transparent;font:600 13px 'Funnel Display',sans-serif;color:#50565C;cursor:pointer}
+.ag-seg button[aria-pressed="true"]{background:#FFFFFF;color:#1E2226;box-shadow:0 1px 3px rgba(30,34,38,.16)}
+.ag-seg button.press{transform:scale(.96)}
+.ag-nav{display:inline-flex;gap:4px}.ag-nav .fx-btn{width:36px;padding:0;justify-content:center}
+.ag-filters{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 18px 0}
+.ag-fg{display:flex;gap:6px;flex-wrap:wrap}
+.ag-f{height:30px;padding:0 12px;border:1px solid #E3E5E0;border-radius:999px;background:#FFFFFF;font:500 12.5px 'Funnel Display',sans-serif;color:#3D4248;display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.ag-f:hover{border-color:#A9D3F0}
+.ag-f[aria-pressed="true"]{background:#0B2A4A;border-color:#0B2A4A;color:#FFFFFF}
+.ag-f i{width:8px;height:8px;border-radius:4px;flex:none}.ag-f i.sq{width:11px;height:11px;border-radius:3px}
+.sq{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none}.sq.fv{background:#E3EEF7;box-shadow:inset 3px 0 0 #2B6CA8}.sq.own{background:#EEEFEB;box-shadow:inset 3px 0 0 #8E959C}.sq.pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px}
+.ag-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px 18px 2px}
+.ag-kpi{border:1px solid #E6E7E3;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:#FFFFFF}
+.ag-kpi span{font-size:12px;color:#656B71}.ag-kpi b{font:500 18px 'Geist Mono',monospace;color:#1E2226}
+.ag-kpi i,.ag-occ i,.ag-dh i,.mo-o{display:block;height:4px;border-radius:999px;background:#EEEFEB;overflow:hidden}
+.ag-kpi u,.ag-occ u,.ag-dh u,.mo-o u{display:block;height:100%;background:#2B6CA8;border-radius:999px}
+.ag-legend{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding:12px 18px 0;font-size:12px;color:#50565C}.ag-legend span{display:inline-flex;align-items:center;gap:6px}
+.ag-q{margin-left:auto;color:#656B71}.ag-q b{font-weight:600;color:#3D4248}
+.ag-note{margin:6px 18px 16px;font-size:12px;line-height:1.5;color:#656B71}
+.ag-week{grid-template-columns:172px repeat(7,minmax(86px,1fr));min-width:800px;gap:6px}
+.ag-corner{font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase;align-self:end;padding:0 0 10px}
+.ag-dh{border:0;background:none;border-radius:12px;padding:6px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font-family:'Funnel Display',sans-serif}
+.ag-dh span{font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase}
+.ag-dh b{font:600 17px/1 'Funnel Display',sans-serif;color:#1E2226;width:34px;height:34px;border-radius:17px;display:flex;align-items:center;justify-content:center}
+.ag-dh i{width:56%}
+.ag-dh:hover,.ag-dh:focus-visible{background:#F3F6F9}
+.ag-dh.today b{background:#2B6CA8;color:#FFFFFF}.ag-dh.today span{color:#2B6CA8;font-weight:600}
+.ag-dh.press{transform:scale(.96)}
+.ag-rh{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;padding-right:10px}
+.ag-rh b,.fd-ch b{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#1E2226}
+.ag-rh b i,.fd-ch b i{width:9px;height:9px;border-radius:5px;flex:none}
+.ag-rh b em,.fd-ch b em{font:normal 600 9.5px 'Geist Mono',monospace;color:#656B71;background:#F0F1ED;border-radius:999px;padding:1px 6px}
+.ag-rh small{font-size:11px;color:#656B71;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ag-occ{display:flex;align-items:center;gap:6px;font:500 10.5px 'Geist Mono',monospace;color:#656B71}.ag-occ i{flex:1;max-width:72px}
+.fx-slot.q{border-radius:12px}
+.fx-slot.q.today{background:#F7F9FD;border-color:#D3E6F4}
+.qb.fv{background:#E3EEF7;color:#0B2A4A;box-shadow:inset 3px 0 0 #2B6CA8}
+.qb.own{background:#EEEFEB;color:#3D4248;box-shadow:inset 3px 0 0 #8E959C}
+.qb.fv:hover,.qb.fv:focus-visible{background:#D3E6F4}.qb.own:hover,.qb.own:focus-visible{background:#E3E5E0}
+.qb.st-pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px;box-shadow:inset 3px 0 0 #FF4F9A}
+.qb.st-done{opacity:.7}
+.qb small{margin-left:auto;font:500 10px 'Geist Mono',monospace;opacity:.8;flex:none}
+.fd-wrap{padding:14px 18px 6px}
+.fd-ch{height:66px;justify-content:center;gap:3px}
+.fd-gc{position:relative}
+.fd-cell{position:relative;background:#FFFFFF linear-gradient(#F3F3F0,#F3F3F0) no-repeat 0 50%/100% 1px;text-align:left}
+.fd-cell span{opacity:0;font:500 11px 'Geist Mono',monospace;color:#2B6CA8;padding-left:8px;transition:opacity .15s}
+.fd-cell:hover span,.fd-cell:focus-visible span{opacity:1}
+.fd-bk{background:var(--p,#F3F8FC);border:0;border-left:4px solid var(--c,#2B6CA8);border-radius:8px;color:var(--d,#0B2A4A);box-shadow:none}
+.fd-bk:hover{box-shadow:0 6px 16px rgba(30,34,38,.12);z-index:2}
+.fd-bk b{display:flex;align-items:center;gap:5px}
+.fd-bk.st-pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px}
+.fd-bk.st-done{opacity:.75}
+.fd-st{font:normal 600 9.5px 'Geist Mono',monospace;padding:1px 6px;border-radius:999px;background:#FFFFFF;color:#2B6CA8;white-space:nowrap}
+.fd-st{color:var(--d,#0B2A4A)}.fd-bk.st-pend .fd-st{color:#9D0F4E}
+.fd-n{font-style:italic}
+.fd-now{position:absolute;left:0;right:0;height:2px;background:#FF4F9A;z-index:3;pointer-events:none}
+.fd-now::before{content:"";position:absolute;left:-5px;top:-4px;width:10px;height:10px;border-radius:5px;background:#FF4F9A}
+.fd-nowl{position:absolute;right:2px;font:600 10.5px 'Geist Mono',monospace;color:#FFFFFF;background:#FF4F9A;border-radius:6px;padding:1px 5px;transform:translateY(-50%);z-index:3}
+.wg{margin:12px 18px 6px;border:1px solid #E6E7E3;border-radius:16px;background:#FFFFFF;overflow:hidden}
+.wg-head{display:grid;border-bottom:1px solid #E6E7E3;padding:6px 0;background:#FFFFFF}
+.wg-head .ag-dh{flex-direction:row;justify-content:center;gap:6px;padding:6px 2px}
+.wg-head .ag-dh b{width:28px;height:28px;font-size:14px;border-radius:14px}
+.wg-body{display:grid;max-height:560px;overflow-y:auto;position:relative}
+.wg.one .wg-body{max-height:none}
+.wg-gut span{display:block;font:500 10.5px 'Geist Mono',monospace;color:#8E959C;text-align:right;padding-right:8px;transform:translateY(-6px)}
+.wg-gut span:first-child{visibility:hidden}
+.wg-col{position:relative;border-left:1px solid #EEEFEB}
+.wg-col.today{background:#FBFCFE}
+.wg-cell{display:block;width:100%;border:0;border-top:1px solid #EEEFEB;background:transparent linear-gradient(#F6F6F3,#F6F6F3) no-repeat 0 50%/100% 1px;padding:0;cursor:pointer;text-align:left}
+.wg-cell:first-child{border-top:0}
+.wg-cell span{opacity:0;font:500 10.5px 'Geist Mono',monospace;color:#2B6CA8;padding-left:6px;transition:opacity .15s}
+.wg-cell:hover,.wg-cell:focus-visible{background-color:#F3F8FC}.wg-cell:hover span,.wg-cell:focus-visible span{opacity:1}
+.wg-ev{position:absolute;border:0;border-left:3px solid var(--c);border-radius:6px;background:var(--p);color:var(--d);padding:4px 6px;display:flex;flex-direction:column;gap:1px;text-align:left;cursor:pointer;overflow:hidden;font:11px/1.3 'Funnel Display',sans-serif;z-index:1;transition:box-shadow .15s}
+.wg-ev:hover,.wg-ev:focus-visible{box-shadow:0 6px 16px rgba(30,34,38,.14);z-index:2}
+.wg-ev b{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px}
+.wg-ev span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}
+.wg-ev .wg-t{font:500 10.5px 'Geist Mono',monospace;opacity:.75}
+.wg-ev.st-pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px}
+.wg-ev.st-done{opacity:.7}
+.wg-ev.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+.wg-fv{font:normal 600 9px 'Geist Mono',monospace;color:#FFFFFF;background:#2B6CA8;border-radius:4px;padding:1px 4px;flex:none}
+.ag-legend .wg-fv{margin-right:2px}
+.wg-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:12px 14px 0}
+.wg-sd{border:0;background:none;padding:4px 0;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;font-family:'Funnel Display',sans-serif}
+.wg-sd span{font:500 10.5px 'Geist Mono',monospace;color:#656B71}
+.wg-sd b{width:32px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:14.5px;font-weight:600;color:#1E2226}
+.wg-sd.today b{color:#2B6CA8}
+.wg-sd.on b{background:#2B6CA8;color:#FFFFFF}
+.wg-sd i{width:5px;height:5px;border-radius:3px;background:#2B6CA8}.wg-sd i.no{background:transparent}
+.mo-wrap{padding:12px 18px 6px;overflow-x:auto}
+.mo-g{display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:6px;min-width:720px}
+.mo-h{font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase;padding:0 6px 4px}
+.mo-d{min-height:112px;border:1px solid #E6E7E3;border-radius:12px;background:#FFFFFF;padding:8px;display:flex;flex-direction:column;gap:4px;text-align:left;cursor:pointer;font-family:'Funnel Display',sans-serif;overflow:hidden;min-width:0}
+.mo-d:hover,.mo-d:focus-visible{border-color:#A9D3F0;background:#FBFCFE}
+.mo-d.out{background:#FAFAF8;opacity:.5}
+.mo-d.today{border-color:#2B6CA8;box-shadow:inset 0 0 0 1px #2B6CA8}
+.mo-n{display:flex;justify-content:space-between;align-items:center}
+.mo-n b{font:600 14px 'Funnel Display',sans-serif;color:#1E2226;width:26px;height:26px;border-radius:13px;display:flex;align-items:center;justify-content:center}
+.mo-d.today .mo-n b{background:#2B6CA8;color:#FFFFFF}
+.mo-n em{font:normal 500 10.5px 'Geist Mono',monospace;color:#656B71}
+.mo-o{margin:1px 0 3px}
+.mo-e{display:flex;align-items:center;gap:5px;font-size:11px;color:#3D4248;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:6px;padding:2px 6px;background:#F3F3F0;min-width:0}
+.mo-e.fv{background:#E3EEF7;color:#0B2A4A}.mo-e i{width:6px;height:6px;border-radius:3px;flex:none}
+.mo-e.st-pend{outline:1px dashed #FF4F9A;outline-offset:-1px}
+.mo-more{font-size:11px;color:#2B6CA8;font-weight:600}
+@media (max-width: 640px){
+  .ag-top{padding:14px 14px 12px}.ag-title{font-size:20px}.ag-ctl{width:100%}.ag-ctl .fx-btn.accent{margin-left:auto}
+  .ag-filters,.ag-legend{padding-left:14px;padding-right:14px}.ag-q{display:none}
+  .ag-kpis{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px 14px 2px}
+  .ag-filters{flex-direction:column;gap:6px}.ag-fg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}.ag-fg::-webkit-scrollbar{display:none}.ag-f{flex:none}
+  .ag-note{margin:6px 14px 14px}
+  .fd-wrap{padding:12px 14px 6px}
+  .wg{margin:10px 14px 6px}
+  .mo-wrap{padding:10px 14px 6px}.mo-g{min-width:0;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+  .mo-d{min-height:58px;padding:5px;border-radius:9px}.mo-e,.mo-more{display:none}.mo-n{flex-direction:column;align-items:flex-start;gap:2px}.mo-n b{width:22px;height:22px;font-size:12.5px}
+}
 .fp-own{padding:6px 18px 18px;display:flex;flex-direction:column;gap:12px}
 .fp-own label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600;color:#3D4248}
 .fp-own input,.fp-own select,.fp-own textarea{height:42px;border:1px solid #D5D7D3;border-radius:10px;padding:0 12px;font:15px 'Funnel Display',sans-serif;color:#1E2226;background:#FFFFFF}
@@ -1558,6 +1681,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Ventas totales': 'Total sales', 'Vía Favent': 'Via Favent', 'Reservas propias': 'Own bookings', 'Propias': 'Own', 'Por canal': 'By channel',
     'Vía Favent, por socio': 'Via Favent, by partner', 'Vía Favent, neto': 'Via Favent, net',
     'Todo lo que llevas en la agenda: reservas de Favent y reservas propias (teléfono, web, en persona u otras agencias).': 'Everything in your calendar: Favent bookings and your own bookings (phone, website, in person or other agencies).',
+    'Día': 'Day', 'Mes': 'Month', 'Hoy': 'Today', 'Anterior': 'Previous', 'Siguiente': 'Next', 'Vista': 'View', 'Barco': 'Boat', 'Todos los barcos': 'All boats',
+    'Todas': 'All', 'Propias': 'Own', 'Franjas libres': 'Free slots', 'Ingresos': 'Revenue', 'Señal pagada': 'Deposit paid', 'Pendiente de pago': 'Payment pending', 'Completada': 'Completed',
+    'Favent · se apunta sola': 'Favent · added automatically', 'Propia · la apuntas tú': 'Own · you add it', 'La barra de cada día es su ocupación.': 'Each day’s bar shows its occupancy.',
+    'más': 'more', 'ahora': 'now', 'reserva que se apunta sola': 'booking added automatically',
+    'Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.': 'Keep all your bookings here, like in any calendar. Favent bookings are added automatically with the client, party size and who referred them; you add your own (phone, website, in person or other agencies) by tapping a free slot.',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
     'reserva': 'booking', 'reservas': 'bookings', 'Toca una hora libre para apuntar una reserva.': 'Tap a free hour to add a booking.', 'Desde': 'From', 'Hasta': 'To',
     'La hora de fin tiene que ser posterior a la de inicio.': 'The end time must be after the start time.', 'A esa hora ya hay una reserva de Favent.': 'There is already a Favent booking at that time.', 'A esa hora ya hay otra reserva.': 'There is already another booking at that time.',
@@ -2050,7 +2178,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     }
     if (act === 'fpnew') { FX.form = { b: '', n: '', p: '', c: '12', d: [0, 0, 0, 0, 0, 0, 0], t: '' }; fxRender(); var ni = $('fpf-n'); if (ni) ni.focus({ preventScroll: true }); }
     if (act === 'fpcancel') { FX.form = null; fxRender(); }
-    if (act === 'fpday' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
+    if (act === 'fpdayf' && FX.form) { FX.form.d[+v] = FX.form.d[+v] ? 0 : 1; fxRender(); var db = document.querySelector('[data-act="fpday"][data-v="' + v + '"]'); if (db) db.focus({ preventScroll: true }); }
     if (act === 'fptoggle') { if (!FPS[+v].on && FPS.filter(function (x) { return x.on; }).length >= 2) FX.srvMsg = 'Máximo 2 servicios publicados a la vez. Oculta uno para publicar este.'; else FPS[+v].on = !FPS[+v].on; fxRender(); var tb = document.querySelector('[data-act="fptoggle"][data-v="' + v + '"]'); if (tb) tb.focus({ preventScroll: true }); }
     if (act === 'fpown' || act === 'fpdnew') {
       var nv = v.split('|'), nk = isNaN(+nv[0]) ? nv[0] : +nv[0], dh = fpDefH(nk), h1 = nv[2] ? nv[2] : dh[0], len = fpMin(dh[1]) - fpMin(dh[0]);
@@ -2061,12 +2189,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fpqrsim' && FX.qr) { fpQrFind('FV-1LC5'); }
     if (act === 'fpqrok' && FX.qr && FX.qr.i != null) { fpScan(FX.qr.i); var qb = $('fx-dtitle'); if (qb) qb.focus({ preventScroll: true }); }
     if (act === 'fpqrnew' && FX.qr) { FX.qr = { code: '', i: null, err: null }; fxRender(); var qi = $('fpq-c'); if (qi) qi.focus({ preventScroll: true }); }
-    if (act === 'fpownnew') { var d0 = FX.day || fpWeek()[0], k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', amt: fpPrice(k0), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
+    if (act === 'fpownnew') { var d0 = FX.calv === 'day' ? fpRef() : (FX.calv === 'month' ? FPTODAY : (fpWeek().indexOf(FPTODAY) >= 0 ? FPTODAY : fpWeek()[0])), k0 = FPS[0].k, dh0 = fpDefH(k0); FX.own = { id: null, isNew: true, pick: true, k: k0, d: d0, h1: dh0[0], h2: dh0[1], cli: '', pax: '', amt: fpPrice(k0), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
     if (act === 'fposrc' && FX.own) { FX.own.src = v; fxRender(); var sb = document.querySelector('#fx-drawer [data-act="fposrc"][data-v="' + v + '"]'); if (sb) sb.focus({ preventScroll: true }); }
     if (act === 'fpodel' && FX.own && FX.own.id) { var did = FX.own.id; FPOWN = FPOWN.filter(function (o) { return o.id !== did; }); FX.calMsg = 'Reserva eliminada de tu agenda.'; FX.own = null; FX.open = null; fxRender(); }
-    if (act === 'fpday') { FX.day = v || null; FX.open = null; fxRender(); var dt = $('fp-daytitle'); if (dt) dt.focus({ preventScroll: true }); }
-    if (act === 'fpdstep' && FX.day) { FX.day = fpIso(FX.day, +v); fxRender(); }
-    if (act === 'fpwk') { FX.wk = (FX.wk || 0) + (+v); fxRender(); var wb = document.querySelector('#fx-main [data-act="fpwk"][data-v="' + v + '"]'); if (wb) wb.focus({ preventScroll: true }); }
+    if (act === 'fpday') { if (v) { FX.day = v; FX.calv = 'day'; } else { FX.calv = 'week'; } FX.open = null; fxRender(); var dt = $('fp-daytitle'); if (dt) dt.focus({ preventScroll: true }); }
+    if (act === 'fpcv') { FX.calv = v; if (v === 'day' && !FX.day) FX.day = fpRef(); FX.open = null; fxRender(); var cvb = document.querySelector('#fx-main [data-act="fpcv"][data-v="' + v + '"]'); if (cvb) cvb.focus({ preventScroll: true }); }
+    if (act === 'fpnav') { fpNav(+v); fxRender(); var nb2 = document.querySelector('#fx-main [data-act="fpnav"][data-v="' + v + '"]'); if (nb2) nb2.focus({ preventScroll: true }); }
+    if (act === 'fpsel') { FX.day = v; fxRender(); var sb2 = document.querySelector('#fx-main [data-act="fpsel"][data-v="' + v + '"]'); if (sb2) sb2.focus({ preventScroll: true }); }
+    if (act === 'fpwnew') { var wv = v.split('|'), wk = FX.fb != null ? (isNaN(+FX.fb) ? FX.fb : +FX.fb) : FPS[0].k, wl = Math.min(240, fpMin(fpDefH(wk)[1]) - fpMin(fpDefH(wk)[0])); FX.own = { id: null, isNew: true, pick: true, k: wk, d: wv[0], h1: wv[1], h2: fpHH(Math.min(FPHR[1] * 60, fpMin(wv[1]) + wl)), cli: '', pax: '', amt: fpPrice(wk), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
+    if (act === 'fptoday') { FX.wk = 0; FX.mo = 0; FX.day = FPTODAY; fxRender(); }
+    if (act === 'fpfb') { FX.fb = v === 'all' ? null : v; fxRender(); var fbb = document.querySelector('#fx-main [data-act="fpfb"][data-v="' + v + '"]'); if (fbb) fbb.focus({ preventScroll: true }); }
+    if (act === 'fpfs') { FX.fs = v === 'all' ? null : v; fxRender(); var fsb = document.querySelector('#fx-main [data-act="fpfs"][data-v="' + v + '"]'); if (fsb) fsb.focus({ preventScroll: true }); }
     if (act === 'fxth') { CHAT.th = v; fxRender(); if (v === 'fp') fxChatPlay(); }
     if (act === 'fxaccept') { fxAccept(); }
     if (act === 'fxchange') { FXCH.fp.msgs.push({ who: 'me', t: '¿Podríamos ajustar la comisión?', extra: true }, { who: 'them', t: 'Claro, lo vemos y te mando una nueva propuesta.', extra: true }); CHAT.shown = FXCH.fp.msgs.length; fxRender(); }
@@ -2502,14 +2635,15 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       [5400, function () { var b = document.querySelector('#fx-drawer [data-act="fpqrok"]'); if (b) { b.classList.add('press'); TOUR.timers.push(ctxT(function () { fpScan(1); }, 350)); } }],
       [8200, function () { FX.open = null; FX.qr = null; fxRender(); }]
     ] },
-    { v: 'cal', d: 12500, at: [
-      [1200, function () { FX.wk = 0; FX.day = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', amt: 1100, src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
+    { v: 'cal', d: 15000, at: [
+      [1200, function () { FX.wk = 0; FX.mo = 0; FX.day = null; FX.calv = 'week'; FX.fb = null; FX.fs = null; FX.own = { id: null, isNew: true, k: 2, d: '2026-04-10', h1: '10:00', h2: '17:00', cli: '', pax: '4', amt: 1100, src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }, true); }],
       [1700, function () { var n = 0, t = 'Familia Roig'; (function tick() { if (!TOUR.on || !FX.own) return; n++; FX.own.cli = t.slice(0, n); var el = $('fpo-c'); if (el) el.value = FX.own.cli; if (n < t.length) TOUR.timers.push(ctxT(tick, 70)); })(); }],
       [3000, function () { if (FX.own) { FX.own.note = T('Recogida en el puerto a las 10:00'); var el = $('fpo-n'); if (el) el.value = FX.own.note; } }],
       [4000, function () { var b = $('fpo-go'); if (b) { b.classList.add('press'); TOUR.timers.push(ctxT(fpOwnSave, 350)); } }],
-      [5600, function () { var h = document.querySelector('#fx-main [data-act="fpday"][data-v="2026-04-11"]'); if (h) h.classList.add('press'); TOUR.timers.push(ctxT(function () { FX.day = '2026-04-11'; fxRender(); }, 350)); }],
+      [5600, function () { var h = document.querySelector('#fx-main [data-act="fpday"][data-v="2026-04-11"]'); if (h) h.classList.add('press'); TOUR.timers.push(ctxT(function () { FX.day = '2026-04-11'; FX.calv = 'day'; fxRender(); }, 350)); }],
       [8600, function () { fxOpen({ t: 'pres', i: 4 }, true); }],
-      [11000, function () { FX.open = null; FX.day = null; fxRender(); }]
+      [10600, function () { FX.open = null; var b = document.querySelector('#fx-main [data-act="fpcv"][data-v="month"]'); if (b) b.classList.add('press'); TOUR.timers.push(ctxT(function () { FX.calv = 'month'; fxRender(); }, 300)); }],
+      [13600, function () { FX.day = null; FX.calv = 'week'; fxRender(); }]
     ] },
     { v: 'rep', d: 5500, at: [[2600, function () { FX.mon = 10; fxRender(); }]] }
   ];
@@ -2653,9 +2787,26 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FPOWN0 = [
     { id: 'o1', k: 0, d: '2026-04-06', h1: '10:00', h2: '18:00', cli: 'Grupo Hansen', pax: 10, amt: 1500, src: 'Teléfono', note: '' },
     { id: 'o2', k: 1, d: '2026-04-09', h1: '18:30', h2: '21:00', cli: 'Sra. Ortega', pax: 5, amt: 1300, src: 'Web propia', note: 'Cumpleaños: tarta a bordo' },
-    { id: 'o3', k: 1, d: '2026-04-11', h1: '10:00', h2: '13:00', cli: 'Familia Puig', pax: 6, amt: 750, src: 'Teléfono', note: 'Salida de mañana' }
+    { id: 'o3', k: 1, d: '2026-04-11', h1: '10:00', h2: '13:00', cli: 'Familia Puig', pax: 6, amt: 750, src: 'Teléfono', note: 'Salida de mañana' },
+    { id: 'o4', k: 0, d: '2026-04-02', h1: '10:00', h2: '18:00', cli: 'Familia Navarro', pax: 9, amt: 1500, src: 'Teléfono', note: '' },
+    { id: 'o5', k: 2, d: '2026-04-03', h1: '10:00', h2: '14:00', cli: 'M. Ferrer', pax: 4, amt: 600, src: 'En persona', note: '' },
+    { id: 'o6', k: 1, d: '2026-04-04', h1: '18:30', h2: '21:00', cli: 'Grupo Lindqvist', pax: 8, amt: 1300, src: 'Otra agencia', note: '' },
+    { id: 'o7', k: 0, d: '2026-04-14', h1: '10:00', h2: '18:00', cli: 'Sr. Alcover', pax: 10, amt: 1500, src: 'Web propia', note: '' },
+    { id: 'o8', k: 1, d: '2026-04-15', h1: '18:30', h2: '21:00', cli: 'Familia Bauer', pax: 6, amt: 1300, src: 'Teléfono', note: '' },
+    { id: 'o9', k: 2, d: '2026-04-16', h1: '10:00', h2: '17:00', cli: 'L. Moreau', pax: 5, amt: 1100, src: 'Web propia', note: '' },
+    { id: 'o10', k: 0, d: '2026-04-18', h1: '10:00', h2: '14:00', cli: 'Despedida de Sara', pax: 12, amt: 900, src: 'Teléfono', note: 'Música a bordo' },
+    { id: 'o11', k: 1, d: '2026-04-18', h1: '18:30', h2: '21:00', cli: 'P. Rossi', pax: 4, amt: 1300, src: 'Otra agencia', note: '' },
+    { id: 'o12', k: 0, d: '2026-04-21', h1: '10:00', h2: '18:00', cli: 'Familia Janssen', pax: 8, amt: 1500, src: 'Web propia', note: '' },
+    { id: 'o13', k: 2, d: '2026-04-24', h1: '08:00', h2: '10:00', cli: 'J. Coll · pesca', pax: 3, amt: 300, src: 'En persona', note: '' },
+    { id: 'o14', k: 1, d: '2026-04-25', h1: '10:00', h2: '13:00', cli: 'Familia Vidal', pax: 6, amt: 750, src: 'Teléfono', note: '' },
+    { id: 'o15', k: 0, d: '2026-04-26', h1: '10:00', h2: '18:00', cli: 'Grupo Becker', pax: 11, amt: 1500, src: 'Otra agencia', note: '' },
+    { id: 'o16', k: 1, d: '2026-04-28', h1: '18:30', h2: '21:00', cli: 'A. Dubois', pax: 2, amt: 1300, src: 'Web propia', note: '' }
   ];
-  var FPOWN = fpOwnCopy(FPOWN0), FPN = 0, FPON = 3;
+  var FPOWN = fpOwnCopy(FPOWN0), FPN = 0, FPON = 16;
+  // «Hoy» y la hora actual de la agenda de ejemplo
+  var FPTODAY = '2026-04-09', FPNOW = '11:40';
+  var FPBC = { 0: '#1F4E8C', 1: '#1E7A5A', 2: '#14808A' };
+  function fpBoatC(k) { return FPBC[k] || '#656B71'; }
   var FPSRC = ['Teléfono', 'Web propia', 'En persona', 'Otra agencia'];
   var FPHR = [8, 22];
   var FPQ = [['Primera hora', '08:00', '10:00'], ['Mañana', '10:00', '14:00'], ['Tarde', '14:00', '18:00'], ['Atardecer y noche', '18:00', '22:00']];
@@ -2783,56 +2934,162 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + head + (rows || '<div class="fx-empty">' + T('Sin resultados') + '</div>');
   }
   function fpPartner(n) { return FPP.filter(function (p) { return p.n === n; })[0] || FPP[0]; }
-  function fpCal() {
-    if (FX.day) return fpDayView();
-    var days = fpWeek(), en = S.lang === 'en';
-    var head = '<span></span>' + days.map(function (d) { return '<button type="button" class="fx-cal-h fx-cal-hb" data-act="fpday" data-v="' + d + '" aria-label="' + T('Ver el día') + ' ' + fxDate(d, true) + '">' + fxDate(d, true) + '<small>' + T('Ver el día') + '</small></button>'; }).join('');
-    // Una fila por servicio dado de alta, publicado o no
-    var rows = FPS.map(function (x) {
-      var name = x.raw ? esc(x.n) : T(x.n);
-      return '<span class="fx-cal-s"><b>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small title="' + name + '">' + name + '</small></span>' + days.map(function (d) {
-        // La celda se divide en 4 franjas: se llena solo la parte del día que está reservada
-        var key = x.k + '|' + d, fresh = FX.fresh === key ? ' fresh' : '', it = fpItems(x.k, d);
-        return '<div class="fx-slot q' + fresh + '">' + FPQ.map(function (q) {
-          var q1 = fpMin(q[1]), q2 = fpMin(q[2]), a = it.filter(function (b) { return fpMin(b.h1) < q2 && q1 < fpMin(b.h2); })[0];
-          var lab = T(q[0]) + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true);
-          if (!a) return '<button type="button" class="qb" data-act="fpdnew" data-v="' + key + '|' + q[1] + '|' + q[2] + '" aria-label="' + T('Añadir reserva') + ' · ' + lab + '"><span>+</span></button>';
-          var prev = FPQ.indexOf(q) > 0 ? FPQ[FPQ.indexOf(q) - 1] : null, cont = prev && fpMin(a.h1) < fpMin(prev[2]) && fpMin(prev[1]) < fpMin(a.h2);
-          return '<button type="button" class="qb ' + (a.t === 'fv' ? 'fv' : 'own') + (cont ? ' cont' : '') + '" data-act="' + (a.t === 'fv' ? 'fprow' : 'fpownedit') + '" data-v="' + (a.t === 'fv' ? a.i : a.id) + '" aria-label="' + esc(a.cli) + ' · ' + a.h1 + '–' + a.h2 + ' · ' + lab + '" title="' + esc(a.cli) + ' · ' + a.h1 + '–' + a.h2 + '">' + (cont ? '' : '<b>' + esc(a.cli) + '</b>') + '</button>';
-        }).join('') + '</div>';
-      }).join('');
+  // ---------- Agenda: vistas Día, Semana y Mes, con filtros por barco y por origen ----------
+  function fpRef() { return FX.day || fpIso(FPTODAY, (FX.wk || 0) * 7); }
+  function fpMonth() { var d = new Date('2026-04-01T12:00:00'); d.setMonth(d.getMonth() + (FX.mo || 0)); return d; }
+  function fpNav(dir) {
+    var v = FX.calv || 'week';
+    if (v === 'day') FX.day = fpIso(fpRef(), dir);
+    else if (v === 'month') FX.mo = (FX.mo || 0) + dir;
+    else FX.wk = (FX.wk || 0) + dir;
+  }
+  function fpBoats() { return FPS.filter(function (x) { return FX.fb == null || String(x.k) === String(FX.fb); }); }
+  function fpItemsF(k, d) { return fpItems(k, d).filter(function (a) { return !FX.fs || FX.fs === a.t; }); }
+  function fpStat(a) {
+    if (a.t === 'own') return ['Propia', 'own'];
+    var b = FPB[a.i]; return b.st === 'held' ? ['Señal pagada', 'ok'] : b.st === 'pend' ? ['Pendiente de pago', 'pend'] : ['Completada', 'done'];
+  }
+  function fpMonLong(d) { var en = S.lang === 'en'; return (en ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'])[d.getMonth()] + ' ' + d.getFullYear(); }
+  function fpDayN(iso) { var en = S.lang === 'en', d = new Date(iso + 'T12:00:00'); return { w: (en ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'])[d.getDay()], n: d.getDate() }; }
+  // Cifras del periodo visible: reservas, ocupación (franjas reservadas), ingresos y franjas libres
+  function fpKpis(days) {
+    var boats = fpBoats(), n = 0, amt = 0, used = 0, tot = boats.length * days.length * FPQ.length;
+    boats.forEach(function (x) { days.forEach(function (d) {
+      var it = fpItemsF(x.k, d); n += it.length; it.forEach(function (a) { amt += +a.amt || 0; });
+      FPQ.forEach(function (q) { if (it.some(function (a) { return fpMin(a.h1) < fpMin(q[2]) && fpMin(q[1]) < fpMin(a.h2); })) used++; });
+    }); });
+    var en = S.lang === 'en', occ = tot ? Math.round(used / tot * 100) : 0;
+    return '<div class="ag-kpis">' + [['Reservas', String(n)], ['Ocupación', occ + (en ? '%' : ' %'), occ], ['Ingresos', money(amt)], ['Franjas libres', String(tot - used)]].map(function (k) {
+      return '<div class="ag-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] != null ? '<i><u style="width: ' + k[2] + '%"></u></i>' : '') + '</div>';
+    }).join('') + '</div>';
+  }
+  function fpCalBar(title, sub) {
+    var v = FX.calv || 'week';
+    var seg = [['day', 'Día'], ['week', 'Semana'], ['month', 'Mes']].map(function (o) { return '<button type="button" data-act="fpcv" data-v="' + o[0] + '" aria-pressed="' + (v === o[0]) + '">' + T(o[1]) + '</button>'; }).join('');
+    var boats = '<button type="button" class="ag-f" data-act="fpfb" data-v="all" aria-pressed="' + (FX.fb == null) + '">' + T('Todos los barcos') + '</button>' + FPS.map(function (x) {
+      return '<button type="button" class="ag-f" data-act="fpfb" data-v="' + x.k + '" aria-pressed="' + (String(FX.fb) === String(x.k)) + '"><i style="background: ' + fpBoatC(x.k) + '"></i>' + esc(x.boat || '') + '</button>';
     }).join('');
-    var msg = FX.calMsg ? '<div class="fx-ok" role="status" style="margin: 10px 18px 0">' + T(FX.calMsg) + '</div>' : '';
+    var src = [['all', 'Todas'], ['fv', 'Favent'], ['own', 'Propias']].map(function (o) { return '<button type="button" class="ag-f" data-act="fpfs" data-v="' + o[0] + '" aria-pressed="' + ((FX.fs || 'all') === o[0]) + '">' + (o[0] === 'fv' ? '<i class="sq fv"></i>' : o[0] === 'own' ? '<i class="sq own"></i>' : '') + T(o[1]) + '</button>'; }).join('');
+    var msg = FX.calMsg ? '<div class="fx-ok" role="status" style="margin: 0 18px 10px">' + T(FX.calMsg) + '</div>' : '';
     FX.calMsg = null;
-    return '<div class="fx-bar"><span class="fx-title">' + T('Agenda') + '</span><div class="fx-wk"><button type="button" class="fx-btn ghost" data-act="fpwk" data-v="-1" aria-label="' + T('Semana anterior') + '">‹</button><span>' + fxDate(days[0], false) + ' – ' + fxDate(days[6], false) + '</span><button type="button" class="fx-btn ghost" data-act="fpwk" data-v="1" aria-label="' + T('Semana siguiente') + '">›</button><button type="button" class="fx-btn" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
-      + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Lleva aquí todas tus reservas, como en cualquier agenda. Toca un hueco libre para apuntar una reserva que te llega por teléfono, por tu web o en persona; las que entran por Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.') + ' ' + T('Pulsa un día para verlo por horas.') + '</span><span class="fx-cal-q">' + T('Cada hueco se divide en 4 franjas:') + ' ' + FPQ.map(function (q) { return '<b>' + T(q[0]) + '</b> ' + q[1] + '–' + q[2]; }).join(' · ') + '</span></div>'
-      + msg + '<div class="fx-cal"><div class="fx-cal-g">' + head + rows + '</div></div>'
-      + colSvcs();
+    return '<div class="ag-top"><div class="ag-tt"><span class="ag-eb">' + T('Agenda') + '</span><span class="ag-title" id="fp-daytitle" tabindex="-1">' + title + '</span>' + (sub ? '<span class="ag-sub">' + sub + '</span>' : '') + '</div>'
+      + '<div class="ag-ctl"><div class="ag-seg" role="group" aria-label="' + T('Vista') + '">' + seg + '</div>'
+      + '<button type="button" class="fx-btn ghost ag-today" data-act="fptoday">' + T('Hoy') + '</button>'
+      + '<div class="ag-nav"><button type="button" class="fx-btn ghost" data-act="fpnav" data-v="-1" aria-label="' + T('Anterior') + '">‹</button><button type="button" class="fx-btn ghost" data-act="fpnav" data-v="1" aria-label="' + T('Siguiente') + '">›</button></div>'
+      + '<button type="button" class="fx-btn accent" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
+      + '<div class="ag-filters"><div class="ag-fg" role="group" aria-label="' + T('Barco') + '">' + boats + '</div><div class="ag-fg" role="group" aria-label="' + T('Origen') + '">' + src + '</div></div>' + msg;
+  }
+  function fpCalNote() {
+    return '<p class="ag-note">' + T('Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.') + '</p>';
+  }
+  // Semana estilo calendario: días en columnas, horas en filas y cada reserva en un recuadro del color de su barco.
+  // En móvil: tira de días arriba y debajo el día elegido por horas.
+  function fpCal() {
+    var v = FX.calv || 'week';
+    if (v === 'day') return fpDayView();
+    if (v === 'month') return fpMonthView();
+    var week = fpWeek(), mob = window.innerWidth <= 640;
+    var sel = FX.day && week.indexOf(FX.day) >= 0 ? FX.day : (week.indexOf(FPTODAY) >= 0 ? FPTODAY : week[0]);
+    var d6 = new Date(week[6] + 'T12:00:00'), t = fpMonLong(d6);
+    var title = t.charAt(0).toUpperCase() + t.slice(1);
+    var strip = mob ? '<div class="wg-strip">' + week.map(function (d) {
+      var dn = fpDayN(d), n = fpBoats().reduce(function (a, x) { return a + fpItemsF(x.k, d).length; }, 0);
+      return '<button type="button" class="wg-sd' + (d === sel ? ' on' : '') + (d === FPTODAY ? ' today' : '') + '" data-act="fpsel" data-v="' + d + '" aria-pressed="' + (d === sel) + '" aria-label="' + fxDate(d, true) + '"><span>' + dn.w.slice(0, 1) + '</span><b>' + dn.n + '</b><i' + (n ? '' : ' class="no"') + '></i></button>';
+    }).join('') + '</div>' : '';
+    return fpCalBar(title, T('Semana') + ' ' + fxDate(week[0], false) + ' – ' + fxDate(week[6], false))
+      + fpKpis(week)
+      + '<div class="ag-legend">' + fpBoats().map(function (x) { return '<span><i class="sq" style="background: ' + fpBoatP(x.k) + '; box-shadow: inset 3px 0 0 ' + fpBoatC(x.k) + '"></i>' + esc(x.boat || '') + '</span>'; }).join('') + '<span><b class="wg-fv">Favent</b>' + T('reserva que se apunta sola') + '</span><span><i class="sq pend"></i>' + T('Pendiente de pago') + '</span></div>'
+      + strip + fpGrid(mob ? [sel] : week, !mob) + fpCalNote() + colSvcs();
+  }
+  if (window.matchMedia) { var fpMq = matchMedia('(max-width: 640px)'); var fpMqF = function () { if (FX && FX.calv !== 'month' && typeof fxRenderAll === 'function') fxRenderAll(); }; if (fpMq.addEventListener) fpMq.addEventListener('change', fpMqF); }
+  function fpBoatP(k) { return { 0: '#E6EEF8', 1: '#E3F1EA', 2: '#E0F0F1' }[k] || '#F0F1ED'; }
+  function fpBoatD(k) { return { 0: '#0B2A4A', 1: '#0E3B2C', 2: '#0B3B40' }[k] || '#3D4248'; }
+  // Rejilla de horas para varios días. Las reservas que coinciden en hora se colocan una al lado de otra
+  function fpGrid(days, head) {
+    var H = 46, h0 = FPHR[0], hN = FPHR[1], hours = [];
+    for (var h = h0; h < hN; h++) hours.push(h);
+    var cols = 'grid-template-columns: 56px repeat(' + days.length + ', minmax(0, 1fr))';
+    var hd = head ? '<div class="wg-head" style="' + cols + '"><span></span>' + days.map(function (d) {
+      var dn = fpDayN(d);
+      return '<button type="button" class="ag-dh' + (d === FPTODAY ? ' today' : '') + '" data-act="fpday" data-v="' + d + '" aria-label="' + T('Ver el día') + ' ' + fxDate(d, true) + '"><span>' + dn.w + '</span><b>' + dn.n + '</b></button>';
+    }).join('') + '</div>' : '';
+    var gut = '<div class="wg-gut">' + hours.map(function (h) { return '<span style="height: ' + H + 'px">' + ('0' + h).slice(-2) + ':00</span>'; }).join('') + '</div>';
+    var body = days.map(function (d) {
+      var evs = [];
+      fpBoats().forEach(function (x) { fpItemsF(x.k, d).forEach(function (a) { evs.push({ a: a, x: x, s: fpMin(a.h1), e: fpMin(a.h2) }); }); });
+      evs.sort(function (p, q) { return p.s - q.s || q.e - p.e; });
+      // Grupos de reservas que se solapan: cada una en su carril
+      var groups = [], cur = null, end = -1;
+      evs.forEach(function (ev) { if (!cur || ev.s >= end) { cur = []; groups.push(cur); end = ev.e; } else end = Math.max(end, ev.e); cur.push(ev); });
+      groups.forEach(function (g) { var lanes = []; g.forEach(function (ev) { for (var l = 0; l < lanes.length; l++) if (lanes[l] <= ev.s) break; lanes[l] = ev.e; ev.l = l; }); g.forEach(function (ev) { ev.n = lanes.length; }); });
+      var cells = hours.map(function (h) { var hh = ('0' + h).slice(-2) + ':00'; return '<button type="button" class="wg-cell" data-act="fpwnew" data-v="' + d + '|' + hh + '" style="height: ' + H + 'px" aria-label="' + T('Añadir reserva') + ' · ' + fxDate(d, true) + ' · ' + hh + '"><span>+ ' + hh + '</span></button>'; }).join('');
+      var blocks = evs.map(function (ev) {
+        var a = ev.a, x = ev.x, fv = a.t === 'fv', st = fpStat(a), top = (ev.s - h0 * 60) / 60 * H + 1, ht = Math.max(H * 0.62, (ev.e - ev.s) / 60 * H - 3);
+        var w = 100 / ev.n, short = ht < H * 1.3;
+        return '<button type="button" class="wg-ev st-' + st[1] + (FX.fresh === a.id || FX.fresh === x.k + '|' + d ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px; left: calc(' + (ev.l * w) + '% + 2px); width: calc(' + w + '% - 4px); --c: ' + fpBoatC(x.k) + '; --p: ' + fpBoatP(x.k) + '; --d: ' + fpBoatD(x.k) + '" aria-label="' + esc(a.cli) + ' · ' + esc(x.boat || '') + ' · ' + a.h1 + '–' + a.h2 + ' · ' + T(st[0]) + '">'
+          + '<b>' + esc(a.cli) + (fv && ev.n === 1 ? ' <i class="wg-fv">Favent</i>' : '') + '</b>'
+          + '<span>' + esc(x.boat || '') + (short ? ' · ' + a.h1 : (a.pax ? ' · ' + a.pax + ' pax' : '')) + '</span>'
+          + (short ? '' : '<span class="wg-t">' + a.h1 + ' – ' + a.h2 + '</span>')
+          + (!short && ht > H * 2.4 ? '<span class="wg-t">' + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>' : '') + '</button>';
+      }).join('');
+      var now = d === FPTODAY ? '<span class="fd-now" style="top: ' + ((fpMin(FPNOW) - h0 * 60) / 60 * H) + 'px" aria-hidden="true"></span>' : '';
+      return '<div class="wg-col' + (d === FPTODAY ? ' today' : '') + '" style="height: ' + (hours.length * H) + 'px">' + cells + blocks + now + '</div>';
+    }).join('');
+    return '<div class="wg' + (head ? '' : ' one') + '">' + hd + '<div class="wg-body" style="' + cols + '">' + gut + body + '</div></div>';
   }
   // Un día por horas: una columna por barco y un recuadro por reserva, de la hora de inicio a la de fin
   function fpDayView() {
-    var d = FX.day, H = 44, h0 = FPHR[0], hN = FPHR[1], en = S.lang === 'en';
+    var d = fpRef(); FX.day = d;
+    var H = 48, h0 = FPHR[0], hN = FPHR[1], en = S.lang === 'en', boats = fpBoats();
     var hours = []; for (var h = h0; h < hN; h++) hours.push(h);
     var gut = '<div class="fd-gut">' + hours.map(function (h) { return '<span style="height: ' + H + 'px">' + ('0' + h).slice(-2) + ':00</span>'; }).join('') + '</div>';
-    var cols = FPS.map(function (x) {
-      var cells = hours.map(function (h) { return '<button type="button" class="fd-cell" data-act="fpdnew" data-v="' + x.k + '|' + d + '|' + ('0' + h).slice(-2) + ':00" style="height: ' + H + 'px" aria-label="' + T('Añadir reserva') + ' · ' + esc(x.boat || '') + ' · ' + ('0' + h).slice(-2) + ':00"></button>'; }).join('');
-      var blocks = fpItems(x.k, d).map(function (a) {
-        var top = (fpMin(a.h1) - h0 * 60) / 60 * H, ht = Math.max(H * 0.75, (fpMin(a.h2) - fpMin(a.h1)) / 60 * H - 4);
-        var fv = a.t === 'fv', svc = x.raw ? esc(x.n) : T(x.n);
-        return '<button type="button" class="fd-bk' + (fv ? ' fv' : ' own') + (FX.fresh === a.id ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px">'
-          + '<span class="fd-t">' + a.h1 + ' – ' + a.h2 + '<i>' + (fv ? 'Favent' : T('Propia')) + '</i></span><b>' + esc(a.cli) + '</b>'
-          + '<span>' + (a.pax ? a.pax + ' pax · ' : '') + (a.amt ? money(+a.amt) + ' · ' : '') + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>'
-          + '<span class="fd-s">' + svc + '</span>' + (a.note ? '<span class="fd-s">' + esc(a.note) + '</span>' : '') + '</button>';
+    var nowTop = d === FPTODAY ? (fpMin(FPNOW) - h0 * 60) / 60 * H : null;
+    var cols = boats.map(function (x) {
+      var cells = hours.map(function (h) { return '<button type="button" class="fd-cell" data-act="fpdnew" data-v="' + x.k + '|' + d + '|' + ('0' + h).slice(-2) + ':00" style="height: ' + H + 'px" aria-label="' + T('Añadir reserva') + ' · ' + esc(x.boat || '') + ' · ' + ('0' + h).slice(-2) + ':00"><span>+ ' + ('0' + h).slice(-2) + ':00</span></button>'; }).join('');
+      var its = fpItemsF(x.k, d), busy = its.reduce(function (a, b) { return a + fpMin(b.h2) - fpMin(b.h1); }, 0);
+      var blocks = its.map(function (a) {
+        var top = (fpMin(a.h1) - h0 * 60) / 60 * H + 2, ht = Math.max(H * 0.8, (fpMin(a.h2) - fpMin(a.h1)) / 60 * H - 4);
+        var fv = a.t === 'fv', svc = x.raw ? esc(x.n) : T(x.n), st = fpStat(a);
+        return '<button type="button" class="fd-bk' + (fv ? ' fv' : ' own') + ' st-' + st[1] + (FX.fresh === a.id ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px; --c: ' + fpBoatC(x.k) + '; --p: ' + fpBoatP(x.k) + '; --d: ' + fpBoatD(x.k) + '">'
+          + '<span class="fd-t">' + a.h1 + ' – ' + a.h2 + '<i class="fd-st">' + T(st[0]) + '</i></span><b>' + esc(a.cli) + (fv ? ' <i class="wg-fv">Favent</i>' : '') + '</b>'
+          + '<span>' + (a.pax ? a.pax + ' pax' : '') + (a.amt ? ' · ' + money(+a.amt) : '') + '</span>'
+          + '<span class="fd-s">' + (fv ? T('Recomendado por') + ' ' + a.sub : T('Origen') + ': ' + a.sub) + '</span>'
+          + '<span class="fd-s">' + svc + '</span>' + (a.note ? '<span class="fd-s fd-n">' + esc(a.note) + '</span>' : '') + '</button>';
       }).join('');
-      return '<div class="fd-col"><div class="fd-ch"><b>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small>' + (x.raw ? esc(x.n) : T(x.n)) + '</small></div><div class="fd-body" style="height: ' + (hours.length * H) + 'px">' + cells + blocks + '</div></div>';
+      var now = nowTop != null ? '<span class="fd-now" style="top: ' + nowTop + 'px" aria-hidden="true"></span>' : '';
+      return '<div class="fd-col"><div class="fd-ch"><b><i style="background: ' + fpBoatC(x.k) + '"></i>' + esc(x.boat || '') + (x.on ? '' : ' <em>' + T('Oculto') + '</em>') + '</b><small>' + (x.raw ? esc(x.n) : T(x.n)) + '</small><span class="ag-occ"><i><u style="width: ' + Math.round(busy / ((hN - h0) * 60) * 100) + '%"></u></i>' + (its.length ? its.length + ' ' + T(its.length === 1 ? 'reserva' : 'reservas') : T('Libre')) + '</span></div><div class="fd-body" style="height: ' + (hours.length * H) + 'px">' + cells + blocks + now + '</div></div>';
     }).join('');
-    var n = FPS.reduce(function (a, x) { return a + fpItems(x.k, d).length; }, 0);
-    var msg = FX.calMsg ? '<div class="fx-ok" role="status" style="margin: 10px 18px 0">' + T(FX.calMsg) + '</div>' : '';
-    FX.calMsg = null;
-    return '<div class="fx-bar"><div style="display: flex; align-items: center; gap: 10px; min-width: 0"><button type="button" class="fx-btn ghost" data-act="fpday" data-v="">← ' + T('Semana') + '</button><span class="fx-title" id="fp-daytitle" tabindex="-1">' + fxDate(d, true) + '</span></div>'
-      + '<div class="fx-wk"><button type="button" class="fx-btn ghost" data-act="fpdstep" data-v="-1" aria-label="' + T('Día anterior') + '">‹</button><span>' + n + ' ' + T(n === 1 ? 'reserva' : 'reservas') + '</span><button type="button" class="fx-btn ghost" data-act="fpdstep" data-v="1" aria-label="' + T('Día siguiente') + '">›</button><button type="button" class="fx-btn" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
-      + '<div class="fx-cal-note"><span class="fx-cal-lg"><i class="lg-f"></i>' + T('Reserva de Favent: se apunta sola') + '<i class="lg-o"></i>' + T('Reserva propia: la apuntas tú') + '</span><span>' + T('Toca una hora libre para apuntar una reserva.') + '</span></div>'
-      + msg + '<div class="fd-wrap"><div class="fd-grid" style="grid-template-columns: 56px repeat(' + FPS.length + ', minmax(150px, 1fr))"><div class="fd-col fd-gc"><div class="fd-ch"></div>' + gut + '</div>' + cols + '</div></div>';
+    var dn = new Date(d + 'T12:00:00'), tdy = d === FPTODAY;
+    var title = fpDayN(d).w + ' ' + fpDayN(d).n + ' ' + fpMonLong(dn);
+    var nowG = nowTop != null ? '<span class="fd-nowl" style="top: ' + (nowTop + 66) + 'px">' + FPNOW + '</span>' : '';
+    return fpCalBar(title, tdy ? T('Hoy') + ' · ' + T('ahora') + ' ' + FPNOW : '')
+      + fpKpis([d])
+      + '<div class="fd-wrap"><div class="fd-grid" style="grid-template-columns: 56px repeat(' + boats.length + ', minmax(160px, 1fr))"><div class="fd-col fd-gc"><div class="fd-ch"></div>' + gut + nowG + '</div>' + cols + '</div></div>'
+      + fpCalNote();
+  }
+  // Mes: ocupación de cada día y sus reservas; al tocar un día se abre su vista por horas
+  function fpMonthView() {
+    var m = fpMonth(), en = S.lang === 'en', boats = fpBoats(), y = m.getFullYear(), mo = m.getMonth();
+    var first = new Date(y, mo, 1, 12), start = new Date(first); start.setDate(1 - ((first.getDay() + 6) % 7));
+    var iso = function (dt) { return dt.getFullYear() + '-' + ('0' + (dt.getMonth() + 1)).slice(-2) + '-' + ('0' + dt.getDate()).slice(-2); };
+    var cells = [], all = [];
+    for (var c = 0; c < 42; c++) {
+      var dt = new Date(start); dt.setDate(start.getDate() + c);
+      if (c >= 35 && dt.getMonth() !== mo) break;
+      var d = iso(dt), its = [], used = 0;
+      boats.forEach(function (x) { var it = fpItemsF(x.k, d); it.forEach(function (a) { its.push({ a: a, x: x }); }); FPQ.forEach(function (q) { if (it.some(function (a) { return fpMin(a.h1) < fpMin(q[2]) && fpMin(q[1]) < fpMin(a.h2); })) used++; }); });
+      if (dt.getMonth() === mo) all.push(d);
+      its.sort(function (p, q) { return fpMin(p.a.h1) - fpMin(q.a.h1); });
+      var occ = boats.length ? Math.round(used / (boats.length * FPQ.length) * 100) : 0;
+      var lines = its.slice(0, 3).map(function (o) { return '<span class="mo-e ' + o.a.t + ' st-' + fpStat(o.a)[1] + '"><i style="background: ' + fpBoatC(o.x.k) + '"></i>' + o.a.h1 + ' ' + esc(o.a.cli) + '</span>'; }).join('') + (its.length > 3 ? '<span class="mo-more">+' + (its.length - 3) + ' ' + T('más') + '</span>' : '');
+      cells.push('<button type="button" class="mo-d' + (dt.getMonth() !== mo ? ' out' : '') + (d === FPTODAY ? ' today' : '') + '" data-act="fpday" data-v="' + d + '" aria-label="' + fxDate(d, true) + ' · ' + its.length + ' ' + T(its.length === 1 ? 'reserva' : 'reservas') + '"><span class="mo-n"><b>' + dt.getDate() + '</b>' + (its.length ? '<em>' + its.length + '</em>' : '') + '</span><i class="mo-o"><u style="width: ' + occ + '%"></u></i>' + lines + '</button>');
+    }
+    var wd = (en ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] : ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']).map(function (w) { return '<span class="mo-h">' + w + '</span>'; }).join('');
+    var title = fpMonLong(m); title = title.charAt(0).toUpperCase() + title.slice(1);
+    return fpCalBar(title, '')
+      + fpKpis(all)
+      + '<div class="ag-legend"><span><i class="sq fv"></i>' + T('Favent · se apunta sola') + '</span><span><i class="sq own"></i>' + T('Propia · la apuntas tú') + '</span><span>' + T('La barra de cada día es su ocupación.') + '</span></div>'
+      + '<div class="mo-wrap"><div class="mo-g">' + wd + cells.join('') + '</div></div>' + fpCalNote();
   }
   // Escanear el QR del cliente (o escribir su código) y ver su reserva: lo que queda por cobrar y la comisión que se libera
   function fpBDep(b) { var x = FPS.filter(function (y) { return y.k === b.s; })[0] || FPS0[b.s]; return (x && x.dep) || 'com'; }
@@ -2908,7 +3165,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (o.id) FPOWN = FPOWN.map(function (x) { return x.id === o.id ? Object.assign({ id: o.id }, rec) : x; });
     else { rec.id = 'o' + (++FPON); FPOWN.push(rec); }
     FX.calMsg = o.isNew ? 'Reserva apuntada en tu agenda.' : 'Reserva actualizada.';
-    FX.fresh = FX.day ? (o.id || rec.id) : k + '|' + o.d;
+    FX.fresh = FX.calv === 'day' ? (o.id || rec.id) : k + '|' + o.d;
     FX.own = null; FX.open = null; fxRender();
   }
   document.addEventListener('input', function (e) {
@@ -3004,7 +3261,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     b.st = 'redeemed'; FX.scanned = i; if (FX.qr) FX.qr.fresh = false; fxRender();
     ctxT(function () { b.st = 'released'; fxRender(); }, 900);
   }
-  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPOWN = fpOwnCopy(FPOWN0); FX.own = null; FX.wk = 0; FX.calMsg = null; FX.day = null; FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
+  function fpReset() { FPB = FPB0.map(function (b) { return Object.assign({}, b); }); FPOWN = fpOwnCopy(FPOWN0); FX.own = null; FX.wk = 0; FX.mo = 0; FX.calMsg = null; FX.day = null; FX.calv = 'week'; FX.fb = null; FX.fs = null; FPS = FPS0.map(function (x) { return Object.assign({}, x, { days: x.days.slice() }); }); FX.form = null; FX.passed = {}; FX.ppin = null; FX.refd = {}; FX.passedSvc = {}; FX.scanned = null; FX.fresh = null; }
 
   function fxDrawer() {
     var d = $('fx-drawer'), o = FX.open, en = S.lang === 'en';
