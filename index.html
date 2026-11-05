@@ -137,7 +137,40 @@ button[disabled]{opacity:.6;cursor:progress}
 @media (max-width: 640px){.map-town,.map-bay,.map-sea,.map-tram{display:none}.map-city{font-size:20px}.map-attr{font-size:8px !important;right:4px !important;bottom:2px !important}}
 /* Dashboard interactivo */
 .hx-top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #E6E7E3;background:#FBFBFA}
-.hx-body{display:grid;grid-template-columns:200px minmax(0,1fr)}
+.hx-body{display:grid;grid-template-columns:200px minmax(0,1fr);position:relative}
+#hx-pre{position:absolute;inset:0;z-index:6;background:#F6F6F3;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}
+#hx-pre[hidden]{display:none}
+.hp-card{background:#FFFFFF;border:1px solid #E3E5E0;border-radius:22px;box-shadow:0 20px 50px rgba(30,34,38,.10);padding:26px 28px;display:flex;flex-direction:column;gap:12px;width:100%;animation:rowin .35s cubic-bezier(.2,.7,.2,1)}
+.hp-login{max-width:720px;flex-direction:row;padding:0;overflow:hidden;gap:0}.hp-cats{max-width:760px}
+.hp-card{flex-shrink:0;transform-origin:center}
+.hp-brand{flex:0 0 38%;background:#0B0F17;color:#E9EEF6;padding:24px;display:flex;flex-direction:column;gap:10px}
+.hp-brand .hp-logo{color:#E9EEF6}.hp-brand .hp-eb{color:#8E959C}
+.hp-brand b{margin-top:auto;font:500 20px/1.2 'Funnel Display',sans-serif;letter-spacing:-.02em}.hp-brand small{font-size:12.5px;line-height:1.45;color:#A3ABB8}
+.hp-form{flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.hp-form h3{margin:0}
+.hp-logo{color:#1E2226;font-size:24px;align-self:flex-start}
+.hp-eb{font:500 11px 'Geist Mono',monospace;color:#656B71;letter-spacing:.12em;text-transform:uppercase;margin-top:-6px}
+.hp-cats .hp-eb,.hp-step{margin-top:0 !important;color:#9D0F4E !important}
+.hp-card h3{margin:4px 0 0;font:600 22px/1.2 'Funnel Display',sans-serif;letter-spacing:-.02em;color:#1E2226}
+.hp-card p{margin:-4px 0 4px;font-size:13.5px;line-height:1.5;color:#50565C}
+.hp-f{display:flex;flex-direction:column;gap:4px;border:1px solid #D5D7D3;border-radius:12px;padding:8px 12px}
+.hp-f span{font-size:11px;font-weight:600;color:#656B71}.hp-f b{font-size:14px;font-weight:500;color:#1E2226}.hp-pw{letter-spacing:.15em}
+.hp-lb{font-size:12px;font-weight:600;color:#3D4248;margin-top:4px}
+.hp-roles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hp-role{position:relative;border:1.5px solid #E3E5E0;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s,background-color .2s}
+.hp-role i{width:32px;height:32px;border-radius:10px;background:#EAF2F8;color:#0B2A4A;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
+.hp-role b{font-size:14px;font-weight:600;color:#1E2226}.hp-role small{font-size:11.5px;line-height:1.4;color:#50565C}
+.hp-role.on{border-color:#FF4F9A;background:#FFF5F9}.hp-role.on i{background:#FF4F9A;color:#0B0F17}
+.hp-go{height:44px;border-radius:999px;background:#C9CBC5;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:600 14px 'Funnel Display',sans-serif;margin-top:4px;transition:background-color .25s}
+.hp-go.on{background:#1E2226}
+.hp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width: 640px){.hp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hp-login{flex-direction:column}.hp-brand{flex:none;padding:16px 18px}.hp-brand b,.hp-brand small{display:none}}
+.hp-cat{position:relative;border:1.5px solid #E3E5E0;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s,background-color .2s}
+.hp-cat i{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.hp-cat b{font-size:15px;font-weight:600;color:#1E2226}.hp-cat small{font:500 11.5px 'Geist Mono',monospace;color:#656B71}
+.hp-cat em{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:11px;border:1.5px solid #D5D7D3;display:flex;align-items:center;justify-content:center}
+.hp-cat.on{border-color:#FF4F9A;background:#FFF5F9}.hp-cat.on em{background:#FF4F9A;border-color:#FF4F9A}
+.hp-role.press,.hp-cat.press,.hp-go.press{transform:scale(.97)}
 .hx-side{border-right:1px solid #E6E7E3;background:#F8F8F6;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
 .hx-side button,.hx-li{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;border-radius:9px;padding:7px 10px;font:500 13px 'Funnel Display',sans-serif;color:#2A2D2B;cursor:pointer}
 .hx-li{cursor:default}
@@ -1020,6 +1053,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       <div class="fx-win">
         <div class="hx-top"><span class="fx-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="fx-crumb">Hotel Miramar / <b id="hx-crumb">Inicio</b></span></div>
         <div class="hx-body">
+          <div id="hx-pre" hidden></div>
           <div class="hx-side">
             <div class="fx-ws"><i>HM</i>Hotel Miramar</div>
             <div id="app-nav" style="display: flex; flex-direction: column; gap: 2px"></div>
@@ -1755,6 +1789,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'No se puede: a esa hora ya hay otra reserva en ese barco.': 'Not possible: that boat already has another booking at that time.', 'reserva en este periodo': 'booking in this period', 'reservas en este periodo': 'bookings in this period', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
     'Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.': 'Keep all your bookings here, like in any calendar. Favent bookings are added automatically with the client, party size and who referred them; you add your own (phone, website, in person or other agencies) by tapping a free slot.',
     'Hora': 'Time',
+    'Cada cliente que envías, cobrado.': 'Every client you send, paid.', 'El canal de ventas profesional entre empresas.': 'The professional sales channel between businesses.',
+    'Entrar': 'Sign in', 'Categorías': 'Categories', 'Entra en tu cuenta': 'Sign in to your account', 'Contraseña': 'Password', 'Entrar como': 'Sign in as',
+    'Usuario': 'User', 'Administrador': 'Admin', 'Busca servicios, reserva y sigue tus comisiones.': 'Find services, book and track your commissions.', 'Además gestiona el equipo, los acuerdos y los informes.': 'Also manages the team, agreements and reports.',
+    'Paso 1 de 2': 'Step 1 of 2', 'Paso 2 de 2': 'Step 2 of 2', '¿Qué servicios quieres ofrecer a tus clientes?': 'Which services do you want to offer your guests?', 'Elige las categorías que verás en el mapa. Puedes cambiarlas cuando quieras.': 'Choose the categories you’ll see on the map. You can change them anytime.', 'Continuar': 'Continue', 'servicios': 'services',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
     'reserva': 'booking', 'reservas': 'bookings', 'Toca una hora libre para apuntar una reserva.': 'Tap a free hour to add a booking.', 'Desde': 'From', 'Hasta': 'To',
     'La hora de fin tiene que ser posterior a la de inicio.': 'The end time must be after the start time.', 'A esa hora ya hay una reserva de Favent.': 'There is already a Favent booking at that time.', 'A esa hora ya hay otra reserva.': 'There is already another booking at that time.',
@@ -3512,10 +3550,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var svg = document.querySelector('#map svg').innerHTML;
     // Recorrido: todas las etiquetas → «Náutica» → «Solo colaboradores» → elige Cala d’Or y va al chat
     var col = LIVE.collab, all = true, nau = LIVE.nau;
-    var ids = col ? heroCollabIds() : SVCS.map(function (m, i) { return i; }).filter(function (i) { return !nau || SVCS[i].type === 'Náutica'; });
+    var inCat = function (i) { return !LIVE.cats || !LIVE.cats.length || LIVE.cats.indexOf(SVCS[i].type) >= 0; };
+    var ids = (col ? heroCollabIds() : SVCS.map(function (m, i) { return i; }).filter(function (i) { return !nau || SVCS[i].type === 'Náutica'; })).filter(inCat);
     var pick = LIVE.sel != null ? LIVE.sel : HSEL, sel = LIVE.pin ? pick : ids[0], sv = SVCS[sel], en = S.lang === 'en';
-    var base = SVCS.map(function (m, i) { return i; }).filter(function (i) { return !col || isCollab(SVCS[i].name) || i === HSEL; });
-    var chips = CATS.map(function (c) {
+    var base = SVCS.map(function (m, i) { return i; }).filter(function (i) { return (!col || isCollab(SVCS[i].name) || i === HSEL) && inCat(i); });
+    var chips = CATS.filter(function (c) { return c[0] === 'Todas' || !LIVE.cats || !LIVE.cats.length || LIVE.cats.indexOf(c[0]) >= 0; }).map(function (c) {
       var keep = S.mtype, keepP = S.mapPink, keepC = S.collab; S.mtype = nau ? 'Náutica' : 'Todas'; S.mapPink = nau; S.collab = false;
       var h = catChip(c).replace('<button type="button"', '<span' + (c[0] === 'Náutica' ? ' id="hx-nau"' : '')).replace('</button>', '</span>').replace(/ data-act="type" data-v="[^"]*"/, '');
       h = h.replace(/>\d+<\/span><\/span>$/, '>' + (c[0] === 'Todas' ? base.length : base.filter(function (i) { return SVCS[i].type === c[0]; }).length) + '</span></span>');
@@ -3596,7 +3635,42 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     card.style.marginBottom = (card.offsetHeight * (k - 1)) + 'px';
   }
   // Pinta el estado actual sin animaciones (también al cambiar de idioma)
+  // Antes del panel: inicio de sesión (Usuario o Administrador) y elección de categorías para el mapa
+  function heroPre() {
+    var el = $('hx-pre'); if (!el) return;
+    el.hidden = !LIVE.pre;
+    if (!LIVE.pre) { $('hx-crumb').textContent = T(NAV[S.nav][1]); return; }
+    $('hx-crumb').textContent = T(LIVE.pre === 'login' ? 'Entrar' : 'Categorías');
+    var en = S.lang === 'en';
+    if (LIVE.pre === 'login') {
+      var roles = [['user', 'Usuario', 'Busca servicios, reserva y sigue tus comisiones.', '<circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"></path>'], ['admin', 'Administrador', 'Además gestiona el equipo, los acuerdos y los informes.', '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path>']];
+      el.innerHTML = '<div class="hp-card hp-login"><div class="hp-brand"><span class="logo hp-logo">favent<span class="logo-cur" aria-hidden="true"></span></span><span class="hp-eb">B2B SERVICE</span><b>' + T('Cada cliente que envías, cobrado.') + '</b><small>' + T('El canal de ventas profesional entre empresas.') + '</small></div><div class="hp-form">'
+        + '<span class="hp-eb hp-step">' + T('Paso 1 de 2') + '</span><h3>' + T('Entra en tu cuenta') + '</h3>'
+        + '<div class="hp-f"><span>' + T('Empresa') + '</span><b>Hotel Miramar</b></div><div class="hp-f"><span>' + T('Contraseña') + '</span><b class="hp-pw">••••••••••</b></div>'
+        + '<span class="hp-lb">' + T('Entrar como') + '</span><div class="hp-roles">' + roles.map(function (r) {
+          return '<span class="hp-role' + (LIVE.role === r[0] ? ' on' : '') + '" id="hp-r-' + r[0] + '"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + r[3] + '</svg></i><b>' + T(r[1]) + '</b><small>' + T(r[2]) + '</small></span>';
+        }).join('') + '</div>'
+        + '<span class="hp-go' + (LIVE.role ? ' on' : '') + '" id="hp-go">' + T('Entrar') + '</span></div></div>';
+      heroPreFit(); return;
+    }
+    var cats = CATS.filter(function (c) { return c[0] !== 'Todas'; });
+    var nsel = (LIVE.cats || []).length;
+    el.innerHTML = '<div class="hp-card hp-cats"><span class="hp-eb">' + T('Paso 2 de 2') + '</span><h3>' + T('¿Qué servicios quieres ofrecer a tus clientes?') + '</h3><p>' + T('Elige las categorías que verás en el mapa. Puedes cambiarlas cuando quieras.') + '</p>'
+      + '<div class="hp-grid">' + cats.map(function (c) {
+        var on = (LIVE.cats || []).indexOf(c[0]) >= 0, n = SVCS.filter(function (x) { return x.type === c[0]; }).length;
+        return '<span class="hp-cat' + (on ? ' on' : '') + '" id="hp-c-' + CATS.indexOf(c) + '"><i style="background: ' + FXCOL[c[0]] + '"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + c[1] + '</svg></i><b>' + T(c[0]) + '</b><small>' + n + ' ' + T('servicios') + '</small><em aria-hidden="true">' + (on ? '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#0B0F17" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>' : '') + '</em></span>';
+      }).join('') + '</div>'
+      + '<span class="hp-go' + (nsel ? ' on' : '') + '" id="hp-next">' + T('Continuar') + (nsel ? ' · ' + nsel : '') + '</span></div>';
+    heroPreFit();
+  }
+  // Que la tarjeta quepa siempre dentro de la ventana del vídeo
+  function heroPreFit() {
+    var el = $('hx-pre'), c = el && el.firstChild; if (!c) return;
+    c.style.transform = ''; var k = Math.min(1, (el.clientHeight - 20) / c.offsetHeight, (el.clientWidth - 20) / c.offsetWidth);
+    if (k < 1) c.style.transform = 'scale(' + k + ')';
+  }
   function renderLive() {
+    heroPre();
     var st = LIVE.step, home = LIVE.view === 'home', content = $('hx-content');
     $('hx-home').hidden = !home; $('hx-alt').hidden = home;
     if (home) { content.style.height = ''; }
@@ -3632,48 +3706,58 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var SCENE = [
     [0, function () {
       LIVE.view = 'home'; LIVE.step = -1; LIVE.held = BASE.held; LIVE.rel = BASE.rel;
-      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.nau = false; LIVE.sel = null;
+      LIVE.pin = false; LIVE.chat = 0; LIVE.typing = false; LIVE.signed = false; LIVE.colAcc = false; LIVE.collab = false; LIVE.nau = false; LIVE.sel = null; LIVE.pre = 'login'; LIVE.role = null; LIVE.cats = [];
       S.nav = 0; renderNav(); renderLive(); $('cursor').classList.remove('on');
     }],
-    [900, function () { cursorTo(navBtn(1), true); }],
-    [1900, function () { goNav(1, 'map'); }],
-    [3400, function () { var b = $('hx-nau'); if (b) cursorTo(b, true); }],
-    [4350, function () { LIVE.nau = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
-    [5800, function () { var b = $('hx-collab'); if (b) cursorTo(b, true); }],
-    [6750, function () { LIVE.collab = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
-    [7900, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(0) + '"]'); if (m) cursorTo(m, true); }],
-    [8750, function () { LIVE.sel = heroAlt(0); LIVE.pin = true; renderLive(); }],
-    [9800, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(1) + '"]'); if (m) cursorTo(m, true); }],
-    [10650, function () { LIVE.sel = heroAlt(1); renderLive(); }],
-    [11500, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
-    [12450, function () { LIVE.sel = HSEL; LIVE.pin = true; renderLive(); }],
-    [13500, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
-    [14450, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
-    [15000, function () { LIVE.chat = 1; renderLive(); }],
-    [15600, function () { LIVE.typing = true; renderLive(); }],
-    [16800, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
-    [17500, function () { LIVE.chat = 3; renderLive(); }],
-    [18500, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
-    [19450, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
-    [20800, function () { cursorTo(navBtn(0), true); }],
-    [21750, function () { goNav(0, 'home'); }],
-    [22500, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
-    [25250, function () {
+    [1000, function () { var r = $('hp-r-user'); if (r) cursorTo(r, true); }],
+    [1950, function () { LIVE.role = 'user'; heroPre(); }],
+    [2900, function () { var g = $('hp-go'); if (g) cursorTo(g, true); }],
+    [3850, function () { LIVE.pre = 'cats'; heroPre(); }],
+    [4800, function () { var c = $('hp-c-1'); if (c) cursorTo(c, true); }],
+    [5750, function () { LIVE.cats = ['Náutica']; heroPre(); }],
+    [6500, function () { var c = $('hp-c-4'); if (c) cursorTo(c, true); }],
+    [7450, function () { LIVE.cats = ['Náutica', 'Servicios privados']; heroPre(); }],
+    [8250, function () { var g = $('hp-next'); if (g) cursorTo(g, true); }],
+    [9200, function () { LIVE.pre = null; renderLive(); }],
+    [10100, function () { cursorTo(navBtn(1), true); }],
+    [11100, function () { goNav(1, 'map'); }],
+    [12600, function () { var b = $('hx-nau'); if (b) cursorTo(b, true); }],
+    [13550, function () { LIVE.nau = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
+    [15000, function () { var b = $('hx-collab'); if (b) cursorTo(b, true); }],
+    [15950, function () { LIVE.collab = true; LIVE.tagIn = true; renderLive(); LIVE.tagIn = false; }],
+    [17100, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(0) + '"]'); if (m) cursorTo(m, true); }],
+    [17950, function () { LIVE.sel = heroAlt(0); LIVE.pin = true; renderLive(); }],
+    [19000, function () { var m = document.querySelector('#hx-alt [data-hpin="' + heroAlt(1) + '"]'); if (m) cursorTo(m, true); }],
+    [19850, function () { LIVE.sel = heroAlt(1); renderLive(); }],
+    [20700, function () { var m = document.querySelector('#hx-alt [data-hpin="' + HSEL + '"]'); if (m) cursorTo(m, true); }],
+    [21650, function () { LIVE.sel = HSEL; LIVE.pin = true; renderLive(); }],
+    [22700, function () { var b = $('hx-propose'); if (b) cursorTo(b, true); }],
+    [23650, function () { setNotif('chat', T('Propuesta enviada'), 'Cala d’Or Charters', true); LIVE.chat = 0; goNav(4, 'msg'); }],
+    [24200, function () { LIVE.chat = 1; renderLive(); }],
+    [24800, function () { LIVE.typing = true; renderLive(); }],
+    [26000, function () { LIVE.typing = false; LIVE.chat = 2; renderLive(); }],
+    [26700, function () { LIVE.chat = 3; renderLive(); }],
+    [27700, function () { var b = $('hx-accept'); if (b) cursorTo(b, true); }],
+    [28650, function () { LIVE.signed = true; renderLive(); setNotif('ok', T('Acuerdo firmado'), 'Cala d’Or Charters · ' + (S.lang === 'en' ? '13%' : '13 %'), true); }],
+    [30000, function () { cursorTo(navBtn(0), true); }],
+    [30950, function () { goNav(0, 'home'); }],
+    [31700, function () { LIVE.step = 0; LIVE.fresh = true; renderLive(); setNotif('link', LIVE_ST[0].t(), LIVE_ST[0].sub(), true); }],
+    [34450, function () {
       LIVE.step = 1; renderLive(); setNotif(LIVE_ST[1].ico, LIVE_ST[1].t(), LIVE_ST[1].sub(), true);
       countTo($('k-held'), BASE.held, BASE.held + AMT); LIVE.held = BASE.held + AMT; cursorTo($('k-held').parentNode, false);
     }],
-    [27950, function () {
+    [37150, function () {
       LIVE.step = 2; renderLive(); setNotif(LIVE_ST[2].ico, LIVE_ST[2].t(), LIVE_ST[2].sub(), true);
       var q = $('q-scan'); q.classList.remove('on'); void q.offsetWidth; q.classList.add('on'); cursorTo($('q-code'), false);
     }],
-    [30650, function () {
+    [39850, function () {
       LIVE.step = 3; renderLive(); setNotif(LIVE_ST[3].ico, LIVE_ST[3].t(), LIVE_ST[3].sub(), true);
       countTo($('k-held'), LIVE.held, BASE.held); countTo($('k-rel'), BASE.rel, BASE.rel + AMT);
       LIVE.held = BASE.held; LIVE.rel = BASE.rel + AMT;
       cursorTo(navBtn(5), true);
     }],
-    [31650, function () { S.nav = 5; renderNav(); }],
-    [34950, function () { sceneRun(); }]
+    [40850, function () { S.nav = 5; renderNav(); }],
+    [44150, function () { sceneRun(); }]
   ];
   LIVE.timers = [];
   function sceneStop() { LIVE.timers.forEach(clearTimeout); LIVE.timers = []; }
