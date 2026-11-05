@@ -38,7 +38,7 @@ Hasta que se lancen, **la web pública sigue igual** y no los menciona.
 | Validación por QR | **Escanear QR** y canje | |
 | Estadísticas | **Informes** | |
 | Usuarios y permisos | Usuario / Administrador (pantalla de entrada) y **Equipos** | |
-| Consumidor | **El cliente** (hoy solo aparece como nombre en la reserva) | Con Catalog pasa a ser usuario directo |
+| Consumidor | **El cliente** (hoy solo aparece como nombre en la reserva) | Con Catalog reserva él mismo desde un enlace, sin cuenta ni perfil |
 | Establecimiento de origen | Nuevo: **Connect Spot** (ver 3) | |
 | Favent | Favent | Su papel económico en cada operación **está por definir**; no se publica nada hasta decidirlo |
 
@@ -72,8 +72,9 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 
 **Acceso y atribución (decidido):**
 - Toda reserva de Catalog tiene un spot de origen, porque solo se entra desde uno. La comisión va siempre a ese spot.
-- La primera entrada por el QR o enlace del spot vincula al huésped con ese spot de forma permanente: si vuelve más tarde desde fuera, sigue contando para el mismo hotel.
-- Hace falta reconocer al huésped cuando vuelve: un enlace personal que se guarda en su móvil y, al reservar, su email o teléfono vinculados al spot. Esto hay que diseñarlo en la app.
+- **Sin perfiles de cliente.** Es el mismo sistema que Favent: al huésped le llega un enlace (o escanea el QR), reserva pagando una parte y el resto en persona. No hay cuenta, ni registro, ni contraseña.
+- **El enlace lleva dentro el spot.** Si el huésped vuelve a abrirlo más tarde desde fuera, la reserva sigue siendo del mismo hotel.
+- **Cuenta el último spot.** Si un huésped abre el enlace de otro hotel, las reservas que haga desde ahí son de ese hotel.
 - Sin acceso público, `catalog.favent.app` no se indexa en buscadores (`noindex`): sin un código de spot válido solo se ve una pantalla de entrada.
 
 ---
@@ -82,7 +83,7 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 
 **Qué es:** un establecimiento (hotel, conserjería, bar de playa, tienda, alquiler…) que se une a la red como **quien recomienda**, pero con presencia física: un código QR o un enlace propio que lleva al cliente a Catalog. Es **la única puerta de entrada** a Catalog.
 
-**Alta:** la hace **Favent** desde su software interno (panel de administración de Favent): crea el spot, lo vincula a la empresa del hotel y genera sus QR y enlaces (uno por spot o, si se quiere, uno por habitación o punto). El establecimiento no puede darse de alta solo.
+**Alta:** la hace **Favent** desde su software interno (panel de administración de Favent): crea el spot, lo vincula a la empresa del hotel y genera sus QR y enlaces: **uno por hotel o uno por habitación**, a elección. Los de habitación se generan solos a partir del hotel y el número de habitación, así que no añaden trabajo de alta. El establecimiento no puede darse de alta solo.
 
 **Cómo encaja con lo que ya hay:**
 - Es el mismo perfil «Si recomiendas clientes». No es un tercer papel; es una forma nueva de recomendar.
@@ -132,11 +133,12 @@ Nadie ve las condiciones privadas de otros participantes.
 ## 7. Decisiones abiertas
 Decidido:
 - A Catalog solo se entra desde un Connect Spot; los spots los da de alta Favent.
-- La comisión va siempre al spot de origen, también si el huésped vuelve más tarde desde fuera.
+- La comisión va siempre al spot del enlace, también si el huésped vuelve más tarde desde fuera.
+- Si hay dos spots, cuenta el último enlace abierto.
+- QR por hotel o por habitación, a elección; se generan solos.
+- Sin perfiles de cliente: enlace, reserva con señal, resto en persona. El mismo sistema que Favent.
 
 Pendiente:
-1. Si un huésped entra por dos spots distintos (dos hoteles en dos viajes), ¿cuenta el primero o el último?
-1b. ¿QR por establecimiento o por habitación? (El segundo permite saber desde dónde se reserva, pero exige más trabajo de alta.)
 2. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
 3. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
 4. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
