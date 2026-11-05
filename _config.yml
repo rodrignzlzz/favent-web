@@ -5,3 +5,4 @@ exclude:
   - skills-lock.json
   - .agents
   - .claude
+  - docs
