@@ -11,6 +11,13 @@ Favent Catalog y Connect Spot son **una capa aparte que se introducirá más ade
 
 Hasta que se lancen, **la web pública sigue igual** y no los menciona.
 
+### La regla que lo define todo
+> **El huésped, desde su habitación, solo ve precios totales. Nada de comisiones. Pero la comisión de cada reserva que hace va para el hotel.**
+
+- El hotel (Connect Spot) pone su acceso a Catalog en la habitación (QR, enlace o pantalla). Todo lo que el huésped reserva desde ahí queda **atribuido a ese hotel**.
+- El huésped ve el **precio total** del servicio, el mismo que en cualquier canal. La comisión ya va dentro de ese precio; no se suma ni se muestra.
+- Para el hotel es exactamente el flujo actual de quien recomienda: comisión pactada con quien presta el servicio, liberada al canjear el QR. La diferencia es que el huésped reserva solo, sin que nadie del hotel intervenga.
+
 ---
 
 ## 1. Equivalencias: documento maestro ↔ Favent hoy
@@ -47,6 +54,7 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 - **Misma señal y mismo QR:** el cliente paga la señal elegida por quien presta el servicio, recibe su código QR y lo canjea al llegar. El resto se cobra en la oficina, igual que ahora.
 - **Mismo recorrido de 4 pasos:** Acuerdo (ya pactado entre las empresas o con Favent) → Reserva y señal → Canje → Liberación.
 - **Lo que el cliente no ve:** comisiones, acuerdos, colaboradores, liquidaciones ni reparto. Solo descubre, compara y reserva.
+- **Lo que el cliente sí ve:** precio total, «Pagas ahora» y «Pagas en el lugar». Con la señal «Solo la comisión», «Pagas ahora» coincide con la comisión, pero se presenta solo como pago por adelantado. La palabra «comisión» no aparece en ninguna pantalla de Catalog, ni en emails, recibos o QR del cliente.
 
 **Categorías:** las de Catalog cuelgan de las cuatro que ya existen, así no hay que rehacer el mapa:
 
@@ -60,7 +68,7 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 
 **Home de Catalog** (según el documento): hero con foto, buscador, ubicación, fecha, categorías, destacados, populares, empresas recomendadas, descubrir y ayuda. Mobile-first y con el mismo sistema visual (`DESIGN.md`), en versión «pantalla clara».
 
-**Por definir:** quién cobra comisión en una reserva hecha directamente en Catalog, sin quien recomienda (¿nadie, Favent, un spot?).
+**Reserva desde un hotel:** la comisión va al hotel (ver 0). **Por definir:** qué pasa si alguien entra en Catalog sin pasar por ningún hotel (¿sin comisión, o para Favent?).
 
 ---
 
@@ -114,7 +122,8 @@ Nadie ve las condiciones privadas de otros participantes.
 | **Al lanzar** | Presentar Catalog y Connect Spot en www.favent.app: una sección después de «Para quién es» y un perfil «Tengo un establecimiento» en la lista de espera. Actualizar `CLAUDE.md` y `DESIGN.md`. | Este repositorio |
 
 ## 7. Decisiones abiertas
-1. Comisión en reservas directas de Catalog (sin quien recomienda).
+1. Comisión en reservas de Catalog que no llegan desde ningún hotel. (Las que llegan desde un hotel: la comisión es del hotel; está decidido.)
+1b. Cuánto dura la atribución al hotel: ¿solo durante la estancia?, ¿qué pasa si el huésped vuelve a entrar desde fuera?
 2. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
 3. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
 4. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.

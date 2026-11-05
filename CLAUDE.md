@@ -61,7 +61,8 @@ Resumen (el detalle está en `DESIGN.md`):
 5. Metadatos para compartir (Open Graph, imagen social).
 
 ## Favent 2.0: expansión futura (no reflejar en la web todavía)
-- Favent Catalog (`catalog.favent.app`, escaparate para el cliente final) y Connect Spot (establecimientos físicos que recomiendan) son una capa aparte que se introducirá más adelante, sobre el mismo motor: servicios publicados, Agenda, señal, QR y comisiones. No cambian el núcleo B2B.
+- Favent Catalog (`catalog.favent.app`, escaparate para el cliente final; p. ej. el huésped desde su habitación) y Connect Spot (establecimientos físicos, como hoteles, que recomiendan) son una capa aparte que se introducirá más adelante, sobre el mismo motor: servicios publicados, Agenda, señal, QR y comisiones. No cambian el núcleo B2B.
+- Regla clave: el cliente final solo ve precios totales, nunca comisiones; aun así, la comisión de lo que reserva desde un hotel va para ese hotel.
 - Detalle y equivalencias con lo que ya existe: [`docs/favent-2.0-auditoria-y-plan.md`](docs/favent-2.0-auditoria-y-plan.md).
 - No mencionarlos en `index.html` hasta que se decida lanzarlos. Catalog no se construye en este repositorio.
 
