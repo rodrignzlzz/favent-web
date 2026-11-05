@@ -352,9 +352,9 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .ag-f[aria-pressed="true"]{background:#0B2A4A;border-color:#0B2A4A;color:#FFFFFF}
 .ag-f i{width:8px;height:8px;border-radius:4px;flex:none}.ag-f i.sq{width:11px;height:11px;border-radius:3px}
 .sq{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none}.sq.fv{background:#E3EEF7;box-shadow:inset 3px 0 0 #2B6CA8}.sq.own{background:#EEEFEB;box-shadow:inset 3px 0 0 #8E959C}.sq.pend{background:#FFFFFF;outline:1.5px dashed #FF4F9A;outline-offset:-1.5px}
-.ag-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px 18px 2px}
-.ag-kpi{border:1px solid #E6E7E3;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:#FFFFFF}
-.ag-kpi span{font-size:12px;color:#656B71}.ag-kpi b{font:500 18px 'Geist Mono',monospace;color:#1E2226;white-space:nowrap}
+.ag-kpis{display:flex;padding:14px 18px 2px}
+.ag-kpi{border:1px solid #E6E7E3;border-radius:999px;padding:6px 14px 6px 6px;display:inline-flex;align-items:center;gap:8px;background:#FFFFFF}
+.ag-kpi span{font-size:13px;color:#3D4248}.ag-kpi b{min-width:30px;height:30px;padding:0 8px;border-radius:999px;background:#EAF2F8;display:inline-flex;align-items:center;justify-content:center;font:500 14px 'Geist Mono',monospace;color:#0B2A4A;white-space:nowrap}
 .ag-kpi i,.ag-occ i,.ag-dh i,.mo-o{display:block;height:4px;border-radius:999px;background:#EEEFEB;overflow:hidden}
 .ag-kpi u,.ag-occ u,.ag-dh u,.mo-o u{display:block;height:100%;background:#2B6CA8;border-radius:999px}
 .ag-legend{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding:12px 18px 0;font-size:12px;color:#50565C}.ag-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -489,7 +489,7 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 @media (max-width: 640px){
   .ag-top{padding:14px 14px 12px}.ag-title{font-size:20px}.ag-ctl{width:100%}.ag-ctl .fx-btn.accent{margin-left:auto}
   .ag-filters,.ag-legend{padding-left:14px;padding-right:14px}.ag-q{display:none}
-  .ag-kpis{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:12px 14px 2px}.ag-kpi{padding:8px 10px}.ag-kpi b{font-size:14px}
+  .ag-kpis{padding:12px 14px 2px}
   .ag-filters{flex-direction:column;gap:6px}.ag-fg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}.ag-fg::-webkit-scrollbar{display:none}.ag-f{flex:none}
   .ag-note{margin:6px 14px 14px}
   .fd-wrap{padding:12px 14px 6px}
@@ -1723,7 +1723,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Día': 'Day', 'Mes': 'Month', 'Hoy': 'Today', 'Anterior': 'Previous', 'Siguiente': 'Next', 'Vista': 'View', 'Barco': 'Boat', 'Todos los barcos': 'All boats',
     'Todas': 'All', 'Propias': 'Own', 'Franjas libres': 'Free slots', 'Ingresos': 'Revenue', 'Señal pagada': 'Deposit paid', 'Pendiente de pago': 'Payment pending', 'Completada': 'Completed',
     'Favent · se apunta sola': 'Favent · added automatically', 'Propia · la apuntas tú': 'Own · you add it', 'La barra de cada día es su ocupación.': 'Each day’s bar shows its occupancy.',
-    'más': 'more', 'ahora': 'now', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
+    'más': 'more', 'ahora': 'now', 'reserva en este periodo': 'booking in this period', 'reservas en este periodo': 'bookings in this period', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
     'Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.': 'Keep all your bookings here, like in any calendar. Favent bookings are added automatically with the client, party size and who referred them; you add your own (phone, website, in person or other agencies) by tapping a free slot.',
     'Hora': 'Time',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
@@ -3007,16 +3007,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpMonLong(d) { var en = S.lang === 'en'; return (en ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'])[d.getMonth()] + ' ' + d.getFullYear(); }
   function fpDayN(iso) { var en = S.lang === 'en', d = new Date(iso + 'T12:00:00'); return { w: (en ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'])[d.getDay()], n: d.getDate() }; }
   // Cifras del periodo visible: reservas, ocupación (franjas reservadas), ingresos y franjas libres
+  // Solo el número de reservas del periodo visible (los ingresos van en Informes)
   function fpKpis(days) {
-    var boats = fpBoats(), n = 0, amt = 0, used = 0, tot = boats.length * days.length * FPQ.length;
-    boats.forEach(function (x) { days.forEach(function (d) {
-      var it = fpItemsF(x.k, d); n += it.length; it.forEach(function (a) { amt += +a.amt || 0; });
-      FPQ.forEach(function (q) { if (it.some(function (a) { return fpMin(a.h1) < fpMin(q[2]) && fpMin(q[1]) < fpMin(a.h2); })) used++; });
-    }); });
-    var en = S.lang === 'en', occ = tot ? Math.round(used / tot * 100) : 0;
-    return '<div class="ag-kpis">' + [['Reservas', String(n)], ['Ingresos', eur(amt)], ['Franjas libres', String(tot - used)]].map(function (k) {
-      return '<div class="ag-kpi"><span>' + T(k[0]) + '</span><b>' + k[1] + '</b>' + (k[2] != null ? '<i><u style="width: ' + k[2] + '%"></u></i>' : '') + '</div>';
-    }).join('') + '</div>';
+    var n = 0; fpBoats().forEach(function (x) { days.forEach(function (d) { n += fpItemsF(x.k, d).length; }); });
+    return '<div class="ag-kpis"><div class="ag-kpi"><b>' + n + '</b><span>' + T(n === 1 ? 'reserva en este periodo' : 'reservas en este periodo') + '</span></div></div>';
   }
   function fpCalBar(title, sub) {
     var v = FX.calv || 'week';
@@ -3077,7 +3071,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
           var fv = a.t === 'fv', st = fpStat(a), s1 = fpMin(a.h1), s2 = fpMin(a.h2), top = (s1 - h0 * 60) / 60 * H + 1, ht = Math.max(H - 2, (s2 - s1) / 60 * H - 2), tall = ht >= 54, big = ht >= 120;
           return '<button type="button" class="g2-ev st-' + st[1] + (FX.fresh === a.id || FX.fresh === x.k + '|' + d ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px; --c: ' + fpBoatC(x.k) + '; --p: ' + fpBoatP(x.k) + '; --d: ' + fpBoatD(x.k) + '" aria-label="' + esc(a.cli) + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true) + ' · ' + a.h1 + '–' + a.h2 + ' · ' + T(st[0]) + '">'
             + '<b>' + esc(a.cli) + '</b>' + (tall ? '<span class="g2-t">' + a.h1 + '–' + a.h2 + (fv ? ' <i class="wg-fv">Favent</i>' : '') + '</span>' : '')
-            + (big ? '<span>' + (a.pax ? a.pax + ' pax' : '') + (a.amt ? ' · ' + money(+a.amt) : '') + '</span><span class="g2-s">' + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>' + (a.note ? '<span class="g2-s">' + esc(a.note) + '</span>' : '') : '') + '</button>';
+            + (big ? '<span>' + (a.pax ? a.pax + ' pax' : '') + '</span><span class="g2-s">' + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>' + (a.note ? '<span class="g2-s">' + esc(a.note) + '</span>' : '') : '') + '</button>';
         }).join('');
         return '<div class="g2-col' + (tdy ? ' today' : '') + '" style="height: ' + (hours.length * H) + 'px">' + cells + bars + (nowTop != null ? '<span class="fd-now" style="top: ' + nowTop + 'px" aria-hidden="true"></span>' : '') + '</div>';
       }).join('');
