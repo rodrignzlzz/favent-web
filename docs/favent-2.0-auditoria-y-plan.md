@@ -139,6 +139,6 @@ Decidido:
 - Sin perfiles de cliente: enlace, reserva con señal, resto en persona. El mismo sistema que Favent.
 
 Pendiente:
-2. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
-3. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
-4. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
+1. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
+2. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
+3. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
