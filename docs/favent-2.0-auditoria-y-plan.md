@@ -89,7 +89,9 @@ Conclusión: casi todo lo que pide la parte B2B del documento **ya está pensado
 - Es el mismo perfil «Si recomiendas clientes». No es un tercer papel; es una forma nueva de recomendar.
 - Hoy quien recomienda reserva por el cliente desde el panel. Con Connect Spot, **el cliente también puede reservar solo** escaneando el QR del establecimiento, y la reserva queda **atribuida al spot**.
 - La comisión sigue las mismas reglas: la pactan las dos empresas y se libera al canjear el QR de la reserva.
-- Solo puede recomendar servicios de empresas con acuerdo (o colaboradoras, según se decida). Es la misma lógica que «Solo colaboradores».
+- **Qué servicios ve el huésped:** el Administrador del hotel elige en su cuenta entre **«Solo colaboradores»** o **«Todo libre»** (todos los servicios publicados). Es la misma lógica que el filtro «Solo colaboradores» del mapa.
+- **Comisión con colaboradores:** pactada entre las dos empresas. Vale lo que acuerden; en la práctica, el hotel suele marcarla porque tiene más poder de negociación.
+- **Comisión con el resto («Todo libre»):** la que eligió quien presta el servicio en su ficha (1–50 %), sin negociación.
 - En la reserva y en la Agenda de quien presta el servicio aparece «Recomendada por: [spot]», como ya pasa con las reservas de Favent.
 
 **Por qué ayuda a la expansión:** cada spot es un punto de captación que no necesita a nadie de la empresa delante. Abrir una zona nueva (p. ej. Varsovia) es sumar empresas que ofrecen servicios y spots que los muestran.
@@ -137,8 +139,8 @@ Decidido:
 - Si hay dos spots, cuenta el último enlace abierto.
 - QR por hotel o por habitación, a elección; se generan solos.
 - Sin perfiles de cliente: enlace, reserva con señal, resto en persona. El mismo sistema que Favent.
+- El Administrador del hotel elige «Solo colaboradores» o «Todo libre». Con colaboradores, la comisión es pactada; con el resto, la fija quien presta el servicio.
 
 Pendiente:
-1. Si un spot puede recomendar cualquier servicio con acuerdo o solo los de colaboradores.
-2. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
-3. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
+1. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
+2. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
