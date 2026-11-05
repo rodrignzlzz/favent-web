@@ -148,8 +148,10 @@ Decidido:
   - Se llama «Gastos de gestión» o «Pago protegido», nunca «comisión» ni «seguro».
   - No cambia nada para el hotel ni para quien presta el servicio: sus importes y comisiones son los mismos.
 
+- **Quién paga el precio por QR y la tarifa mensual:** sobre todo **los hoteles**, que solo recomiendan. Quien presta el servicio también puede pedir QR para referenciar a sus clientes y sacar algo de ellos, aunque puede hacerlo más fácil desde la app.
+
 Pendiente:
-1. Importes del precio por QR y de la tarifa mensual, y quién los paga (¿el spot?, ¿también quien presta el servicio?).
+1. Importes del precio por QR y de la tarifa mensual.
 2. Revisión legal antes de lanzar Catalog (ver 8).
 
 ---
