@@ -470,6 +470,25 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
 .g2-ev.st-done{opacity:.68}
 .g2-ev.fresh{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
 .g2:not(.wk) .g2-ev{left:6px;right:6px;padding:5px 8px;font-size:11.5px}.g2:not(.wk) .g2-ev b{font-size:12.5px}
+.g2-ev.dr{cursor:grab}
+.g2-ev.drag{cursor:grabbing;z-index:6;box-shadow:0 10px 24px rgba(30,34,38,.22);transition:none;opacity:.95}
+.g2-ev.drag::after{content:attr(data-tip);position:absolute;right:4px;top:3px;font:600 10px 'Geist Mono',monospace;background:#0B2A4A;color:#FFFFFF;border-radius:4px;padding:1px 5px}
+.g2-rz{position:absolute;left:0;right:0;bottom:0;height:8px;cursor:ns-resize}
+.g2-rz::after{content:"";position:absolute;left:50%;bottom:2px;width:18px;height:3px;margin-left:-9px;border-radius:2px;background:var(--c);opacity:0;transition:opacity .15s}
+.g2-ev.dr:hover .g2-rz::after{opacity:.65}
+.g2-ev.st-g{background:#F0F1ED;border-left-color:#A3ABB8;color:#50565C;font-style:italic}
+html.ag-lock{overflow:hidden}
+html.ag-lock #app{clip-path:none !important}
+.fx-win.ag-full{position:fixed;inset:0;z-index:2000;border-radius:0;border:0;display:flex;flex-direction:column;box-shadow:none}
+.fx-win.ag-full .fx-body{flex:1;min-height:0;grid-template-columns:1fr}
+.fx-win.ag-full .fx-side{display:none}
+.fx-win.ag-full .fx-main{overflow-y:auto;min-height:0}
+.fx-win.ag-full .ag-col,.fx-win.ag-full .fx-scanm{display:none}
+.fx-win.ag-full .g2-sc{max-height:calc(100vh - 290px)}
+.ag-ic{gap:6px}.ag-ic.on{border-color:#A9D3F0;color:#0B2A4A;background:#EAF2F8}
+.ag-fs{width:36px;padding:0;justify-content:center}.ag-ic svg{width:16px;height:16px;flex:none}
+.gc-opt{display:flex;flex-direction:column;gap:8px;border:1px solid #E6E7E3;border-radius:14px;padding:14px}.gc-opt b{font-size:14px;font-weight:600}.gc-opt p{margin:0;font-size:12.5px;line-height:1.5;color:#50565C}
+#fpg-url{text-transform:none;font-size:11.5px}
 .mo-wrap{padding:12px 18px 6px;overflow-x:auto}
 .mo-g{display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:6px;min-width:720px}
 .mo-h{font:500 11px 'Geist Mono',monospace;color:#656B71;text-transform:uppercase;padding:0 6px 4px}
@@ -490,6 +509,8 @@ button.fp-day{cursor:pointer;width:30px;height:30px;border-radius:15px;font-size
   .ag-top{padding:14px 14px 12px}.ag-title{font-size:20px}.ag-ctl{width:100%}.ag-ctl .fx-btn.accent{margin-left:auto}
   .ag-filters,.ag-legend{padding-left:14px;padding-right:14px}.ag-q{display:none}
   .ag-kpis{padding:12px 14px 2px}
+  .ag-ic span{display:none}.ag-ic{width:36px;padding:0;justify-content:center}
+  .fx-win.ag-full .g2-sc{max-height:calc(100vh - 380px)}
   .ag-filters{flex-direction:column;gap:6px}.ag-fg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}.ag-fg::-webkit-scrollbar{display:none}.ag-f{flex:none}
   .ag-note{margin:6px 14px 14px}
   .fd-wrap{padding:12px 14px 6px}
@@ -1723,7 +1744,15 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Día': 'Day', 'Mes': 'Month', 'Hoy': 'Today', 'Anterior': 'Previous', 'Siguiente': 'Next', 'Vista': 'View', 'Barco': 'Boat', 'Todos los barcos': 'All boats',
     'Todas': 'All', 'Propias': 'Own', 'Franjas libres': 'Free slots', 'Ingresos': 'Revenue', 'Señal pagada': 'Deposit paid', 'Pendiente de pago': 'Payment pending', 'Completada': 'Completed',
     'Favent · se apunta sola': 'Favent · added automatically', 'Propia · la apuntas tú': 'Own · you add it', 'La barra de cada día es su ocupación.': 'Each day’s bar shows its occupancy.',
-    'más': 'more', 'ahora': 'now', 'reserva en este periodo': 'booking in this period', 'reservas en este periodo': 'bookings in this period', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
+    'más': 'more', 'ahora': 'now', 'Sincronizado': 'Synced', 'Pantalla completa': 'Full screen', 'Salir de pantalla completa': 'Exit full screen',
+    'Toca una hora libre para apuntar una reserva; arrastra las tuyas para moverlas o estira su borde inferior.': 'Tap a free hour to add a booking; drag your own bookings to move them or stretch their bottom edge.',
+    'Google Calendar conectado: lo que tienes ocupado en Google aparece en gris y las reservas se copian a tu calendario.': 'Google Calendar connected: your busy time in Google shows in grey and bookings are copied to your calendar.',
+    'Google Calendar desconectado.': 'Google Calendar disconnected.', 'Sincronizar con Google Calendar': 'Sync with Google Calendar', 'Conectar tu cuenta de Google': 'Connect your Google account',
+    'En los dos sentidos: lo que tengas ocupado en Google aparece aquí en gris, y las reservas de Favent y las tuyas se copian a tu Google Calendar. Un calendario por barco, si quieres.': 'Both ways: your busy time in Google shows here in grey, and Favent bookings and your own are copied to your Google Calendar. One calendar per boat, if you like.',
+    'Conectado · se actualiza al momento.': 'Connected · updates instantly.', 'Desconectar': 'Disconnect', 'Conectar con Google': 'Connect with Google', 'o solo para verla': 'or just to view it', 'Enlace iCal': 'iCal link',
+    'Pega este enlace en Google Calendar («Otros calendarios» → «Desde URL»), Outlook o el calendario del iPhone. Solo lectura; se actualiza cada pocas horas.': 'Paste this link into Google Calendar (“Other calendars” → “From URL”), Outlook or the iPhone calendar. Read-only; it updates every few hours.',
+    'Copiar': 'Copy', 'Copiado': 'Copied', 'Vista de ejemplo: la conexión real llegará con la app.': 'Sample view: the real connection will come with the app.',
+    'No se puede: a esa hora ya hay otra reserva en ese barco.': 'Not possible: that boat already has another booking at that time.', 'reserva en este periodo': 'booking in this period', 'reservas en este periodo': 'bookings in this period', 'Toca un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'reserva que se apunta sola': 'booking added automatically',
     'Lleva aquí todas tus reservas, como en cualquier agenda. Las que entran por Favent se apuntan solas, con el cliente, las personas y quien la recomendó; las tuyas (teléfono, web, en persona u otras agencias) las apuntas tú tocando un hueco libre.': 'Keep all your bookings here, like in any calendar. Favent bookings are added automatically with the client, party size and who referred them; you add your own (phone, website, in person or other agencies) by tapping a free slot.',
     'Hora': 'Time',
     'Ver el día': 'View day', 'Pulsa un día para verlo por horas.': 'Tap a day to see it hour by hour.', 'Semana': 'Week', 'Día anterior': 'Previous day', 'Día siguiente': 'Next day',
@@ -2237,6 +2266,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (act === 'fpnav') { fpNav(+v); fxRender(); var nb2 = document.querySelector('#fx-main [data-act="fpnav"][data-v="' + v + '"]'); if (nb2) nb2.focus({ preventScroll: true }); }
     if (act === 'fpsel') { FX.day = v; fxRender(); var sb2 = document.querySelector('#fx-main [data-act="fpsel"][data-v="' + v + '"]'); if (sb2) sb2.focus({ preventScroll: true }); }
     if (act === 'fpwnew') { var wv = v.split('|'), wk = FX.fb != null ? (isNaN(+FX.fb) ? FX.fb : +FX.fb) : FPS[0].k, wl = Math.min(240, fpMin(fpDefH(wk)[1]) - fpMin(fpDefH(wk)[0])); FX.own = { id: null, isNew: true, pick: true, k: wk, d: wv[0], h1: wv[1], h2: fpHH(Math.min(FPHR[1] * 60, fpMin(wv[1]) + wl)), cli: '', pax: '', amt: fpPrice(wk), src: 'Teléfono', note: '' }; fxOpen({ t: 'own' }); }
+    if (act === 'fpfull') { FX.full = !FX.full; fxRender(); var fb3 = document.querySelector('#fx-main [data-act="fpfull"]'); if (fb3) fb3.focus({ preventScroll: true }); }
+    if (act === 'fpgcal') { fxOpen({ t: 'gcal' }); }
+    if (act === 'fpgcon') { FX.gcal = true; FX.calMsg = 'Google Calendar conectado: lo que tienes ocupado en Google aparece en gris y las reservas se copian a tu calendario.'; FX.open = null; fxRender(); }
+    if (act === 'fpgoff') { FX.gcal = false; FX.calMsg = 'Google Calendar desconectado.'; FX.open = null; fxRender(); }
+    if (act === 'fpgcopy') { var gi = $('fpg-url'); if (gi) { gi.select(); try { if (navigator.clipboard) navigator.clipboard.writeText(gi.value); } catch (e2) {} } FX.gcopied = true; fxRender(); }
     if (act === 'fptoday') { FX.wk = 0; FX.mo = 0; FX.day = FPTODAY; fxRender(); }
     if (act === 'fpfb') { FX.fb = v === 'all' ? null : v; fxRender(); var fbb = document.querySelector('#fx-main [data-act="fpfb"][data-v="' + v + '"]'); if (fbb) fbb.focus({ preventScroll: true }); }
     if (act === 'fpfs') { FX.fs = v === 'all' ? null : v; fxRender(); var fsb = document.querySelector('#fx-main [data-act="fpfs"][data-v="' + v + '"]'); if (fsb) fsb.focus({ preventScroll: true }); }
@@ -2860,6 +2894,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   var FPBC = { 0: '#1F4E8C', 1: '#1E7A5A', 2: '#14808A', 3: '#5E6494', 4: '#2F3640', 5: '#7A4FA0', n1: '#3E86C2' };
   function fpBoatC(k) { return FPBC[k] || '#656B71'; }
   var FPSRC = ['Teléfono', 'Web propia', 'En persona', 'Otra agencia'];
+  // Ocupado en Google Calendar (solo con la sincronización activada, de ejemplo)
+  var FPGOO = [{ id: 'g1', k: 0, d: '2026-04-08', h1: '09:00', h2: '13:00', cli: 'Mantenimiento del motor' }, { id: 'g2', k: 4, d: '2026-04-09', h1: '16:00', h2: '19:00', cli: 'Revisión de seguridad' }, { id: 'g3', k: 1, d: '2026-04-12', h1: '10:00', h2: '14:00', cli: 'Salida privada del dueño' }];
   var FPHR = [8, 22];
   var FPQ = [['Primera hora', '08:00', '10:00'], ['Mañana', '10:00', '14:00'], ['Tarde', '14:00', '18:00'], ['Atardecer y noche', '18:00', '22:00']];
   function fpOwnCopy(o) { return o.map(function (x) { return Object.assign({}, x); }); }
@@ -2873,6 +2909,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpItems(k, d) {
     var l = [];
     FPB.forEach(function (b, i) { if (b.s === k && b.date === d) l.push({ t: 'fv', i: i, h1: b.h1, h2: b.h2, cli: b.cli, pax: b.pax, amt: b.total, sub: b.from }); });
+    if (FX.gcal) FPGOO.forEach(function (o) { if (String(o.k) === String(k) && o.d === d) l.push({ t: 'g', id: o.id, h1: o.h1, h2: o.h2, cli: o.cli, pax: '', sub: 'Google Calendar', note: '' }); });
     FPOWN.forEach(function (o) { if (String(o.k) === String(k) && o.d === d) l.push({ t: 'own', id: o.id, h1: o.h1, h2: o.h2, cli: o.cli, pax: o.pax, amt: o.amt, sub: T(o.src), note: o.note }); });
     return l.sort(function (a, b) { return fpMin(a.h1) - fpMin(b.h1); });
   }
@@ -3002,6 +3039,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   function fpItemsF(k, d) { return fpItems(k, d).filter(function (a) { return !FX.fs || FX.fs === a.t; }); }
   function fpStat(a) {
     if (a.t === 'own') return ['Propia', 'own'];
+    if (a.t === 'g') return ['Google Calendar', 'g'];
     var b = FPB[a.i]; return b.st === 'held' ? ['Señal pagada', 'ok'] : b.st === 'pend' ? ['Pendiente de pago', 'pend'] : ['Completada', 'done'];
   }
   function fpMonLong(d) { var en = S.lang === 'en'; return (en ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'])[d.getMonth()] + ' ' + d.getFullYear(); }
@@ -3025,6 +3063,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="ag-ctl"><div class="ag-seg" role="group" aria-label="' + T('Vista') + '">' + seg + '</div>'
       + '<button type="button" class="fx-btn ghost ag-today" data-act="fptoday">' + T('Hoy') + '</button>'
       + '<div class="ag-nav"><button type="button" class="fx-btn ghost" data-act="fpnav" data-v="-1" aria-label="' + T('Anterior') + '">‹</button><button type="button" class="fx-btn ghost" data-act="fpnav" data-v="1" aria-label="' + T('Siguiente') + '">›</button></div>'
+      + '<button type="button" class="fx-btn ghost ag-ic' + (FX.gcal ? ' on' : '') + '" data-act="fpgcal" aria-label="Google Calendar" title="Google Calendar">' + '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>' + '<span>' + (FX.gcal ? T('Sincronizado') : 'Google Calendar') + '</span></button>'
+      + '<button type="button" class="fx-btn ghost ag-ic ag-fs" data-act="fpfull" aria-pressed="' + !!FX.full + '" aria-label="' + T(FX.full ? 'Salir de pantalla completa' : 'Pantalla completa') + '" title="' + T(FX.full ? 'Salir de pantalla completa' : 'Pantalla completa') + '">' + '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (FX.full ? '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"></path>' : '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>') + '</svg>' + '</button>'
       + '<button type="button" class="fx-btn accent" data-act="fpownnew">' + T('+ Nueva reserva') + '</button></div></div>'
       + '<div class="ag-filters"><div class="ag-fg" role="group" aria-label="' + T('Barco') + '">' + boats + '</div><div class="ag-fg" role="group" aria-label="' + T('Origen') + '">' + src + '</div></div>' + msg;
   }
@@ -3040,7 +3080,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var week = fpWeek(), d6 = new Date(week[6] + 'T12:00:00'), t = fpMonLong(d6);
     var title = t.charAt(0).toUpperCase() + t.slice(1);
     return fpCalBar(title, T('Semana') + ' ' + fxDate(week[0], false) + ' – ' + fxDate(week[6], false))
-      + fpKpis(week) + fpLegend() + fpGrid2(week, 22, 'w' + (FX.wk || 0)) + fpCalNote() + colSvcs();
+      + fpKpis(week) + fpLegend() + fpGrid2(week, 22, 'w' + (FX.wk || 0)) + fpCalNote() + '<div class="ag-col">' + colSvcs() + '</div>';
   }
   function fpDayView() {
     var d = fpRef(); FX.day = d;
@@ -3049,7 +3089,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + fpKpis([d]) + fpLegend() + fpGrid2([d], 44, 'd' + d) + fpCalNote();
   }
   function fpLegend() {
-    return '<div class="ag-legend"><span><b class="wg-fv">Favent</b>' + T('reserva que se apunta sola') + '</span><span><i class="sq own"></i>' + T('Propia · la apuntas tú') + '</span><span><i class="sq pend"></i>' + T('Pendiente de pago') + '</span><span class="ag-q">' + T('Toca una hora libre para apuntar una reserva.') + '</span></div>';
+    return '<div class="ag-legend"><span><b class="wg-fv">Favent</b>' + T('reserva que se apunta sola') + '</span><span><i class="sq own"></i>' + T('Propia · la apuntas tú') + '</span><span><i class="sq pend"></i>' + T('Pendiente de pago') + '</span><span class="ag-q">' + T('Toca una hora libre para apuntar una reserva; arrastra las tuyas para moverlas o estira su borde inferior.') + '</span></div>';
   }
   function fpGrid2(days, H, key) {
     var h0 = FPHR[0], hN = FPHR[1], hours = [], boats = fpBoats(), en = S.lang === 'en', step = H < 30 ? 2 : 1;
@@ -3069,11 +3109,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         var cells = hours.map(function (h) { var hh = ('0' + h).slice(-2) + ':00'; return '<button type="button" class="g2-cell' + (h % 2 ? ' odd' : '') + '" data-act="fpdnew" data-v="' + x.k + '|' + d + '|' + hh + '" style="height: ' + H + 'px" aria-label="' + T('Añadir reserva') + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true) + ' · ' + hh + '"><span>+ ' + hh + '</span></button>'; }).join('');
         var bars = fpItemsF(x.k, d).map(function (a) {
           var fv = a.t === 'fv', st = fpStat(a), s1 = fpMin(a.h1), s2 = fpMin(a.h2), top = (s1 - h0 * 60) / 60 * H + 1, ht = Math.max(H - 2, (s2 - s1) / 60 * H - 2), tall = ht >= 54, big = ht >= 120;
-          return '<button type="button" class="g2-ev st-' + st[1] + (FX.fresh === a.id || FX.fresh === x.k + '|' + d ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px; --c: ' + fpBoatC(x.k) + '; --p: ' + fpBoatP(x.k) + '; --d: ' + fpBoatD(x.k) + '" aria-label="' + esc(a.cli) + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true) + ' · ' + a.h1 + '–' + a.h2 + ' · ' + T(st[0]) + '">'
+          return '<button type="button" class="g2-ev ' + (a.t === 'own' ? 'dr ' : '') + 'st-' + st[1] + (FX.fresh === a.id || FX.fresh === x.k + '|' + d ? ' fresh' : '') + '" data-act="' + (fv ? 'fprow' : a.t === 'g' ? 'fpgcal' : 'fpownedit') + '" data-v="' + (fv ? a.i : a.id) + '" style="top: ' + top + 'px; height: ' + ht + 'px; --c: ' + fpBoatC(x.k) + '; --p: ' + fpBoatP(x.k) + '; --d: ' + fpBoatD(x.k) + '" aria-label="' + esc(a.cli) + ' · ' + esc(x.boat || '') + ' · ' + fxDate(d, true) + ' · ' + a.h1 + '–' + a.h2 + ' · ' + T(st[0]) + '">'
             + '<b>' + esc(a.cli) + '</b>' + (tall ? '<span class="g2-t">' + a.h1 + '–' + a.h2 + (fv ? ' <i class="wg-fv">Favent</i>' : '') + '</span>' : '')
-            + (big ? '<span>' + (a.pax ? a.pax + ' pax' : '') + '</span><span class="g2-s">' + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>' + (a.note ? '<span class="g2-s">' + esc(a.note) + '</span>' : '') : '') + '</button>';
+            + (a.t === 'own' ? '<i class="g2-rz" aria-hidden="true"></i>' : '') + (big ? '<span>' + (a.pax ? a.pax + ' pax' : '') + '</span><span class="g2-s">' + (fv ? T('Recomendado por') + ' ' + a.sub : a.sub) + '</span>' + (a.note ? '<span class="g2-s">' + esc(a.note) + '</span>' : '') : '') + '</button>';
         }).join('');
-        return '<div class="g2-col' + (tdy ? ' today' : '') + '" style="height: ' + (hours.length * H) + 'px">' + cells + bars + (nowTop != null ? '<span class="fd-now" style="top: ' + nowTop + 'px" aria-hidden="true"></span>' : '') + '</div>';
+        return '<div class="g2-col' + (tdy ? ' today' : '') + '" data-k="' + x.k + '" data-d="' + d + '" data-h="' + H + '" style="height: ' + (hours.length * H) + 'px">' + cells + bars + (nowTop != null ? '<span class="fd-now" style="top: ' + nowTop + 'px" aria-hidden="true"></span>' : '') + '</div>';
       }).join('');
       return '<div class="g2-dw' + (tdy ? ' today' : '') + '">' + sep + '<div class="g2-row" style="' + cols + '">' + gut + cs + '</div></div>';
     }).join('');
@@ -3147,6 +3187,50 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + act + '<button type="button" class="fx-btn ghost" data-act="fpqrnew" style="justify-content: center">' + T('Escanear otro código') + '</button></div></div>';
   }
   document.addEventListener('submit', function (e) { if (e.target.id !== 'fpq') return; e.preventDefault(); var i = $('fpq-c'); fpQrFind(i ? i.value : ''); });
+  // Sincronizar con Google Calendar: conexión en los dos sentidos o enlace iCal de solo lectura (de ejemplo)
+  // Arrastrar una reserva propia para moverla (de hora, de día o de barco) o estirar su borde inferior para cambiar la hora de fin
+  var AGD = null, AGSUP = false;
+  document.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.pointerType === 'touch') return;
+    var ev = e.target.closest && e.target.closest('.g2-ev.dr'), col = ev && ev.closest('.g2-col');
+    if (!col) return;
+    var o = FPOWN.filter(function (x) { return x.id === ev.getAttribute('data-v'); })[0]; if (!o) return;
+    AGD = { el: ev, o: o, x0: e.clientX, y0: e.clientY, H: +col.getAttribute('data-h'), rz: !!e.target.closest('.g2-rz'), moved: false, ht0: parseFloat(ev.style.height) };
+   }, true);
+  document.addEventListener('pointermove', function (e) {
+    if (!AGD) return;
+    var dx = e.clientX - AGD.x0, dy = e.clientY - AGD.y0;
+    if (!AGD.moved && Math.abs(dx) + Math.abs(dy) < 5) return;
+    AGD.moved = true; AGD.el.classList.add('drag'); e.preventDefault();
+    var q = AGD.H / 4, dyS = Math.round(dy / q) * q, dm = dyS / AGD.H * 60, s1 = fpMin(AGD.o.h1), s2 = fpMin(AGD.o.h2);
+    if (AGD.rz) { s2 = Math.max(s1 + 30, Math.min(FPHR[1] * 60, s2 + dm)); AGD.el.style.height = Math.max(AGD.H / 2, (s2 - s1) / 60 * AGD.H - 2) + 'px'; }
+    else { var len = s2 - s1; s1 = Math.max(FPHR[0] * 60, Math.min(FPHR[1] * 60 - len, s1 + dm)); s2 = s1 + len; AGD.el.style.transform = 'translate(' + dx + 'px, ' + ((s1 - fpMin(AGD.o.h1)) / 60 * AGD.H) + 'px)'; }
+    AGD.n1 = s1; AGD.n2 = s2; AGD.el.setAttribute('data-tip', fpHH(s1) + '–' + fpHH(s2));
+  });
+  document.addEventListener('pointerup', function (e) {
+    var g = AGD; AGD = null; if (!g || !g.moved) return;
+    AGSUP = true; setTimeout(function () { AGSUP = false; }, 0);
+    var col = g.el.closest('.g2-col');
+    if (!g.rz) { g.el.style.visibility = 'hidden'; var hit = document.elementsFromPoint(e.clientX, e.clientY).filter(function (n) { return n.classList && n.classList.contains('g2-col'); })[0]; g.el.style.visibility = ''; if (hit && hit.getAttribute('data-h') === col.getAttribute('data-h')) col = hit; }
+    var kk = col.getAttribute('data-k'), k = isNaN(+kk) ? kk : +kk, d = col.getAttribute('data-d'), o = g.o;
+    var clash = fpItems(k, d).filter(function (it) { return !(it.t === 'own' && it.id === o.id) && fpMin(it.h1) < g.n2 && g.n1 < fpMin(it.h2); })[0];
+    if (clash) FX.calMsg = 'No se puede: a esa hora ya hay otra reserva en ese barco.';
+    else { o.k = k; o.d = d; o.h1 = fpHH(g.n1); o.h2 = fpHH(g.n2); FX.calMsg = 'Reserva actualizada.'; FX.fresh = o.id; }
+    fxRender();
+  });
+  window.addEventListener('click', function (e) { if (AGSUP) { AGSUP = false; e.stopPropagation(); e.preventDefault(); } }, true);
+  function fpGcalDrawer() {
+    var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
+    var cp = FX.gcopied; FX.gcopied = false;
+    return '<div class="fx-dh"><div style="display: flex; flex-direction: column; gap: 6px; min-width: 0"><span style="font-size: 12px; color: #656B71">' + T('Agenda') + '</span><span id="fx-dtitle" tabindex="-1" style="font-family: \'Funnel Display\', sans-serif; font-size: 20px; font-weight: 600">' + T('Sincronizar con Google Calendar') + '</span></div>' + x + '</div>'
+      + '<div class="fq">'
+      + '<div class="gc-opt"><b>' + T('Conectar tu cuenta de Google') + '</b><p>' + T('En los dos sentidos: lo que tengas ocupado en Google aparece aquí en gris, y las reservas de Favent y las tuyas se copian a tu Google Calendar. Un calendario por barco, si quieres.') + '</p>'
+      + (FX.gcal ? '<div class="fx-ok" style="margin: 0">' + T('Conectado · se actualiza al momento.') + '</div><button type="button" class="fx-btn ghost" data-act="fpgoff" style="justify-content: center">' + T('Desconectar') + '</button>' : '<button type="button" class="fx-btn accent" data-act="fpgcon" style="justify-content: center">' + T('Conectar con Google') + '</button>') + '</div>'
+      + '<div class="fq-or"><span>' + T('o solo para verla') + '</span></div>'
+      + '<div class="gc-opt"><b>' + T('Enlace iCal') + '</b><p>' + T('Pega este enlace en Google Calendar («Otros calendarios» → «Desde URL»), Outlook o el calendario del iPhone. Solo lectura; se actualiza cada pocas horas.') + '</p>'
+      + '<div class="fq-form"><label class="fx-sr" for="fpg-url">' + T('Enlace iCal') + '</label><input id="fpg-url" readonly value="https://app.favent.app/ical/velas-del-norte.ics"><button type="button" class="fx-btn" data-act="fpgcopy">' + T(cp ? 'Copiado' : 'Copiar') + '</button></div></div>'
+      + '<p class="fp-note">' + T('Vista de ejemplo: la conexión real llegará con la app.') + '</p></div>';
+  }
   function fpOwnDrawer() {
     var o = FX.own; if (!o) return '';
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
@@ -3283,6 +3367,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (!o) { d.classList.remove('open'); return; }
     if (o.t === 'own') { d.innerHTML = fpOwnDrawer(); d.classList.add('open'); return; }
     if (o.t === 'qr') { d.innerHTML = fpQrDrawer(); d.classList.add('open'); return; }
+    if (o.t === 'gcal') { d.innerHTML = fpGcalDrawer(); d.classList.add('open'); return; }
     if (o.t === 'pres' || o.t === 'ppar') { d.innerHTML = fpDrawer(o); d.classList.add('open'); return; }
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
     var h;
@@ -3336,6 +3421,9 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     FX.fresh = null;
     fxDrawer();
     var fwin = $('fx-main').closest('.fx-win'); if (fwin && fwin.scrollLeft) fwin.scrollLeft = 0;
+    var fwin2 = $('fx-main').closest('.fx-win'), full = !!FX.full && FX.view === 'cal';
+    if (fwin2) fwin2.classList.toggle('ag-full', full);
+    document.documentElement.classList.toggle('ag-lock', !!document.querySelector('.fx-win.ag-full'));
     // Agenda: conserva el desplazamiento al redibujar; al cambiar de semana o día va a hoy (o al principio)
     var gsc = $('fx-main').querySelector('.g2-sc');
     if (gsc) { if (FX.agKey === gsc.getAttribute('data-key')) gsc.scrollTop = FX.agTop || 0; else { FX.agKey = gsc.getAttribute('data-key'); var gt = gsc.querySelector('.g2-dw.today'); gsc.scrollTop = gt ? gt.offsetTop - gsc.querySelector('.g2-head').offsetHeight : 0; } }
@@ -3627,6 +3715,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     if (e.key !== 'Escape') return;
     if (S.popup) { S.popup = false; renderMap(); var pb = document.querySelector('.fv-pin[aria-pressed="true"]'); if (pb) pb.focus({ preventScroll: true }); return; }
     if (FX.open) fxClose();
+    else if (FX.full) { FX.full = false; fxRender(); }
   });
   window.addEventListener('resize', function () { fitPanel(); if (S.popup) renderPop(); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (LIVE.step < 0) renderLive(); fitPanel(); });
