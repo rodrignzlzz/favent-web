@@ -143,6 +143,10 @@ Decidido:
 
 - **Papel de Favent:** marketplace y **garantía de cobro** para las dos partes, sobre todo para quien recomienda (el hotel cobra su comisión sin perseguir a nadie).
 - **Ingresos de Favent:** un precio por cada QR necesario (habitación, casa, punto…) más una **tarifa mensual**. Importes por definir; no publicar ninguna cifra hasta fijarlos.
+- **Más adelante, gastos de gestión al cliente:** un pequeño extra que cubre lo que cobra la pasarela de pago (Stripe o Mangopay) a cambio de proteger su dinero y hacer de intermediario en toda la operación.
+  - Debe ir **dentro del precio total desde la primera pantalla**: «Precio total», con el desglose «Servicio + Gastos de gestión». No puede aparecer de golpe al final del pago, porque eso está prohibido en la venta a consumidores.
+  - Se llama «Gastos de gestión» o «Pago protegido», nunca «comisión» ni «seguro».
+  - No cambia nada para el hotel ni para quien presta el servicio: sus importes y comisiones son los mismos.
 
 Pendiente:
 1. Importes del precio por QR y de la tarifa mensual, y quién los paga (¿el spot?, ¿también quien presta el servicio?).
@@ -162,6 +166,7 @@ Hoy Favent solo vende a empresas. Con Catalog, un turista paga desde su móvil, 
 | Condiciones para empresas | Como marketplace, Favent necesita condiciones claras con hoteles y empresas de servicios (cómo se ordenan los servicios, cómo se cobra, cómo se resuelven problemas) | Condiciones de uso para empresas |
 | Dinero de terceros | Favent retiene la señal hasta el canje | Hacerlo a través de Stripe Connect, que tiene la licencia de pagos, para que Favent no la necesite |
 | Declaración a Hacienda | Las plataformas deben informar de lo que ganan los vendedores (DAC7) | Lo gestiona la asesoría |
+| Gastos de gestión al cliente | Cualquier cargo obligatorio debe estar en el precio total desde el principio | Mostrarlo incluido y desglosado antes de pagar; que el abogado valide el nombre |
 | La palabra «seguro» | «Seguro de cobro» puede confundirse con un producto de seguros | En la web, mejor «garantía de cobro» o «cobro asegurado por Favent», según diga el abogado |
 
 Esto se suma a lo que ya estaba pendiente para la web actual: aviso legal, privacidad y cookies (punto 2 de «Pendientes conocidos» en `CLAUDE.md`).
