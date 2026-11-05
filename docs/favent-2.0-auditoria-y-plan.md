@@ -141,6 +141,27 @@ Decidido:
 - Sin perfiles de cliente: enlace, reserva con señal, resto en persona. El mismo sistema que Favent.
 - El Administrador del hotel elige «Solo colaboradores» o «Todo libre». Con colaboradores, la comisión es pactada; con el resto, la fija quien presta el servicio.
 
+- **Papel de Favent:** marketplace y **garantía de cobro** para las dos partes, sobre todo para quien recomienda (el hotel cobra su comisión sin perseguir a nadie).
+- **Ingresos de Favent:** un precio por cada QR necesario (habitación, casa, punto…) más una **tarifa mensual**. Importes por definir; no publicar ninguna cifra hasta fijarlos.
+
 Pendiente:
-1. Papel económico de Favent en cada operación (no publicar nada hasta decidirlo).
-2. Validación legal de la venta al consumidor final: desistimiento, información previa, RGPD y papel de marketplace.
+1. Importes del precio por QR y de la tarifa mensual, y quién los paga (¿el spot?, ¿también quien presta el servicio?).
+2. Revisión legal antes de lanzar Catalog (ver 8).
+
+---
+
+## 8. Qué hacer con la parte legal (antes de lanzar Catalog, no ahora)
+
+Hoy Favent solo vende a empresas. Con Catalog, un turista paga desde su móvil, y eso trae obligaciones nuevas. No hay que hacer nada mientras Catalog no exista; **antes de lanzarlo**, que un abogado o una asesoría que conozca plataformas online revise esta lista:
+
+| Tema | Qué significa | Qué hay que tener |
+|---|---|---|
+| Información antes de pagar | El cliente debe saber quién presta el servicio, el precio total, cuánto paga ahora y cuánto después, y las condiciones de cancelación | Ficha de servicio y pantalla de pago con esos datos (encaja con «Pagas ahora / Pagas en el lugar») |
+| Cancelación y desistimiento | En actividades de ocio con fecha concreta normalmente no hay los 14 días de desistimiento, pero hay que confirmarlo y dejar clara la política de cancelación | Política de cancelación por servicio, visible antes de pagar |
+| Datos personales (RGPD) | Se guarda nombre, email o teléfono del huésped | Política de privacidad, aviso legal y, si hay cookies de seguimiento, aviso de cookies en `catalog.favent.app` |
+| Condiciones para empresas | Como marketplace, Favent necesita condiciones claras con hoteles y empresas de servicios (cómo se ordenan los servicios, cómo se cobra, cómo se resuelven problemas) | Condiciones de uso para empresas |
+| Dinero de terceros | Favent retiene la señal hasta el canje | Hacerlo a través de Stripe Connect, que tiene la licencia de pagos, para que Favent no la necesite |
+| Declaración a Hacienda | Las plataformas deben informar de lo que ganan los vendedores (DAC7) | Lo gestiona la asesoría |
+| La palabra «seguro» | «Seguro de cobro» puede confundirse con un producto de seguros | En la web, mejor «garantía de cobro» o «cobro asegurado por Favent», según diga el abogado |
+
+Esto se suma a lo que ya estaba pendiente para la web actual: aviso legal, privacidad y cookies (punto 2 de «Pendientes conocidos» en `CLAUDE.md`).
