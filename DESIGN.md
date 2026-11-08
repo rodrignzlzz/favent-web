@@ -277,7 +277,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 ## Typography
 
 ### Font Family
-- **Funnel Display** (Google Fonts, 400/500/600): titulares, texto y botones.
+- **Funnel Display** (400/500/600): titulares, texto y botones.
 - **Geist Mono** (400/500): etiquetas de sección, códigos (FV-7K2Q), importes, estados, selector de idioma.
 - **Michroma** (400, único grosor): solo la palabra «favent.» del logotipo.
 
@@ -307,7 +307,7 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 - Un solo énfasis de color por titular, y solo en el del inicio («cobrado.» en azul eléctrico suave).
 
 ### Note on Font Substitutes
-Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (Google Fonts). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter, IBM Plex, Geist ni Plus Jakarta Sans, ni el logotipo por Newsreader o Funnel Display: ya se probaron y se descartaron.
+Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (SIL OFL) y van **dentro de la web** (`fonts/`, variables, solo alfabeto latino), sin Google Fonts: menos conexiones y la página pinta antes. Son los mismos archivos que usa la app (`src/fonts` en `favent-app`). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter, IBM Plex, Geist ni Plus Jakarta Sans, ni el logotipo por Newsreader o Funnel Display: ya se probaron y se descartaron.
 
 ## Layout
 
@@ -396,6 +396,13 @@ Etiqueta de sección en `{typography.eyebrow}` con un cuadrado rosa de 7 px dela
 - El formulario del bloque final vive en una pantalla clara: campo blanco y botón grafito.
 - Error en `{colors.semantic-error}` (o `semantic-error-on-screen` dentro de pantallas), con `role="alert"`.
 - Nota de privacidad bajo cada formulario en `{typography.caption}`.
+
+### Pantallas de carga (app y Catalog)
+- **`sk`** (esqueleto): mientras llega una página, bloques `#E9EAE6` con la forma de lo que va a salir (título, recuadros de cifras, lista; en Catalog, cabecera, categorías y tarjetas). Radios de la escala (`r-sm` para líneas, `r-lg` para tarjetas `sk-card` blancas con borde `hairline`).
+- Sin degradados ni brillos que barren: solo un parpadeo suave de opacidad (1 → 0,55, 1,4 s). Quieto con `prefers-reduced-motion`.
+- En el panel el menú no se mueve: el esqueleto ocupa solo el contenido, con los mismos márgenes que las páginas (`ap-bar` y `ap-section`).
+- Accesible: `role="status"` con el texto «Cargando…» para lectores de pantalla; los bloques van ocultos (`aria-hidden`).
+- Código: `src/components/Skeleton.tsx`, estilos `.sk*` en `src/app/globals.css`, pantallas en `loading.tsx` (favent-app).
 
 ### Route (Así se mueve una reserva)
 Cuatro pasos (Acuerdo, Reserva y señal, Canje, Liberación; antes eran seis, se fusionaron reserva, señal y confirmación) unidos por una **curva suave** (SVG, curvas de Bézier): los pasos se alternan a dos alturas (en móvil, a dos sangrías) y la curva ondula de uno a otro. La parte recorrida se rellena en rosa y en su punta va un punto rosa luminoso con halo. Los puntos completados (`route-node-done`) en rosa con halo; los pendientes con relieve y borde `{colors.hairline-strong}`. La curva se calcula en JS a partir de la posición real de los puntos (`routeLayout`). Sin quiebros de circuito. Debajo, el detalle del paso activo en un panel de vidrio con una `status-pill`.
