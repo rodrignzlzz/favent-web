@@ -269,6 +269,14 @@ Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloqu
 - `screen-accent` (#2B6CA8) y `screen-accent-deep` (#0B2A4A): acentos azules dentro de las pantallas (barras, estados, enlaces).
 - En CSS, cualquier elemento con `.screen`, `.fx-win` o `#demo` recupera automáticamente estos valores a través de las variables.
 
+### Modo oscuro de la app (panel de empresas)
+El panel de la app (`app.favent.app`, repositorio `favent-app`) tiene tres modos que elige cada persona en Ajustes: **Claro** (por defecto, la paleta `screen-*`), **Oscuro** y **Automático** (sigue al dispositivo). Los colores van en variables `--c-*` de `src/app/panel.css`; el modo cambia con `data-theme` en `.ap`.
+- Oscuro: lienzo de la marca. Fondo de tarjetas `#111723`, menú y bloques suaves `#0D121B`, líneas `#252D3B`, texto `#E9EEF6` ({colors.ink}), texto secundario `#C5CCD6` / `#9BA4B0`.
+- Acentos en oscuro: el azul de texto y enlaces pasa a `#7CC4FF` ({colors.electric-soft}); los rellenos azules con texto blanco siguen en `#2B6CA8`; el rosa señal no cambia y el texto encima es siempre `#0B0F17`. Los rellenos fuertes (botón principal, chips activos) se invierten: fondo `#E9EEF6`, texto `#0B0F17`.
+- Gráficos en oscuro: azul `#4DA8FF`, verde `#3DB884`, rosa `#FF4F9A`, azul claro `#A9D3F0`.
+- Siempre claros, en los dos modos: los mapas de Mallorca (son «pantallas encendidas» dentro del panel), Catalog (el huésped), los emails, los QR y todo lo que se imprime.
+- Contraste mínimo 4,5:1 también en oscuro (lo comprueba la prueba de punta a punta del panel).
+
 ### Semantic
 - **Error** ({colors.semantic-error}): mensajes de error sobre el lienzo.
 - **Error en pantalla** ({colors.semantic-error-on-screen}): mensajes de error dentro de una pantalla clara.
