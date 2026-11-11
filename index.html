@@ -1596,7 +1596,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Las dos empresas pactan la comisión.': 'Both businesses agree on the commission.',
     'Reserva y señal': 'Booking and deposit',
     'El cliente recibe el enlace y paga una señal.': 'The client gets the link and pays a deposit.',
-    'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal, que queda retenida: solo la comisión o el 50 % del total, según elija quien presta el servicio. Las dos empresas reciben la confirmación al momento.': 'Whoever refers creates the booking with the client’s email or mobile number. The client pays a deposit through Stripe, which is held: just the commission or 50% of the total, as chosen by the business providing the service. Both businesses get the confirmation instantly.',
+    'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal, que queda retenida: el 50 % o el 100 % del total, según elija quien presta el servicio. Las dos empresas reciben la confirmación al momento.': 'Whoever refers creates the booking with the client’s email or mobile number. The client pays a deposit through Stripe, which is held: 50% or 100% of the total, as chosen by the business providing the service. Both businesses get the confirmation instantly.',
     'La comisión llega a quien recomendó.': 'The commission reaches whoever referred.',
     'Paso reservas': 'I pass on bookings',
     'Grupo de amigos disfrutando de una salida en barco': 'Group of friends enjoying a boat trip',
@@ -1760,7 +1760,6 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Recomendar a un cliente': 'Refer a client', 'Cliente recomendado': 'Client referred', 'Ver todos': 'See all', 'Ir al chat para reservar': 'Go to chat to book', 'Hola, nos gustaría reservar:': 'Hi, we would like to book:', 'Reservar': 'Book', 'Colaboración aceptada': 'Collaboration accepted',
     'Comisión y señal de tus servicios': 'Commission and deposit for your services',
     'Cambia la comisión que ofreces y la señal que paga el cliente al reservar. Se aplica a las reservas nuevas; las ya hechas mantienen sus condiciones.': 'Change the commission you offer and the deposit the client pays when booking. It applies to new bookings; existing ones keep their terms.',
-    'Al canjear el QR se libera la comisión a quien recomendó. Con el 50 %, también recibes el resto de la señal.': 'When the QR is redeemed, the commission is released to whoever referred the client. With 50%, you also receive the rest of the deposit.',
     'Bajar comisión': 'Lower commission', 'Subir comisión': 'Raise commission',
     'Al reservar': 'On booking', 'En la oficina': 'At the office', 'Para ti al canjear': 'For you on redemption',
     'Mejor valorados': 'Top rated',
@@ -1818,7 +1817,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'Disponibilidad en la Agenda': 'Availability in the Calendar', 'Ocupado': 'Booked', 'Reserva externa': 'Outside booking',
     'Toca un hueco libre para marcarlo como ocupado, aunque la reserva venga de fuera de Favent. Las reservas hechas con Favent se apuntan solas en su salida, con el cliente, las personas y quien la recomendó.': 'Tap a free slot to mark it as booked, even if the booking came from outside Favent. Bookings made with Favent are added to their trip automatically, with the client, party size and who referred them.',
     'En cada servicio eliges la comisión y la señal; los cambios valen para las reservas nuevas.': 'For each service you choose the commission and the deposit; changes apply to new bookings.',
-    'Señal que paga el cliente': 'Deposit the client pays', 'Solo la comisión': 'Just the commission', '50 % del total': '50% of the total',
+    'Señal que paga el cliente': 'Deposit the client pays', '50 % del total': '50% of the total', '100 % del total': '100% of the total',
     'Señal': 'Deposit', 'Señal al reservar': 'Deposit at booking',
     'Al canjear, para ti': 'At redemption, for you', 'A cobrar en tu oficina': 'To collect at your office',
     'Se cobra en la oficina': 'Paid at the office', 'Al canjear el código se liberan la comisión y el resto de la señal.': 'When the code is redeemed, the commission and the rest of the deposit are released.',
@@ -1946,7 +1945,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.': 'On the day of the service, the client’s QR code is scanned. That scan is the proof of referral.',
     'canjeada': 'redeemed',
     'La comisión llega a la empresa.': 'The commission reaches the business.',
-    'Al canjear el código, Favent transfiere la comisión a quien recomendó y, si la señal fue del 50 %, el resto de esa señal a quien presta el servicio. Lo que falta se cobra en su oficina.': 'When the code is redeemed, Favent transfers the commission to whoever referred and, if the deposit was 50%, the rest of that deposit to the business providing the service. The remainder is paid at their office.',
+    'Al canjear el código, Favent transfiere la comisión a quien recomendó y el resto de la señal a quien presta el servicio. Si la señal fue del 50 %, la otra mitad se cobra en su oficina.': 'When the code is redeemed, Favent transfers the commission to whoever referred and the rest of the deposit to the business providing the service. If the deposit was 50%, the other half is paid at their office.',
     'liquidada': 'settled',
     'Nuevo · aún sin reseñas': 'New · no reviews yet', 'desde': 'from', 'Comisión': 'Commission'
   };
@@ -1991,15 +1990,16 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   var NAV = [['home', 'Inicio'], ['map', 'Buscar servicios'], ['res', 'Reservas'], ['col', 'Colaboradores'], ['msg', 'Mensajes'], ['rep', 'Informes']];
   // Señal que paga el cliente al reservar (la elige quien presta el servicio):
-  // 'com' = solo la comisión; '50' = el 50 % del total (al canjear se liberan la comisión y el resto de ese 50 %)
-  function depAmount(dep, total, com) { return dep === '50' ? total / 2 : com; }
-  function depLabel(dep) { return T(dep === '50' ? '50 % del total' : 'Solo la comisión'); }
+  // '50' = el 50 % del total (la otra mitad se cobra en la oficina); '100' = el 100 % del total (no queda nada por cobrar).
+  // Al canjear se liberan la comisión a quien recomendó y el resto de la señal a quien presta el servicio.
+  function depAmount(dep, total) { return dep === '50' ? total / 2 : total; }
+  function depLabel(dep) { return T(dep === '50' ? '50 % del total' : '100 % del total'); }
   function svcDep(name) { for (var i = 0; i < SVCS.length; i++) if (SVCS[i].name === name) return SVCS[i]; return null; }
   var STEPS = [
     { n: '01', t: 'Acuerdo', d: 'Las dos empresas pactan la comisión.', x: 'Cada servicio lleva su comisión pactada, en porcentaje o importe fijo. Cada reserva la respeta.', e: 'acuerdo activo' },
-    { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal, que queda retenida: solo la comisión o el 50 % del total, según elija quien presta el servicio. Las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
+    { n: '02', t: 'Reserva y señal', d: 'El cliente recibe el enlace y paga una señal.', x: 'Quien recomienda crea la reserva con el email o el móvil del cliente. El cliente paga con Stripe una señal, que queda retenida: el 50 % o el 100 % del total, según elija quien presta el servicio. Las dos empresas reciben la confirmación al momento.', e: 'pagada · retenida' },
     { n: '03', t: 'Canje', d: 'Se escanea el código al prestar el servicio.', x: 'El día del servicio se escanea el QR del cliente. Ese escaneo es la prueba del referral.', e: 'canjeada' },
-    { n: '04', t: 'Liberación', d: 'La comisión llega a quien recomendó.', x: 'Al canjear el código, Favent transfiere la comisión a quien recomendó y, si la señal fue del 50 %, el resto de esa señal a quien presta el servicio. Lo que falta se cobra en su oficina.', e: 'liquidada' }
+    { n: '04', t: 'Liberación', d: 'La comisión llega a quien recomendó.', x: 'Al canjear el código, Favent transfiere la comisión a quien recomendó y el resto de la señal a quien presta el servicio. Si la señal fue del 50 %, la otra mitad se cobra en su oficina.', e: 'liquidada' }
   ];
   var SVCS = [
     { name: 'Velas del Norte', img: 'img/nautica-10.jpg', dep: '50', desc: 'Día completo en velero privado por la bahía de Pollença, con patrón.', svc: 'Chárter privado · día completo', type: 'Náutica', place: 'Port de Pollença', lat: 39.9071, lng: 3.0858, price: 1500, pct: 12, rating: 4.9, reviews: 38 },
@@ -2157,7 +2157,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="pp-b"><span class="pp-n">' + s.name + '</span><span class="pp-p">' + T(s.svc) + ' · ' + s.place + '</span>'
       + '<span class="pp-d">' + T(s.desc) + '</span>'
       + '<div class="pp-f"><span><small>' + T('Precio total') + '</small><b>' + eur(s.price) + '</b></span><span class="pp-r">' + rating + '</span></div>'
-      + '<span class="pp-p" style="display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid #ECEDE9; padding-top: 8px"><span>' + T('Señal al reservar') + '</span><b style="font-family: \'Geist Mono\', monospace; font-weight: 500; color: #0B2A4A">' + eur(depAmount(s.dep, s.price, s.price * s.pct / 100)) + ' · ' + depLabel(s.dep) + '</b></span></div>';
+      + '<span class="pp-p" style="display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid #ECEDE9; padding-top: 8px"><span>' + T('Señal al reservar') + '</span><b style="font-family: \'Geist Mono\', monospace; font-weight: 500; color: #0B2A4A">' + eur(depAmount(s.dep, s.price)) + ' · ' + depLabel(s.dep) + '</b></span></div>';
   }
   function renderPop() {
     var pop = $('pin-pop');
@@ -2487,7 +2487,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + (sv.img || sv.type === 'Náutica' ? '<img src="' + (sv.img || 'img/ofreces.jpg') + '" alt="">' : '<span class="fx-detail-ic" style="background: ' + FXCOL[sv.type] + '"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + cat[1] + '</svg></span>')
       + '<div><b style="display: block; font-size: 16px">' + sv.name + '</b><span style="font-size: 12.5px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
       + '<p>' + T(sv.desc) + '</p>'
-      + '<dl>' + row('Precio total', '<span class="fx-mono">' + eur(sv.price) + '</span>') + row('Comisión', '<span class="fx-mono">' + comm(sv) + '</span>') + row('Señal al reservar', '<span class="fx-mono">' + eur(depAmount(sv.dep, sv.price, sv.price * sv.pct / 100)) + '</span> · ' + depLabel(sv.dep)) + row('Valoración', rating) + '</dl>'
+      + '<dl>' + row('Precio total', '<span class="fx-mono">' + eur(sv.price) + '</span>') + row('Comisión', '<span class="fx-mono">' + comm(sv) + '</span>') + row('Señal al reservar', '<span class="fx-mono">' + eur(depAmount(sv.dep, sv.price)) + '</span> · ' + depLabel(sv.dep)) + row('Valoración', rating) + '</dl>'
       + acts + '</div>';
   }
   function fxMap() {
@@ -2992,7 +2992,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         + '<label class="nm">' + T('Servicio') + '<input id="fpf-n" required maxlength="60" placeholder="' + T('Barco privado · 12 pax · bebida incluida') + '" value="' + esc(f.n) + '"></label>'
         + '<label>' + T('Precio') + ' (€)<input id="fpf-p" type="number" min="1" required value="' + esc(f.p) + '"></label>'
         + '<label>' + T('Comisión') + ' (%)<input id="fpf-c" type="number" min="1" max="50" required value="' + esc(f.c) + '"></label>'
-        + '<fieldset class="full"><legend>' + T('Señal que paga el cliente') + '</legend><div class="fp-days">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpdep" data-v="' + d[0] + '" aria-pressed="' + ((f.dep || 'com') === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></fieldset>'
+        + '<fieldset class="full"><legend>' + T('Señal que paga el cliente') + '</legend><div class="fp-days">' + [['50', '50 % del total'], ['100', '100 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpdep" data-v="' + d[0] + '" aria-pressed="' + ((f.dep || '100') === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></fieldset>'
         + '<p class="full fp-note">' + T('La disponibilidad se marca en la Agenda.') + '</p>'
         + '<label class="full">' + T('Descripción corta') + '<textarea id="fpf-d" rows="2" maxlength="120">' + esc(f.t) + '</textarea></label>'
         + '<div class="acts"><button type="button" class="fx-btn ghost" data-act="fpcancel">' + T('Cancelar') + '</button><button type="submit" class="fx-btn accent" id="fpf-go">' + T('Publicar') + '</button></div></form>';
@@ -3015,20 +3015,20 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   }
   // Comisión y señal de cada servicio, dentro de su tarjeta: se cambian aquí, para las reservas nuevas
   function fpComBox(x, i) {
-    var en = S.lang === 'en', dep = x.dep || 'com', com = x.price * x.pct / 100, now = depAmount(dep, x.price, com);
+    var en = S.lang === 'en', dep = x.dep || '100', com = x.price * x.pct / 100, now = depAmount(dep, x.price);
     return '<div class="fp-cs' + (FX.csFresh === i ? ' fresh' : '') + '">'
       + '<div class="fp-cs-r"><span>' + T('Comisión') + '</span><div class="fp-cs-c" role="group" aria-label="' + T('Comisión') + '"><button type="button" data-act="fpcom" data-v="' + i + '|-1" aria-label="' + T('Bajar comisión') + '"' + (x.pct <= 1 ? ' disabled' : '') + '>−</button>'
       + '<output aria-live="polite">' + x.pct + (en ? '%' : ' %') + '<small>' + eur(com) + '</small></output>'
       + '<button type="button" data-act="fpcom" data-v="' + i + '|1" aria-label="' + T('Subir comisión') + '"' + (x.pct >= 50 ? ' disabled' : '') + '>+</button></div></div>'
-      + '<div class="fp-cs-r col"><span>' + T('Señal que paga el cliente') + '</span><div class="fp-days" role="group" aria-label="' + T('Señal que paga el cliente') + '">' + [['com', 'Solo la comisión'], ['50', '50 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpcsdep" data-v="' + i + '|' + d[0] + '" aria-pressed="' + (dep === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></div>'
-      + '<div class="fp-cs-s"><span>' + T('Al reservar') + ' <b>' + eur(now) + '</b></span>' + (dep === '50' ? '<span>' + T('Para ti al canjear') + ' <b>' + eur(now - com) + '</b></span>' : '') + '<span>' + T('En la oficina') + ' <b>' + eur(x.price - now) + '</b></span></div></div>';
+      + '<div class="fp-cs-r col"><span>' + T('Señal que paga el cliente') + '</span><div class="fp-days" role="group" aria-label="' + T('Señal que paga el cliente') + '">' + [['50', '50 % del total'], ['100', '100 % del total']].map(function (d) { return '<button type="button" class="fx-chip" data-act="fpcsdep" data-v="' + i + '|' + d[0] + '" aria-pressed="' + (dep === d[0]) + '">' + T(d[1]) + '</button>'; }).join('') + '</div></div>'
+      + '<div class="fp-cs-s"><span>' + T('Al reservar') + ' <b>' + eur(now) + '</b></span><span>' + T('Para ti al canjear') + ' <b>' + eur(now - com) + '</b></span><span>' + T('En la oficina') + ' <b>' + eur(x.price - now) + '</b></span></div></div>';
   }
   function fpPublish() {
     var f = FX.form; if (!f) return;
     FPN++;
     FPS.unshift(f.tour
-      ? { k: 'n' + FPN, boat: 'Diamante', n: 'Lancha privada · 8 pax · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
-      : { k: 'n' + FPN, boat: (f.b || '').trim(), n: f.n.trim(), desc: f.t.trim(), dep: f.dep || 'com', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
+      ? { k: 'n' + FPN, boat: 'Diamante', n: 'Lancha privada · 8 pax · medio día', desc: 'Media jornada hasta el cabo de Formentor con baño en una cala.', dep: f.dep || '100', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, isNew: true }
+      : { k: 'n' + FPN, boat: (f.b || '').trim(), n: f.n.trim(), desc: f.t.trim(), dep: f.dep || '100', price: +f.p, pct: +f.c, days: f.d.slice(), clicks: 0, on: true, raw: true, isNew: true });
     if (FPS.filter(function (x) { return x.on; }).length > 2) { FPS[0].on = false; FX.srvMsg = 'Guardado como oculto: ya tienes 2 servicios publicados.'; }
     FX.form = null; FX.freshSrv = 0; fxRender();
   }
@@ -3195,7 +3195,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="mo-wrap"><div class="mo-g">' + wd + cells.join('') + '</div></div>' + fpCalNote();
   }
   // Escanear el QR del cliente (o escribir su código) y ver su reserva: lo que queda por cobrar y la comisión que se libera
-  function fpBDep(b) { var x = FPS.filter(function (y) { return y.k === b.s; })[0] || FPS0[b.s]; return (x && x.dep) || 'com'; }
+  function fpBDep(b) { var x = FPS.filter(function (y) { return y.k === b.s; })[0] || FPS0[b.s]; return (x && x.dep) || '100'; }
   function fpQrFind(code) {
     var c = String(code || '').toUpperCase().replace(/\s+/g, ''); if (c && c.indexOf('FV-') !== 0) c = 'FV-' + c.replace(/^FV/, '');
     FX.qr.code = c; FX.qr.err = null; FX.qr.i = null;
@@ -3218,7 +3218,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         + (q.err ? '<div class="fx-ok" role="alert" style="background: #FFF1F6; color: #7A0B3D; margin: 0">' + T(q.err) + '</div>' : '')
         + '<p class="fp-note">' + T('Códigos de ejemplo') + ': FV-1LC5, FV-7K2Q, FV-8DD2</p></div>';
     }
-    var b = FPB[q.i], sv = FPS.filter(function (y) { return y.k === b.s; })[0] || {}, dep = fpBDep(b), paid = depAmount(dep, b.total, b.com), rest = b.total - paid, mine = paid - b.com;
+    var b = FPB[q.i], sv = FPS.filter(function (y) { return y.k === b.s; })[0] || {}, dep = fpBDep(b), paid = depAmount(dep, b.total), rest = b.total - paid, mine = paid - b.com;
     var st = b.st === 'held' ? ['Señal pagada · lista para canjear', '#EAF2F8', '#0B2A4A'] : b.st === 'pend' ? ['Pago pendiente', '#FFF1F6', '#7A0B3D'] : ['Ya canjeada', '#F0F1ED', '#3D4248'];
     var row = function (k, v) { return '<dt>' + T(k) + '</dt><dd>' + v + '</dd>'; };
     var act = b.st === 'held'
@@ -3231,7 +3231,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       + '<div class="fq-due"><span>' + T('A cobrar en la oficina') + '</span><b class="fx-mono">' + money(rest) + '</b></div>'
       + '<dl class="fx-fields" style="padding: 0">' + row('Fecha', fxDate(b.date, true) + ' · ' + b.h1 + '–' + b.h2) + row('Personas', b.pax) + row('Recomendado por', b.from)
       + row('Precio total', '<span class="fx-mono">' + money(b.total) + '</span>') + row('Señal pagada', '<span class="fx-mono">' + money(paid) + '</span> · ' + depLabel(dep))
-      + row('Comisión que se libera', '<span class="fx-mono">' + money(b.com) + '</span>') + (dep === '50' ? row('Para ti al canjear', '<span class="fx-mono">' + money(mine) + '</span>') : '') + '</dl>'
+      + row('Comisión que se libera', '<span class="fx-mono">' + money(b.com) + '</span>') + row('Para ti al canjear', '<span class="fx-mono">' + money(mine) + '</span>') + '</dl>'
       + act + '<button type="button" class="fx-btn ghost" data-act="fpqrnew" style="justify-content: center">' + T('Escanear otro código') + '</button></div></div>';
   }
   document.addEventListener('submit', function (e) { if (e.target.id !== 'fpq') return; e.preventDefault(); var i = $('fpq-c'); fpQrFind(i ? i.value : ''); });
@@ -3384,7 +3384,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var lbl = function (t) { return '<div style="padding: 16px 18px 6px; font-size: 12px; font-weight: 600; color: #656B71; text-transform: uppercase; letter-spacing: .05em">' + T(t) + '</div>'; };
     if (o.t === 'pres') {
       var b = FPB[o.i], step = FXST[b.st].step;
-      var bdep = b.s === 0 ? '50' : 'com', bsig = depAmount(bdep, b.total, b.com);
+      var bdep = b.s === 0 ? '50' : '100', bsig = depAmount(bdep, b.total);
       var tl = [['Reserva recibida', b.from], ['Plaza confirmada', T('Agenda conectada')], ['Señal pagada', money(bsig) + ' · ' + depLabel(bdep)], ['Código canjeado', b.id], ['Comisión liberada', money(b.com)]].map(function (t, i) {
         return '<li class="' + (i <= step ? 'done' : '') + (i === step ? ' now' : '') + '"><i></i>' + T(t[0]) + (i <= step ? '<small>' + t[1] + '</small>' : '') + '</li>';
       }).join('');
@@ -3420,7 +3420,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     var x = '<button type="button" class="fx-x" data-act="fxclose" aria-label="' + T('Cerrar') + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>';
     var h;
     if (o.t === 'res') {
-      var b = FXB[o.i], step = FXST[b.st].step, m = TEAM[b.by], rsv = svcDep(b.emp), rdep = depAmount(rsv && rsv.dep, rsv ? rsv.price : b.com, b.com);
+      var b = FXB[o.i], step = FXST[b.st].step, m = TEAM[b.by], rsv = svcDep(b.emp), rdep = depAmount(rsv && rsv.dep, rsv ? Math.max(rsv.price, Math.round(b.com * 100 / rsv.pct)) : b.com); // total de la reserva: el precio del servicio o, si va por persona, el que da su comisión
       var tl = [['Reserva creada', fxDate(b.date, false)], ['Link de pago enviado', en ? 'By text message' : 'Por SMS'], ['Pago recibido', money(rdep) + ' · ' + depLabel(rsv && rsv.dep)], ['Código canjeado', b.id], ['Comisión liberada', money(b.com)]].map(function (t, i) {
         return '<li class="' + (i <= step ? 'done' : '') + (i === step ? ' now' : '') + '"><i></i>' + T(t[0]) + (i <= step ? '<small>' + t[1] + '</small>' : '') + '</li>';
       }).join('');
@@ -3579,11 +3579,10 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     // Ficha con foto, como en el mapa interactivo de abajo (fx-detail), a la derecha del mapa
     var side;
     if (LIVE.pin) {
-      var dcom = sv.price * sv.pct / 100;
       side = '<div class="fx-detail hx-detail">' + (sv.img ? '<img src="' + sv.img + '" alt="">' : '')
         + '<div><b style="display: block; font-size: 16px">' + sv.name + '</b><span style="font-size: 12.5px; color: #656B71">' + T(sv.svc) + ' · ' + sv.place + '</span></div>'
         + '<p>' + T(sv.desc) + '</p>'
-        + '<dl><dt>' + T('Precio total') + '</dt><dd class="fx-mono">' + eur(sv.price) + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + comm(sv) + '</dd><dt>' + T('Señal al reservar') + '</dt><dd><span class="fx-mono">' + eur(depAmount(sv.dep, sv.price, dcom)) + '</span></dd></dl>'
+        + '<dl><dt>' + T('Precio total') + '</dt><dd class="fx-mono">' + eur(sv.price) + '</dd><dt>' + T('Comisión') + '</dt><dd class="fx-mono">' + comm(sv) + '</dd><dt>' + T('Señal al reservar') + '</dt><dd><span class="fx-mono">' + eur(depAmount(sv.dep, sv.price)) + '</span></dd></dl>'
         + '<span id="hx-propose" class="fx-btn accent" style="justify-content: center">' + T('Ir al chat para reservar') + '</span></div>';
     } else {
       // Sin selección: los servicios visibles, de mejor a peor valorados
