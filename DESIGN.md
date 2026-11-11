@@ -221,7 +221,7 @@ components:
 
 Favent es el canal de ventas profesional B2B entre empresas de servicios: quien recomienda clientes y quien presta el servicio pactan una comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio. El diseño tiene que transmitir eso: **un sistema técnico, fiable y en movimiento**, no una campaña de marketing.
 
-La página **alterna secciones oscuras y claras** («dark & white»). Oscuras: inicio y panel, perfiles, equipos, acceso y pie. Claras (`.light`): la frase, «Así se mueve una reserva» y confianza. El lienzo oscuro es `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro; el claro, `{colors.screen-canvas}` (#F6F6F3). Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
+La página **alterna secciones oscuras y claras** («dark & white»). Oscuras: inicio y panel, perfiles, acceso y pie. Claras (`.light`): la frase y «Así se mueve una reserva». Confianza (clara) y equipos (oscura) están ocultas por ahora. El lienzo oscuro es `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro; el claro, `{colors.screen-canvas}` (#F6F6F3). Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
 
 Hay dos acentos con funciones que no se mezclan:
 - **Rosa señal** `{colors.primary}` (#FF4F9A): marca y progreso. Punto del logotipo, cuadrado de las etiquetas, línea y puntos completados del recorrido.
@@ -419,6 +419,8 @@ Cuatro pasos (Acuerdo, Reserva y señal, Canje, Liberación; antes eran seis, se
 Frase en `{typography.statement}`: las palabras pasan de `{colors.ink-reveal-dim}` a `{colors.ink}` con el scroll. El texto real vive en un elemento solo para lectores de pantalla y se traduce como el resto.
 
 ### Map (mapa de servicios)
+**Las secciones «Confianza» (`#confianza`, ranking de fiabilidad) y «Para equipos» (`#equipos`) están ocultas** (`hidden`) mientras se replantean. Para recuperarlas, quitar `hidden`.
+
 **La sección del panel interactivo (`#app`, «La forma profesional de gestionar tus comisiones», con los perfiles «Si recomiendas» / «Si ofreces servicios») está oculta** (`hidden`): la web ya no explica las pantallas de cada perfil. No se borra porque el JavaScript la sigue usando; para recuperarla, quitar `hidden` y volver a alternar confianza (oscura) y equipos (clara).
 
 **La sección «Mapa de servicios» está oculta** (`hidden`): el mapa solo se ve dentro del panel interactivo, en la vista «Buscar servicios». No se borra porque esa vista reutiliza lo que pinta la sección (`fxMap()` toma sus puntos, categorías y lista) y comparte su estado.
