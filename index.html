@@ -1172,7 +1172,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="app" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
+  <!-- Oculta: panel interactivo con los perfiles «Si recomiendas» / «Si ofreces servicios»; el JS lo sigue usando, no borrar -->
+  <section id="app" class="light" hidden style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 28px" aria-label="Panel interactivo">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Un canal de ventas profesional</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">La forma profesional de gestionar tus comisiones.</h2>
@@ -1299,7 +1300,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="confianza" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
+  <section id="confianza" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Confianza y calidad">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Confianza y calidad</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Un sistema de confianza, no solo estrellas.</h2>
@@ -1356,7 +1357,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="equipos" class="light" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
+  <section id="equipos" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px; display: flex; flex-direction: column; gap: 32px" aria-label="Gestión de equipos">
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
       <span class="eyebrow">Para equipos</span>
       <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Todo tu equipo recomienda. Cada uno con su número.</h2>
