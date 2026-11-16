@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Favent-design-system
-description: "Lienzo oscuro de producto B2B construido sobre #0B0F17 (azul casi negro), texto gris claro (#E9EEF6) y dos acentos con funciones separadas: rosa señal (#FF4F9A) para la marca y el progreso, y azul eléctrico suave (#4DA8FF / #7CC4FF) para la energía, el movimiento y el énfasis. La web se lee como un canal de ventas técnico y serio: Funnel Display en titulares (500, tracking negativo), Geist Mono en etiquetas, códigos e importes, y el logotipo formado por el monograma «fv» en negativo con el punto rosa (img/logo-mark-neg.png) y la palabra «favent.» en Michroma. La profundidad viene del vidrio esmerilado (glassmorfismo) sobre una textura de puntos, de algunos relieves neumórficos y de interfaces de ejemplo claras, tratadas como «pantallas encendidas». La página alterna secciones oscuras y claras. En el inicio, una rejilla de puntos que respira desde el centro, del azul al rosa."
+description: "Identidad D, «Favent depurado» (elegida por Rodrigo el 16 nov 2026): elegante, técnica y funcional, con muy pocos colores. Carbón (#0B0F17) y blanco: el inicio, la llamada final y el pie, oscuros; el resto de la web, claro como la app (#F6F6F3, tarjetas blancas, texto #1E2226). El rosa señal (#FF4F9A) queda solo en el punto del logotipo (y, en la app, en lo urgente). Funnel Display en titulares y texto, Geist Mono en datos, códigos, importes y estados, y la palabra «favent.» en Michroma. Sin rejilla de puntos, sin grano, sin vidrio, sin relieves y sin azul eléctrico en la web. Las pantallas de la app se dibujan en HTML con la misma paleta clara y siempre se marcan «Vista de ejemplo»."
 
 colors:
   primary: "#FF4F9A"
@@ -219,33 +219,25 @@ components:
 
 ## Overview
 
-Favent es el canal de ventas profesional B2B entre empresas de servicios: quien recomienda clientes y quien presta el servicio pactan una comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio. El diseño tiene que transmitir eso: **un sistema técnico, fiable y en movimiento**, no una campaña de marketing.
+Favent es el canal de ventas profesional B2B entre empresas de servicios: quien recomienda clientes y quien presta el servicio pactan una comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio. El diseño tiene que transmitir eso: **un sistema técnico, fiable y serio**, no una campaña de marketing.
 
-La página **alterna secciones oscuras y claras** («dark & white»). Oscuras: inicio y panel, perfiles, acceso y pie. Claras (`.light`): la frase y «Así se mueve una reserva». Confianza (clara) y equipos (oscura) están ocultas por ahora. El lienzo oscuro es `{colors.canvas}` (#0B0F17), un azul casi negro, nunca negro puro; el claro, `{colors.screen-canvas}` (#F6F6F3). Encima, una textura de puntos de 22 px en blanco al 7 % y un grano muy suave le dan materia. Las tarjetas y paneles de contenido son de **vidrio esmerilado** (`{colors.glass}` con `backdrop-filter`), así que la textura y los circuitos se intuyen a través. Unos pocos elementos tienen **relieve neumórfico**: el campo de email, el selector de idioma, los iconos de confianza y los puntos del recorrido.
+**Identidad D · «Favent depurado»** (16 nov 2026). Se compararon cuatro direcciones (Grafito, Carta náutica, Instrumento y esta) y Rodrigo eligió la D: la identidad de antes, más adulta. Se queda lo reconocible (la palabra «favent.» en Michroma con el punto rosa, Funnel Display, Geist Mono) y se quita lo que la hacía ruidosa: la rejilla de puntos que respiraba, el grano, el vidrio esmerilado, los relieves neumórficos, el azul eléctrico y la alternancia de bloques oscuros y claros.
 
-Hay dos acentos con funciones que no se mezclan:
-- **Rosa señal** `{colors.primary}` (#FF4F9A): marca y progreso. Punto del logotipo, cuadrado de las etiquetas, línea y puntos completados del recorrido.
-- **Azul eléctrico** `{colors.electric}` / `{colors.electric-soft}`: energía y énfasis. La rejilla del inicio (junto al rosa), la palabra «cobrado.» del titular, estados en mono y etiquetas sobre fondo oscuro.
-
-Las **interfaces de ejemplo** (panel del producto, mapa, ranking, equipo y bloque final de acceso) son «pantallas encendidas»: conservan una paleta clara propia (`screen-*`) dentro del lienzo oscuro. Son las protagonistas visuales, como las capturas de producto en Linear, y siempre llevan la etiqueta «Vista de ejemplo».
-
-**Características clave:**
-- Secciones oscuras y claras alternas, ambas con textura de puntos (blanca al 7 % sobre oscuro, grafito al 9 % sobre claro); nunca un fondo plano sin materia.
-- Rosa para la marca y el progreso, azul eléctrico para la energía. Ningún otro color de acento en el lienzo.
-- Vidrio esmerilado para tarjetas y paneles de contenido; relieve neumórfico solo en controles e iconos.
-- Funnel Display 500 con tracking negativo en titulares; Geist Mono en todo lo que es dato, código o estado.
-- Interfaces de ejemplo claras, siempre marcadas como ejemplo.
-- Movimiento ligado al scroll o al ratón, salvo la pancarta del inicio y el panel de ejemplo, que se animan solos y se pausan con un único botón de icono.
+- **Dos fondos, nada más.** Oscuro `{colors.canvas}` (#0B0F17) solo en el inicio (titular y animación del panel), en la llamada final y en el pie. Todo lo demás, claro `{colors.screen-canvas}` (#F6F6F3) con tarjetas blancas y bordes `{colors.screen-hairline}`, igual que la app.
+- **El rosa, solo en el punto.** El punto del logotipo (y el de «cobrado.» en el titular, que lo repite). Ningún otro rosa en la web. En la app se reserva para lo urgente (reservas por aceptar, avisos).
+- **Azul solo dentro de las pantallas.** `screen-accent` (#2B6CA8) para botones y barras dentro de las pantallas dibujadas, como en la app. Nunca como color de la página.
+- **Pantallas dibujadas.** Las secciones enseñan trozos de la app dibujados en HTML (tarjetas `.mini`, el móvil `.phone`), con datos de ejemplo coherentes entre sí (600 € de precio, 50 % de señal, 15 % de comisión → 308,25 € ahora con 8,25 € de gestión, 300 € en el lugar, 90 € y 210 € al repartir) y la etiqueta «Vista de ejemplo».
+- **Texto corto, mucho aire.** Una idea por bloque: título, una línea y la pantalla.
 
 ## Colors
 
 > Fuente: `index.html` (variables en `:root`, `.screen`, y los estilos de cada componente).
 
 ### Brand & Accent
-- **Rosa señal** ({colors.primary}): marca, progreso y selección (logotipo, etiquetas, recorrido, lo seleccionado en el mapa). Como texto sobre el lienzo da unos 6,1:1, pero se reserva para acentos, no para párrafos.
-- **Rosa profundo** ({colors.primary-deep}): versión para rellenos con texto blanco encima (categoría Ciclismo del mapa, unos 5,9:1).
-- **Azul eléctrico** ({colors.electric}): centro azul de la rejilla del inicio.
-- **Azul eléctrico suave** ({colors.electric-soft}): texto de énfasis («cobrado.»), etiquetas de sección sobre bloques oscuros, estados en mono.
+- **Rosa señal** ({colors.primary}): solo el punto del logotipo y el punto de «cobrado.» en el titular (identidad D). En la web no se usa en nada más. En la app, solo en lo urgente (burbuja de reservas por aceptar, números de avisos).
+- **Rosa profundo** ({colors.primary-deep}): solo dentro de pantallas antiguas de ejemplo; no se usa en lo nuevo.
+- **Azul eléctrico** ({colors.electric} / {colors.electric-soft}): **retirado de la web** con la identidad D. En la app sigue solo como color de texto y enlaces en su modo oscuro (ver más abajo).
+- **Secciones claras de la web** (`.nw`): fondo `#F6F6F3`, tarjetas `#FFFFFF`, bordes `#E6E7E3`, texto `#1E2226` / `#43494F` / `#50565C`, etiquetas en Geist Mono `#50565C`. Estados en cápsulas: verde suave `#E5F1EA` con `#1D5B3A` (confirmado, canjeado, liberado), gris `#EEEFEC` con `#43494F` (pendiente).
 
 ### Surface
 - **Canvas** ({colors.canvas}): fondo de toda la página.
@@ -335,15 +327,15 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 | Nivel | Tratamiento | Uso |
 |---|---|---|
-| 0 (lienzo) | `{colors.canvas}` + textura de puntos + grano | Fondo, titulares, texto suelto |
-| 1 (vidrio) | `{colors.glass}`, blur 16 px, borde `{colors.glass-line}`, brillo interior de 1 px arriba, sombra 0 24px 60px rgba(0,0,0,.35) | Tarjetas, panel de confianza, detalle del recorrido, cinta, menú fijo |
-| 2 (relieve) | Mismo color que el lienzo con sombra doble (oscura abajo a la derecha, clara arriba a la izquierda) o inset | Campo de email, selector de idioma, iconos, puntos del recorrido |
-| 3 (pantalla encendida) | Panel claro `screen-*` con sombra larga | Interfaces de ejemplo |
+| 0 (lienzo) | Plano: `{colors.canvas}` en inicio, llamada final y pie; `#F6F6F3` en el resto. Sin textura ni grano | Fondo, titulares, texto suelto |
+| 1 (tarjeta) | `#FFFFFF`, borde 1 px `#E6E7E3`, radio 20 px, sin sombra | Ventajas, planes, recorrido del dinero |
+| 2 (pantalla dibujada) | `.mini`: blanca, borde `#E6E7E3`, radio 14 px, sombra 0 10px 30px rgba(30,34,38,.06) | Trozos de la app en cada paso |
+| 3 (panel animado del inicio) | Panel claro `screen-*` con sombra larga | La animación del principio |
+| Menú fijo | Fondo `{colors.canvas}` sólido al bajar (sin vidrio) | Barra de arriba |
 | Foco | Contorno de 2 px `#2B6CA8` con 2 px de separación | Botones, enlaces y campos con `:focus-visible` |
 
 ### Decorative Depth
-- **Rejilla que respira** (canvas `#net`, a todo el ancho): puntos cada 22 px alineados con la textura de la página; una onda radial sale del centro y los hace crecer (hasta 2,2 px de radio) y brillar, con color del azul eléctrico en el centro al rosa en los bordes. Simétrica a izquierda y derecha; el centro va enmascarado para que el texto se lea limpio. El lienzo no debe heredar la animación de entrada del titular (`.cine .intro > canvas{animation:none}`): si lo hace, pierde el centrado y solo cubre la mitad derecha. Ya se probaron y descartaron los circuitos (demasiado tech) y las ondas (asimétricas).
-- **Paralaje**: la rejilla se desplaza a un cuarto de la velocidad del scroll.
+- **Ninguna** con la identidad D: se quitaron la rejilla de puntos que respiraba (`#net`, oculta), el grano de toda la página, el vidrio esmerilado y los relieves. El carácter lo dan la tipografía, el aire y las pantallas dibujadas.
 - **No usar** degradados de color visibles como fondo ni brillos de neón alrededor del texto.
 
 ## Shapes
@@ -366,6 +358,8 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 ## Components
 
+> **Identidad D (nov 2026).** La web nueva usa estos componentes (estilos `.nw*` al final del `<style>` de `index.html`): `nw-steps` (cuatro pasos, cada uno con su pantalla `.mini`), `nw-feats` / `nw-feat` (tres ventajas por perfil), `.phone` (el móvil del cliente), `nw-flow` + `nw-rules` (el dinero), `nw-plans` (planes sin precio), `nw-faq` (preguntas con `<details>`) y `nw-final` (llamada final oscura con «Crear cuenta» y el email). Los botones del inicio son `.hero-cta` (claro relleno y fantasma). Lo descrito más abajo como Route, Statement, Map, confianza y equipos es de la identidad anterior: sigue en el código, oculto dentro de `#legacy` porque el código de la animación del inicio lo busca, y no se usa.
+
 ### Buttons
 **`button-primary`**: cápsula clara sobre el lienzo («Solicitar acceso»). Fondo `{colors.ink}`, texto `{colors.canvas}`, 52 px de alto en formularios y 40 px en el menú.
 
@@ -387,7 +381,7 @@ Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` a
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
-- Menú fijo (`.topnav`, sticky): transparente arriba; en cuanto la página se desplaza (`.stuck`) se vuelve de vidrio (`nav-bar-stuck`).
+- Menú fijo (`.topnav`, sticky): transparente arriba; en cuanto la página se desplaza (`.stuck`) toma el fondo oscuro sólido. Enlaces a las secciones (se ocultan por debajo de 1020 px), «Entrar» y el botón «Crear cuenta» (`app.favent.app/registro`).
 - Selector de idioma ES/EN con relieve hundido; la opción activa en `{colors.surface-active}`.
 - El menú no tiene enlaces a secciones: solo el logotipo, el botón «Solicitar acceso» y el selector de idioma. Por debajo de 640 px también se oculta el botón.
 
@@ -458,19 +452,18 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 ## Do's and Don'ts
 
 ### Do
-- Mantener `{colors.canvas}` como única base de la página y darle materia con la textura de puntos.
-- Usar el rosa solo para marca y progreso, y el azul eléctrico solo para energía y énfasis.
-- Poner el contenido en vidrio y los controles con relieve; reservar las pantallas claras para las interfaces de ejemplo.
+- Oscuro solo en el inicio, la llamada final y el pie; claro (como la app) en todo lo demás.
+- Rosa solo en el punto del logotipo (y el de «cobrado.»); azul solo dentro de las pantallas dibujadas.
+- Explicar cada idea con un título, una línea y una pantalla dibujada (`.mini`) con datos de ejemplo coherentes.
 - Escribir datos, códigos y estados en Geist Mono.
 - Marcar siempre los datos inventados como «Vista de ejemplo», «Servicios de ejemplo» o «Ejemplo».
 - Comprobar el contraste: 4.5:1 en texto normal, 3:1 en texto grande y en bordes de controles.
 
 ### Don't
-- No volver a un tema todo claro ni todo oscuro, ni a la transición de día y noche ni a los circuitos de procesador (ya se probaron y se descartaron).
-- No usar naranja ni un tercer color de acento en el lienzo.
+- No volver a la rejilla de puntos, el grano, el vidrio, los relieves ni el azul eléctrico (identidad anterior), ni a la transición de día y noche ni a los circuitos de procesador.
+- No usar naranja ni ningún color de acento más en la página.
 - No usar el rosa en párrafos ni como fondo de secciones.
 - No usar `#000000` puro ni degradados de color visibles como fondo.
-- No aplicar neumorfismo a tarjetas grandes ni a texto: solo a controles e iconos.
 - No añadir apariciones con fundido en cada sección.
 - No inventar cifras, clientes, testimonios ni condiciones de Favent (tarifas, plazos) en ningún componente.
 
@@ -504,7 +497,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 
 ## Iteration Guide
 
-1. Antes de diseñar algo nuevo, elegir su nivel de elevación (lienzo, vidrio, relieve o pantalla).
+1. Antes de diseñar algo nuevo, elegir su nivel de elevación (lienzo, tarjeta o pantalla dibujada).
 2. Referenciar componentes por su nombre de token (`glass-card`, `neu-field`, `route-node`…).
 3. Usar las variables CSS (`--bg`, `--ink`, `--ink-2`, `--ink-3`, `--line`, `--card`, `--eyebrow`, `--chipline`, `--signal`, `--glass`) en vez de colores escritos a mano.
 4. Todo texto nuevo, también los `aria-label`, necesita su entrada en el diccionario `EN` del script.

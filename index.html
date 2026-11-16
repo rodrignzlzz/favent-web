@@ -1004,12 +1004,165 @@ html:not(.cine) .motion-btn{display:none}
 body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .intro{position:relative;isolation:isolate}
 
+/* ===== Identidad D · «Favent depurado» (nov 2026): carbón y blanco, el rosa solo en el punto del logotipo.
+   Fuera los puntos del titular, el grano, el vidrio y el azul eléctrico. Ver DESIGN.md. ===== */
+.net{display:none !important}
+body::after{display:none !important}
+.topnav.stuck::before{background:#0B0F17;-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom-color:#1C2333}
+.neu-in{box-shadow:none !important}
+.n-cta{gap:4px !important}
+.n-cta .nl{height:40px;padding:0 12px;border-radius:999px;display:flex;align-items:center;font-size:14px;font-weight:500;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.n-cta .nl:hover{color:var(--ink);background:#121826}
+.n-cta .nb{height:40px;padding:0 18px;margin-left:8px;border-radius:999px;background:var(--ink);color:var(--bg);display:flex;align-items:center;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+@media (max-width: 1020px){.n-cta .nl{display:none}}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.hero-cta a{height:52px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center;text-decoration:none;font-size:15px;font-weight:600}
+.hero-cta .p{background:#E9EEF6;color:#0B0F17}
+.hero-cta .g{border:1px solid #2A3346;color:#E9EEF6}
+.hero-cta .g:hover{border-color:#5A657E;color:#FFFFFF}
+.hero-note{margin:0;font-size:13px;line-height:1.5;color:var(--ink-3)}
+.hero-note a{color:var(--ink);font-weight:600;text-underline-offset:3px}
+.dot-p{color:#FF4F9A}
+
+/* Secciones claras, como la app */
+.nw{background:#F6F6F3;color:#1E2226}
+.nw-in{max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px;display:grid;gap:clamp(28px,4vw,44px)}
+.nw-in + .nw-in{padding-top:0}
+.nw-head{display:grid;gap:14px;max-width:760px}
+.nw-eb{font-family:'Geist Mono',monospace;font-size:13px;font-weight:500;color:#50565C}
+.nw h2{margin:0;font-family:'Funnel Display',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:500;letter-spacing:-0.035em;line-height:1.05;text-wrap:balance}
+.nw-lead{margin:0;font-size:clamp(17px,2vw,19px);line-height:1.55;color:#43494F;max-width:62ch}
+.nw-ex{font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#50565C;background:#FFFFFF;border:1px solid #D5D7D3;padding:3px 10px;border-radius:999px;justify-self:start}
+.nw h3{margin:0;font-size:20px;font-weight:600;letter-spacing:-0.015em;line-height:1.25}
+.nw p.d{margin:0;font-size:15px;line-height:1.55;color:#50565C}
+.nw-band{border-top:1px solid #E6E7E3}
+
+/* Pasos */
+.nw-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:st}
+.nw-steps li{display:grid;grid-template-rows:auto auto 1fr;gap:10px;min-width:0}
+.nw-n{font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:#656B71}
+.nw-steps .mini{margin-top:8px;align-self:start}
+
+/* Ventajas de cada perfil */
+.nw-feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.nw-feat{background:#FFFFFF;border:1px solid #E6E7E3;border-radius:20px;padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:10px;min-width:0}
+.nw-feat .mini{margin-top:10px;align-self:end;background:#F6F6F3;border-color:#ECEDE9;box-shadow:none}
+
+/* Pantallas dibujadas (como la app) */
+.mini{background:#FFFFFF;border:1px solid #E6E7E3;border-radius:14px;box-shadow:0 10px 30px rgba(30,34,38,.06);padding:12px;display:grid;gap:8px;font-size:12.5px;line-height:1.35;color:#1E2226;min-width:0}
+.mini .mh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px;font-weight:600;color:#50565C}
+.mini .mr{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0}
+.mini .mr > span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini .mr small,.mini small{color:#656B71;font-size:11.5px}
+.mini .mono,.mini b.mono{font-family:'Geist Mono',monospace;font-variant-numeric:tabular-nums;font-weight:500}
+.mini .big{font-family:'Geist Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-0.02em}
+.mini .ln{border-top:1px solid #EEEFEC;padding-top:8px}
+.mini .bt{display:flex;gap:6px;flex-wrap:wrap}
+.mini .b{height:28px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;font-size:11.5px;font-weight:600;background:#1E2226;color:#FFFFFF}
+.mini .b.g{background:transparent;border:1px solid #D5D7D3;color:#1E2226}
+.mini .b.a{background:#2B6CA8}
+.pl{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap;background:#EEF1F4;color:#0B2A4A}
+.pl.ok{background:#E5F1EA;color:#1D5B3A}
+.pl.w{background:#EEEFEC;color:#43494F}
+.mini .q{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;width:84px;height:84px;padding:6px;background:#FFFFFF;border:1px solid #E6E7E3;border-radius:10px}
+.mini .q i{background:#1E2226;border-radius:1px}
+.mini .q i.o{background:transparent}
+.mini .search{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #D5D7D3;border-radius:999px;background:#FFFFFF;color:#43494F;min-width:0}
+.mini .search span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini .bars{display:flex;align-items:flex-end;gap:5px;height:46px}
+.mini .bars i{flex:1;background:#D3E2EF;border-radius:3px 3px 0 0}
+.mini .bars i.on{background:#2B6CA8}
+.mini .ag{display:grid;grid-template-columns:34px repeat(3,minmax(0,1fr));gap:4px;font-size:10.5px}
+.mini .ag .hd{font-weight:600;color:#43494F;padding-bottom:2px;border-bottom:2px solid var(--c,#D5D7D3)}
+.mini .ag .t{color:#656B71;font-family:'Geist Mono',monospace}
+.mini .ag .ev{border-radius:6px;padding:4px 5px;font-weight:600;line-height:1.2}
+.mini .ag .ev.ok{background:#E5F1EA;color:#1D5B3A}
+.mini .ag .ev.sh{background:#FFE4F0;color:#8E1F52}
+.mini .ag .ev.fr{background:#EAF2F8;color:#0B2A4A;border:1px dashed #A9C7E2}
+.mini .bub{justify-self:start;max-width:88%;background:#FFFFFF;border:1px solid #E6E7E3;border-radius:14px 14px 14px 4px;padding:7px 10px}
+.mini .bub.me{justify-self:end;background:#2B6CA8;color:#FFFFFF;border-color:#2B6CA8;border-radius:14px 14px 4px 14px}
+
+/* El cliente: un móvil */
+.nw-client{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:center}
+.nw-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.nw-list li{display:flex;gap:12px;align-items:baseline;font-size:16px;color:#43494F}
+.nw-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:#1E2226;flex:none;transform:translateY(-2px)}
+.phone{justify-self:center;width:min(300px,100%);background:#0B0F17;border-radius:40px;padding:10px;box-shadow:0 30px 70px rgba(11,15,23,.22)}
+.phone .scr{background:#F6F6F3;border-radius:31px;overflow:hidden;display:grid;gap:10px;padding:16px 14px 18px}
+.phone .top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;color:#43494F}
+.phone .card{background:#FFFFFF;border:1px solid #E6E7E3;border-radius:14px;overflow:hidden;font-size:12.5px}
+.phone .ph{height:74px;background:linear-gradient(#DCE6EF,#DCE6EF);display:flex;align-items:flex-end;padding:8px 10px;font-size:10.5px;font-weight:600;color:#0B2A4A}
+.phone .ph.b{background:#E5ECE6;color:#1D5B3A}
+.phone .cb{padding:9px 10px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.phone .cb b{font-weight:600}
+.phone .ok{background:#0B0F17;color:#E9EEF6;border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px}
+.phone .ok b{font-family:'Geist Mono',monospace;letter-spacing:.06em}
+
+/* El dinero */
+.nw-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;background:#FFFFFF;border:1px solid #E6E7E3;border-radius:20px;overflow:hidden}
+.nw-flow li{padding:24px;display:grid;gap:8px;align-content:start;min-width:0}
+.nw-flow li + li{border-left:1px solid #E6E7E3}
+.nw-flow b{font-size:17px;font-weight:600}
+.nw-flow span{font-size:15px;line-height:1.5;color:#50565C}
+.nw-rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.nw-rules div{display:grid;gap:6px;align-content:start;border-top:2px solid #1E2226;padding-top:14px}
+.nw-rules b{font-size:15px;font-weight:600}
+.nw-rules span{font-size:14.5px;line-height:1.5;color:#50565C}
+.nw-note{margin:0;font-size:13.5px;color:#656B71}
+
+/* Planes */
+.nw-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.nw-plan{background:#FFFFFF;border:1px solid #E6E7E3;border-radius:20px;padding:24px;display:grid;gap:14px;align-content:start}
+.nw-plan.pro{border-color:#1E2226;box-shadow:0 0 0 1px #1E2226}
+.nw-plan .pn{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nw-plan .pn b{font-size:22px;font-weight:600;letter-spacing:-0.02em}
+.nw-plan .pp{font-family:'Geist Mono',monospace;font-size:13px;color:#43494F}
+.nw-plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;color:#43494F}
+.nw-plan li{display:flex;gap:10px;align-items:baseline}
+.nw-plan li::before{content:"";width:10px;height:6px;border-left:2px solid #1E2226;border-bottom:2px solid #1E2226;transform:rotate(-45deg) translateY(-3px);flex:none}
+
+/* Preguntas */
+.nw-faq{display:grid;border-top:1px solid #E6E7E3;max-width:860px}
+.nw-faq details{border-bottom:1px solid #E6E7E3}
+.nw-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:18px;font-weight:500;letter-spacing:-0.01em}
+.nw-faq summary::-webkit-details-marker{display:none}
+.nw-faq summary::after{content:"+";font-family:'Geist Mono',monospace;font-size:20px;color:#656B71;flex:none}
+.nw-faq details[open] summary::after{content:"−"}
+.nw-faq summary:focus-visible{outline:2px solid #2B6CA8;outline-offset:4px;border-radius:4px}
+.nw-faq p{margin:0 0 20px;font-size:16px;line-height:1.6;color:#50565C;max-width:68ch}
+
+/* Llamada final (oscura, como el inicio) */
+.nw-final{max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+.nw-final h2{margin:0;font-family:'Funnel Display',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:500;letter-spacing:-0.035em;line-height:1.05;color:#E9EEF6;text-wrap:balance}
+.nw-final .fl{display:grid;gap:18px}
+.nw-final .fl p{margin:0;font-size:17px;line-height:1.55;color:#A7B1C2;max-width:52ch}
+.nw-final .fr{display:grid;gap:12px;border-left:1px solid #1C2333;padding-left:32px}
+.nw-final .fr > span{font-size:14px;color:#A7B1C2}
+#acceso-final input{border:1px solid #2A3346 !important;background:#121826 !important;color:#E9EEF6 !important}
+#acceso-final input::placeholder{color:#8592A6}
+#acceso-final button{background:#E9EEF6 !important;color:#0B0F17 !important}
+
+@media (max-width: 960px){
+  .nw-steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .nw-feats,.nw-plans{grid-template-columns:minmax(0,1fr)}
+  .nw-client{grid-template-columns:minmax(0,1fr)}
+  .nw-flow{grid-template-columns:minmax(0,1fr)}
+  .nw-flow li + li{border-left:0;border-top:1px solid #E6E7E3}
+  .nw-rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nw-final{grid-template-columns:minmax(0,1fr)}
+  .nw-final .fr{border-left:0;padding-left:0;border-top:1px solid #1C2333;padding-top:24px}
+}
+@media (max-width: 560px){
+  .nw-in,.nw-final{padding-left:16px;padding-right:16px}
+  .nw-steps,.nw-rules{grid-template-columns:minmax(0,1fr)}
+  .hero-cta a{flex:1 1 100%;justify-content:center}
+}
 </style>
 </head>
 <body>
 <div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Funnel Display', sans-serif">
 
-  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso" style="color: #7CC4FF; text-decoration: none; font-weight: 600">Solicita acceso →</a></div>
+  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="https://app.favent.app/registro" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Crea tu cuenta gratis</a></div>
 
   <nav class="topnav" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px" aria-label="Principal">
     <div class="n-brand" style="display: flex; align-items: center; gap: 10px">
@@ -1017,7 +1170,12 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
       <span class="n-badge" style="white-space: nowrap; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--ink-2); border: 1px solid var(--chipline); padding: 3px 8px; border-radius: 999px">B2B SERVICE</span>
     </div>
     <div class="n-cta" style="display: flex; gap: 8px; align-items: center">
-      <a href="#acceso" style="height: 40px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--bg); display: flex; align-items: center; text-decoration: none; font-size: 14px; font-weight: 600">Solicitar acceso</a>
+      <a class="nl" href="#funciona">Cómo funciona</a>
+      <a class="nl" href="#recomiendas">Si recomiendas</a>
+      <a class="nl" href="#ofreces">Si ofreces servicios</a>
+      <a class="nl" href="#planes">Planes</a>
+      <a class="nl" href="https://app.favent.app/login">Entrar</a>
+      <a class="nb" href="https://app.favent.app/registro">Crear cuenta</a>
     </div>
     <div class="lang-switch neu-in" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid var(--line)" role="group" aria-label="Idioma">
       <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink); cursor: pointer">
@@ -1033,20 +1191,11 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <canvas class="net" id="net" aria-hidden="true"></canvas>
-    <span class="eyebrow">Para empresas de servicios en Mallorca</span>
-    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span style="color: #7CC4FF">cobrado.</span></span></h1>
-    <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 660px">El canal de ventas profesional entre empresas de servicios.</p>
-    <form id="acceso" class="neu-field" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 540px" novalidate>
-        <label for="email-hero" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
-        <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: var(--ink)">
-        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-family: 'Funnel Display', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
-      </form>
-    <div id="sent" role="status" hidden style="display: none; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 999px; background: #EAF2F8; color: #0B2A4A; font-size: 15px; font-weight: 600">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        Gracias. Te escribimos en cuanto abramos tu zona.
-      </div>
-    <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:info@favent.es">info@favent.es</a>.</p>
-    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-3)">Gratis durante el piloto · Tu email, solo para darte acceso.</p>
+    <span class="eyebrow">Canal de ventas B2B · Piloto en Mallorca</span>
+    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Cada cliente que envías,</span></span> <span class="ln"><span>cobrado<span class="dot-p">.</span></span></span></h1>
+    <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 680px">Quien recomienda clientes y quien presta el servicio pactan la comisión. El cliente paga por adelantado y cada uno cobra solo.</p>
+    <div class="hero-cta"><a class="p" href="#recomiendas">Recomiendo clientes</a><a class="g" href="#ofreces">Ofrezco servicios</a></div>
+    <p class="hero-note">Gratis durante el piloto · <a href="https://app.favent.app/registro">Crear cuenta</a></p>
     <button type="button" class="motion-btn" id="motion-btn" data-act="motion" aria-pressed="false" aria-label="Pausar animaciones"><svg class="i-pause" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2h3v10H3zM8 2h3v10H8z" fill="currentColor"></path></svg><svg class="i-play" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2l8 5-8 5z" fill="currentColor"></path></svg></button>
   </header>
 
@@ -1105,6 +1254,246 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
   </section>
 
   <!-- Oculta hasta tener logos reales con permiso: quitar «hidden» para mostrarla -->
+
+  <!-- ===== Secciones de la identidad D (nov 2026): claras, como la app. Pantallas dibujadas, datos de ejemplo. ===== -->
+  <div class="nw">
+
+  <section id="funciona" class="nw-in" aria-labelledby="h-funciona">
+    <div class="nw-head">
+      <span class="nw-eb">Cómo funciona</span>
+      <h2 id="h-funciona">Cuatro pasos, sin perseguir a nadie.</h2>
+    </div>
+    <ol class="nw-steps">
+      <li>
+        <span class="nw-n">01</span>
+        <h3>Pactáis la comisión</h3>
+        <p class="d">Las dos empresas acuerdan un porcentaje una vez. Vale para todas las reservas.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Solicitud de colaboración</span><span class="pl w">Nueva</span></div>
+          <div class="mr"><span>Hotel Miramar</span><small>quien recomienda</small></div>
+          <div class="mr"><span class="big">15 %</span><small>comisión</small></div>
+          <div class="bt"><span class="b">Aceptar</span><span class="b g">Responder</span></div>
+        </div>
+      </li>
+      <li>
+        <span class="nw-n">02</span>
+        <h3>El cliente paga la señal</h3>
+        <p class="d">Reserva con un enlace o desde el QR del hotel y paga con tarjeta el 50 % o el 100 %.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Zafiro · Barco privado</span><span>sáb 10:00</span></div>
+          <div class="mr"><span>Pagas ahora</span><b class="mono">308,25 €</b></div>
+          <div class="mr"><span>Pagas en el lugar</span><span class="mono">300,00 €</span></div>
+          <div class="bt"><span class="b a">Pagar la señal</span></div>
+        </div>
+      </li>
+      <li>
+        <span class="nw-n">03</span>
+        <h3>Se canjea el QR</h3>
+        <p class="d">Al llegar, quien presta el servicio escanea el código del cliente.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mr" style="align-items:center"><span class="q" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i></span><span style="display:grid;gap:6px;justify-items:end"><b class="mono" style="letter-spacing:.08em">FV-7K2Q</b><span class="pl ok">Canjeado</span></span></div>
+        </div>
+      </li>
+      <li>
+        <span class="nw-n">04</span>
+        <h3>Cada uno cobra solo</h3>
+        <p class="d">Favent envía la comisión a quien recomendó y el resto de la señal a quien presta el servicio.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Reparto de la señal</span><span class="pl ok">Liberado</span></div>
+          <div class="mr"><span>Hotel Miramar</span><b class="mono">90,00 €</b></div>
+          <div class="mr"><span>Velas del Norte</span><b class="mono">210,00 €</b></div>
+        </div>
+      </li>
+    </ol>
+    <span class="nw-ex">Vista de ejemplo</span>
+  </section>
+
+  <div class="nw-band">
+  <section id="recomiendas" class="nw-in" aria-labelledby="h-recomiendas">
+    <div class="nw-head">
+      <span class="nw-eb">Si recomiendas clientes</span>
+      <h2 id="h-recomiendas">Recomienda lo de siempre. Ahora, cobrando.</h2>
+      <p class="nw-lead">Hoteles, conserjerías, agencias y apartamentos. Tus clientes reservan experiencias de confianza y tú recibes tu comisión sin perseguir a nadie.</p>
+    </div>
+    <div class="nw-feats">
+      <article class="nw-feat">
+        <h3>Un QR en cada habitación</h3>
+        <p class="d">El huésped lo escanea, ve las experiencias que tú eliges y reserva desde su móvil. La reserva queda a tu nombre.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Experiencias · Hotel Miramar</span></div>
+          <div class="mr"><span>Zafiro · Barco privado</span><span class="mono">600 €</span></div>
+          <div class="mr ln"><span>Bici por la Tramuntana</span><span class="mono">45 €</span></div>
+          <div class="mr ln"><span>Traslado al aeropuerto</span><span class="mono">70 €</span></div>
+        </div>
+      </article>
+      <article class="nw-feat">
+        <h3>Reserva en un minuto</h3>
+        <p class="d">Busca en el mapa o escribe lo que pide el cliente. Le mandas el enlace y paga él.</p>
+        <div class="mini" aria-hidden="true">
+          <span class="search"><span>barco para 6 el sábado por la mañana</span></span>
+          <div class="mr"><span>Zafiro · sáb 10:00 · 8 plazas</span><span class="pl ok">Encaja</span></div>
+          <div class="mr ln"><span>Perla · sáb 11:00 · 6 plazas</span><span class="pl ok">Encaja</span></div>
+        </div>
+      </article>
+      <article class="nw-feat">
+        <h3>Tus comisiones, claras</h3>
+        <p class="d">Lo generado, lo retenido y lo cobrado, por mes y por empresa, siempre al día.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mr"><small>Comisión generada</small><small>Reservas</small></div>
+          <div class="mr"><span class="big">1.240 €</span><span class="big">18</span></div>
+          <div class="bars"><i style="height:35%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:61%"></i><i class="on" style="height:92%"></i></div>
+        </div>
+      </article>
+    </div>
+  </section>
+  </div>
+
+  <div class="nw-band">
+  <section id="ofreces" class="nw-in" aria-labelledby="h-ofreces">
+    <div class="nw-head">
+      <span class="nw-eb">Si ofreces servicios</span>
+      <h2 id="h-ofreces">Un canal de venta nuevo, con las reservas ya pagadas.</h2>
+      <p class="nw-lead">Barcos, traslados, bicis, excursiones y servicios privados. Los hoteles de la zona te mandan clientes con la señal pagada y tú fijas la comisión de cada servicio.</p>
+    </div>
+    <div class="nw-feats">
+      <article class="nw-feat">
+        <h3>Reservas que llegan pagadas</h3>
+        <p class="d">Aceptas o rechazas en un toque. La señal se cobra al aceptar y, si el cliente no se presenta, se queda.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Por aceptar</span><span class="mono">29:58</span></div>
+          <div class="mr"><span>Familia Jensen · 8 pers.</span><small>Hotel Miramar</small></div>
+          <div class="bt"><span class="b">Aceptar</span><span class="b g">Rechazar</span></div>
+        </div>
+      </article>
+      <article class="nw-feat">
+        <h3>Una agenda profesional</h3>
+        <p class="d">Tus barcos o servicios en columnas, por día, semana o mes. Tus reservas de teléfono y web junto a las de Favent, y con Google Calendar.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="ag">
+            <span></span><span class="hd" style="--c:#2B6CA8">Zafiro</span><span class="hd" style="--c:#1D5B3A">Perla</span><span class="hd" style="--c:#43494F">Ónix</span>
+            <span class="t">10:00</span><span class="ev ok">Jensen · 8</span><span class="ev fr">Libre</span><span class="ev ok">Müller · 4</span>
+            <span class="t">16:00</span><span class="ev fr">Libre</span><span class="ev ok">Pons · 6</span><span class="ev fr">Libre</span>
+          </div>
+        </div>
+      </article>
+      <article class="nw-feat">
+        <h3>Entre colegas</h3>
+        <p class="d">¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.</p>
+        <div class="mini" aria-hidden="true">
+          <span class="bub">¿Tienes sitio el sábado para 6?</span>
+          <span class="bub me">Sí, te la paso al Ónix.</span>
+          <div class="mr ln"><span>Reserva pasada · Barcos del Sur</span><span class="pl">10 %</span></div>
+        </div>
+      </article>
+    </div>
+    <span class="nw-ex">Vista de ejemplo</span>
+  </section>
+  </div>
+
+  <div class="nw-band">
+  <section id="cliente" class="nw-in" aria-labelledby="h-cliente">
+    <div class="nw-client">
+      <div class="nw-head">
+        <span class="nw-eb">Para el cliente</span>
+        <h2 id="h-cliente">Reservar, desde su móvil y en un minuto.</h2>
+        <p class="nw-lead">Escanea el QR del hotel o abre su enlace, elige, paga la señal y recibe su código. Nunca ve comisiones.</p>
+        <ul class="nw-list">
+          <li>En español y en inglés.</li>
+          <li>Pago con tarjeta, Apple Pay o Google Pay, con Stripe.</li>
+          <li>Su reserva en un enlace, sin crear cuenta.</li>
+        </ul>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="scr">
+          <div class="top"><span>Hotel Miramar</span><span>ES · EN</span></div>
+          <div class="card"><div class="ph">Náutica</div><div class="cb"><b>Zafiro · Barco privado</b><span class="mono">600 €</span></div></div>
+          <div class="card"><div class="ph b">Ciclismo</div><div class="cb"><b>Bici por la Tramuntana</b><span class="mono">45 €</span></div></div>
+          <div class="ok"><span>Reserva confirmada</span><b>FV-7K2Q</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="nw-band">
+  <section id="dinero" class="nw-in" aria-labelledby="h-dinero">
+    <div class="nw-head">
+      <span class="nw-eb">El dinero, claro</span>
+      <h2 id="h-dinero">La señal queda segura hasta el servicio.</h2>
+    </div>
+    <ol class="nw-flow">
+      <li><span class="nw-n">01</span><b>El cliente paga la señal</b><span>El 50 % o el 100 % del total, según elija quien presta el servicio.</span></li>
+      <li><span class="nw-n">02</span><b>Queda retenida</b><span>Hasta que se presta el servicio. Nadie la mueve antes.</span></li>
+      <li><span class="nw-n">03</span><b>Se reparte al canjear el QR</b><span>La comisión, a quien recomendó; el resto, a quien presta el servicio.</span></li>
+    </ol>
+    <div class="nw-rules">
+      <div><b>Si cancela con más de 48 horas</b><span>Se le devuelve la señal.</span></div>
+      <div><b>Si cancela después o no se presenta</b><span>La señal no se devuelve y se reparte como si se hubiera prestado.</span></div>
+      <div><b>Si quien presta el servicio no puede</b><span>Ofrece otra fecha o cancela, y se devuelve la señal.</span></div>
+      <div><b>Gastos de gestión</b><span>El cliente paga un 2,75 % de la señal por usar Favent. No cambia lo que cobra cada empresa y no se devuelve.</span></div>
+    </div>
+    <p class="nw-note">Los pagos los gestiona Stripe. Favent nunca marca nada como pagado sin su confirmación.</p>
+  </section>
+  </div>
+
+  <div class="nw-band">
+  <section id="planes" class="nw-in" aria-labelledby="h-planes">
+    <div class="nw-head">
+      <span class="nw-eb">Planes</span>
+      <h2 id="h-planes">Gratis durante el piloto.</h2>
+      <p class="nw-lead">Después, una cuota anual según el plan.</p>
+    </div>
+    <div class="nw-plans">
+      <div class="nw-plan">
+        <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
+        <ul><li>Hasta 2 servicios publicados</li><li>Un QR para tu hotel</li><li>Agenda, reservas y mensajes</li><li>Informes básicos</li></ul>
+      </div>
+      <div class="nw-plan pro">
+        <div class="pn"><b>Pro</b><span class="pp">Para crecer</span></div>
+        <ul><li>Hasta 8 servicios publicados</li><li>Más colaboradores y más QR</li><li>Google Calendar</li><li>Informes completos</li></ul>
+      </div>
+      <div class="nw-plan">
+        <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
+        <ul><li>Sin límites</li><li>Soporte dedicado</li><li>Condiciones a medida</li></ul>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="nw-band">
+  <section id="preguntas" class="nw-in" aria-labelledby="h-preguntas">
+    <div class="nw-head">
+      <span class="nw-eb">Preguntas</span>
+      <h2 id="h-preguntas">Lo que nos suelen preguntar.</h2>
+    </div>
+    <div class="nw-faq">
+      <details><summary>¿Cuánto cuesta?</summary><p>Durante el piloto, nada. Después, una cuota anual según el plan. El cliente paga además unos gastos de gestión del 2,75 % de la señal.</p></details>
+      <details><summary>¿Cómo y cuándo cobro?</summary><p>Con Stripe, directamente en tu cuenta bancaria. La comisión y el resto de la señal se envían al canjear el QR.</p></details>
+      <details><summary>¿El cliente ve mi comisión?</summary><p>No. El cliente solo ve el precio, lo que paga ahora y lo que paga en el lugar.</p></details>
+      <details><summary>¿Puedo apuntar mis reservas de fuera de Favent?</summary><p>Sí. La Agenda es completa: apuntas tus reservas de teléfono, web o en persona, y se sincroniza con Google Calendar.</p></details>
+      <details><summary>¿Quién puede entrar?</summary><p>Empresas de servicios, hoteles, conserjerías y agencias. Favent revisa cada alta antes de activarla.</p></details>
+      <details><summary>¿Dónde funciona?</summary><p>Empezamos en Mallorca.</p></details>
+    </div>
+  </section>
+  </div>
+
+  </div>
+
+  <!-- Secciones anteriores: ocultas y sin uso. Se quedan porque el código de la animación del inicio las busca;
+       el formulario de email del inicio, también (se envía desde la llamada final). -->
+  <div id="legacy" hidden aria-hidden="true">
+  <div class="intro-old">
+    <form id="acceso" class="neu-field" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 540px" novalidate>
+        <label for="email-hero" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
+        <input id="email-hero" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 240px; height: 52px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: var(--ink)">
+        <button type="submit" style="height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-family: 'Funnel Display', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Solicitar acceso</button>
+      </form>
+    <div id="sent" role="status" hidden style="display: none; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 999px; background: #EAF2F8; color: #0B2A4A; font-size: 15px; font-weight: 600">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Gracias. Te escribimos en cuanto abramos tu zona.
+      </div>
+    <p id="err-hero" class="form-err" role="alert" hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:info@favent.es">info@favent.es</a>.</p>
+  </div>
   <section hidden style="border-top: 1px solid #E6E7E3; border-bottom: 1px solid #E6E7E3; background: #FFFFFF" aria-label="Socios del piloto">
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
       <span style="font-size: 14px; color: #50565C; max-width: 260px">Diseñado con empresas de servicios de Mallorca</span>
@@ -1409,9 +1798,17 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     </div>
   </section>
 
-  <section id="acceso-final-sec" style="max-width: 1200px; margin: 0 auto; padding: var(--sp) 24px">
-    <div class="screen" style="background: #EAF2F8; border-radius: 32px; padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
-      <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; max-width: 560px">Únete al piloto en Mallorca.</h2>
+  </div>
+
+  <section id="acceso-final-sec" aria-labelledby="h-final">
+    <div class="nw-final">
+      <div class="fl">
+        <h2 id="h-final">Empieza en el piloto de Mallorca.</h2>
+        <p>Crea tu cuenta gratis. Favent revisa cada alta y te avisa en cuanto esté activa.</p>
+        <div class="hero-cta" style="justify-content: flex-start"><a class="p" href="https://app.favent.app/registro">Crear cuenta</a><a class="g" href="https://app.favent.app/login">Entrar</a></div>
+      </div>
+      <div class="fr">
+        <span>¿Prefieres que te escribamos? Déjanos tu email.</span>
       <form id="acceso-final" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 360px; max-width: 480px" novalidate>
         <label for="email-final" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
         <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D3E6F4; background: #FFFFFF; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: #1E2226">
@@ -1422,7 +1819,7 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
         Gracias. Te escribimos en cuanto abramos tu zona.
       </div>
       <p id="err-final" class="form-err" role="alert" hidden style="flex-basis: 100%">No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a <a href="mailto:info@favent.es">info@favent.es</a>.</p>
-      <p style="margin: 0; flex-basis: 100%; font-size: 13px; line-height: 1.5; color: var(--ink-2)">Gratis durante el piloto · Tu email, solo para darte acceso.</p>
+      </div>
     </div>
   </section>
 
@@ -1947,6 +2344,121 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
     'La comisión llega a la empresa.': 'The commission reaches the business.',
     'Al canjear el código, Favent transfiere la comisión a quien recomendó y el resto de la señal a quien presta el servicio. Si la señal fue del 50 %, la otra mitad se cobra en su oficina.': 'When the code is redeemed, Favent transfers the commission to whoever referred and the rest of the deposit to the business providing the service. If the deposit was 50%, the other half is paid at their office.',
     'liquidada': 'settled',
+    // Identidad D (nov 2026): textos de las secciones nuevas
+    "Crea tu cuenta gratis": "Create your free account",
+    "Planes": "Plans",
+    "Crear cuenta": "Create account",
+    "Canal de ventas B2B · Piloto en Mallorca": "B2B sales channel · Pilot in Mallorca",
+    "cobrado": "paid",
+    "Quien recomienda clientes y quien presta el servicio pactan la comisión. El cliente paga por adelantado y cada uno cobra solo.": "Whoever refers clients and whoever provides the service agree on the commission. The client pays in advance and each side gets paid automatically.",
+    "Gratis durante el piloto ·": "Free during the pilot ·",
+    "Cuatro pasos, sin perseguir a nadie.": "Four steps, no chasing anyone.",
+    "Pactáis la comisión": "You agree on the commission",
+    "Las dos empresas acuerdan un porcentaje una vez. Vale para todas las reservas.": "Both businesses agree on a percentage once. It applies to every booking.",
+    "Solicitud de colaboración": "Partnership request",
+    "Nueva": "New",
+    "quien recomienda": "referrer",
+    "comisión": "commission",
+    "Responder": "Reply",
+    "El cliente paga la señal": "The client pays the deposit",
+    "Reserva con un enlace o desde el QR del hotel y paga con tarjeta el 50 % o el 100 %.": "They book with a link or from the hotel QR code and pay 50% or 100% by card.",
+    "Zafiro · Barco privado": "Zafiro · Private boat",
+    "sáb 10:00": "Sat 10:00",
+    "Pagas ahora": "You pay now",
+    "Pagas en el lugar": "You pay on site",
+    "Pagar la señal": "Pay the deposit",
+    "Se canjea el QR": "The QR code is redeemed",
+    "Al llegar, quien presta el servicio escanea el código del cliente.": "On arrival, the service provider scans the client’s code.",
+    "Canjeado": "Redeemed",
+    "Cada uno cobra solo": "Everyone gets paid automatically",
+    "Favent envía la comisión a quien recomendó y el resto de la señal a quien presta el servicio.": "Favent sends the commission to the referrer and the rest of the deposit to the service provider.",
+    "Reparto de la señal": "Deposit split",
+    "Liberado": "Released",
+    "Recomienda lo de siempre. Ahora, cobrando.": "Recommend what you always do. Now, getting paid.",
+    "Hoteles, conserjerías, agencias y apartamentos. Tus clientes reservan experiencias de confianza y tú recibes tu comisión sin perseguir a nadie.": "Hotels, concierges, agencies and apartments. Your guests book trusted experiences and you receive your commission without chasing anyone.",
+    "Un QR en cada habitación": "A QR code in every room",
+    "El huésped lo escanea, ve las experiencias que tú eliges y reserva desde su móvil. La reserva queda a tu nombre.": "The guest scans it, sees the experiences you choose and books from their phone. The booking is credited to you.",
+    "Experiencias · Hotel Miramar": "Experiences · Hotel Miramar",
+    "Bici por la Tramuntana": "Bike ride in the Tramuntana",
+    "Traslado al aeropuerto": "Airport transfer",
+    "Reserva en un minuto": "Book in a minute",
+    "Busca en el mapa o escribe lo que pide el cliente. Le mandas el enlace y paga él.": "Search the map or type what the client asks for. You send them the link and they pay.",
+    "barco para 6 el sábado por la mañana": "boat for 6 on Saturday morning",
+    "Zafiro · sáb 10:00 · 8 plazas": "Zafiro · Sat 10:00 · 8 seats",
+    "Perla · sáb 11:00 · 6 plazas": "Perla · Sat 11:00 · 6 seats",
+    "Encaja": "Match",
+    "Tus comisiones, claras": "Your commissions, clear",
+    "Lo generado, lo retenido y lo cobrado, por mes y por empresa, siempre al día.": "What you have earned, what is held and what is paid, by month and by business, always up to date.",
+    "Reservas": "Bookings",
+    "Un canal de venta nuevo, con las reservas ya pagadas.": "A new sales channel, with bookings already paid.",
+    "Barcos, traslados, bicis, excursiones y servicios privados. Los hoteles de la zona te mandan clientes con la señal pagada y tú fijas la comisión de cada servicio.": "Boats, transfers, bikes, excursions and private services. Local hotels send you clients with the deposit paid, and you set the commission for each service.",
+    "Reservas que llegan pagadas": "Bookings that arrive paid",
+    "Aceptas o rechazas en un toque. La señal se cobra al aceptar y, si el cliente no se presenta, se queda.": "Accept or decline in one tap. The deposit is charged when you accept and, if the client does not show up, it stays.",
+    "Por aceptar": "To accept",
+    "Familia Jensen · 8 pers.": "Jensen family · 8 people",
+    "Una agenda profesional": "A professional calendar",
+    "Tus barcos o servicios en columnas, por día, semana o mes. Tus reservas de teléfono y web junto a las de Favent, y con Google Calendar.": "Your boats or services in columns, by day, week or month. Your phone and web bookings next to Favent’s, and with Google Calendar.",
+    "¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.": "Fully booked that day? Pass the booking to a business you work with and earn your commission.",
+    "¿Tienes sitio el sábado para 6?": "Do you have room for 6 on Saturday?",
+    "Sí, te la paso al Ónix.": "Yes, I’ll put them on the Ónix.",
+    "Reserva pasada · Barcos del Sur": "Booking passed · Barcos del Sur",
+    "Para el cliente": "For the client",
+    "Reservar, desde su móvil y en un minuto.": "Booking, from their phone, in a minute.",
+    "Escanea el QR del hotel o abre su enlace, elige, paga la señal y recibe su código. Nunca ve comisiones.": "They scan the hotel QR code or open their link, choose, pay the deposit and get their code. They never see commissions.",
+    "En español y en inglés.": "In Spanish and English.",
+    "Pago con tarjeta, Apple Pay o Google Pay, con Stripe.": "Payment by card, Apple Pay or Google Pay, with Stripe.",
+    "Su reserva en un enlace, sin crear cuenta.": "Their booking in a link, no account needed.",
+    "Náutica": "Boating",
+    "Ciclismo": "Cycling",
+    "Reserva confirmada": "Booking confirmed",
+    "El dinero, claro": "The money, clear",
+    "La señal queda segura hasta el servicio.": "The deposit stays safe until the service.",
+    "El 50 % o el 100 % del total, según elija quien presta el servicio.": "50% or 100% of the total, as chosen by the service provider.",
+    "Queda retenida": "It is held",
+    "Hasta que se presta el servicio. Nadie la mueve antes.": "Until the service is delivered. Nobody moves it before then.",
+    "Se reparte al canjear el QR": "It is split when the QR code is redeemed",
+    "La comisión, a quien recomendó; el resto, a quien presta el servicio.": "The commission to the referrer; the rest to the service provider.",
+    "Si cancela con más de 48 horas": "If they cancel more than 48 hours ahead",
+    "Se le devuelve la señal.": "The deposit is refunded.",
+    "Si cancela después o no se presenta": "If they cancel later or do not show up",
+    "La señal no se devuelve y se reparte como si se hubiera prestado.": "The deposit is not refunded and is split as if the service had been delivered.",
+    "Si quien presta el servicio no puede": "If the service provider cannot do it",
+    "Ofrece otra fecha o cancela, y se devuelve la señal.": "They offer another date or cancel, and the deposit is refunded.",
+    "Gastos de gestión": "Service fee",
+    "El cliente paga un 2,75 % de la señal por usar Favent. No cambia lo que cobra cada empresa y no se devuelve.": "The client pays 2.75% of the deposit for using Favent. It does not change what each business receives and it is not refunded.",
+    "Los pagos los gestiona Stripe. Favent nunca marca nada como pagado sin su confirmación.": "Payments are handled by Stripe. Favent never marks anything as paid without its confirmation.",
+    "Gratis durante el piloto.": "Free during the pilot.",
+    "Después, una cuota anual según el plan.": "After that, a yearly fee depending on the plan.",
+    "Para empezar": "To get started",
+    "Hasta 2 servicios publicados": "Up to 2 published services",
+    "Un QR para tu hotel": "One QR code for your hotel",
+    "Agenda, reservas y mensajes": "Calendar, bookings and messages",
+    "Informes básicos": "Basic reports",
+    "Para crecer": "To grow",
+    "Hasta 8 servicios publicados": "Up to 8 published services",
+    "Más colaboradores y más QR": "More partners and more QR codes",
+    "Informes completos": "Full reports",
+    "A medida": "Tailored",
+    "Sin límites": "No limits",
+    "Soporte dedicado": "Dedicated support",
+    "Condiciones a medida": "Tailored terms",
+    "Preguntas": "Questions",
+    "Lo que nos suelen preguntar.": "What people usually ask us.",
+    "¿Cuánto cuesta?": "How much does it cost?",
+    "Durante el piloto, nada. Después, una cuota anual según el plan. El cliente paga además unos gastos de gestión del 2,75 % de la señal.": "Nothing during the pilot. After that, a yearly fee depending on the plan. The client also pays a service fee of 2.75% of the deposit.",
+    "¿Cómo y cuándo cobro?": "How and when do I get paid?",
+    "Con Stripe, directamente en tu cuenta bancaria. La comisión y el resto de la señal se envían al canjear el QR.": "Through Stripe, straight to your bank account. The commission and the rest of the deposit are sent when the QR code is redeemed.",
+    "¿El cliente ve mi comisión?": "Does the client see my commission?",
+    "No. El cliente solo ve el precio, lo que paga ahora y lo que paga en el lugar.": "No. The client only sees the price, what they pay now and what they pay on site.",
+    "¿Puedo apuntar mis reservas de fuera de Favent?": "Can I add my bookings from outside Favent?",
+    "Sí. La Agenda es completa: apuntas tus reservas de teléfono, web o en persona, y se sincroniza con Google Calendar.": "Yes. The Calendar is complete: you add your phone, web or walk-in bookings, and it syncs with Google Calendar.",
+    "¿Quién puede entrar?": "Who can join?",
+    "Empresas de servicios, hoteles, conserjerías y agencias. Favent revisa cada alta antes de activarla.": "Service businesses, hotels, concierges and agencies. Favent reviews every sign-up before activating it.",
+    "¿Dónde funciona?": "Where does it work?",
+    "Empezamos en Mallorca.": "We are starting in Mallorca.",
+    "Empieza en el piloto de Mallorca.": "Start in the Mallorca pilot.",
+    "Crea tu cuenta gratis. Favent revisa cada alta y te avisa en cuanto esté activa.": "Create your free account. Favent reviews every sign-up and lets you know as soon as it is active.",
+    "¿Prefieres que te escribamos? Déjanos tu email.": "Rather we write to you? Leave us your email.",
     'Nuevo · aún sin reseñas': 'New · no reviews yet', 'desde': 'from', 'Comisión': 'Commission'
   };
   function T(t) { return S.lang === 'en' && EN[t] ? EN[t] : t; }
