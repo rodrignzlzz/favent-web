@@ -23,14 +23,15 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien 
 - GitHub Pages no permite backend ni pagos: los formularios deben enviar a un servicio externo (Formspree, Supabase, etc.).
 
 ## Marca
-**Todo el diseño de la web debe seguir [`DESIGN.md`](DESIGN.md)**: colores, tipografía, espaciado, elevación (vidrio, relieve, pantallas), componentes, movimiento y comportamiento responsive. Antes de cambiar algo visual, léelo; si un cambio introduce o modifica un token o un componente, actualiza `DESIGN.md` en el mismo cambio. Si el código y `DESIGN.md` no coinciden, avisa y corrige uno de los dos.
+**Todo el diseño de la web debe seguir [`DESIGN.md`](DESIGN.md)**: colores, tipografía, espaciado, elevación (lienzo, tarjetas y pantallas dibujadas), componentes, movimiento y comportamiento responsive. Antes de cambiar algo visual, léelo; si un cambio introduce o modifica un token o un componente, actualiza `DESIGN.md` en el mismo cambio. Si el código y `DESIGN.md` no coinciden, avisa y corrige uno de los dos.
 
 Resumen (el detalle está en `DESIGN.md`):
 - Nombre: siempre **favent** en minúscula en el logotipo, "Favent" en el texto. Etiqueta secundaria: **B2B SERVICE**.
 - Logotipo: la palabra «favent.» en Michroma con punto rosa (`.logo` + `.logo-cur`). El monograma «fv» en negativo con el punto interior rosa (`img/logo-mark-neg.png`, del original `img/logo-mark.png`) es el icono: favicon (`img/favicon-32.png`, `favicon.ico`), iconos de app (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`) e imagen social (`img/og-image.png`). No va pegado a la palabra. Si cambian, regenerarlos y subir el `?v=N` de sus enlaces.
-- Tema «dark & white»: secciones oscuras (`#0B0F17`, texto `#E9EEF6`) y claras (`.light`, `#F6F6F3`) alternas; rosa señal `#FF4F9A` (marca y progreso) y azul eléctrico `#4DA8FF` / `#7CC4FF` (energía y énfasis). Las interfaces de ejemplo son «pantallas encendidas» claras.
+- Identidad D, «Favent depurado» (16 nov 2026): carbón `#0B0F17` solo en el inicio, la llamada final y el pie; el resto claro como la app (`#F6F6F3`, tarjetas blancas, texto `#1E2226`). El rosa señal `#FF4F9A` solo en el punto del logotipo. Sin rejilla de puntos, grano, vidrio, relieves ni azul eléctrico. Las pantallas de la app se dibujan en HTML (`.mini`, `.phone`) y llevan «Vista de ejemplo».
 - Tipografías: Funnel Display (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Michroma (solo la palabra del logotipo).
 - Sin naranja, sin degradados de color visibles, sin emojis, sin transición de día y noche.
+- Botón principal: «Crear cuenta» → `https://app.favent.app/registro` (Favent revisa cada alta); «Entrar» → `https://app.favent.app/login`. El email de la llamada final sigue llegando a info@favent.es (Web3Forms).
 
 ## Textos y tono
 - Idioma principal: **español**. Directo, profesional, cercano.
