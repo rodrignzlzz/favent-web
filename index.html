@@ -1436,6 +1436,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 .wordmark-wrap{overflow:visible !important}
 .foot-vid{width:100vw;max-width:none;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none}
 @media (max-width: 960px){
+  #ofreces .nw-feats{grid-template-columns:minmax(0,1fr)}
   .nw-hv{grid-template-columns:minmax(0,1fr)}
   .ip-vid{justify-self:center;width:230px}
 }
@@ -1462,9 +1463,72 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 .nw-plan.pro .plan-cta{background:#FFFFFF;color:#0B0F17;border-color:#FFFFFF}
 .nw-plan.pro .plan-cta:hover{color:#0B0F17}
 @media (max-width: 960px){.nw-steps .mini{height:auto;min-height:150px}}
+
+/* ===== Movimiento al estilo de la referencia (19 nov 2026) ===== */
+/* Pantalla de carga: un aro que gira con el logotipo; se va sola aunque falle el script */
+#pl{position:fixed;inset:0;z-index:1000;background:#0B0F17;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s ease;animation:plFail .6s ease 4.5s forwards}
+#pl.out{opacity:0;visibility:hidden}
+.pl-ring{position:absolute;width:min(220px,46vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,79,154,0) 0deg,rgba(255,79,154,.95) 110deg,rgba(124,196,255,.9) 200deg,rgba(124,196,255,0) 320deg);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));animation:plSpin 1.4s linear infinite}
+.pl-logo{font-family:'Michroma',sans-serif;font-size:20px;letter-spacing:-0.02em;color:#E9EEF6;display:inline-flex;align-items:baseline;animation:plPulse 1.6s ease-in-out infinite}
+.pl-logo i{width:.24em;height:.24em;margin-left:.1em;border-radius:50%;background:#FF4F9A}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+@keyframes plPulse{50%{opacity:.55}}
+@keyframes plFail{to{opacity:0;visibility:hidden}}
+/* Palabras que entran una a una */
+.wsplit .intro .ln > span{animation:none !important}
+.ww{display:inline-block;white-space:nowrap}
+.ww > i{display:inline-block;font-style:normal;opacity:0;transform:translateY(.45em);filter:blur(8px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.16,1,.3,1),filter .7s ease;transition-delay:calc(var(--i) * 70ms)}
+.wgo .ww > i{opacity:1;transform:none;filter:none}
+/* Botones: el texto rueda hacia arriba al pasar el ratón */
+.rl-w{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.25}
+.rl{display:inline-block;text-shadow:0 1.6em 0 currentColor;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transform:translateY(-1.6em)}
+/* Botón principal que se rellena desde el círculo (como «Book a call») */
+.bk{position:relative;isolation:isolate;overflow:hidden;display:inline-flex !important;align-items:center;gap:0;padding-left:52px !important;background:#FFFFFF !important;color:#0B0F17 !important;border:0 !important}
+.bk-c{position:absolute;z-index:-1;left:5px;top:5px;bottom:5px;width:calc(var(--h,44px) - 10px);border-radius:999px;background:#0B0F17;transition:width .55s cubic-bezier(.65,0,.35,1);overflow:hidden}
+.bk-c::before,.bk-c::after{content:"";position:absolute;top:50%;width:8px;height:8px;border-top:2px solid #FFFFFF;border-right:2px solid #FFFFFF;transform:translate(-50%,-50%) rotate(45deg)}
+.bk-c::before{left:calc(50% - 2px);animation:bkFly 1.8s ease-in-out infinite}
+.bk-c::after{left:calc(50% - 2px);opacity:0}
+@keyframes bkFly{0%{left:20%;opacity:0}35%{opacity:1}65%{opacity:1}100%{left:80%;opacity:0}}
+.bk:hover .bk-c,.bk:focus-visible .bk-c{width:calc(100% - 10px)}
+.bk:hover .bk-c::before,.bk:focus-visible .bk-c::before{animation-duration:1s}
+.bk > :not(.bk-c){transition:color .45s ease}
+.bk:hover,.bk:focus-visible{color:#FFFFFF !important}
+.bk:hover .rl,.bk:focus-visible .rl{color:#FFFFFF}
+#acceso-final button.bk{background:#FFFFFF !important;color:#0B0F17 !important}
+#acceso-final button.bk:hover,#acceso-final button.bk:focus-visible{color:#FFFFFF !important}
+/* Fotos y pantallas que entran al bajar y reaccionan al ratón */
+.js-anim .rv{opacity:0;transform:translateY(34px) scale(.975);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1)}
+.js-anim .rv.in{opacity:1;transform:none}
+.shot,.pad,.feat-dev.mac,.stepdev .mac,.stepdev .ip{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.shot img,.pad-scr img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.nw-feat:hover .shot,.nw-feat:hover .pad{transform:translateY(-4px)}
+.nw-feat:hover .shot img,.nw-feat:hover .pad-scr img{transform:scale(1.035)}
+.nw-feat{transform-style:preserve-3d;will-change:transform}
+/* Aviso de privacidad, abajo a la derecha */
+.ck{position:fixed;z-index:120;right:20px;bottom:20px;width:min(360px,calc(100vw - 32px));padding:22px;border-radius:18px;background:rgba(16,21,31,.72);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),inset 0 0 60px rgba(255,255,255,.04),0 24px 60px rgba(0,0,0,.45);display:grid;gap:10px;color:#E9EEF6;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.ck.on{opacity:1;transform:none}
+.ck,.ck *{font-family:'Funnel Display',sans-serif}
+#pl{font-family:'Funnel Display',sans-serif}
+.ck-t{font-size:17px;font-weight:600;letter-spacing:-0.01em}
+.ck-p{margin:0;font-size:13.5px;line-height:1.5;color:#A7B1C2}
+.ck-b{margin-top:6px;height:42px;border-radius:999px;border:0;background:#FFFFFF;color:#0B0F17;font:600 14px 'Funnel Display',sans-serif;cursor:pointer;overflow:hidden}
+@media (max-width: 640px){.ck{right:16px;left:16px;bottom:16px;width:auto}}
+@media (prefers-reduced-motion: reduce){
+  .pl-ring,.pl-logo,.bk-c::before{animation:none}
+  .ww > i{opacity:1;transform:none;filter:none;transition:none}
+  .js-anim .rv{opacity:1;transform:none;transition:none}
+  .rl,.bk-c,.shot img,.pad-scr img{transition:none}
+}
 </style>
 </head>
 <body>
+<div id="pl" aria-hidden="true"><div class="pl-ring"></div><span class="pl-logo">favent<i></i></span></div>
+<aside id="ck" class="ck" hidden aria-label="Privacidad">
+  <b class="ck-t">Tu privacidad</b>
+  <p class="ck-p">Esta web solo guarda lo necesario para funcionar, como tu idioma. No usamos cookies de publicidad ni de análisis.</p>
+  <button type="button" class="ck-b" id="ck-ok">Entendido</button>
+</aside>
 <div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Funnel Display', sans-serif">
 
   <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px"><a href="#acceso-final-sec" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Solicitar acceso</a></div>
@@ -2159,6 +2223,9 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
+    "Tu privacidad": "Your privacy",
+    "Esta web solo guarda lo necesario para funcionar, como tu idioma. No usamos cookies de publicidad ni de análisis.": "This site only stores what it needs to work, such as your language. We don't use advertising or analytics cookies.",
+    "Entendido": "Got it",
     "Solicitar información": "Request information",
     "Solicita acceso": "Request access",
     "Informes en la app: comisión por categoría, reservas por mes, estado de las reservas y embudo": "Reports in the app: commission by category, bookings by month, booking status and funnel",
@@ -4923,7 +4990,8 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     setVid();
     var shown = false;
     seen(hd, function (on) {
-      if (on && !shown) { shown = true; requestAnimationFrame(function () { hd.classList.add('in'); }); }
+      if (on && !shown) { shown = true; var go = function () { requestAnimationFrame(function () { hd.classList.add('in'); }); };
+        if (root.classList.contains('pl-done') || !document.getElementById('pl')) go(); else document.addEventListener('fv:ready', go, { once: true }); }
       vOn = on; playVid();
     }, 0.12);
   }
@@ -5020,6 +5088,126 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     });
   });
   if (mb) new MutationObserver(function () { vids.forEach(sync); }).observe(mb, { attributes: true, attributeFilter: ['aria-pressed'] });
+})();
+
+/* ===== Movimiento al estilo de la referencia: carga, palabras, botones, fotos y aviso (19 nov 2026) ===== */
+(function () {
+  var root = document.documentElement;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+  // Palabras que entran una a una. Se trocea una copia y, al acabar, se devuelven los nodos originales
+  // (así el cambio de idioma sigue funcionando sobre el texto de siempre).
+  function split(el) {
+    if (el._ws) return;
+    el._ws = true;
+    var orig = [].slice.call(el.childNodes), n = 0;
+    var cl = el.cloneNode(true);
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var parts = c.nodeValue.split(/(\s+)/), frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var w = document.createElement('span'); w.className = 'ww';
+            var x = document.createElement('i'); x.style.setProperty('--i', n++); x.textContent = p;
+            w.appendChild(x); frag.appendChild(w);
+          });
+          c.parentNode.replaceChild(frag, c);
+        } else if (c.nodeType === 1 && !c.classList.contains('dot-p')) walk(c);
+        else if (c.nodeType === 1) { var d = document.createElement('span'); d.className = 'ww'; var y = document.createElement('i'); y.style.setProperty('--i', n++); c.parentNode.replaceChild(d, c); y.appendChild(c); d.appendChild(y); }
+      });
+    })(cl);
+    el.replaceChildren.apply(el, [].slice.call(cl.childNodes));
+    el._orig = orig; el._n = n;
+  }
+  function play(el) {
+    requestAnimationFrame(function () { el.classList.add('wgo'); });
+    setTimeout(function () { el.replaceChildren.apply(el, el._orig); el.classList.remove('wgo'); }, el._n * 70 + 1300);
+  }
+  var heads = rm ? [] : [].slice.call(document.querySelectorAll('.intro h1, .nw-head h2, .st-big, .nw-final h2'));
+  if (heads.length) root.classList.add('wsplit');
+  heads.forEach(split);
+  // Si cambia el idioma antes de que una cabecera haya entrado, se vuelve a trocear con el texto nuevo
+  new MutationObserver(function () {
+    heads.forEach(function (h) {
+      if (h._played || !h._orig) return;
+      h.replaceChildren.apply(h, h._orig); h._ws = false; split(h);
+    });
+  }).observe(root, { attributes: true, attributeFilter: ['lang'] });
+
+  // Botones: el texto rueda (se envuelven los nodos de texto que ya existen, sin copiarlos)
+  [].slice.call(document.querySelectorAll('.hero-cta a, .n-cta .nb, .plan-cta, #acceso-final button[type="submit"], .ck-b, .st-two a .st-v')).forEach(function (b) {
+    if (b.classList.contains('st-v')) return;
+    var w = document.createElement('span'); w.className = 'rl-w';
+    var r = document.createElement('span'); r.className = 'rl';
+    [].slice.call(b.childNodes).forEach(function (c) { r.appendChild(c); });
+    w.appendChild(r); b.appendChild(w);
+  });
+  // Botón principal que se rellena desde el círculo
+  [].slice.call(document.querySelectorAll('.n-cta .nb, .hero-cta a.p, #acceso-final button[type="submit"], .nw-plan.pro .plan-cta')).forEach(function (b) {
+    b.classList.add('bk');
+    var c = document.createElement('span'); c.className = 'bk-c'; c.setAttribute('aria-hidden', 'true');
+    b.insertBefore(c, b.firstChild);
+    var fit = function () { b.style.setProperty('--h', b.offsetHeight + 'px'); };
+    fit(); window.addEventListener('resize', fit);
+  });
+
+  // Fotos y pantallas: entran al bajar; las tarjetas se inclinan un poco con el ratón
+  var rv = [].slice.call(document.querySelectorAll('.nw-feat, .stepdev, .shot, .pad, .flow, .ip-vid, .nw-plan, .nw-steps .mini, .foot-vid'));
+  rv.forEach(function (e) { e.classList.add('rv'); });
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var t = en.target;
+      if (t.classList.contains('rv')) t.classList.add('in');
+      if (t._ws && !t.classList.contains('wgo') && t._orig && !t._played && ready) { t._played = true; play(t); }
+      if (!t.classList.contains('rv') || (t._ws && t._played)) io.unobserve(t);
+    });
+  }, { threshold: 0.18 }) : null;
+  var ready = false;
+  if (io) { rv.forEach(function (e) { io.observe(e); }); }
+  else rv.forEach(function (e) { e.classList.add('in'); });
+  if (!rm && window.matchMedia && matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.nw-feat').forEach(function (c) {
+      c.addEventListener('mousemove', function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = 'perspective(1200px) rotateX(' + (-y * 2.4).toFixed(2) + 'deg) rotateY(' + (x * 2.4).toFixed(2) + 'deg) translateY(-3px)';
+      });
+      c.addEventListener('mouseleave', function () { c.style.transform = ''; });
+    });
+  }
+
+  // Aviso de privacidad: aparece tras la carga si no se ha cerrado antes
+  var ck = document.getElementById('ck');
+  function showCk() {
+    if (!ck || store.get('favent-ck') === '1') return;
+    ck.hidden = false;
+    setTimeout(function () { ck.classList.add('on'); }, 900);
+  }
+  document.getElementById('ck-ok').addEventListener('click', function () {
+    store.set('favent-ck', '1'); ck.classList.remove('on');
+    setTimeout(function () { ck.hidden = true; }, 500);
+  });
+
+  // Fin de la carga: se va el aro y empieza el inicio
+  var pl = document.getElementById('pl'), done = false, t0 = Date.now();
+  function finish() {
+    if (done) return; done = true;
+    var wait = Math.max(0, (rm ? 0 : 900) - (Date.now() - t0));
+    setTimeout(function () {
+      pl.classList.add('out');
+      root.classList.add('pl-done');
+      ready = true;
+      document.dispatchEvent(new Event('fv:ready'));
+      heads.forEach(function (h) { if (io) io.observe(h); else play(h); });
+      showCk();
+      setTimeout(function () { pl.remove(); }, 800);
+    }, wait);
+  }
+  if (document.readyState === 'complete') finish(); else window.addEventListener('load', finish);
+  setTimeout(finish, 3200);
 })();
 </script>
 
