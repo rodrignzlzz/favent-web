@@ -1421,12 +1421,30 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 .mac-hero{filter:none}
 .mac-hero .mac-scr{box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 40px 80px rgba(0,0,0,.45)}
 @media (max-width: 640px){.ip-hero{width:25%;right:1%;bottom:0}}
+
+/* Tercera vuelta (19 nov 2026): vídeos de Rodrigo en un iPhone y al pie; la agenda en la columna ancha */
+#ofreces .nw-feats{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+.nw-hv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,6vw,88px);align-items:center}
+.nw-hv .nw-head,.nw-hv .nw-head.split{justify-items:start;text-align:left;margin:0;max-width:620px}
+.ip-vid{width:250px;justify-self:end}
+.ip-vid .ip-scr{aspect-ratio:9/16;background:#0B0F17}
+.ip-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vsnd{position:absolute;z-index:5;right:7%;bottom:4.5%;width:40px;height:40px;border-radius:50%;border:0;background:rgba(11,15,23,.72);color:#FFFFFF;display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vsnd .s-on,.vsnd[aria-pressed="true"] .s-off{display:none}
+.vsnd[aria-pressed="true"] .s-on{display:block}
+.foot-vid{display:block;width:100%;height:auto;aspect-ratio:1600/500;object-fit:cover;border-radius:24px;background:#0B0F17;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.wordmark-wrap{overflow:visible !important}
+.foot-vid{width:100vw;max-width:none;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none}
+@media (max-width: 960px){
+  .nw-hv{grid-template-columns:minmax(0,1fr)}
+  .ip-vid{justify-self:center;width:230px}
+}
 </style>
 </head>
 <body>
 <div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Funnel Display', sans-serif">
 
-  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="https://app.favent.app/registro" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Crea tu cuenta</a></div>
+  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso-final-sec" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Solicita acceso</a></div>
 
   <nav class="topnav" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px" aria-label="Principal">
     <div class="n-brand" style="display: flex; align-items: center; gap: 10px">
@@ -1439,7 +1457,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <a class="nl" href="#ofreces">Si ofreces servicios</a>
       <a class="nl" href="#planes">Planes</a>
       <a class="nl" href="https://app.favent.app/login">Entrar</a>
-      <a class="nb" href="https://app.favent.app/registro">Crear cuenta</a>
+      <a class="nb" href="#acceso-final-sec">Solicitar acceso</a>
     </div>
     <div class="lang-switch neu-in" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid var(--line)" role="group" aria-label="Idioma">
       <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink); cursor: pointer">
@@ -1589,10 +1607,13 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   <div class="nw-band">
   <section id="recomiendas" class="nw-in" aria-labelledby="h-recomiendas">
+    <div class="nw-hv">
     <div class="nw-head split">
       <span class="nw-eb">Si recomiendas clientes</span>
       <h2 id="h-recomiendas"><span class="hl">Recomienda lo de siempre.</span> <span class="hl">Ahora, cobrando<span class="dot-p">.</span></span></h2>
       <p class="nw-lead">Hoteles, conserjerías, agencias y apartamentos. Tus clientes reservan experiencias de confianza y tú recibes tu comisión sin perseguir a nadie.</p>
+    </div>
+    <figure class="ip ip-vid"><div class="ip-scr"><video data-auto muted loop playsinline preload="none" poster="img/video/recomiendas.webp?v=1" aria-label="Vídeo: con Favent rentabilizas cada recomendación"><source src="img/video/recomiendas.mp4?v=1" type="video/mp4"></video></div><button type="button" class="vsnd" aria-pressed="false" aria-label="Activar sonido"><svg class="s-off" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="s-on" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
     </div>
     <div class="nw-feats">
       <article class="nw-feat">
@@ -1608,7 +1629,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <article class="nw-feat">
         <h3>Tus comisiones, claras</h3>
         <p class="d">Lo generado, lo retenido y lo cobrado, por mes y por empresa, siempre al día.</p>
-        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/rec-informes.webp?v=1" alt="Informes en un iPad: comisión por categoría y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-informes.webp?v=1" alt="Reports on an iPad: commission by category and bookings by month" loading="lazy" decoding="async"></div></figure>
+        <figure class="shot feat-dev"><img class="l-es" src="img/app/es/d-informes.webp?v=1" alt="Informes en la app: comisión por categoría, reservas por mes, estado de las reservas y embudo" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/d-informes.webp?v=1" alt="Reports in the app: commission by category, bookings by month, booking status and funnel" loading="lazy" decoding="async"></figure>
       </article>
     </div>
   </section>
@@ -1616,10 +1637,13 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   <div class="nw-band">
   <section id="ofreces" class="nw-in" aria-labelledby="h-ofreces">
+    <div class="nw-hv">
     <div class="nw-head split">
       <span class="nw-eb">Si ofreces servicios</span>
       <h2 id="h-ofreces">Un canal de venta nuevo, con las reservas ya pagadas<span class="dot-p">.</span></h2>
       <p class="nw-lead">Barcos, traslados, bicis, excursiones y servicios privados. Los hoteles de la zona te mandan clientes con la señal pagada y tú fijas la comisión de cada servicio.</p>
+    </div>
+    <figure class="ip ip-vid"><div class="ip-scr"><video data-auto muted loop playsinline preload="none" poster="img/video/servicios.webp?v=1" aria-label="Vídeo: un sábado con Favent, la agenda se llena sola"><source src="img/video/servicios.mp4?v=1" type="video/mp4"></video></div><button type="button" class="vsnd" aria-pressed="false" aria-label="Activar sonido"><svg class="s-off" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="s-on" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
     </div>
     <div class="nw-feats">
       <article class="nw-feat">
@@ -1635,7 +1659,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <article class="nw-feat">
         <h3>Entre colegas</h3>
         <p class="d">¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.</p>
-        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/pro-colab.webp?v=1" alt="Colaboradores en un iPad: hoteles y empresas con su comisión pactada" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-colab.webp?v=1" alt="Partners on an iPad: hotels and businesses with their agreed commission" loading="lazy" decoding="async"></div></figure>
+        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/pro-mensajes.webp?v=1" alt="Mensajes en un iPad: una propuesta personalizada a otra empresa" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-mensajes.webp?v=1" alt="Messages on an iPad: a custom offer to another business" loading="lazy" decoding="async"></div></figure>
       </article>
     </div>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -2071,7 +2095,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
   </section>
 
   <div class="wordmark-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow-x: clip">
-    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Michroma', sans-serif; font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; font-size: clamp(40px, 8vw, 112px); color: var(--ink)">favent<span style="width: 0.22em; height: 0.22em; margin-left: 0.06em; border-radius: 50%; background: #FF4F9A"></span></div>
+    <video class="foot-vid" data-auto muted loop playsinline preload="none" poster="img/video/cabecera2.webp?v=1" aria-hidden="true"><source src="img/video/cabecera2.mp4?v=1" type="video/mp4"></video>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: var(--ink-2)"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
   </div>
 
@@ -2105,6 +2129,11 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
+    "Solicita acceso": "Request access",
+    "Informes en la app: comisión por categoría, reservas por mes, estado de las reservas y embudo": "Reports in the app: commission by category, bookings by month, booking status and funnel",
+    "Vídeo: con Favent rentabilizas cada recomendación": "Video: with Favent every recommendation pays",
+    "Vídeo: un sábado con Favent, la agenda se llena sola": "Video: a Saturday with Favent, the calendar fills itself",
+    "Activar sonido": "Turn sound on",
     "Del acuerdo al cobro, en cuatro pasos": "From agreement to payout, in four steps",
     "Déjanos el email de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso.": "Leave us your business email. Favent reviews every request and writes to you as soon as you have access.",
     "Solicita acceso al piloto.": "Request access to the pilot.",
@@ -4920,6 +4949,38 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     if (v) playVid();
     if (F) { clearTimeout(F.t); if (F.on && !stopped()) step(); }
   }).observe(mb, { attributes: true, attributeFilter: ['aria-pressed'] });
+})();
+
+/* Vídeos de la web: a la vista se reproducen en silencio; el botón del iPhone activa el sonido (nov 2026) */
+(function () {
+  var mb = document.getElementById('motion-btn');
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function stopped() { return rm || (mb && mb.getAttribute('aria-pressed') === 'true'); }
+  var vids = [].slice.call(document.querySelectorAll('video[data-auto]'));
+  function sync(v) {
+    if (v._on && !stopped()) { if (v.preload === 'none') v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    else v.pause();
+  }
+  vids.forEach(function (v) {
+    v._on = false;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { v._on = es[es.length - 1].isIntersecting; sync(v); }, { threshold: 0.3 }).observe(v);
+  });
+  document.querySelectorAll('.vsnd').forEach(function (b) {
+    var v = b.parentNode.querySelector('video');
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true';
+      document.querySelectorAll('.vsnd').forEach(function (o) {
+        var ov = o.parentNode.querySelector('video'); ov.muted = true; o.setAttribute('aria-pressed', 'false');
+        o.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Turn sound on' : 'Activar sonido');
+      });
+      if (on) {
+        v.muted = false; b.setAttribute('aria-pressed', 'true');
+        b.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Mute' : 'Silenciar');
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      }
+    });
+  });
+  if (mb) new MutationObserver(function () { vids.forEach(sync); }).observe(mb, { attributes: true, attributeFilter: ['aria-pressed'] });
 })();
 </script>
 
