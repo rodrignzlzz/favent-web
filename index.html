@@ -1393,6 +1393,34 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
   .stepdev .ip{width:120px}
 }
 @media (prefers-reduced-motion: reduce){.fs,.aps{transition:none}.aps-side{animation:none}}
+
+/* Segunda vuelta (19 nov 2026): recortes de la app, iPad y el iPhone del inicio apoyado junto al ordenador */
+.shot{margin:16px 0 0;border-radius:14px;overflow:hidden;background:#FFFFFF;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 24px 50px rgba(0,0,0,.45)}
+.shot img{display:block;width:100%;height:auto}
+.pad{margin:16px auto 0;width:100%;max-width:470px;position:relative;background:#121722;padding:3.2%;border-radius:5% / 6.6%;box-shadow:0 0 0 1px #2F3747,inset 0 0 0 2px #05070B,0 30px 70px rgba(0,0,0,.5)}
+.pad::before{content:"";position:absolute;top:1.3%;left:50%;width:6px;height:6px;border-radius:50%;background:#05070B;transform:translateX(-50%)}
+.pad-scr{aspect-ratio:4/3;overflow:hidden;border-radius:2.2% / 2.9%;background:#FFFFFF}
+.pad-scr img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top}
+.nw-feat:nth-child(3) .pad{margin:0 auto}
+/* El marco se mide por su propio ancho (el % de padding se medía por el del contenedor y engordaba el bisel) */
+.ip,.pad{container-type:inline-size;padding:0 !important}
+/* iPhone limpio: sin isla ni barra de estado dibujadas, la pantalla real a sangre y un bisel fino */
+.ip{border-radius:14% / 6.6%;background:#0E121A;box-shadow:0 0 0 1px #3A4253,inset 0 0 0 1px rgba(255,255,255,.06),0 30px 70px rgba(0,0,0,.5)}
+.ip::after{display:none}
+.ip-scr{margin:2.6cqw;aspect-ratio:415/900;border-radius:11.6cqw}
+.ip-bar{display:none}
+.ip-view{top:0}
+.ip{background:#1A2030;box-shadow:0 0 0 1px #4A5366,inset 0 0 0 1px rgba(255,255,255,.08),0 30px 60px rgba(0,0,0,.5)}
+.ip-hero{filter:none}
+.nw-feat:nth-child(3){align-content:stretch}
+.nw-feat:nth-child(3) h3{align-self:end}
+.nw-feat:nth-child(3) p.d{align-self:start}
+.pad-scr{margin:3cqw}
+.nw-feat:nth-child(3){grid-template-rows:auto auto;align-content:center}
+.ip-hero{right:1.5%;bottom:0;width:18.5%;filter:drop-shadow(0 24px 40px rgba(0,0,0,.55))}
+.mac-hero{filter:none}
+.mac-hero .mac-scr{box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 40px 80px rgba(0,0,0,.45)}
+@media (max-width: 640px){.ip-hero{width:25%;right:1%;bottom:0}}
 </style>
 </head>
 <body>
@@ -1443,7 +1471,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     <p class="fx-sr">Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.</p>
     <div class="hero-dev">
       <figure class="mac mac-hero"><div class="mac-scr"><video id="hero-vid" muted loop playsinline preload="metadata" poster="img/app/tour-es.webp?v=1" aria-label="Vídeo de la app de Favent con datos de ejemplo: buscar servicios, la agenda, las reservas, Connect Spot y los mensajes"></video></div><div class="mac-base" aria-hidden="true"></div></figure>
-      <figure class="ip ip-hero"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/m2-mapa.webp?v=1" alt="El catálogo del hotel en el móvil del huésped, con el mapa" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m2-mapa.webp?v=1" alt="The hotel catalogue on the guest phone, with the map" loading="lazy" decoding="async"></div></div></figure>
+      <figure class="ip ip-hero"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/m1-catalogo.webp?v=1" alt="El catálogo del hotel en el móvil del huésped" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m1-catalogo.webp?v=1" alt="The hotel catalogue on the guest phone" loading="lazy" decoding="async"></div></div></figure>
     </div>
     <div id="panel-scale" hidden style="overflow: hidden; border-radius: 32px">
     <div id="demo" inert style="position: relative; background: #EAF2F8; border-radius: 32px; padding: clamp(16px, 4vw, 40px)">
@@ -1502,32 +1530,48 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
   <section id="funciona" class="nw-in" aria-labelledby="h-funciona">
     <div class="nw-head">
       <span class="nw-eb">Cómo funciona</span>
-      <h2 id="h-funciona">Cuatro pasos, sin perseguir a nadie<span class="dot-p">.</span></h2>
+      <h2 id="h-funciona">Del acuerdo al cobro, en cuatro pasos<span class="dot-p">.</span></h2>
     </div>
     <ol class="nw-steps">
       <li>
         <span class="nw-n">01</span>
         <h3>Pactáis la comisión</h3>
         <p class="d">Las dos empresas acuerdan un porcentaje una vez. Vale para todas las reservas.</p>
-        <div class="stepdev"><figure class="mac"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-colab.webp?v=1" alt="Colaboradores en la app de Favent: la solicitud de un hotel con su comisión" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-colab.webp?v=1" alt="Partners in the Favent app: a hotel request with its commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure></div>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Solicitud de colaboración</span><span class="pl w">Nueva</span></div>
+          <div class="mr"><span>Hotel Miramar</span><small>quien recomienda</small></div>
+          <div class="mr"><span class="big">15 %</span><small>comisión</small></div>
+          <div class="bt"><span class="b">Aceptar</span><span class="b g">Responder</span></div>
+        </div>
       </li>
       <li>
         <span class="nw-n">02</span>
         <h3>El cliente paga la señal</h3>
         <p class="d">Reserva con un enlace o desde el QR del hotel y paga con tarjeta el 50 % o el 100 %.</p>
-        <div class="stepdev"><figure class="ip"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/m3-ficha.webp?v=1" alt="Ficha de un servicio en el móvil: lo que se paga ahora y lo que se paga en el lugar" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m3-ficha.webp?v=1" alt="A service page on the phone: what is paid now and what is paid on site" loading="lazy" decoding="async"></div></div></figure></div>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Zafiro · Barco privado</span><span>sáb 10:00</span></div>
+          <div class="mr"><span>Pagas ahora</span><b class="mono">308,25 €</b></div>
+          <div class="mr"><span>Pagas en el lugar</span><span class="mono">300,00 €</span></div>
+          <div class="bt"><span class="b a">Pagar la señal</span></div>
+        </div>
       </li>
       <li>
         <span class="nw-n">03</span>
         <h3>Se canjea el QR</h3>
         <p class="d">Al llegar, quien presta el servicio escanea el código del cliente.</p>
-        <div class="stepdev"><figure class="ip"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/pro-escanear.webp?v=1" alt="Escanear QR en la app: la reserva del cliente, lista para canjear" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-escanear.webp?v=1" alt="Scan QR in the app: the client booking, ready to redeem" loading="lazy" decoding="async"></div></div></figure></div>
+        <div class="mini" aria-hidden="true">
+          <div class="mr" style="align-items:center"><span class="q" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i></span><span style="display:grid;gap:6px;justify-items:end"><b class="mono" style="letter-spacing:.08em">FV-7K2Q</b><span class="pl ok">Canjeado</span></span></div>
+        </div>
       </li>
       <li>
         <span class="nw-n">04</span>
         <h3>Cada uno cobra solo</h3>
         <p class="d">Favent envía la comisión a quien recomendó y el resto de la señal a quien presta el servicio.</p>
-        <div class="stepdev"><figure class="mac"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-informes.webp?v=1" alt="Informes: ingresos por canal y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-informes.webp?v=1" alt="Reports: income by channel and bookings by month" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure></div>
+        <div class="mini" aria-hidden="true">
+          <div class="mh"><span>Reparto de la señal</span><span class="pl ok">Liberado</span></div>
+          <div class="mr"><span>Hotel Miramar</span><b class="mono">90,00 €</b></div>
+          <div class="mr"><span>Velas del Norte</span><b class="mono">210,00 €</b></div>
+        </div>
       </li>
     </ol>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -1554,17 +1598,17 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <article class="nw-feat">
         <h3>Un QR en cada habitación</h3>
         <p class="d">El huésped lo escanea, ve las experiencias que tú eliges y reserva desde su móvil. La reserva queda a tu nombre.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-qr.webp?v=1" alt="Connect Spot: un código QR por habitación" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-qr.webp?v=1" alt="Connect Spot: one QR code per room" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="shot feat-dev"><img class="l-es" src="img/app/es/d-qr.webp?v=1" alt="Connect Spot en la app: un código QR por habitación" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/d-qr.webp?v=1" alt="Connect Spot in the app: one QR code per room" loading="lazy" decoding="async"></figure>
       </article>
       <article class="nw-feat">
         <h3>Reserva en un minuto</h3>
         <p class="d">Busca en el mapa o escribe lo que pide el cliente. Le mandas el enlace y paga él.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-buscar.webp?v=1" alt="Buscar servicios: el mapa de Mallorca con cada servicio, su precio y tu comisión" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-buscar.webp?v=1" alt="Find services: the map of Mallorca with each service, its price and your commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="shot feat-dev"><img class="l-es" src="img/app/es/d-buscar.webp?v=1" alt="Buscar servicios en la app: el mapa y cada servicio con su precio y tu comisión" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/d-buscar.webp?v=1" alt="Find services in the app: the map and each service with its price and your commission" loading="lazy" decoding="async"></figure>
       </article>
       <article class="nw-feat">
         <h3>Tus comisiones, claras</h3>
         <p class="d">Lo generado, lo retenido y lo cobrado, por mes y por empresa, siempre al día.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-informes.webp?v=1" alt="Informes: comisión por categoría y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-informes.webp?v=1" alt="Reports: commission by category and bookings by month" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/rec-informes.webp?v=1" alt="Informes en un iPad: comisión por categoría y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-informes.webp?v=1" alt="Reports on an iPad: commission by category and bookings by month" loading="lazy" decoding="async"></div></figure>
       </article>
     </div>
   </section>
@@ -1581,17 +1625,17 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <article class="nw-feat">
         <h3>Reservas que llegan pagadas</h3>
         <p class="d">Aceptas o rechazas en un toque. La señal se cobra al aceptar y, si el cliente no se presenta, se queda.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-reservas.webp?v=1" alt="Reservas por aceptar, con el tiempo que queda para responder" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-reservas.webp?v=1" alt="Bookings to accept, with the time left to reply" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="shot feat-dev"><img class="l-es" src="img/app/es/d-reservas.webp?v=1" alt="Reservas por aceptar, con el tiempo que queda para responder" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/d-reservas.webp?v=1" alt="Bookings to accept, with the time left to reply" loading="lazy" decoding="async"></figure>
       </article>
       <article class="nw-feat">
         <h3>Una agenda profesional</h3>
         <p class="d">Tus barcos o servicios en columnas, por día, semana o mes. Tus reservas de teléfono y web junto a las de Favent, y con Google Calendar.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-agenda.webp?v=1" alt="Agenda: un barco por columna y las reservas del día" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-agenda.webp?v=1" alt="Calendar: one boat per column and the day bookings" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="shot feat-dev"><img class="l-es" src="img/app/es/d-agenda.webp?v=1" alt="La agenda: un barco por columna y las reservas del día" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/d-agenda.webp?v=1" alt="The calendar: one boat per column and the day bookings" loading="lazy" decoding="async"></figure>
       </article>
       <article class="nw-feat">
         <h3>Entre colegas</h3>
         <p class="d">¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.</p>
-        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-colab.webp?v=1" alt="Colaboradores: hoteles y empresas con su comisión pactada" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-colab.webp?v=1" alt="Partners: hotels and businesses with their agreed commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
+        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/pro-colab.webp?v=1" alt="Colaboradores en un iPad: hoteles y empresas con su comisión pactada" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-colab.webp?v=1" alt="Partners on an iPad: hotels and businesses with their agreed commission" loading="lazy" decoding="async"></div></figure>
       </article>
     </div>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -2061,6 +2105,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
+    "Del acuerdo al cobro, en cuatro pasos": "From agreement to payout, in four steps",
     "Déjanos el email de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso.": "Leave us your business email. Favent reviews every request and writes to you as soon as you have access.",
     "Solicita acceso al piloto.": "Request access to the pilot.",
     "Vídeo de la app de Favent con datos de ejemplo: buscar servicios, la agenda, las reservas, Connect Spot y los mensajes": "Video of the Favent app with sample data: finding services, the calendar, bookings, Connect Spot and messages",
@@ -4850,7 +4895,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     }
     function tap(p) {
       if (!p) return;
-      F.tap.style.left = p[0] + '%'; F.tap.style.top = (6.25 + p[1] * 0.9375) + '%';
+      F.tap.style.left = p[0] + '%'; F.tap.style.top = p[1] + '%';
       F.tap.classList.remove('go'); void F.tap.offsetWidth; F.tap.classList.add('go');
     }
     function step() {
