@@ -221,6 +221,16 @@ components:
 
 Favent es el canal de ventas profesional B2B entre empresas de servicios: quien recomienda clientes y quien presta el servicio pactan una comisión, el cliente paga una señal al reservar y la comisión se libera sola cuando se presta el servicio. El diseño tiene que transmitir eso: **un sistema técnico, fiable y serio**, no una campaña de marketing.
 
+**Identidad E · «Favent nocturno»** (19 nov 2026, en la rama `oscuro-brillo`, pendiente de publicar). Rodrigo pasó tres referencias (easlo.co, dialedweb.com y wope.com) y eligió la dirección «oscura con brillo», la de Wope. Cambia solo la web pública, no la app, y manda sobre la identidad D donde se contradigan:
+
+- **Toda la web en carbón** (`#0B0F17`): ya no hay secciones claras. Texto `#E9EEF6`, secundario `#A7B1C2`, terciario `#8592A6`. Las pantallas de ejemplo (`.mini`, el panel, el móvil) siguen claras: son «pantallas encendidas».
+- **Resplandor rosa y azul** (rosa señal `#FF4F9A` y azul eléctrico `#4DA8FF`, que vuelve a la web solo como luz): un horizonte encendido detrás del panel del inicio (`.aura`, dos elipses: el brillo `.a1` y el «planeta» `.a2` con su filo claro), un brillo tenue arriba de cada bloque (`.nw-band`), en la frase grande y en la llamada final. Es la única excepción a «sin degradados de color visibles»: siempre como luz de fondo, nunca detrás de texto pequeño ni como relleno de botones.
+- **Menú flotante en píldora** (`.topnav`): centrado, 1080 px como máximo, vidrio oscuro con desenfoque; en móvil, esquinas de 26 px.
+- **Cabeceras de sección centradas**, con la etiqueta en píldora (`.nw-eb`, `.intro > .eyebrow`). La sección del cliente sigue alineada a la izquierda, junto al móvil.
+- **Tarjetas en rejilla** (`.nw-feats`): dos arriba de ancho distinto (2fr/3fr; en «Si ofreces servicios», 3fr/2fr) y la tercera a todo el ancho con la pantalla a la derecha. Tarjetas `#0F141E` con borde `rgba(255,255,255,.08)` y una luz azul (o rosa, la segunda) desde arriba. En móvil, una columna.
+- **Plan Pro**: borde y luz rosas. Retícula tenue detrás del titular del inicio (`.intro::before`). Foco de teclado en `#7CC4FF`.
+- Los estilos están al final del `<style>` de `index.html`, bajo el comentario «Identidad E».
+
 **Identidad D · «Favent depurado»** (16 nov 2026). Se compararon cuatro direcciones (Grafito, Carta náutica, Instrumento y esta) y Rodrigo eligió la D: la identidad de antes, más adulta. Se queda lo reconocible (la palabra «favent.» en Michroma con el punto rosa, Funnel Display, Geist Mono) y se quita lo que la hacía ruidosa: la rejilla de puntos que respiraba, el grano, el vidrio esmerilado, los relieves neumórficos, el azul eléctrico y la alternancia de bloques oscuros y claros.
 
 - **Dos fondos, nada más.** Oscuro `{colors.canvas}` (#0B0F17) solo en el inicio (titular y animación del panel), en la llamada final y en el pie. Todo lo demás, claro `{colors.screen-canvas}` (#F6F6F3) con tarjetas blancas y bordes `{colors.screen-hairline}`, igual que la app.
@@ -337,7 +347,7 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 ### Decorative Depth
 - **Ninguna** con la identidad D: se quitaron la rejilla de puntos que respiraba (`#net`, oculta), el grano de toda la página, el vidrio esmerilado y los relieves. El carácter lo dan la tipografía, el aire y las pantallas dibujadas.
-- **No usar** degradados de color visibles como fondo ni brillos de neón alrededor del texto.
+- **No usar** degradados de color visibles como fondo ni brillos de neón alrededor del texto, salvo el resplandor de la identidad E (ver Overview).
 
 ## Shapes
 
