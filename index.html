@@ -1439,12 +1439,35 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
   .nw-hv{grid-template-columns:minmax(0,1fr)}
   .ip-vid{justify-self:center;width:230px}
 }
+
+/* Pasos del cliente en columna, que se llenan de rosa al ritmo del móvil (19 nov 2026) */
+.fsteps{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:8px;width:min(290px,100%)}
+.fsteps li{position:relative;overflow:hidden;font-size:12.5px;padding:10px 14px;border-radius:12px;color:#8592A6;background:rgba(255,255,255,.03)}
+.fsteps li::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,79,154,.22);transform:scaleX(0);transform-origin:left center}
+.fsteps li{isolation:isolate}
+.fsteps li.on{color:#FFFFFF;border-color:rgba(255,79,154,.7);background:rgba(255,255,255,.03)}
+.fsteps li.on::after{transform:scaleX(1);transition:transform var(--d,2s) linear}
+.fsteps li.done{color:#FFD3E5;border-color:rgba(255,79,154,.45);background:rgba(255,79,154,.22)}
+.fsteps li.done::after{transform:scaleX(1)}
+.flow.reset .fsteps li::after{transition:none}
+.colegas{max-width:420px;width:100%;justify-self:center}
+@media (prefers-reduced-motion: reduce){.fsteps li.on::after{transition:none}}
+
+/* Pasos de «Cómo funciona»: las cuatro pantallas del mismo alto. Botón de cada plan (19 nov 2026) */
+.nw-steps li{grid-template-rows:auto auto 1fr auto}
+.nw-steps .mini{height:158px;align-content:center;align-self:end}
+.nw-plan{grid-template-rows:auto 1fr auto}
+.plan-cta{justify-self:start;align-self:end;margin-top:6px;height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;color:#E9EEF6;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
+.plan-cta:hover{border-color:rgba(255,255,255,.4);color:#FFFFFF}
+.nw-plan.pro .plan-cta{background:#FFFFFF;color:#0B0F17;border-color:#FFFFFF}
+.nw-plan.pro .plan-cta:hover{color:#0B0F17}
+@media (max-width: 960px){.nw-steps .mini{height:auto;min-height:150px}}
 </style>
 </head>
 <body>
 <div style="width: 100%; background: var(--bg); color: var(--ink); font-family: 'Funnel Display', sans-serif">
 
-  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px">Piloto abierto en Mallorca · <a href="#acceso-final-sec" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Solicita acceso</a></div>
+  <div style="background: #06080D; color: #E9EEF6; border-bottom: 1px solid var(--line); font-size: 13px; text-align: center; padding: 10px 24px"><a href="#acceso-final-sec" style="color: #E9EEF6; text-decoration: underline; text-underline-offset: 3px; font-weight: 600">Solicitar acceso</a></div>
 
   <nav class="topnav" style="max-width: 1200px; margin: 0 auto; padding: 18px 24px" aria-label="Principal">
     <div class="n-brand" style="display: flex; align-items: center; gap: 10px">
@@ -1659,7 +1682,11 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <article class="nw-feat">
         <h3>Entre colegas</h3>
         <p class="d">¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.</p>
-        <figure class="pad feat-dev"><div class="pad-scr"><img class="l-es" src="img/app/es/pro-mensajes.webp?v=1" alt="Mensajes en un iPad: una propuesta personalizada a otra empresa" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-mensajes.webp?v=1" alt="Messages on an iPad: a custom offer to another business" loading="lazy" decoding="async"></div></figure>
+        <div class="mini feat-dev colegas" aria-hidden="true">
+          <span class="bub">¿Tienes sitio el sábado para 6?</span>
+          <span class="bub me">Sí, te la paso al Ónix.</span>
+          <div class="mr ln"><span>Reserva pasada · Barcos del Sur</span><span class="pl">10 %</span></div>
+        </div>
       </article>
     </div>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -1719,14 +1746,17 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       <div class="nw-plan">
         <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
         <ul><li>Hasta 2 servicios publicados</li><li>Un QR para tu hotel</li><li>Agenda, reservas y mensajes</li><li>Informes básicos</li></ul>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
         <ul><li>Hasta 8 servicios publicados</li><li>Más colaboradores y más QR</li><li>Google Calendar</li><li>Informes completos</li></ul>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan">
         <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
         <ul><li>Sin límites</li><li>Soporte dedicado</li><li>Condiciones a medida</li></ul>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
     </div>
   </section>
@@ -2095,7 +2125,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
   </section>
 
   <div class="wordmark-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow-x: clip">
-    <video class="foot-vid" data-auto muted loop playsinline preload="none" poster="img/video/cabecera2.webp?v=1" aria-hidden="true"><source src="img/video/cabecera2.mp4?v=1" type="video/mp4"></video>
+    <video class="foot-vid" data-auto muted loop playsinline preload="none" poster="img/video/cabecera2.webp?v=1" aria-hidden="true"><source src="img/video/cabecera2.mp4?v=2" type="video/mp4"></video>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: var(--ink-2)"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
   </div>
 
@@ -2129,6 +2159,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
+    "Solicitar información": "Request information",
     "Solicita acceso": "Request access",
     "Informes en la app: comisión por categoría, reservas por mes, estado de las reservas y embudo": "Reports in the app: commission by category, bookings by month, booking status and funnel",
     "Vídeo: con Favent rentabilizas cada recomendación": "Video: with Favent every recommendation pays",
@@ -4913,13 +4944,21 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
       [4, 2, 1300, null, 's2'],
       [5, 3, 3400, null]
     ];
+    // cuánto dura cada paso, para que su barra rosa se llene a la vez que el móvil
+    F.cd = [0, 0, 0, 0];
+    F.seq.forEach(function (q) { F.cd[q[1]] += q[2] + (q[3] ? 450 : 0); });
     function show(i, chip, st) {
       F.s.forEach(function (d) {
         var n = +d.getAttribute('data-i');
         d.classList.toggle('on', n === i);
         d.classList.toggle('past', n < i);
       });
-      F.chips.forEach(function (c, j) { c.classList.toggle('on', j === chip); });
+      F.chips.forEach(function (c, j) {
+        var was = c.classList.contains('on');
+        c.classList.toggle('done', j < chip);
+        if (j === chip && !was) { c.style.setProperty('--d', (F.cd[j] || 2000) + 'ms'); c.classList.remove('on'); void c.offsetWidth; c.classList.add('on'); }
+        if (j !== chip) c.classList.remove('on');
+      });
       if (F.pay) { F.pay.classList.toggle('s1', st === 's1'); F.pay.classList.toggle('s2', st === 's2'); }
     }
     function tap(p) {
@@ -4930,7 +4969,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
     function step() {
       if (!F.on || stopped()) return;
       var q = F.seq[F.k];
-      if (F.k === 0) { fl.classList.add('reset'); show(0, 0, ''); void fl.offsetWidth; fl.classList.remove('reset'); }
+      if (F.k === 0) { fl.classList.add('reset'); F.chips.forEach(function (c) { c.classList.remove('on', 'done'); }); show(0, 0, ''); void fl.offsetWidth; fl.classList.remove('reset'); }
       else show(q[0], q[1], q[4]);
       F.t = setTimeout(function () {
         tap(q[3]);
