@@ -6,7 +6,7 @@
 <!-- Seguridad: solo se cargan recursos de esta propia web; el formulario solo envía a Web3Forms / FormSubmit -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Favent — Canal de ventas profesional entre empresas · Mallorca</title>
+<title>Favent</title>
 <meta name="description" content="Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.">
 <meta name="theme-color" content="#0B0F17">
 <link rel="canonical" href="https://www.favent.app/">
@@ -2258,6 +2258,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Confirmar con el botón lateral": "Confirm with side button",
     "Hecho": "Done",
     'Favent — Canal de ventas profesional entre empresas · Mallorca': 'Favent — The professional sales channel between businesses · Mallorca',
+    'Favent': 'Favent',
     'Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.': 'The professional sales channel between service businesses in Mallorca: agreed commission, deposit paid at booking and commission released once the service is delivered.',
     'Idioma': 'Language',
     'Principal': 'Main',
@@ -5152,7 +5153,14 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     w.appendChild(r); b.appendChild(w);
   });
   // Botón principal que se rellena desde el círculo
-  // (El botón que se rellena desde el círculo se quitó el 19 nov 2026: botones normales)
+  // Botón que se rellena desde el círculo: solo en los dos «Solicitar acceso», el del menú y el del formulario (19 nov 2026)
+  [].slice.call(document.querySelectorAll('.n-cta .nb, #acceso-final button[type="submit"]')).forEach(function (b) {
+    b.classList.add('bk');
+    var c = document.createElement('span'); c.className = 'bk-c'; c.setAttribute('aria-hidden', 'true');
+    b.insertBefore(c, b.firstChild);
+    var fit = function () { b.style.setProperty('--h', b.offsetHeight + 'px'); };
+    fit(); window.addEventListener('resize', fit);
+  });
 
   // Fotos y pantallas: entran al bajar; las tarjetas se inclinan un poco con el ratón
   var rv = [].slice.call(document.querySelectorAll('.nw-feat, .stepdev, .shot, .pad, .flow, .ip-vid, .nw-plan, .nw-steps .mini, .foot-vid'));
