@@ -1300,6 +1300,99 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
   .aura{top:-160px}
   .aura .a2{top:120px}
 }
+
+/* ===== Pantallas reales de la app, siempre en un ordenador o un iPhone (nov 2026) ===== */
+html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
+.mac{margin:0;position:relative;width:100%;min-width:0}
+.mac-scr{position:relative;background:#05070B;border:1px solid #2B3242;border-radius:14px 14px 3px 3px;padding:2.6% 2.4% 2.2%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.mac-scr::before{content:"";position:absolute;top:1%;left:50%;width:5px;height:5px;border-radius:50%;background:#1E2533;transform:translateX(-50%)}
+.mac-scr img,.mac-scr video{display:block;width:100%;height:auto;aspect-ratio:1214/698;object-fit:cover;object-position:top left;border-radius:2px;background:#FFFFFF}
+.mac-base{position:relative;height:0;padding-bottom:3.2%;margin:0 -6.5%;background:linear-gradient(#4A5262,#232833 55%,#14171E);border-radius:0 0 50% 50% / 0 0 100% 100%;box-shadow:0 1px 0 rgba(255,255,255,.06) inset}
+.mac-base::before{content:"";position:absolute;left:50%;top:0;width:14%;height:40%;transform:translateX(-50%);background:#14171E;border-radius:0 0 8px 8px}
+.ip{margin:0;position:relative;background:#121722;padding:3.4%;border-radius:16% / 7.6%;box-shadow:0 0 0 1px #2F3747,inset 0 0 0 2px #05070B,0 30px 70px rgba(0,0,0,.5)}
+.ip-scr{position:relative;overflow:hidden;border-radius:13% / 6.1%;aspect-ratio:415/960;background:#F6F6F3;isolation:isolate}
+.ip-bar{position:absolute;z-index:4;top:0;left:0;right:0;height:6.25%;background:#F6F6F3}
+.ip-bar span{position:absolute;left:12%;top:50%;transform:translateY(-50%);font:600 clamp(7px,3.4cqw,13px)/1 'Funnel Display',sans-serif;color:#1E2226}
+.ip-scr{container-type:inline-size}
+.ip-bar span{font-size:4.2cqw}
+.ip-bar::after{content:"";position:absolute;left:50%;top:22%;width:30%;height:56%;transform:translateX(-50%);background:#05070B;border-radius:99px}
+.ip-view{position:absolute;left:0;right:0;bottom:0;top:6.25%;overflow:hidden}
+.ip-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+/* Inicio */
+.hero-dev{position:relative;z-index:1;max-width:1000px;margin:0 auto;perspective:1800px}
+.mac-hero{transform-origin:50% 100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))}
+.ip-hero{position:absolute;right:-5%;bottom:-7%;width:20%;z-index:2}
+.js-anim .mac-hero{opacity:0;transform:translateY(22%) rotateX(38deg) scale(.84)}
+.js-anim .ip-hero{opacity:0;transform:translate(85%,12%) rotate(12deg)}
+.hero-dev.in .mac-hero{opacity:1;transform:none;transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity .8s ease}
+.hero-dev.in .ip-hero{opacity:1;transform:none;transition:transform 1.25s cubic-bezier(.16,1,.3,1) .5s,opacity .6s ease .5s}
+.hero-dev .aura-in{position:absolute}
+/* Pasos y ventajas */
+.stepdev{height:250px;display:flex;align-items:flex-end;justify-content:center;margin-top:8px}
+.stepdev .ip{width:104px}
+.nw-feat .feat-dev{margin-top:16px;align-self:end}
+.nw-feat:nth-child(3) .feat-dev{grid-column:2;grid-row:1 / span 2;margin-top:0;align-self:center}
+/* El cliente: el móvil que reserva */
+.flow{justify-self:center;display:grid;justify-items:center;gap:22px;width:min(320px,100%)}
+.ip-flow{width:min(290px,100%)}
+.fs{position:absolute;inset:0;transform:translateX(100%);transition:transform .6s cubic-bezier(.32,.72,0,1),filter .6s ease;background:#F6F6F3}
+.fs.on{transform:none;z-index:2}
+.fs.past{transform:translateX(-30%);filter:brightness(.82);z-index:1}
+.flow.reset .fs{transition:none}
+.ftap{position:absolute;z-index:6;width:16%;aspect-ratio:1;border-radius:50%;background:rgba(255,79,154,.32);border:2px solid #FF4F9A;transform:translate(-50%,-50%) scale(.3);opacity:0;pointer-events:none}
+.ftap.go{animation:ftap .7s ease-out}
+@keyframes ftap{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}25%{opacity:1}100%{transform:translate(-50%,-50%) scale(1.15);opacity:0}}
+.fsteps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;counter-reset:fs}
+.fsteps li{counter-increment:fs;font-family:'Geist Mono',monospace;font-size:11.5px;color:#8592A6;border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:5px 10px;transition:color .3s ease,border-color .3s ease,background-color .3s ease}
+.fsteps li::before{content:counter(fs) " · "}
+.fsteps li.on{color:#FFFFFF;border-color:rgba(255,79,154,.6);background:rgba(255,79,154,.12)}
+/* Página de pago de Stripe y hoja de Apple Pay (dibujadas) */
+.sp{position:absolute;inset:0;background:#FFFFFF;color:#30313D;font-family:-apple-system,BlinkMacSystemFont,'Funnel Display',sans-serif;font-size:4.2cqw;padding:7% 7% 0;display:flex;flex-direction:column;gap:3.6cqw}
+.sp-top{display:flex;align-items:center;gap:3cqw;font-size:4.4cqw}
+.sp-back{font-size:7cqw;line-height:1;color:#6D6E78}
+.sp-amt{display:grid;gap:1cqw;margin:2cqw 0 1cqw}
+.sp-amt small{color:#6D6E78;font-size:4cqw}
+.sp-amt b{font-size:9cqw;letter-spacing:-.02em;font-weight:600}
+.sp-amt span{color:#6D6E78;font-size:3.8cqw}
+.sp-ap{height:11cqw;border-radius:2.4cqw;background:#000000;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:4.8cqw;letter-spacing:-.01em}
+.sp-or{display:flex;align-items:center;gap:2.4cqw;color:#6D6E78;font-size:3.6cqw}
+.sp-or i{flex:1;height:1px;background:#E6E6EB}
+.sp-f{border:1px solid #E0E0E6;border-radius:2cqw;padding:2.2cqw 3cqw;display:grid;gap:.8cqw}
+.sp-f small{font-size:3.2cqw;color:#6D6E78}
+.sp-f span{font-size:4cqw;color:#A3A4AE}
+.sp-btn{height:11cqw;border-radius:2.4cqw;background:#0570DE;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:600}
+.sp-foot{text-align:center;font-size:3.4cqw;color:#8D8E98;margin-top:1cqw}
+.sp-foot b{font-weight:700;letter-spacing:-.02em;color:#6D6E78}
+.aps{position:absolute;left:0;right:0;bottom:0;z-index:3;background:#F2F2F7;color:#000000;border-radius:5cqw 5cqw 0 0;padding:5cqw 5cqw 8cqw;display:grid;gap:3cqw;font-family:-apple-system,BlinkMacSystemFont,'Funnel Display',sans-serif;font-size:4cqw;transform:translateY(105%);transition:transform .5s cubic-bezier(.32,.72,0,1);box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.fs-pay.s1 .aps,.fs-pay.s2 .aps{transform:none}
+.fs-pay::after{content:"";position:absolute;inset:0;z-index:2;background:rgba(0,0,0,0);transition:background-color .4s ease;pointer-events:none}
+.fs-pay.s1::after,.fs-pay.s2::after{background:rgba(0,0,0,.35)}
+.aps-h{display:flex;justify-content:space-between;align-items:center}
+.aps-h b{font-size:5cqw}
+.aps-h span{color:#0A84FF}
+.aps-r{background:#FFFFFF;border-radius:3cqw;padding:3cqw;display:flex;align-items:center;justify-content:space-between;gap:3cqw}
+.aps-r span{display:grid;gap:.6cqw;flex:1}
+.aps-r small{color:#6E6E73;font-size:3.4cqw}
+.aps-card{width:11cqw;height:7.4cqw;border-radius:1.4cqw;background:#1A1F71;flex:none}
+.aps-amt{font-size:4.6cqw}
+.aps-c{position:relative;display:flex;flex-direction:column;align-items:center;gap:2cqw;padding-top:2cqw;min-height:16cqw}
+.aps-side{position:absolute;right:-5cqw;top:0;width:1.6cqw;height:12cqw;border-radius:1cqw;background:#0A84FF;animation:apside 1s ease-in-out infinite}
+@keyframes apside{50%{opacity:.25}}
+.aps-t1{font-size:3.8cqw;color:#3C3C43}
+.aps-t2{display:none;align-items:center;gap:2cqw;font-weight:600;font-size:4.4cqw}
+.aps-ok{width:9cqw;height:9cqw;border-radius:50%;border:.8cqw solid #0A84FF;position:relative}
+.aps-ok::after{content:"";position:absolute;left:28%;top:18%;width:28%;height:46%;border-right:.8cqw solid #0A84FF;border-bottom:.8cqw solid #0A84FF;transform:rotate(40deg)}
+.fs-pay.s2 .aps-t1,.fs-pay.s2 .aps-side{display:none}
+.fs-pay.s2 .aps-t2{display:flex}
+@media (max-width: 960px){
+  .nw-feat:nth-child(3) .feat-dev{grid-column:1;grid-row:auto;margin-top:16px}
+  .stepdev{height:auto;min-height:200px}
+}
+@media (max-width: 640px){
+  .ip-hero{width:24%;right:-2%;bottom:-9%}
+  .stepdev .ip{width:120px}
+}
+@media (prefers-reduced-motion: reduce){.fs,.aps{transition:none}.aps-side{animation:none}}
 </style>
 </head>
 <body>
@@ -1348,7 +1441,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
       <span class="demo-badge">Vista de ejemplo</span>
     </div>
     <p class="fx-sr">Animación de ejemplo del panel de Favent: un hotel crea una reserva, el cliente paga la señal, se canjea el código QR y se libera la comisión.</p>
-    <div id="panel-scale" style="overflow: hidden; border-radius: 32px">
+    <div class="hero-dev">
+      <figure class="mac mac-hero"><div class="mac-scr"><video id="hero-vid" muted loop playsinline preload="metadata" poster="img/app/tour-es.webp?v=1" aria-label="Vídeo de la app de Favent con datos de ejemplo: buscar servicios, la agenda, las reservas, Connect Spot y los mensajes"></video></div><div class="mac-base" aria-hidden="true"></div></figure>
+      <figure class="ip ip-hero"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/m2-mapa.webp?v=1" alt="El catálogo del hotel en el móvil del huésped, con el mapa" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m2-mapa.webp?v=1" alt="The hotel catalogue on the guest phone, with the map" loading="lazy" decoding="async"></div></div></figure>
+    </div>
+    <div id="panel-scale" hidden style="overflow: hidden; border-radius: 32px">
     <div id="demo" inert style="position: relative; background: #EAF2F8; border-radius: 32px; padding: clamp(16px, 4vw, 40px)">
       <span id="cursor" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3l14 8-6.2 1.6L10 19z" fill="#1E2226" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg></span>
       <div class="fx-win">
@@ -1412,41 +1509,25 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
         <span class="nw-n">01</span>
         <h3>Pactáis la comisión</h3>
         <p class="d">Las dos empresas acuerdan un porcentaje una vez. Vale para todas las reservas.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mh"><span>Solicitud de colaboración</span><span class="pl w">Nueva</span></div>
-          <div class="mr"><span>Hotel Miramar</span><small>quien recomienda</small></div>
-          <div class="mr"><span class="big">15 %</span><small>comisión</small></div>
-          <div class="bt"><span class="b">Aceptar</span><span class="b g">Responder</span></div>
-        </div>
+        <div class="stepdev"><figure class="mac"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-colab.webp?v=1" alt="Colaboradores en la app de Favent: la solicitud de un hotel con su comisión" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-colab.webp?v=1" alt="Partners in the Favent app: a hotel request with its commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure></div>
       </li>
       <li>
         <span class="nw-n">02</span>
         <h3>El cliente paga la señal</h3>
         <p class="d">Reserva con un enlace o desde el QR del hotel y paga con tarjeta el 50 % o el 100 %.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mh"><span>Zafiro · Barco privado</span><span>sáb 10:00</span></div>
-          <div class="mr"><span>Pagas ahora</span><b class="mono">308,25 €</b></div>
-          <div class="mr"><span>Pagas en el lugar</span><span class="mono">300,00 €</span></div>
-          <div class="bt"><span class="b a">Pagar la señal</span></div>
-        </div>
+        <div class="stepdev"><figure class="ip"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/m3-ficha.webp?v=1" alt="Ficha de un servicio en el móvil: lo que se paga ahora y lo que se paga en el lugar" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m3-ficha.webp?v=1" alt="A service page on the phone: what is paid now and what is paid on site" loading="lazy" decoding="async"></div></div></figure></div>
       </li>
       <li>
         <span class="nw-n">03</span>
         <h3>Se canjea el QR</h3>
         <p class="d">Al llegar, quien presta el servicio escanea el código del cliente.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mr" style="align-items:center"><span class="q" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i></span><span style="display:grid;gap:6px;justify-items:end"><b class="mono" style="letter-spacing:.08em">FV-7K2Q</b><span class="pl ok">Canjeado</span></span></div>
-        </div>
+        <div class="stepdev"><figure class="ip"><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view"><img class="l-es" src="img/app/es/pro-escanear.webp?v=1" alt="Escanear QR en la app: la reserva del cliente, lista para canjear" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-escanear.webp?v=1" alt="Scan QR in the app: the client booking, ready to redeem" loading="lazy" decoding="async"></div></div></figure></div>
       </li>
       <li>
         <span class="nw-n">04</span>
         <h3>Cada uno cobra solo</h3>
         <p class="d">Favent envía la comisión a quien recomendó y el resto de la señal a quien presta el servicio.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mh"><span>Reparto de la señal</span><span class="pl ok">Liberado</span></div>
-          <div class="mr"><span>Hotel Miramar</span><b class="mono">90,00 €</b></div>
-          <div class="mr"><span>Velas del Norte</span><b class="mono">210,00 €</b></div>
-        </div>
+        <div class="stepdev"><figure class="mac"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-informes.webp?v=1" alt="Informes: ingresos por canal y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-informes.webp?v=1" alt="Reports: income by channel and bookings by month" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure></div>
       </li>
     </ol>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -1473,30 +1554,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
       <article class="nw-feat">
         <h3>Un QR en cada habitación</h3>
         <p class="d">El huésped lo escanea, ve las experiencias que tú eliges y reserva desde su móvil. La reserva queda a tu nombre.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mh"><span>Experiencias · Hotel Miramar</span></div>
-          <div class="mr"><span>Zafiro · Barco privado</span><span class="mono">600 €</span></div>
-          <div class="mr ln"><span>Bici por la Tramuntana</span><span class="mono">45 €</span></div>
-          <div class="mr ln"><span>Traslado al aeropuerto</span><span class="mono">70 €</span></div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-qr.webp?v=1" alt="Connect Spot: un código QR por habitación" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-qr.webp?v=1" alt="Connect Spot: one QR code per room" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
       <article class="nw-feat">
         <h3>Reserva en un minuto</h3>
         <p class="d">Busca en el mapa o escribe lo que pide el cliente. Le mandas el enlace y paga él.</p>
-        <div class="mini" aria-hidden="true">
-          <span class="search"><span>barco para 6 el sábado por la mañana</span></span>
-          <div class="mr"><span>Zafiro · sáb 10:00 · 8 plazas</span><span class="pl ok">Encaja</span></div>
-          <div class="mr ln"><span>Perla · sáb 11:00 · 6 plazas</span><span class="pl ok">Encaja</span></div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-buscar.webp?v=1" alt="Buscar servicios: el mapa de Mallorca con cada servicio, su precio y tu comisión" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-buscar.webp?v=1" alt="Find services: the map of Mallorca with each service, its price and your commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
       <article class="nw-feat">
         <h3>Tus comisiones, claras</h3>
         <p class="d">Lo generado, lo retenido y lo cobrado, por mes y por empresa, siempre al día.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mr"><small>Comisión generada</small><small>Reservas</small></div>
-          <div class="mr"><span class="big">1.240 €</span><span class="big">18</span></div>
-          <div class="bars"><i style="height:35%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:61%"></i><i class="on" style="height:92%"></i></div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/rec-informes.webp?v=1" alt="Informes: comisión por categoría y reservas por mes" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/rec-informes.webp?v=1" alt="Reports: commission by category and bookings by month" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
     </div>
   </section>
@@ -1513,31 +1581,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
       <article class="nw-feat">
         <h3>Reservas que llegan pagadas</h3>
         <p class="d">Aceptas o rechazas en un toque. La señal se cobra al aceptar y, si el cliente no se presenta, se queda.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="mh"><span>Por aceptar</span><span class="mono">29:58</span></div>
-          <div class="mr"><span>Familia Jensen · 8 pers.</span><small>Hotel Miramar</small></div>
-          <div class="bt"><span class="b">Aceptar</span><span class="b g">Rechazar</span></div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-reservas.webp?v=1" alt="Reservas por aceptar, con el tiempo que queda para responder" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-reservas.webp?v=1" alt="Bookings to accept, with the time left to reply" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
       <article class="nw-feat">
         <h3>Una agenda profesional</h3>
         <p class="d">Tus barcos o servicios en columnas, por día, semana o mes. Tus reservas de teléfono y web junto a las de Favent, y con Google Calendar.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="ag">
-            <span></span><span class="hd" style="--c:#2B6CA8">Zafiro</span><span class="hd" style="--c:#1D5B3A">Perla</span><span class="hd" style="--c:#43494F">Ónix</span>
-            <span class="t">10:00</span><span class="ev ok">Jensen · 8</span><span class="ev fr">Libre</span><span class="ev ok">Müller · 4</span>
-            <span class="t">16:00</span><span class="ev fr">Libre</span><span class="ev ok">Pons · 6</span><span class="ev fr">Libre</span>
-          </div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-agenda.webp?v=1" alt="Agenda: un barco por columna y las reservas del día" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-agenda.webp?v=1" alt="Calendar: one boat per column and the day bookings" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
       <article class="nw-feat">
         <h3>Entre colegas</h3>
         <p class="d">¿Ese día estás lleno? Pasa la reserva a una empresa con la que colaboras y cobra tu comisión.</p>
-        <div class="mini" aria-hidden="true">
-          <span class="bub">¿Tienes sitio el sábado para 6?</span>
-          <span class="bub me">Sí, te la paso al Ónix.</span>
-          <div class="mr ln"><span>Reserva pasada · Barcos del Sur</span><span class="pl">10 %</span></div>
-        </div>
+        <figure class="mac feat-dev"><div class="mac-scr"><img class="l-es" src="img/app/es/pro-colab.webp?v=1" alt="Colaboradores: hoteles y empresas con su comisión pactada" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/pro-colab.webp?v=1" alt="Partners: hotels and businesses with their agreed commission" loading="lazy" decoding="async"></div><div class="mac-base" aria-hidden="true"></div></figure>
       </article>
     </div>
     <span class="nw-ex">Vista de ejemplo</span>
@@ -1557,13 +1611,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
           <li>Su reserva en un enlace, sin crear cuenta.</li>
         </ul>
       </div>
-      <div class="phone" aria-hidden="true">
-        <div class="scr">
-          <div class="top"><span>Hotel Miramar</span><span>ES · EN</span></div>
-          <div class="card"><div class="ph">Náutica</div><div class="cb"><b>Zafiro · Barco privado</b><span class="mono">600 €</span></div></div>
-          <div class="card"><div class="ph b">Ciclismo</div><div class="cb"><b>Bici por la Tramuntana</b><span class="mono">45 €</span></div></div>
-          <div class="ok"><span>Reserva confirmada</span><b>FV-7K2Q</b></div>
-        </div>
+      <div class="flow">
+        <figure class="ip ip-flow" role="img" aria-label="En el móvil del cliente: elige un servicio en el mapa, escribe sus datos, paga la señal con Apple Pay y recibe su código QR."><div class="ip-scr"><div class="ip-bar" aria-hidden="true"><span>9:41</span></div><div class="ip-view" aria-hidden="true"><div class="fs" data-i="0"><img class="l-es" src="img/app/es/m1-catalogo.webp?v=1" alt="" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m1-catalogo.webp?v=1" alt="" loading="lazy" decoding="async"></div><div class="fs" data-i="1"><img class="l-es" src="img/app/es/m2-mapa.webp?v=1" alt="" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m2-mapa.webp?v=1" alt="" loading="lazy" decoding="async"></div><div class="fs" data-i="2"><img class="l-es" src="img/app/es/m3-ficha.webp?v=1" alt="" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m3-ficha.webp?v=1" alt="" loading="lazy" decoding="async"></div><div class="fs" data-i="3"><img class="l-es" src="img/app/es/m4-datos.webp?v=1" alt="" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m4-datos.webp?v=1" alt="" loading="lazy" decoding="async"></div><div class="fs fs-pay" data-i="4"><div class="sp"><div class="sp-top"><span class="sp-back">‹</span><b>Velas del Norte</b></div><div class="sp-amt"><small>Señal de tu reserva</small><b>195,23 €</b><span>Coral · Lancha 6 pax · sáb 21 nov, 15:00</span></div><div class="sp-ap">Apple Pay</div><div class="sp-or"><i></i><span>O paga con tarjeta</span><i></i></div><div class="sp-f"><small>Email</small><span>laura@ejemplo.test</span></div><div class="sp-f"><small>Datos de la tarjeta</small><span>1234 1234 1234 1234</span></div><div class="sp-btn">Pagar</div><div class="sp-foot">Pago seguro con <b>stripe</b></div></div><div class="aps"><div class="aps-h"><b>Apple Pay</b><span>Cancelar</span></div><div class="aps-r"><i class="aps-card"></i><span><b>Visa ···· 4242</b><small>Laura Martín</small></span></div><div class="aps-r"><span><small>Pagar a</small><b>FAVENT</b></span><b class="aps-amt">195,23 €</b></div><div class="aps-c"><span class="aps-side"></span><span class="aps-t1">Confirmar con el botón lateral</span><span class="aps-t2"><i class="aps-ok"></i>Hecho</span></div></div></div><div class="fs" data-i="5"><img class="l-es" src="img/app/es/m6-confirmada.webp?v=1" alt="" loading="lazy" decoding="async"><img class="l-en" src="img/app/en/m6-confirmada.webp?v=1" alt="" loading="lazy" decoding="async"></div><span class="ftap"></span></div></div></figure>
+        <ol class="fsteps" aria-hidden="true"><li class="on">Elige en el mapa</li><li>Pone sus datos</li><li>Paga con Apple Pay</li><li>Reserva confirmada</li></ol>
       </div>
     </div>
   </section>
@@ -1958,11 +2008,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
     <div class="nw-final">
       <div class="fl">
         <h2 id="h-final">Empieza en el piloto de Mallorca<span class="dot-p">.</span></h2>
-        <p>Crea tu cuenta. Favent revisa cada alta y te avisa en cuanto esté activa.</p>
-        <div class="hero-cta" style="justify-content: flex-start"><a class="p" href="https://app.favent.app/registro">Crear cuenta</a><a class="g" href="https://app.favent.app/login">Entrar</a></div>
+        <p>Déjanos el email de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso.</p>
       </div>
       <div class="fr">
-        <span>¿Prefieres que te escribamos? Déjanos tu email.</span>
+        <span>Solicita acceso al piloto.</span>
       <form id="acceso-final" style="display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 360px; max-width: 480px" novalidate>
         <label for="email-final" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email de empresa</label>
         <input id="email-final" type="email" required placeholder="Email de tu empresa" style="flex: 1 1 220px; height: 52px; padding: 0 20px; border-radius: 999px; border: 1px solid #D3E6F4; background: #FFFFFF; font-family: 'Funnel Display', sans-serif; font-size: 15px; color: #1E2226">
@@ -1978,7 +2027,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
   </section>
 
   <div class="wordmark-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 24px; overflow-x: clip">
-    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Michroma', sans-serif; font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; font-size: clamp(52px, 14.5vw, 205px); color: var(--ink)">favent<span style="width: 0.22em; height: 0.22em; margin-left: 0.06em; border-radius: 50%; background: #FF4F9A"></span></div>
+    <div aria-hidden="true" style="display: flex; align-items: baseline; gap: clamp(6px, 1vw, 14px); font-family: 'Michroma', sans-serif; font-weight: 400; letter-spacing: -0.03em; line-height: 1.25; font-size: clamp(40px, 8vw, 112px); color: var(--ink)">favent<span style="width: 0.22em; height: 0.22em; margin-left: 0.06em; border-radius: 50%; background: #FF4F9A"></span></div>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 14px; color: var(--ink-2)"><span>El canal de ventas profesional entre empresas.</span><span style="font-weight: 600; letter-spacing: 0.12em; font-size: 12px">B2B SERVICE · MALLORCA</span></div>
   </div>
 
@@ -2012,6 +2061,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 
   // Traducciones al inglés. La clave es el texto en español tal cual aparece en la página.
   var EN = {
+    "Déjanos el email de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso.": "Leave us your business email. Favent reviews every request and writes to you as soon as you have access.",
+    "Solicita acceso al piloto.": "Request access to the pilot.",
+    "Vídeo de la app de Favent con datos de ejemplo: buscar servicios, la agenda, las reservas, Connect Spot y los mensajes": "Video of the Favent app with sample data: finding services, the calendar, bookings, Connect Spot and messages",
+    "En el móvil del cliente: elige un servicio en el mapa, escribe sus datos, paga la señal con Apple Pay y recibe su código QR.": "On the client phone: they pick a service on the map, enter their details, pay the deposit with Apple Pay and get their QR code.",
+    "Elige en el mapa": "Picks on the map",
+    "Pone sus datos": "Enters their details",
+    "Paga con Apple Pay": "Pays with Apple Pay",
+    "Señal de tu reserva": "Your booking deposit",
+    "195,23 €": "€195.23",
+    "Coral · Lancha 6 pax · sáb 21 nov, 15:00": "Coral · Speedboat 6 pax · Sat 21 Nov, 15:00",
+    "O paga con tarjeta": "Or pay by card",
+    "Datos de la tarjeta": "Card information",
+    "Pagar": "Pay",
+    "Pago seguro con": "Secure payment with",
+    "Cancelar": "Cancel",
+    "Pagar a": "Pay",
+    "Confirmar con el botón lateral": "Confirm with side button",
+    "Hecho": "Done",
     'Favent — Canal de ventas profesional entre empresas · Mallorca': 'Favent — The professional sales channel between businesses · Mallorca',
     'Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.': 'The professional sales channel between service businesses in Mallorca: agreed commission, deposit paid at booking and commission released once the service is delivered.',
     'Idioma': 'Language',
@@ -4721,6 +4788,93 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
   var startLang = new URLSearchParams(location.search).get('lang');
   if (!startLang) { try { startLang = localStorage.getItem('favent-lang'); } catch (e) {} }
   setLang(startLang || 'es');
+})();
+
+/* ===== Pantallas reales: vídeo del inicio y móvil que reserva (nov 2026) ===== */
+(function () {
+  var root = document.documentElement;
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mb = document.getElementById('motion-btn');
+  function stopped() { return rm || (mb && mb.getAttribute('aria-pressed') === 'true'); }
+  function lang() { return root.lang === 'en' ? 'en' : 'es'; }
+  function seen(el, cb, th) {
+    if (!('IntersectionObserver' in window)) { cb(true); return; }
+    new IntersectionObserver(function (es) { cb(es[es.length - 1].isIntersecting); }, { threshold: th || 0.2 }).observe(el);
+  }
+  if (!rm) root.classList.add('js-anim');
+
+  // Inicio: el ordenador sube y se endereza, el iPhone entra desde la derecha; el vídeo, en su idioma
+  var hd = document.querySelector('.hero-dev'), v = document.getElementById('hero-vid'), vOn = false;
+  function setVid() {
+    var l = lang();
+    if (v.getAttribute('data-l') === l) return;
+    v.setAttribute('data-l', l);
+    v.poster = 'img/app/tour-' + l + '.webp?v=1';
+    v.src = 'img/app/tour-' + l + '.mp4?v=1';
+    playVid();
+  }
+  function playVid() { if (vOn && !stopped()) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }
+  if (hd && v) {
+    setVid();
+    var shown = false;
+    seen(hd, function (on) {
+      if (on && !shown) { shown = true; requestAnimationFrame(function () { hd.classList.add('in'); }); }
+      vOn = on; playVid();
+    }, 0.12);
+  }
+
+  // El cliente: mapa → servicio → hora → datos → Stripe con Apple Pay → reserva confirmada
+  var fl = document.querySelector('.flow');
+  var F = null;
+  if (fl) {
+    F = { el: fl, s: fl.querySelectorAll('.fs'), tap: fl.querySelector('.ftap'), chips: fl.querySelectorAll('.fsteps li'), pay: fl.querySelector('.fs-pay'), t: null, on: false, k: 0 };
+    // [diapositiva, paso, espera (ms), toque (x %, y % de la pantalla) o null, estado del pago]
+    F.seq = [
+      [0, 0, 1700, [61, 49]],
+      [1, 0, 1900, [50, 64]],
+      [2, 1, 1900, [40, 81]],
+      [3, 1, 2000, [50, 58]],
+      [4, 2, 1700, [50, 38], ''],
+      [4, 2, 1700, null, 's1'],
+      [4, 2, 1300, null, 's2'],
+      [5, 3, 3400, null]
+    ];
+    function show(i, chip, st) {
+      F.s.forEach(function (d) {
+        var n = +d.getAttribute('data-i');
+        d.classList.toggle('on', n === i);
+        d.classList.toggle('past', n < i);
+      });
+      F.chips.forEach(function (c, j) { c.classList.toggle('on', j === chip); });
+      if (F.pay) { F.pay.classList.toggle('s1', st === 's1'); F.pay.classList.toggle('s2', st === 's2'); }
+    }
+    function tap(p) {
+      if (!p) return;
+      F.tap.style.left = p[0] + '%'; F.tap.style.top = (6.25 + p[1] * 0.9375) + '%';
+      F.tap.classList.remove('go'); void F.tap.offsetWidth; F.tap.classList.add('go');
+    }
+    function step() {
+      if (!F.on || stopped()) return;
+      var q = F.seq[F.k];
+      if (F.k === 0) { fl.classList.add('reset'); show(0, 0, ''); void fl.offsetWidth; fl.classList.remove('reset'); }
+      else show(q[0], q[1], q[4]);
+      F.t = setTimeout(function () {
+        tap(q[3]);
+        F.t = setTimeout(function () { F.k = (F.k + 1) % F.seq.length; step(); }, q[3] ? 450 : 0);
+      }, q[2]);
+    }
+    show(0, 0, '');
+    seen(fl, function (on) {
+      if (on && !F.on) { F.on = true; if (!stopped()) step(); }
+      if (!on && F.on) { F.on = false; clearTimeout(F.t); }
+    }, 0.35);
+  }
+
+  new MutationObserver(function () { if (v) setVid(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
+  if (mb) new MutationObserver(function () {
+    if (v) playVid();
+    if (F) { clearTimeout(F.t); if (F.on && !stopped()) step(); }
+  }).observe(mb, { attributes: true, attributeFilter: ['aria-pressed'] });
 })();
 </script>
 
