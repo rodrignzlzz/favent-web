@@ -1532,6 +1532,38 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 /* Los dos botones del inicio, iguales: blancos como «Recomiendo clientes» (19 nov 2026) */
 .hero-cta .g{background:#FFFFFF;color:#0B0F17;border:0;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 12px 44px rgba(255,79,154,.32)}
 .hero-cta .g:hover{color:#0B0F17;border:0}
+
+/* ===== Movimiento entre botones (21 nov 2026): resalte que se desliza en el menú, botones del inicio con círculo
+   y barra de secciones en el móvil. Sin colores nuevos; todo se para con prefers-reduced-motion. ===== */
+.n-cta{position:relative}
+.n-cta .nl,.n-cta .nb{position:relative;z-index:1}
+.n-cta .nl:hover{background:transparent}
+.nl-hl{position:absolute;left:0;top:50%;height:40px;margin-top:-20px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.16);opacity:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.9,.2,1),width .5s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
+.nl-hl.on{opacity:1}
+.nl-hl.jump{transition:opacity .3s ease}
+.n-cta .nl:active{transform:scale(.96)}
+.pl-done .topnav{animation:navIn .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes navIn{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+.hero-cta a{gap:12px;padding:0 8px 0 26px;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.hero-cta a:hover{transform:translateY(-2px)}
+.hero-cta a:active{transform:scale(.97)}
+.hb-d{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:#0B0F17;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.hero-cta a:hover .hb-d,.hero-cta a:focus-visible .hb-d{transform:translateX(4px) rotate(-45deg)}
+@media (max-width: 640px){.hero-cta a{justify-content:space-between}}
+/* Barra de secciones del móvil y la tableta (donde el menú de arriba no enseña los enlaces) */
+.mtab{display:none}
+@media (max-width: 1020px){
+  .mtab{position:fixed;z-index:60;left:50%;bottom:calc(14px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);display:flex;padding:5px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(16,21,31,.86);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 18px 40px rgba(0,0,0,.45);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1),visibility 0s linear 0s}
+  .mtab.off{opacity:0;visibility:hidden;transform:translate(-50%,24px);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1),visibility 0s linear .5s}
+  .mtab a{position:relative;z-index:1;height:46px;padding:0 18px;border-radius:999px;display:flex;align-items:center;font-size:14.5px;font-weight:500;color:#E9EEF6;text-decoration:none;white-space:nowrap;transition:color .35s ease,transform .2s cubic-bezier(.2,.8,.2,1)}
+  .mtab a:active{transform:scale(.95)}
+  .mtab a[aria-current="true"]{color:#0B0F17}
+  .mtab-t{position:absolute;left:0;top:5px;height:46px;border-radius:999px;background:#FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:transform .5s cubic-bezier(.2,.9,.2,1),width .5s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
+  .mtab-t.on{opacity:1}
+  .pl-done .mtab:not(.off){animation:mtabIn .9s cubic-bezier(.2,.8,.2,1) .3s both}
+}
+@keyframes mtabIn{from{opacity:0;transform:translate(-50%,24px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width: 380px){.mtab a{padding:0 13px;font-size:13.5px}}
 </style>
 </head>
 <body>
@@ -1564,6 +1596,13 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
         <svg width="20" height="14" viewBox="0 0 30 20" aria-hidden="true" style="display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(30, 34, 38, 0.12)"><rect width="30" height="20" fill="#FFFFFF"></rect><g fill="#B22234"><rect width="30" height="1.54"></rect><rect y="3.08" width="30" height="1.54"></rect><rect y="6.15" width="30" height="1.54"></rect><rect y="9.23" width="30" height="1.54"></rect><rect y="12.31" width="30" height="1.54"></rect><rect y="15.38" width="30" height="1.54"></rect><rect y="18.46" width="30" height="1.54"></rect></g><rect width="12" height="10.77" fill="#3C3B6E"></rect></svg>EN
       </button>
     </div>
+  </nav>
+
+  <nav class="mtab" aria-label="Secciones">
+    <span class="mtab-t" aria-hidden="true"></span>
+    <a href="#recomiendas">Recomiendas</a>
+    <a href="#ofreces">Ofreces</a>
+    <a href="#planes">Planes</a>
   </nav>
 
   <main>
@@ -2767,6 +2806,9 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Cobras cada cliente que envías, sin perseguir a nadie.": "You get paid for every client you send, without chasing anyone.",
     "Reservas que llegan ya pagadas, de hoteles de tu zona.": "Bookings that arrive already paid, from hotels in your area.",
     "Planes": "Plans",
+    "Recomiendas": "Refer",
+    "Ofreces": "Offer",
+    "Secciones": "Sections",
     "Crear cuenta": "Create account",
     "Canal de ventas B2B · Piloto en Mallorca": "B2B sales channel · Pilot in Mallorca",
     "cobrado": "paid",
@@ -4939,6 +4981,57 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   addEventListener('scroll', navStuck, { passive: true });
   navStuck();
 
+  // Menú: un resalte que se desliza de un enlace a otro al pasar el ratón o con el teclado (21 nov 2026)
+  (function () {
+    var box = document.querySelector('.n-cta'); if (!box) return;
+    var links = [].slice.call(box.querySelectorAll('.nl')); if (!links.length) return;
+    var hl = document.createElement('span'); hl.className = 'nl-hl'; hl.setAttribute('aria-hidden', 'true');
+    box.insertBefore(hl, box.firstChild);
+    function to(a) {
+      if (!hl.classList.contains('on')) { hl.classList.add('jump'); }
+      hl.style.width = a.offsetWidth + 'px';
+      hl.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      void hl.offsetWidth; // la primera vez aparece en su sitio, sin venir desde la izquierda
+      hl.classList.remove('jump'); hl.classList.add('on');
+    }
+    function off() { hl.classList.remove('on'); }
+    links.forEach(function (a) { a.addEventListener('pointerenter', function () { to(a); }); a.addEventListener('focus', function () { to(a); }); a.addEventListener('blur', off); });
+    box.addEventListener('pointerleave', off);
+  })();
+
+  // Barra de secciones del móvil: la pastilla blanca se desliza a la sección que se está viendo
+  (function () {
+    var bar = document.querySelector('.mtab'); if (!bar) return;
+    var thumb = bar.querySelector('.mtab-t'), links = [].slice.call(bar.querySelectorAll('a')), cur = null;
+    function place() {
+      if (!cur) { thumb.classList.remove('on'); return; }
+      thumb.style.width = cur.offsetWidth + 'px';
+      thumb.style.transform = 'translateX(' + cur.offsetLeft + 'px)';
+      thumb.classList.add('on');
+    }
+    function set(a) {
+      if (a === cur) return; cur = a;
+      links.forEach(function (l) { if (l === a) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current'); });
+      place();
+    }
+    links.forEach(function (a) { a.addEventListener('click', function () { set(a); }); });
+    var secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var end = document.getElementById('acceso-final-sec');
+    function spy() {
+      var mid = innerHeight * 0.45, hit = null;
+      secs.forEach(function (sec, i) { if (!sec) return; var r = sec.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) hit = links[i]; });
+      set(hit);
+      // Al llegar al formulario del final, la barra se aparta para no tapar el botón de enviar
+      bar.classList.toggle('off', !!end && end.getBoundingClientRect().top < innerHeight * 0.85);
+    }
+    var tick = 0;
+    addEventListener('scroll', function () { if (tick) return; tick = requestAnimationFrame(function () { tick = 0; spy(); }); }, { passive: true });
+    addEventListener('resize', function () { spy(); place(); });
+    // Al cambiar de idioma cambian los anchos: la pastilla se recoloca
+    new MutationObserver(function () { setTimeout(place, 0); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    spy();
+  })();
+
   // Perfil elegido en los botones «Recomiendo clientes» / «Ofrezco servicios»; se envía con el email
   document.querySelectorAll('a[data-perfil]').forEach(function (a) {
     a.addEventListener('click', function () { S.perfil = a.getAttribute('data-perfil'); });
@@ -5155,6 +5248,12 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     var r = document.createElement('span'); r.className = 'rl';
     [].slice.call(b.childNodes).forEach(function (c) { r.appendChild(c); });
     w.appendChild(r); b.appendChild(w);
+  });
+  // Botones del inicio: círculo con flecha, después del texto que rueda (21 nov 2026)
+  [].slice.call(document.querySelectorAll('.hero-cta a')).forEach(function (b) {
+    var d = document.createElement('span'); d.className = 'hb-d'; d.setAttribute('aria-hidden', 'true');
+    d.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+    b.appendChild(d);
   });
   // Botón principal que se rellena desde el círculo
   // Botón que se rellena desde el círculo: solo en los dos «Solicitar acceso», el del menú y el del formulario (19 nov 2026)
