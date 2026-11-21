@@ -1529,9 +1529,9 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 .nw-steps li:hover{transform:scale(1.04);position:relative;z-index:2}
 @media (prefers-reduced-motion: reduce){.nw-plan:hover,.js-anim .nw-plan.rv.in:hover,.nw-steps li:hover{transform:none}}
 
-/* Los dos botones del inicio, iguales: blancos como «Recomiendo clientes» (19 nov 2026) */
-.hero-cta .g{background:#FFFFFF;color:#0B0F17;border:0;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 12px 44px rgba(255,79,154,.32)}
-.hero-cta .g:hover{color:#0B0F17;border:0}
+/* Los dos botones del inicio, iguales y translúcidos (vidrio gris), como era «Ofrezco servicios» (21 nov 2026) */
+.hero-cta a.p,.hero-cta a.g{background:rgba(255,255,255,.06);color:#E9EEF6;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.hero-cta a.p:hover,.hero-cta a.g:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34);color:#FFFFFF}
 
 /* ===== Movimiento entre botones (21 nov 2026): resalte que se desliza en el menú, botones del inicio con círculo
    y barra de secciones en el móvil. Sin colores nuevos; todo se para con prefers-reduced-motion. ===== */
