@@ -1544,12 +1544,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 .n-cta .nl:active{transform:scale(.96)}
 .pl-done .topnav{animation:navIn .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes navIn{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
-.hero-cta a{gap:12px;padding:0 8px 0 26px;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
-.hero-cta a:hover{transform:translateY(-2px)}
-.hero-cta a:active{transform:scale(.97)}
-.hb-d{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:#0B0F17;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.hero-cta a:hover .hb-d,.hero-cta a:focus-visible .hb-d{transform:translateX(4px) rotate(-45deg)}
-@media (max-width: 640px){.hero-cta a{justify-content:space-between}}
 /* Barra de secciones del móvil y la tableta (donde el menú de arriba no enseña los enlaces) */
 .mtab{display:none}
 @media (max-width: 1020px){
@@ -5248,12 +5242,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     var r = document.createElement('span'); r.className = 'rl';
     [].slice.call(b.childNodes).forEach(function (c) { r.appendChild(c); });
     w.appendChild(r); b.appendChild(w);
-  });
-  // Botones del inicio: círculo con flecha, después del texto que rueda (21 nov 2026)
-  [].slice.call(document.querySelectorAll('.hero-cta a')).forEach(function (b) {
-    var d = document.createElement('span'); d.className = 'hb-d'; d.setAttribute('aria-hidden', 'true');
-    d.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
-    b.appendChild(d);
   });
   // Botón principal que se rellena desde el círculo
   // Botón que se rellena desde el círculo: solo en los dos «Solicitar acceso», el del menú y el del formulario (19 nov 2026)
