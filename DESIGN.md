@@ -286,6 +286,7 @@ El panel de la app (`app.favent.app`, repositorio `favent-app`) tiene tres modos
 - Gráficos en oscuro: azul `#4DA8FF`, verde `#3DB884`, rosa `#FF4F9A`, azul claro `#A9D3F0`.
 - Siempre claros, en los dos modos: los mapas de Mallorca (son «pantallas encendidas» dentro del panel), Catalog (el huésped), los emails, los QR y todo lo que se imprime.
 - Contraste mínimo 4,5:1 también en oscuro (lo comprueba la prueba de punta a punta del panel).
+- **Cambio suave entre modos** (22 nov 2026, `ThemeFade.tsx`): al guardar otro modo en Ajustes, o en «Automático» cuando el dispositivo pasa a claro u oscuro, los colores (fondos, textos, bordes, sombras) se funden en 0,55 s con la curva `--ease` en vez de saltar. Solo mientras dura el cambio (`html[data-theme-fade]`); con `prefers-reduced-motion`, al momento.
 
 ### Semantic
 - **Error** ({colors.semantic-error}): mensajes de error sobre el lienzo.
