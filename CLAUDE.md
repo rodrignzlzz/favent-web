@@ -42,7 +42,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - **No usar** "comisionistas", "prescriptores" ni "proveedores" en la web. Usar: "quien recomienda", "quien ofrece / presta el servicio", "las dos empresas", "Si recomiendas", "Si ofreces servicios".
 - No mencionar WhatsApp ni el efectivo como problema en el copy; hablar de "la forma profesional de gestionar tus comisiones".
 - Ubicación en el copy: **Mallorca** (no Pollença/Alcúdia).
-- Lema corto: "Cada cliente que envías, cobrado."
+- Lema corto (desde el 23 nov 2026): "Connecting businesses." (en inglés también en la web en español; antes «Cada cliente que envías, cobrado.»).
 - Inglés (para futuras versiones): "Favent is the B2B sales channel for service businesses: partners agree on a commission, every referred booking is prepaid, and the commission is released automatically once the service is delivered."
 
 ## Honestidad del contenido

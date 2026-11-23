@@ -252,7 +252,7 @@ Favent es el canal de ventas profesional B2B entre empresas de servicios: quien 
 > Fuente: `index.html` (variables en `:root`, `.screen`, y los estilos de cada componente).
 
 ### Brand & Accent
-- **Rosa señal** ({colors.primary}): solo el punto del logotipo y el punto de «cobrado.» en el titular (identidad D). En la web no se usa en nada más. En la app, solo en lo urgente (burbuja de reservas por aceptar, números de avisos).
+- **Rosa señal** ({colors.primary}): solo el punto del logotipo y el punto de «businesses.» en el titular (identidad D). En la web no se usa en nada más. En la app, solo en lo urgente (burbuja de reservas por aceptar, números de avisos).
 - **Rosa profundo** ({colors.primary-deep}): solo dentro de pantallas antiguas de ejemplo; no se usa en lo nuevo.
 - **Azul eléctrico** ({colors.electric} / {colors.electric-soft}): **retirado de la web** con la identidad D. En la app sigue solo como color de texto y enlaces en su modo oscuro (ver más abajo).
 - **Secciones claras de la web** (`.nw`): fondo `#F6F6F3`, tarjetas `#FFFFFF`, bordes `#E6E7E3`, texto `#1E2226` / `#43494F` / `#50565C`, etiquetas en Geist Mono `#50565C`. Estados en cápsulas: verde suave `#E5F1EA` con `#1D5B3A` (confirmado, canjeado, liberado), gris `#EEEFEC` con `#43494F` (pendiente).
@@ -323,7 +323,7 @@ El panel de la app (`app.favent.app`, repositorio `favent-app`) tiene tres modos
 - Todo lo que es dato, código o estado va en Geist Mono. Nada de mono en párrafos.
 - Las etiquetas de sección van en minúsculas (sentence case), con el cuadrado rosa delante. Nunca en mayúsculas.
 - Interlineado de 1,55 en texto largo; líneas de menos de 80 caracteres (`max-width` de 520–760 px).
-- Un solo énfasis de color por titular, y solo en el del inicio («cobrado.» en azul eléctrico suave).
+- Un solo énfasis de color por titular, y solo en el del inicio (el punto rosa de «businesses.»).
 
 ### Note on Font Substitutes
 Las tres familias (Funnel Display, Geist Mono y Michroma) son libres (SIL OFL) y van **dentro de la web** (`fonts/`, variables, solo alfabeto latino), sin Google Fonts: menos conexiones y la página pinta antes. Son los mismos archivos que usa la app (`src/fonts` en `favent-app`). Si alguna no carga, el CSS cae en `sans-serif` y `monospace`. No sustituir por Inter, IBM Plex, Geist ni Plus Jakarta Sans, ni el logotipo por Newsreader o Funnel Display: ya se probaron y se descartaron.
@@ -396,7 +396,7 @@ Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` a
 - **Iconos** (`img/icon-192.png`, `img/icon-512.png`, `img/apple-touch-icon.png`): el monograma «fv» en negativo al 70 % del ancho sobre `{colors.canvas}`; esquinas redondeadas y transparencia, salvo el de Apple, que es cuadrado y opaco.
 - **Favicon** (`img/favicon-32.png` y `favicon.ico` con 16, 32 y 48 px): el monograma al 90 % del ancho con el punto rosa agrandado para que se vea en la pestaña.
 - Los enlaces a iconos e imagen social llevan `?v=N` para que navegadores y redes descarguen la versión nueva; súbelo cada vez que cambien los archivos.
-- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el titular y los 4 pasos del recorrido unidos por la curva rosa, sobre el lienzo oscuro (Funnel Display).
+- **Imagen social** (`img/og-image.png`): monograma, palabra, «B2B SERVICE», el lema «Connecting businesses.» (punto rosa) y los 4 pasos del recorrido unidos por la curva rosa, sobre el lienzo carbón con el resplandor rosa y azul abajo a la derecha (Funnel Display; sin rejilla de puntos).
 
 ### Navigation
 - Barra superior en `{colors.canvas-deep}` con un enlace a «Solicita acceso».
@@ -472,7 +472,7 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 
 ### Do
 - Oscuro solo en el inicio, la llamada final y el pie; claro (como la app) en todo lo demás.
-- Rosa solo en el punto del logotipo (y el de «cobrado.»); azul solo dentro de las pantallas dibujadas.
+- Rosa solo en el punto del logotipo (y el de «businesses.»); azul solo dentro de las pantallas dibujadas.
 - Explicar cada idea con un título, una línea y una pantalla dibujada (`.mini`) con datos de ejemplo coherentes.
 - Escribir datos, códigos y estados en Geist Mono.
 - Marcar siempre los datos inventados como «Vista de ejemplo», «Servicios de ejemplo» o «Ejemplo».
