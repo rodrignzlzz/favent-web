@@ -6,7 +6,7 @@
 <!-- Seguridad: solo se cargan recursos de esta propia web; el formulario solo envía a Web3Forms / FormSubmit -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://app.favent.app https://api.web3forms.com https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Favent</title>
+<title>Favent · Canal de ventas B2B entre empresas de servicios en Mallorca</title>
 <meta name="description" content="Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.">
 <meta name="theme-color" content="#0B0F17">
 <link rel="canonical" href="https://www.favent.app/">
@@ -30,7 +30,7 @@
 <link rel="shortcut icon" href="favicon.ico?v=2">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","@id":"https://www.favent.app/#org","name":"Favent","url":"https://www.favent.app/","logo":"https://www.favent.app/img/icon-512.png","description":"Canal de ventas profesional entre empresas de servicios en Mallorca."},
+{"@type":"Organization","@id":"https://www.favent.app/#org","name":"Favent","url":"https://www.favent.app/","logo":"https://www.favent.app/img/icon-512.png","description":"Canal de ventas profesional entre empresas de servicios en Mallorca.","email":"info@favent.es","telephone":"+34633952154","areaServed":{"@type":"Place","name":"Mallorca"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"info@favent.es","telephone":"+34633952154","availableLanguage":["es","en"]}},
 {"@type":"WebSite","@id":"https://www.favent.app/#web","name":"Favent","url":"https://www.favent.app/","inLanguage":"es","publisher":{"@id":"https://www.favent.app/#org"}}
 ]}
 </script>
@@ -1178,12 +1178,14 @@ body::after{display:none !important}
 .rq-x:focus-visible{outline:2px solid #7CC4FF;outline-offset:2px}
 .rq-slot{display:grid;gap:12px;margin-top:6px}
 html.rq-open{overflow:hidden}
+.more-l{display:inline-flex;margin-top:14px;font-size:15px;font-weight:600;color:#E9EEF6;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px}
+.more-l:hover{border-bottom-color:#FF4F9A;color:#FFFFFF}
 html.rq-open .wa{display:none}
 .wa{position:fixed;z-index:55;right:20px;bottom:calc(20px + env(safe-area-inset-bottom, 0px));display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 16px;border-radius:999px;background:#121826;border:1px solid rgba(255,255,255,.14);color:#E9EEF6;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.45);transition:border-color .25s ease,transform .25s ease}
 .wa svg{color:#25D366;flex:none}
 .wa:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
 .wa:focus-visible{outline:2px solid #7CC4FF;outline-offset:3px}
-@media (max-width: 760px){.wa{width:52px;padding:0;justify-content:center;bottom:calc(84px + env(safe-area-inset-bottom, 0px));right:16px}.wa span{display:none}}
+@media (max-width: 760px){.wa{width:52px;padding:0;justify-content:center;bottom:calc(16px + env(safe-area-inset-bottom, 0px));right:16px}.wa span{display:none}}
 @media (prefers-reduced-motion: reduce){.wa{transition:none}.wa:hover{transform:none}}
 @media (prefers-reduced-motion: no-preference){.rq-dlg[open]{animation:rqin .35s cubic-bezier(.2,.8,.2,1)}@keyframes rqin{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}}
 @media (max-width: 760px){.mtab a{padding:0 12px}}
@@ -1279,6 +1281,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 .intro::before{content:"";position:absolute;z-index:-1;left:50%;top:-120px;width:100vw;height:600px;transform:translateX(-50%);pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:72px 72px;background-position:center top;-webkit-mask-image:radial-gradient(55% 70% at 50% 30%,#000,transparent 78%);mask-image:radial-gradient(55% 70% at 50% 30%,#000,transparent 78%)}
 .intro > .eyebrow{color:#C5CCD6;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:7px 14px;border-radius:999px;font-size:12px}
 .intro > .eyebrow::before{border-radius:50%}
+.intro h1 .h1-eb{display:flex;width:max-content;max-width:100%;margin:0 auto 24px;color:#C5CCD6;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:0;line-height:1.3}
+.intro h1 .h1-eb::before{border-radius:50%}
 .hero-cta .p{background:#FFFFFF;color:#0B0F17;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 12px 44px rgba(255,79,154,.32)}
 .hero-cta .g{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14)}
 .hero-cta .g:hover{border-color:rgba(255,255,255,.34)}
@@ -1618,6 +1622,18 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 }
 @keyframes mtabIn{from{opacity:0;transform:translate(-50%,24px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (max-width: 380px){.mtab a{padding:0 13px;font-size:13.5px}}
+/* La barra de secciones va arriba, como segunda fila de la cabecera (se mueve dentro con JS) */
+@media (max-width: 1020px){
+  .topnav .mtab{position:relative;left:auto;bottom:auto;transform:none;grid-column:1 / -1;justify-self:center;margin:2px 0 0;padding:4px;border:0;background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none !important}
+  .topnav .mtab.off{opacity:1;visibility:visible;transform:none}
+  .topnav .mtab{max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .topnav .mtab::-webkit-scrollbar{display:none}
+  .topnav .mtab a{height:38px;padding:0 12px;font-size:14px}
+  main section[id],main header[id],#acceso-final-sec{scroll-margin-top:136px}
+  .topnav .mtab-t{top:4px;height:38px}
+}
+@media (min-width: 641px) and (max-width: 1020px){.topnav .mtab a[data-rq]{display:none}}
+@media (max-width: 400px){.topnav .mtab a{padding:0 9px;font-size:13.5px}}
 </style>
 </head>
 <body>
@@ -1675,8 +1691,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <canvas class="net" id="net" aria-hidden="true"></canvas>
-    <span class="eyebrow">Canal de ventas B2B · Piloto en Mallorca</span>
-    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Connecting</span></span> <span class="ln"><span><span class="dot-p">businesses.</span></span></span></h1>
+    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="eyebrow h1-eb">Canal de ventas B2B · Piloto en Mallorca</span><span class="ln"><span>Connecting</span></span> <span class="ln"><span><span class="dot-p">businesses.</span></span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 680px">Quien recomienda clientes y quien presta el servicio pactan la comisión. El cliente paga por adelantado y cada uno cobra solo.</p>
     <div class="hero-cta"><a class="p" href="#recomiendas">Recomiendo clientes</a><a class="g" href="#ofreces">Ofrezco servicios</a></div>
     <p class="hero-note">¿Ya tienes cuenta? <a href="https://app.favent.app/login">Entrar</a></p>
@@ -1814,6 +1829,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <span class="nw-eb">Si recomiendas clientes</span>
       <h2 id="h-recomiendas"><span class="hl">Recomienda lo de siempre.</span> <span class="hl">Ahora, cobrando<span class="dot-p">.</span></span></h2>
       <p class="nw-lead">Hoteles, conserjerías, agencias y apartamentos. Tus clientes reservan experiencias de confianza y tú recibes tu comisión sin perseguir a nadie.</p>
+      <a class="more-l" href="hoteles-y-agencias.html">Favent para hoteles y agencias →</a>
     </div>
     <figure class="ip ip-vid"><div class="ip-scr"><video data-auto muted loop playsinline preload="none" poster="img/video/recomiendas.webp?v=1" aria-label="Vídeo: con Favent rentabilizas cada recomendación"><source src="img/video/recomiendas.mp4?v=1" type="video/mp4"></video></div><button type="button" class="vsnd" aria-pressed="false" aria-label="Activar sonido"><svg class="s-off" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="s-on" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
     </div>
@@ -1844,6 +1860,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <span class="nw-eb">Si ofreces servicios</span>
       <h2 id="h-ofreces">Un canal de venta nuevo, con las reservas ya pagadas<span class="dot-p">.</span></h2>
       <p class="nw-lead">Barcos, traslados, bicis, excursiones y servicios privados. Los hoteles de la zona te mandan clientes con la señal pagada y tú fijas la comisión de cada servicio.</p>
+      <a class="more-l" href="empresas-de-servicios.html">Favent para empresas de servicios →</a>
     </div>
     <figure class="ip ip-vid"><div class="ip-scr"><video data-auto muted loop playsinline preload="none" poster="img/video/servicios.webp?v=1" aria-label="Vídeo: un sábado con Favent, la agenda se llena sola"><source src="img/video/servicios.mp4?v=1" type="video/mp4"></video></div><button type="button" class="vsnd" aria-pressed="false" aria-label="Activar sonido"><svg class="s-off" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="s-on" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
     </div>
@@ -2382,7 +2399,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-3)">
       <span class="logo logo-sm">favent<span class="logo-cur" aria-hidden="true"></span></span>
       <!-- Privacidad y Condiciones siguen ocultas hasta que existan privacidad.html y condiciones.html -->
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center"><a href="privacidad.html" hidden style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" hidden style="text-decoration: none; color: var(--ink-3)">Condiciones</a><span>Contacto: <a href="mailto:info@favent.es" style="color: var(--ink-2)">info@favent.es</a></span></div>    </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center"><a href="privacidad.html" hidden style="text-decoration: none; color: var(--ink-3)">Privacidad</a><a href="condiciones.html" hidden style="text-decoration: none; color: var(--ink-3)">Condiciones</a><a href="hoteles-y-agencias.html" style="text-decoration: none; color: var(--ink-3)">Para hoteles y agencias</a><a href="empresas-de-servicios.html" style="text-decoration: none; color: var(--ink-3)">Para empresas de servicios</a><span>Contacto: <a href="mailto:info@favent.es" style="color: var(--ink-2)">info@favent.es</a></span></div>    </div>
   </footer>
 
 </div>
@@ -3035,6 +3052,10 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "al mes + IVA": "per month + VAT",
     "según tu negocio": "for your business",
     "Para grupos": "For groups",
+    "Favent para hoteles y agencias →": "Favent for hotels and agencies (in Spanish) →",
+    "Favent para empresas de servicios →": "Favent for service businesses (in Spanish) →",
+    "Para hoteles y agencias": "For hotels and agencies",
+    "Para empresas de servicios": "For service businesses",
     "Consultar por WhatsApp": "Ask on WhatsApp",
     "Solicita acceso": "Request access",
     "Solicitar": "Request",
@@ -5200,6 +5221,20 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   // Barra de secciones del móvil: la pastilla blanca se desliza a la sección que se está viendo
   (function () {
     var bar = document.querySelector('.mtab'); if (!bar) return;
+    // Arriba, dentro de la cabecera (24 nov 2026, Rodrigo: abajo no gustaba)
+    // Enlaces a una sección de la página: al bajar se cargan imágenes que empujan el contenido y el salto se quedaba
+    // corto; se vuelve a colocar la sección arriba cuando la página deja de moverse
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.hasAttribute('data-rq') || a.getAttribute('href').length < 2) return;
+      var el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+      var fix = function () {
+        var want = parseFloat(getComputedStyle(el).scrollMarginTop) || 84, top = el.getBoundingClientRect().top;
+        if (Math.abs(top - want) > 24) scrollTo({ top: scrollY + top - want, behavior: 'auto' });
+      };
+      [700, 1400, 2200].forEach(function (t) { setTimeout(fix, t); });
+    });
+    var topnav = document.querySelector('.topnav'); if (topnav) topnav.appendChild(bar);
     var thumb = bar.querySelector('.mtab-t'), links = [].slice.call(bar.querySelectorAll('a')), cur = null;
     function place() {
       if (!cur) { thumb.classList.remove('on'); return; }
@@ -5257,16 +5292,23 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     var slot = dlg.querySelector('.rq-slot'), moved = ['acceso-final', 'sent-final', 'err-final'].map(function (id) { return $(id); }).filter(Boolean);
     var home = moved.length ? moved[0].parentNode : null, mark = home ? document.createComment('rq') : null;
     if (home) home.insertBefore(mark, moved[0]);
+    var openRq = function () {
+      moved.forEach(function (n) { slot.appendChild(n); });
+      document.documentElement.classList.add('rq-open');
+      dlg.showModal();
+      var first = dlg.querySelector('input[name="perfil"]:checked') ? dlg.querySelector('input[name="empresa"]') : dlg.querySelector('input[name="perfil"]');
+      if (first) first.focus();
+    };
     document.querySelectorAll('[data-rq]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        moved.forEach(function (n) { slot.appendChild(n); });
-        document.documentElement.classList.add('rq-open');
-        dlg.showModal();
-        var first = dlg.querySelector('input[name="perfil"]:checked') ? dlg.querySelector('input[name="empresa"]') : dlg.querySelector('input[name="perfil"]');
-        if (first) first.focus();
-      });
+      a.addEventListener('click', function (e) { e.preventDefault(); openRq(); });
     });
+    // Desde las páginas de cada público: /?solicitar=1&perfil=recomienda|ofrece abre el panel con el tipo ya marcado
+    var qs = new URLSearchParams(location.search);
+    if (qs.has('solicitar')) {
+      var pr = dlg.querySelector('input[name="perfil"][value="' + (qs.get('perfil') === 'ofrece' ? 'ofrece' : qs.get('perfil') === 'recomienda' ? 'recomienda' : '') + '"]');
+      if (pr) pr.checked = true;
+      setTimeout(openRq, 300);
+    }
     dlg.querySelector('[data-rq-close]').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { // tocar fuera de la caja cierra
       if (e.target !== dlg) return;
