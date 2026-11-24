@@ -1185,7 +1185,7 @@ html.rq-open .wa{display:none}
 .wa svg{color:#25D366;flex:none}
 .wa:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
 .wa:focus-visible{outline:2px solid #7CC4FF;outline-offset:3px}
-@media (max-width: 760px){.wa{width:52px;padding:0;justify-content:center;bottom:calc(16px + env(safe-area-inset-bottom, 0px));right:16px}.wa span{display:none}}
+@media (max-width: 760px){.wa{width:52px;padding:0;justify-content:center;bottom:calc(84px + env(safe-area-inset-bottom, 0px));right:16px}.wa span{display:none}}
 @media (prefers-reduced-motion: reduce){.wa{transition:none}.wa:hover{transform:none}}
 @media (prefers-reduced-motion: no-preference){.rq-dlg[open]{animation:rqin .35s cubic-bezier(.2,.8,.2,1)}@keyframes rqin{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}}
 @media (max-width: 760px){.mtab a{padding:0 12px}}
@@ -1622,18 +1622,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 }
 @keyframes mtabIn{from{opacity:0;transform:translate(-50%,24px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (max-width: 380px){.mtab a{padding:0 13px;font-size:13.5px}}
-/* La barra de secciones va arriba, como segunda fila de la cabecera (se mueve dentro con JS) */
-@media (max-width: 1020px){
-  .topnav .mtab{position:relative;left:auto;bottom:auto;transform:none;grid-column:1 / -1;justify-self:center;margin:2px 0 0;padding:4px;border:0;background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none !important}
-  .topnav .mtab.off{opacity:1;visibility:visible;transform:none}
-  .topnav .mtab{max-width:100%;overflow-x:auto;scrollbar-width:none}
-  .topnav .mtab::-webkit-scrollbar{display:none}
-  .topnav .mtab a{height:38px;padding:0 12px;font-size:14px}
-  main section[id],main header[id],#acceso-final-sec{scroll-margin-top:136px}
-  .topnav .mtab-t{top:4px;height:38px}
-}
-@media (min-width: 641px) and (max-width: 1020px){.topnav .mtab a[data-rq]{display:none}}
-@media (max-width: 400px){.topnav .mtab a{padding:0 9px;font-size:13.5px}}
+
 </style>
 </head>
 <body>
@@ -5221,7 +5210,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   // Barra de secciones del móvil: la pastilla blanca se desliza a la sección que se está viendo
   (function () {
     var bar = document.querySelector('.mtab'); if (!bar) return;
-    // Arriba, dentro de la cabecera (24 nov 2026, Rodrigo: abajo no gustaba)
     // Enlaces a una sección de la página: al bajar se cargan imágenes que empujan el contenido y el salto se quedaba
     // corto; se vuelve a colocar la sección arriba cuando la página deja de moverse
     document.addEventListener('click', function (e) {
@@ -5234,7 +5222,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       };
       [700, 1400, 2200].forEach(function (t) { setTimeout(fix, t); });
     });
-    var topnav = document.querySelector('.topnav'); if (topnav) topnav.appendChild(bar);
     var thumb = bar.querySelector('.mtab-t'), links = [].slice.call(bar.querySelectorAll('a')), cur = null;
     function place() {
       if (!cur) { thumb.classList.remove('on'); return; }
