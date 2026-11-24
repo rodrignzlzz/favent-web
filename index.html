@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Seguridad: solo se cargan recursos de esta propia web; el formulario solo envía a Web3Forms / FormSubmit -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://app.favent.app https://api.web3forms.com https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Favent</title>
 <meta name="description" content="Canal de ventas profesional entre empresas de servicios en Mallorca: comisión pactada, señal pagada al reservar y comisión liberada al prestar el servicio.">
@@ -1164,6 +1164,29 @@ body::after{display:none !important}
 .rq textarea{resize:vertical}
 .rq select{cursor:pointer}
 .rq input:focus-visible,.rq select:focus-visible,.rq textarea:focus-visible{outline:2px solid #7CC4FF;outline-offset:1px}
+.rq-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.pf-now{margin:0;font-size:15px;line-height:1.5;color:#E9EEF6;font-weight:600}
+.pf-left{margin:0;font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.04em;color:#FF8FBF}
+.rq-dlg{width:min(680px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:24px;border-radius:24px;border:1px solid rgba(255,255,255,.1);background:#0F141E;color:#E9EEF6;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:auto;box-sizing:border-box}
+.rq-dlg::backdrop{background:rgba(5,7,11,.72)}
+.rq-dlg[open]{display:grid;gap:12px}
+.rq-dlg-h{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rq-dlg h2{margin:0;font-family:'Funnel Display',sans-serif;font-size:clamp(26px,4vw,34px);font-weight:500;letter-spacing:-0.03em;color:#E9EEF6}
+.rq-dlg-p{margin:0;font-size:15px;line-height:1.55;color:#A7B1C2}
+.rq-x{width:40px;height:40px;flex:none;border-radius:999px;border:1px solid #2A3346;background:#121826;color:#E9EEF6;display:grid;place-items:center;cursor:pointer}
+.rq-x:hover{border-color:#E9EEF6}
+.rq-x:focus-visible{outline:2px solid #7CC4FF;outline-offset:2px}
+.rq-slot{display:grid;gap:12px;margin-top:6px}
+html.rq-open{overflow:hidden}
+html.rq-open .wa{display:none}
+.wa{position:fixed;z-index:55;right:20px;bottom:calc(20px + env(safe-area-inset-bottom, 0px));display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 16px;border-radius:999px;background:#121826;border:1px solid rgba(255,255,255,.14);color:#E9EEF6;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.45);transition:border-color .25s ease,transform .25s ease}
+.wa svg{color:#25D366;flex:none}
+.wa:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+.wa:focus-visible{outline:2px solid #7CC4FF;outline-offset:3px}
+@media (max-width: 760px){.wa{width:52px;padding:0;justify-content:center;bottom:calc(84px + env(safe-area-inset-bottom, 0px));right:16px}.wa span{display:none}}
+@media (prefers-reduced-motion: reduce){.wa{transition:none}.wa:hover{transform:none}}
+@media (prefers-reduced-motion: no-preference){.rq-dlg[open]{animation:rqin .35s cubic-bezier(.2,.8,.2,1)}@keyframes rqin{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}}
+@media (max-width: 760px){.mtab a{padding:0 12px}}
 .rq-ok{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:#A7B1C2}
 .rq-ok input{accent-color:#FF4F9A;margin-top:2px;flex:none}
 #acceso-final button[type=submit]{height:52px;border-radius:999px;border:0;font-family:'Funnel Display',sans-serif;font-size:15px;font-weight:600;cursor:pointer;width:100%}
@@ -1615,7 +1638,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <a class="nl" href="#recomiendas">Si recomiendas</a>
       <a class="nl" href="#ofreces">Si ofreces servicios</a>
       <a class="nl" href="#planes">Planes</a>
-      <a class="nb" href="#acceso-final-sec">Solicitar acceso</a>
+      <a class="nb" href="#acceso-final-sec" data-rq>Solicitar acceso</a>
     </div>
     <div class="lang-switch neu-in" style="display: flex; gap: 2px; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid var(--line)" role="group" aria-label="Idioma">
       <button type="button" data-act="lang" data-v="es" lang="es" title="Español" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 0; border-radius: 999px; display: flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink); cursor: pointer">
@@ -1632,7 +1655,21 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <a href="#recomiendas">Recomiendas</a>
     <a href="#ofreces">Ofreces</a>
     <a href="#planes">Planes</a>
+    <a href="#acceso-final-sec" data-rq>Solicitar</a>
   </nav>
+
+  <a class="wa" id="wa" href="https://wa.me/34633952154?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Favent." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Consultar por WhatsApp</span></a>
+
+  <dialog id="rq-dlg" class="rq-dlg" aria-labelledby="rq-dlg-t">
+    <div class="rq-dlg-h">
+      <h2 id="rq-dlg-t">Solicita acceso<span class="dot-p">.</span></h2>
+      <button type="button" class="rq-x" data-rq-close aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button>
+    </div>
+    <p class="rq-dlg-p">Favent revisa cada solicitud y te escribe en cuanto tengas acceso. Si la mandas antes del 15 de febrero y te aceptamos, mantienes el precio fundador: plan Pro todo 2027 por 99 € + IVA.</p>
+    <p class="pf-now">No pagas nada ahora: se empieza a pagar el 15 de febrero.</p>
+    <p class="pf-left" data-founder-left hidden></p>
+    <div class="rq-slot"></div>
+  </dialog>
 
   <main>
 
@@ -1887,6 +1924,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div class="plan-founder">
       <span class="pk">Precio fundador · hasta el 15 de febrero de 2027</span>
       <p><b>Plan Pro todo 2027 por 99 € + IVA.</b> Si nos mandas tu solicitud antes del 15 de febrero y te aceptamos, mantienes este precio. Solo 100 plazas.</p>
+      <p class="pf-now">No pagas nada ahora: se empieza a pagar el 15 de febrero.</p>
+      <p class="pf-left" data-founder-left hidden></p>
     </div>
     <div class="plan-tabs" role="group" aria-label="Tipo de empresa">
       <button type="button" data-plans="ofreces" aria-pressed="true">Si ofreces servicios</button>
@@ -1898,21 +1937,21 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
         <div class="pr"><b>29 €</b><span>al mes + IVA</span></div>
         <ul><li>1 servicio publicado</li><li>Agenda</li><li>Te reservan solo tus colaboradores: hasta 10</li><li>5 colegas para pasaros reservas</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li><li>Informes básicos</li><li>1 ubicación</li></ul>
         <p class="ps">Puesta en marcha y soporte estándar</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn" data-plan="pro"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
         <div class="pr"><b>44,95 €</b><span>al mes + IVA</span></div>
         <ul><li>Hasta 6 servicios publicados</li><li>Agenda y Google Calendar</li><li>Te reserva toda la red Favent</li><li>25 colaboradores y 10 colegas</li><li>5 usuarios, hasta 2 administradores</li><li>Informes completos y extracto CSV</li><li>2 ubicaciones</li></ul>
         <p class="ps">Puesta en marcha y soporte personal</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
       <div class="nw-plan">
         <div class="pn" data-plan="enterprise"><b>Enterprise</b><span class="pp">Para grupos</span></div>
         <div class="pr"><b>A medida</b><span>según tu negocio</span></div>
         <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
         <p class="ps">Puesta en marcha y soporte a medida</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
     </div>
     <div class="nw-plans" data-kind="recomiendas" aria-label="Planes si recomiendas">
@@ -1921,21 +1960,21 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
         <div class="pr"><b>29 €</b><span>al mes + IVA</span></div>
         <ul><li>Reservas a tus colaboradores: hasta 20</li><li>1 código QR</li><li>Catálogo en el orden de serie</li><li>Informes básicos</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li></ul>
         <p class="ps">Puesta en marcha y soporte estándar</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn" data-plan="pro"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
         <div class="pr"><b>44,95 €</b><span>al mes + IVA</span></div>
         <ul><li>Reservas a tus colaboradores y a toda la red Favent</li><li>2 códigos QR</li><li>Ordenas tu catálogo</li><li>Colaboradores sin límite</li><li>Informes avanzados y extracto CSV</li><li>5 usuarios, hasta 2 administradores</li></ul>
         <p class="ps">Puesta en marcha y soporte personal</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
       <div class="nw-plan">
         <div class="pn" data-plan="enterprise"><b>Enterprise</b><span class="pp">Para grupos</span></div>
         <div class="pr"><b>A medida</b><span>según tu negocio</span></div>
         <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
         <p class="ps">Puesta en marcha y soporte a medida</p>
-        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+        <a class="plan-cta" href="#acceso-final-sec" data-rq>Solicitar información</a>
       </div>
     </div>
     <p class="plan-note">Precios desde el 15 de febrero de 2027. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que paga en la app; a las empresas no se les descuenta nada por reserva.</p>
@@ -1949,7 +1988,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <h2 id="h-preguntas">Lo que nos suelen preguntar<span class="dot-p">.</span></h2>
     </div>
     <div class="nw-faq">
-      <details><summary>¿Cuánto cuesta?</summary><p>Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, el plan Pro todo 2027 por 99 € + IVA: si nos mandas tu solicitud antes del 15 de febrero de 2027 y te aceptamos, mantienes ese precio (solo 100 plazas). Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, el plan Pro todo 2027 por 99 € + IVA: si nos mandas tu solicitud antes del 15 de febrero de 2027 y te aceptamos, mantienes ese precio (solo 100 plazas). No pagas nada hasta el 15 de febrero. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.</p></details>
       <details><summary>¿Cómo y cuándo cobro?</summary><p>Con Stripe, directamente en tu cuenta bancaria. La comisión y el resto de la señal se envían al canjear el QR.</p></details>
       <details><summary>¿El cliente ve mi comisión?</summary><p>No. El cliente solo ve el precio, lo que paga ahora y lo que paga en el lugar.</p></details>
       <details><summary>¿Puedo apuntar mis reservas de fuera de Favent?</summary><p>Sí. La Agenda es completa: apuntas tus reservas de teléfono, web o en persona, y se sincroniza con Google Calendar.</p></details>
@@ -2287,6 +2326,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <div class="fl">
         <h2 id="h-final">Empieza en el piloto de Mallorca<span class="dot-p">.</span></h2>
         <p>Déjanos los datos de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso. Si la mandas antes del 15 de febrero y te aceptamos, mantienes el precio fundador.</p>
+        <p class="pf-now">No pagas nada ahora: se empieza a pagar el 15 de febrero.</p>
+        <p class="pf-left" data-founder-left hidden></p>
       </div>
       <div class="fr">
       <form id="acceso-final" class="rq" novalidate>
@@ -2317,6 +2358,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
           </select></label>
           <label class="rq-f rq-wide"><span>Cuéntanos algo más <i>(opcional)</i></span><textarea name="mensaje" rows="3" maxlength="1500" placeholder="Qué ofreces o a quién recomiendas, cuántos barcos o habitaciones…"></textarea></label>
         </div>
+        <label class="rq-hp" aria-hidden="true">No rellenar<input name="empresa_web" type="text" tabindex="-1" autocomplete="off"></label>
         <label class="rq-ok"><input type="checkbox" name="acepto" required> Acepto que Favent use estos datos para estudiar mi solicitud y contactarme. Para borrarlos, escribe a info@favent.es.</label>
         <button type="submit">Enviar solicitud</button>
       </form>
@@ -2993,6 +3035,13 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "al mes + IVA": "per month + VAT",
     "según tu negocio": "for your business",
     "Para grupos": "For groups",
+    "Consultar por WhatsApp": "Ask on WhatsApp",
+    "Solicita acceso": "Request access",
+    "Solicitar": "Request",
+    "Cerrar": "Close",
+    "No pagas nada ahora: se empieza a pagar el 15 de febrero.": "You pay nothing now: payments start on 15 February.",
+    "Favent revisa cada solicitud y te escribe en cuanto tengas acceso. Si la mandas antes del 15 de febrero y te aceptamos, mantienes el precio fundador: plan Pro todo 2027 por 99 € + IVA.": "Favent reviews every request and writes to you as soon as you have access. If you send it before 15 February and we accept you, you keep the founding price: Pro plan for all of 2027 for €99 + VAT.",
+    "No rellenar": "Do not fill in",
     "Tu empresa": "Your business",
     "Nombre comercial": "Trading name",
     "Razón social": "Registered name",
@@ -3025,7 +3074,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Déjanos los datos de tu empresa. Favent revisa cada solicitud y te escribe en cuanto tengas acceso. Si la mandas antes del 15 de febrero y te aceptamos, mantienes el precio fundador.": "Leave us your business details. Favent reviews every request and writes to you as soon as you have access. If you send it before 15 February and we accept you, you keep the founding price.",
     "Si nos mandas tu solicitud antes del 15 de febrero y te aceptamos, mantienes este precio. Solo 100 plazas.": "If you send your request before 15 February and we accept you, you keep this price. Only 100 places.",
     "Precios desde el 15 de febrero de 2027. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que paga en la app; a las empresas no se les descuenta nada por reserva.": "Prices from 15 February 2027. On top of that, the client pays a 3.25% service fee on what they pay in the app; businesses pay nothing per booking.",
-    "Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, el plan Pro todo 2027 por 99 € + IVA: si nos mandas tu solicitud antes del 15 de febrero de 2027 y te aceptamos, mantienes ese precio (solo 100 plazas). Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.": "Starter, €29 per month; Pro, €44.95 per month (+ VAT); Enterprise, tailored. With the founding price, the Pro plan for all of 2027 costs €99 + VAT: if you send your request before 15 February 2027 and we accept you, you keep that price (only 100 places). On top of that, the client pays a 3.25% service fee on what is paid in the app; businesses pay nothing per booking.",
+    "Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, el plan Pro todo 2027 por 99 € + IVA: si nos mandas tu solicitud antes del 15 de febrero de 2027 y te aceptamos, mantienes ese precio (solo 100 plazas). No pagas nada hasta el 15 de febrero. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.": "Starter, €29 per month; Pro, €44.95 per month (+ VAT); Enterprise, tailored. With the founding price, the Pro plan for all of 2027 costs €99 + VAT: if you send your request before 15 February 2027 and we accept you, you keep that price (only 100 places). You pay nothing until 15 February. On top of that, the client pays a 3.25% service fee on what is paid in the app; businesses pay nothing per booking.",
     "Te reservan solo tus colaboradores: hasta 10": "Only your partners book with you: up to 10",
     "5 colegas para pasaros reservas": "5 peers to pass bookings to each other",
     "2 usuarios: 1 administrador y 1 usuario o encargado": "2 users: 1 administrator and 1 user or manager",
@@ -5185,6 +5234,51 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   document.querySelectorAll('a[data-perfil]').forEach(function (a) {
     a.addEventListener('click', function () { S.perfil = a.getAttribute('data-perfil'); });
   });
+  // Plazas del precio fundador que quedan: las cuenta la app (100, desde 23). Sin respuesta, no se enseña nada.
+  var APP_URL = 'https://app.favent.app', LEFT = null;
+  function showLeft(n) {
+    LEFT = n;
+    var en = S.lang === 'en';
+    var t = n > 0 ? (en ? n + ' of 100 founding places left' : 'Quedan ' + n + ' de 100 plazas de fundador') : (en ? 'Founding places taken' : 'Plazas de fundador agotadas');
+    document.querySelectorAll('[data-founder-left]').forEach(function (el) { el.textContent = t; el.hidden = false; });
+  }
+  fetch(APP_URL + '/api/fundadores').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (j) { if (j && typeof j.left === 'number') showLeft(j.left); }).catch(function () {});
+  function waText() {
+    var a = $('wa'); if (!a) return;
+    a.href = 'https://wa.me/34633952154?text=' + encodeURIComponent(S.lang === 'en' ? 'Hi, I would like information about Favent.' : 'Hola, quiero información sobre Favent.');
+  }
+  new MutationObserver(function () { if (LEFT != null) showLeft(LEFT); waText(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+  // Panel «Solicitar acceso» (botón de arriba, menú del móvil y tarjetas de Planes): el formulario de abajo se mueve
+  // dentro del panel y vuelve a su sitio al cerrarlo (un solo formulario)
+  var dlg = $('rq-dlg');
+  if (dlg && dlg.showModal) {
+    var slot = dlg.querySelector('.rq-slot'), moved = ['acceso-final', 'sent-final', 'err-final'].map(function (id) { return $(id); }).filter(Boolean);
+    var home = moved.length ? moved[0].parentNode : null, mark = home ? document.createComment('rq') : null;
+    if (home) home.insertBefore(mark, moved[0]);
+    document.querySelectorAll('[data-rq]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        moved.forEach(function (n) { slot.appendChild(n); });
+        document.documentElement.classList.add('rq-open');
+        dlg.showModal();
+        var first = dlg.querySelector('input[name="perfil"]:checked') ? dlg.querySelector('input[name="empresa"]') : dlg.querySelector('input[name="perfil"]');
+        if (first) first.focus();
+      });
+    });
+    dlg.querySelector('[data-rq-close]').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { // tocar fuera de la caja cierra
+      if (e.target !== dlg) return;
+      var r = dlg.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
+    });
+    dlg.addEventListener('close', function () {
+      document.documentElement.classList.remove('rq-open');
+      moved.forEach(function (n) { home.insertBefore(n, mark); });
+    });
+  }
+
   // «Solicitar información» de una tarjeta de Planes: el formulario llega con ese plan y ese tipo de empresa elegidos
   var PLAN_OPT = { starter: 1, pro: 0, enterprise: 3 }; // Pro → precio fundador (la primera opción)
   document.querySelectorAll('.nw-plan .plan-cta').forEach(function (a) {
@@ -5227,13 +5321,22 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       // Sin FORM_ENDPOINT no se guarda nada: se avisa del error en vez de fingir que se ha enviado
       if (!FORM_ENDPOINT) { fail(); return; }
       btn.disabled = true; err.hidden = true;
+      // Campo trampa relleno (un robot): se le da por enviado sin mandar nada
+      if (data.empresa_web) { done(); return; }
       var subject = founder ? 'Solicitud con precio fundador · favent' : 'Nueva solicitud de acceso · favent';
       var body = Object.assign({}, data, { email: input.value, origen: f[0], idioma: S.lang });
+      function byEmail() {
       fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(WEB3FORMS_KEY
         ? Object.assign({ access_key: WEB3FORMS_KEY, subject: subject, from_name: 'Web favent' }, body)
         : Object.assign({ _subject: subject, _template: 'table' }, body)) })
         .then(function (r) { return r.json().catch(function () { return null; }); })
         .then(function (j) { if (j && String(j.success) === 'true') done(); else { if (j && j.message && window.console) console.warn('Formulario: ' + j.message); fail(); } }).catch(fail);
+      }
+      // La app guarda la solicitud, cuenta la plaza de fundador y la envía por email; si falla, por Web3Forms
+      fetch(APP_URL + '/api/solicitud', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+        .then(function (j) { if (!j || !j.ok) throw new Error('app'); if (j.left != null) showLeft(j.left); done(); })
+        .catch(byEmail);
     });
   });
 

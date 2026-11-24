@@ -41,6 +41,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - Idioma principal: **español**. Directo, profesional, cercano.
 - Expresión clave: "canal de ventas profesional".
 - **No usar** "comisionistas", "prescriptores" ni "proveedores" en la web. Usar: "quien recomienda", "quien ofrece / presta el servicio", "las dos empresas", "Si recomiendas", "Si ofreces servicios".
+- Contacto por WhatsApp (24 nov 2026): botón fijo abajo a la derecha al +34 633 952 154 («Consultar por WhatsApp»), con un mensaje ya escrito en el idioma de la web.
 - No mencionar WhatsApp ni el efectivo como problema en el copy; hablar de "la forma profesional de gestionar tus comisiones".
 - Ubicación en el copy: **Mallorca** (no Pollença/Alcúdia).
 - Lema corto (desde el 23 nov 2026): "Connecting businesses." (en inglés también en la web en español; antes «Cada cliente que envías, cobrado.»).
@@ -58,7 +59,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - Respetar `prefers-reduced-motion`.
 
 ## Pendientes conocidos
-1. Formulario de acceso a **info@favent.es** (desde el 24 nov, con todos los datos de la empresa: tipo, nombre comercial, razón social, CIF, sector, contacto, teléfono, email, municipio, web, plan y mensaje, más la fecha de envío para el precio fundador y la casilla de consentimiento): con la clave de Web3Forms en `WEB3FORMS_KEY` se envía por Web3Forms (cuenta creada con info@favent.es); sin clave, por FormSubmit (`https://formsubmit.co/ajax/info@favent.es`, exige activar por correo). Si falla, el aviso abre un email ya escrito a info@favent.es. Email de contacto en el pie: info@favent.es. Al publicar la política de privacidad, mencionar FormSubmit como encargado del tratamiento.
+1. Formulario de acceso a **info@favent.es** (se abre en un panel desde el botón de arriba; se envía primero a la app, `https://app.favent.app/api/solicitud`, que lo guarda, cuenta la plaza de fundador y lo manda por email; si la app no responde, por Web3Forms. Las plazas que quedan las da `https://app.favent.app/api/fundadores`: 100, contando desde 23. Desde el 24 nov, con todos los datos de la empresa: tipo, nombre comercial, razón social, CIF, sector, contacto, teléfono, email, municipio, web, plan y mensaje, más la fecha de envío para el precio fundador y la casilla de consentimiento): con la clave de Web3Forms en `WEB3FORMS_KEY` se envía por Web3Forms (cuenta creada con info@favent.es); sin clave, por FormSubmit (`https://formsubmit.co/ajax/info@favent.es`, exige activar por correo). Si falla, el aviso abre un email ya escrito a info@favent.es. Email de contacto en el pie: info@favent.es. Al publicar la política de privacidad, mencionar FormSubmit como encargado del tratamiento.
 1b. Dominio favent.es: redirigir (301) a https://www.favent.app desde el proveedor del dominio; GitHub Pages solo admite un dominio por repositorio y el `CNAME` se queda en www.favent.app.
 2. Páginas legales: aviso legal, política de privacidad y cookies (RGPD/LSSI). Enlazarlas desde el pie.
 3. Sustituir marcadores de logos y fotos cuando haya material real.
