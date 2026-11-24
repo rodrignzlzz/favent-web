@@ -1120,6 +1120,7 @@ body::after{display:none !important}
 .nw-plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;color:#43494F}
 .nw-plan li{display:flex;gap:10px;align-items:baseline}
 .nw-plan li::before{content:"";width:10px;height:6px;border-left:2px solid #1E2226;border-bottom:2px solid #1E2226;transform:rotate(-45deg) translateY(-3px);flex:none}
+.nw-plan .ps{margin:0;font-size:14px;color:#50565C}
 
 /* Preguntas */
 .nw-faq{display:grid;border-top:1px solid #E6E7E3;max-width:860px}
@@ -1272,6 +1273,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 .nw-note{color:#8592A6;text-align:center}
 .nw-plan .pp{color:#A7B1C2}
 .nw-plan ul{color:#C5CCD6}
+.nw-plan .ps{color:#A7B1C2}
+.plan-tabs{display:flex;width:max-content;max-width:100%;margin:0 auto 28px;padding:3px;gap:2px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.plan-tabs button{height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:#A7B1C2;font:600 14px/1 'Funnel Display',sans-serif;cursor:pointer;transition:background .25s ease,color .25s ease}
+.plan-tabs button:hover{color:#E9EEF6}
+.plan-tabs button[aria-pressed="true"]{background:rgba(255,255,255,.1);color:#E9EEF6}
+.nw-plans[hidden]{display:none}
+@media (prefers-reduced-motion: reduce){.plan-tabs button{transition:none}}
 .nw-plan li::before{border-color:#7CC4FF}
 .nw-plan.pro{background:radial-gradient(120% 90% at 50% 0%,rgba(255,79,154,.24),rgba(255,79,154,0) 62%),#121826;border-color:rgba(255,79,154,.55);box-shadow:0 0 0 1px rgba(255,79,154,.25),0 30px 80px rgba(255,79,154,.14)}
 .nw-faq{width:100%;margin:0 auto;border-top-color:rgba(255,255,255,.1)}
@@ -1457,8 +1465,9 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 /* Pasos de «Cómo funciona»: las cuatro pantallas del mismo alto. Botón de cada plan (19 nov 2026) */
 .nw-steps li{grid-template-rows:auto auto 1fr auto}
 .nw-steps .mini{height:158px;align-content:center;align-self:end}
-.nw-plan{grid-template-rows:auto 1fr auto}
-.plan-cta{justify-self:start;align-self:end;margin-top:6px;height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;color:#E9EEF6;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
+.nw-plan{display:flex;flex-direction:column}
+.nw-plan .ps{margin-top:auto}
+.plan-cta{justify-self:start;align-self:flex-start;margin-top:6px;height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;color:#E9EEF6;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
 .plan-cta:hover{border-color:rgba(255,255,255,.4);color:#FFFFFF}
 .nw-plan.pro .plan-cta{background:#FFFFFF;color:#0B0F17;border-color:#FFFFFF}
 .nw-plan.pro .plan-cta:hover{color:#0B0F17}
@@ -1847,20 +1856,47 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <h2 id="h-planes">Un plan para cada empresa<span class="dot-p">.</span></h2>
       <p class="nw-lead">Una cuota anual según el plan. Empieza con lo esencial y crece cuando lo necesites.</p>
     </div>
-    <div class="nw-plans">
+    <div class="plan-tabs" role="group" aria-label="Tipo de empresa">
+      <button type="button" data-plans="ofreces" aria-pressed="true">Si ofreces servicios</button>
+      <button type="button" data-plans="recomiendas" aria-pressed="false">Si recomiendas</button>
+    </div>
+    <div class="nw-plans" data-kind="ofreces" aria-label="Planes si ofreces servicios">
       <div class="nw-plan">
         <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
-        <ul><li>Hasta 2 servicios publicados</li><li>Un QR para tu hotel</li><li>Agenda, reservas y mensajes</li><li>Informes básicos</li></ul>
+        <ul><li>1 servicio publicado</li><li>Agenda</li><li>Te reservan solo tus colaboradores: hasta 10</li><li>5 colegas para pasaros reservas</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li><li>Informes básicos</li><li>1 ubicación</li></ul>
+        <p class="ps">Puesta en marcha y soporte estándar</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
-        <ul><li>Hasta 8 servicios publicados</li><li>Más colaboradores y más QR</li><li>Google Calendar</li><li>Informes completos</li></ul>
+        <ul><li>Hasta 6 servicios publicados</li><li>Agenda y Google Calendar</li><li>Te reserva toda la red Favent</li><li>25 colaboradores y 10 colegas</li><li>5 usuarios, hasta 2 administradores</li><li>Informes completos y extracto CSV</li><li>2 ubicaciones</li></ul>
+        <p class="ps">Puesta en marcha y soporte personal</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan">
         <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
-        <ul><li>Sin límites</li><li>Soporte dedicado</li><li>Condiciones a medida</li></ul>
+        <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
+        <p class="ps">Puesta en marcha y soporte a medida</p>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+      </div>
+    </div>
+    <div class="nw-plans" data-kind="recomiendas" aria-label="Planes si recomiendas">
+      <div class="nw-plan">
+        <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
+        <ul><li>Reservas a tus colaboradores: hasta 20</li><li>1 código QR</li><li>Catálogo en el orden de serie</li><li>Informes básicos</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li></ul>
+        <p class="ps">Puesta en marcha y soporte estándar</p>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+      </div>
+      <div class="nw-plan pro">
+        <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
+        <ul><li>Reservas a tus colaboradores y a toda la red Favent</li><li>2 códigos QR</li><li>Ordenas tu catálogo</li><li>Colaboradores sin límite</li><li>Informes avanzados y extracto CSV</li><li>5 usuarios, hasta 2 administradores</li></ul>
+        <p class="ps">Puesta en marcha y soporte personal</p>
+        <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
+      </div>
+      <div class="nw-plan">
+        <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
+        <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
+        <p class="ps">Puesta en marcha y soporte a medida</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
     </div>
@@ -2878,17 +2914,39 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "El cliente paga un 2 % y quien presta el servicio otro 2 %, calculados sobre lo que se paga en la app, no sobre el total.": "The client pays 2% and the service provider another 2%, calculated on what is paid in the app, not on the total.",
     "Los pagos los gestiona Stripe. Favent nunca marca nada como pagado sin su confirmación.": "Payments are handled by Stripe. Favent never marks anything as paid without its confirmation.",
     "Para empezar": "To get started",
-    "Hasta 2 servicios publicados": "Up to 2 published services",
-    "Un QR para tu hotel": "One QR code for your hotel",
     "Agenda, reservas y mensajes": "Calendar, bookings and messages",
     "Informes básicos": "Basic reports",
     "Para crecer": "To grow",
-    "Hasta 8 servicios publicados": "Up to 8 published services",
-    "Más colaboradores y más QR": "More partners and more QR codes",
     "Informes completos": "Full reports",
     "A medida": "Tailored",
     "Sin límites": "No limits",
-    "Soporte dedicado": "Dedicated support",
+    "1 servicio publicado": "1 published service",
+    "Reservas a tus colaboradores: hasta 20": "You book with your partners: up to 20",
+    "1 código QR": "1 QR code",
+    "Puesta en marcha y soporte estándar": "Standard onboarding and support",
+    "Te reservan solo tus colaboradores: hasta 10": "Only your partners book with you: up to 10",
+    "5 colegas para pasaros reservas": "5 peers to pass bookings to each other",
+    "2 usuarios: 1 administrador y 1 usuario o encargado": "2 users: 1 administrator and 1 user or manager",
+    "1 ubicación": "1 location",
+    "Catálogo en el orden de serie": "Catalog in the standard order",
+    "Te reserva toda la red Favent": "The whole Favent network books with you",
+    "25 colaboradores y 10 colegas": "25 partners and 10 peers",
+    "Tipo de empresa": "Type of business",
+    "Planes si ofreces servicios": "Plans if you offer services",
+    "Planes si recomiendas": "Plans if you refer",
+    "Hasta 6 servicios publicados": "Up to 6 published services",
+    "Agenda y Google Calendar": "Calendar and Google Calendar",
+    "5 usuarios, hasta 2 administradores": "5 users, up to 2 administrators",
+    "Informes completos y extracto CSV": "Full reports and CSV export",
+    "2 ubicaciones": "2 locations",
+    "Reservas a tus colaboradores y a toda la red Favent": "You book with your partners and the whole Favent network",
+    "2 códigos QR": "2 QR codes",
+    "Ordenas tu catálogo": "You order your catalog",
+    "Colaboradores sin límite": "Unlimited partners",
+    "Informes avanzados y extracto CSV": "Advanced reports and CSV export",
+    "Puesta en marcha y soporte personal": "Personal onboarding and support",
+    "Todo a medida": "Everything tailored",
+    "Puesta en marcha y soporte a medida": "Tailored onboarding and support",
     "Condiciones a medida": "Tailored terms",
     "Preguntas": "Questions",
     "Lo que nos suelen preguntar.": "What people usually ask us.",
@@ -5249,6 +5307,17 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   });
 
   // Fotos y pantallas: entran al bajar; las tarjetas se inclinan un poco con el ratón
+  // Planes: un juego de tarjetas para quien ofrece servicios y otro para quien recomienda (sin JS se ven los dos)
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.plan-tabs button'));
+    var sets = [].slice.call(document.querySelectorAll('.nw-plans[data-kind]'));
+    function show(k) {
+      tabs.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-plans') === k ? 'true' : 'false'); });
+      sets.forEach(function (d) { d.hidden = d.getAttribute('data-kind') !== k; });
+    }
+    tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-plans')); }); });
+    if (tabs.length) show('ofreces');
+  })();
   var rv = [].slice.call(document.querySelectorAll('.nw-feat, .stepdev, .shot, .pad, .flow, .ip-vid, .nw-plan, .nw-steps .mini, .foot-vid'));
   rv.forEach(function (e) { e.classList.add('rv'); });
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
