@@ -1120,6 +1120,9 @@ body::after{display:none !important}
 .nw-plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;color:#43494F}
 .nw-plan li{display:flex;gap:10px;align-items:baseline}
 .nw-plan li::before{content:"";width:10px;height:6px;border-left:2px solid #1E2226;border-bottom:2px solid #1E2226;transform:rotate(-45deg) translateY(-3px);flex:none}
+.nw-plan .pg{display:grid;gap:10px}
+.nw-plan .pk{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#50565C}
+.nw-plan .ps{margin:0;font-size:14px;color:#50565C}
 
 /* Preguntas */
 .nw-faq{display:grid;border-top:1px solid #E6E7E3;max-width:860px}
@@ -1272,6 +1275,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 .nw-note{color:#8592A6;text-align:center}
 .nw-plan .pp{color:#A7B1C2}
 .nw-plan ul{color:#C5CCD6}
+.nw-plan .pk,.nw-plan .ps{color:#A7B1C2}
 .nw-plan li::before{border-color:#7CC4FF}
 .nw-plan.pro{background:radial-gradient(120% 90% at 50% 0%,rgba(255,79,154,.24),rgba(255,79,154,0) 62%),#121826;border-color:rgba(255,79,154,.55);box-shadow:0 0 0 1px rgba(255,79,154,.25),0 30px 80px rgba(255,79,154,.14)}
 .nw-faq{width:100%;margin:0 auto;border-top-color:rgba(255,255,255,.1)}
@@ -1457,8 +1461,9 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 /* Pasos de «Cómo funciona»: las cuatro pantallas del mismo alto. Botón de cada plan (19 nov 2026) */
 .nw-steps li{grid-template-rows:auto auto 1fr auto}
 .nw-steps .mini{height:158px;align-content:center;align-self:end}
-.nw-plan{grid-template-rows:auto 1fr auto}
-.plan-cta{justify-self:start;align-self:end;margin-top:6px;height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;color:#E9EEF6;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
+.nw-plan{display:flex;flex-direction:column}
+.nw-plan .ps{margin-top:auto}
+.plan-cta{justify-self:start;align-self:flex-start;margin-top:6px;height:44px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;color:#E9EEF6;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
 .plan-cta:hover{border-color:rgba(255,255,255,.4);color:#FFFFFF}
 .nw-plan.pro .plan-cta{background:#FFFFFF;color:#0B0F17;border-color:#FFFFFF}
 .nw-plan.pro .plan-cta:hover{color:#0B0F17}
@@ -1850,17 +1855,22 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div class="nw-plans">
       <div class="nw-plan">
         <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
-        <ul><li>Hasta 2 servicios publicados</li><li>Un QR para tu hotel</li><li>Agenda, reservas y mensajes</li><li>Informes básicos</li></ul>
+        <div class="pg"><span class="pk">Si ofreces servicios</span><ul><li>1 servicio publicado</li><li>Agenda</li><li>Te reservan tus colaboradores: hasta 10, y 5 colegas</li><li>2 usuarios</li><li>Informes básicos</li><li>1 ubicación</li></ul></div>
+        <div class="pg"><span class="pk">Si recomiendas</span><ul><li>Reservas a tus colaboradores: hasta 20</li><li>1 código QR</li><li>Informes básicos</li><li>2 usuarios</li></ul></div>
+        <p class="ps">Puesta en marcha y soporte estándar</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
-        <ul><li>Hasta 8 servicios publicados</li><li>Más colaboradores y más QR</li><li>Google Calendar</li><li>Informes completos</li></ul>
+        <div class="pg"><span class="pk">Si ofreces servicios</span><ul><li>Hasta 6 servicios publicados</li><li>Agenda y Google Calendar</li><li>Te reserva toda la red: 25 colaboradores y 10 colegas</li><li>5 usuarios, hasta 2 administradores</li><li>Informes completos y extracto CSV</li><li>2 ubicaciones</li></ul></div>
+        <div class="pg"><span class="pk">Si recomiendas</span><ul><li>Reservas a tus colaboradores y a toda la red Favent</li><li>2 códigos QR</li><li>Ordenas tu catálogo</li><li>Colaboradores sin límite</li><li>Informes avanzados y extracto CSV</li><li>5 usuarios, hasta 2 administradores</li></ul></div>
+        <p class="ps">Puesta en marcha y soporte personal</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan">
         <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
-        <ul><li>Sin límites</li><li>Soporte dedicado</li><li>Condiciones a medida</li></ul>
+        <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
+        <p class="ps">Puesta en marcha y soporte a medida</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
     </div>
@@ -2878,17 +2888,33 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "El cliente paga un 2 % y quien presta el servicio otro 2 %, calculados sobre lo que se paga en la app, no sobre el total.": "The client pays 2% and the service provider another 2%, calculated on what is paid in the app, not on the total.",
     "Los pagos los gestiona Stripe. Favent nunca marca nada como pagado sin su confirmación.": "Payments are handled by Stripe. Favent never marks anything as paid without its confirmation.",
     "Para empezar": "To get started",
-    "Hasta 2 servicios publicados": "Up to 2 published services",
-    "Un QR para tu hotel": "One QR code for your hotel",
     "Agenda, reservas y mensajes": "Calendar, bookings and messages",
     "Informes básicos": "Basic reports",
     "Para crecer": "To grow",
-    "Hasta 8 servicios publicados": "Up to 8 published services",
-    "Más colaboradores y más QR": "More partners and more QR codes",
     "Informes completos": "Full reports",
     "A medida": "Tailored",
     "Sin límites": "No limits",
-    "Soporte dedicado": "Dedicated support",
+    "1 servicio publicado": "1 published service",
+    "Te reservan tus colaboradores: hasta 10, y 5 colegas": "Booked by your partners: up to 10, plus 5 peers",
+    "2 usuarios": "2 users",
+    "1 ubicación": "1 location",
+    "Reservas a tus colaboradores: hasta 20": "You book with your partners: up to 20",
+    "1 código QR": "1 QR code",
+    "Puesta en marcha y soporte estándar": "Standard onboarding and support",
+    "Hasta 6 servicios publicados": "Up to 6 published services",
+    "Agenda y Google Calendar": "Calendar and Google Calendar",
+    "Te reserva toda la red: 25 colaboradores y 10 colegas": "Booked by the whole network: 25 partners and 10 peers",
+    "5 usuarios, hasta 2 administradores": "5 users, up to 2 administrators",
+    "Informes completos y extracto CSV": "Full reports and CSV export",
+    "2 ubicaciones": "2 locations",
+    "Reservas a tus colaboradores y a toda la red Favent": "You book with your partners and the whole Favent network",
+    "2 códigos QR": "2 QR codes",
+    "Ordenas tu catálogo": "You order your catalog",
+    "Colaboradores sin límite": "Unlimited partners",
+    "Informes avanzados y extracto CSV": "Advanced reports and CSV export",
+    "Puesta en marcha y soporte personal": "Personal onboarding and support",
+    "Todo a medida": "Everything tailored",
+    "Puesta en marcha y soporte a medida": "Tailored onboarding and support",
     "Condiciones a medida": "Tailored terms",
     "Preguntas": "Questions",
     "Lo que nos suelen preguntar.": "What people usually ask us.",
