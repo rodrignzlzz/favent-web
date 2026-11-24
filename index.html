@@ -1121,6 +1121,14 @@ body::after{display:none !important}
 .nw-plan li{display:flex;gap:10px;align-items:baseline}
 .nw-plan li::before{content:"";width:10px;height:6px;border-left:2px solid #1E2226;border-bottom:2px solid #1E2226;transform:rotate(-45deg) translateY(-3px);flex:none}
 .nw-plan .ps{margin:0;font-size:14px;color:#50565C}
+.nw-plan .pr{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.nw-plan .pr b{font-size:30px;font-weight:600;letter-spacing:-0.02em}
+.nw-plan .pr span{font-family:'Geist Mono',monospace;font-size:13px;color:#50565C}
+.plan-founder{max-width:640px;margin:0 auto 22px;padding:16px 22px;border-radius:18px;text-align:center;display:grid;gap:6px;border:1px solid rgba(255,79,154,.45);background:radial-gradient(120% 120% at 50% 0%,rgba(255,79,154,.16),rgba(255,79,154,0) 70%),#121826}
+.plan-founder .pk{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#FF8FBF}
+.plan-founder p{margin:0;font-size:16px;line-height:1.5;color:#C5CCD6}
+.plan-founder b{color:#E9EEF6;font-weight:600}
+.plan-note{max-width:720px;margin:20px auto 0;text-align:center;font-size:14px;line-height:1.5;color:#A7B1C2}
 
 /* Preguntas */
 .nw-faq{display:grid;border-top:1px solid #E6E7E3;max-width:860px}
@@ -1273,7 +1281,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 .nw-note{color:#8592A6;text-align:center}
 .nw-plan .pp{color:#A7B1C2}
 .nw-plan ul{color:#C5CCD6}
-.nw-plan .ps{color:#A7B1C2}
+.nw-plan .ps,.nw-plan .pr span{color:#A7B1C2}
 .plan-tabs{display:flex;width:max-content;max-width:100%;margin:0 auto 28px;padding:3px;gap:2px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
 .plan-tabs button{height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:#A7B1C2;font:600 14px/1 'Funnel Display',sans-serif;cursor:pointer;transition:background .25s ease,color .25s ease}
 .plan-tabs button:hover{color:#E9EEF6}
@@ -1854,7 +1862,11 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div class="nw-head">
       <span class="nw-eb">Planes</span>
       <h2 id="h-planes">Un plan para cada empresa<span class="dot-p">.</span></h2>
-      <p class="nw-lead">Una cuota anual según el plan. Empieza con lo esencial y crece cuando lo necesites.</p>
+      <p class="nw-lead">Una cuota al mes según el plan. Empieza con lo esencial y crece cuando lo necesites.</p>
+    </div>
+    <div class="plan-founder">
+      <span class="pk">Precio fundador · hasta el 15 de febrero de 2027</span>
+      <p><b>Plan Pro todo 2027 por 99 € + IVA.</b> Para las empresas que entren antes del 15 de febrero.</p>
     </div>
     <div class="plan-tabs" role="group" aria-label="Tipo de empresa">
       <button type="button" data-plans="ofreces" aria-pressed="true">Si ofreces servicios</button>
@@ -1863,18 +1875,21 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div class="nw-plans" data-kind="ofreces" aria-label="Planes si ofreces servicios">
       <div class="nw-plan">
         <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
+        <div class="pr"><b>29 €</b><span>al mes + IVA</span></div>
         <ul><li>1 servicio publicado</li><li>Agenda</li><li>Te reservan solo tus colaboradores: hasta 10</li><li>5 colegas para pasaros reservas</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li><li>Informes básicos</li><li>1 ubicación</li></ul>
         <p class="ps">Puesta en marcha y soporte estándar</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
+        <div class="pr"><b>44,95 €</b><span>al mes + IVA</span></div>
         <ul><li>Hasta 6 servicios publicados</li><li>Agenda y Google Calendar</li><li>Te reserva toda la red Favent</li><li>25 colaboradores y 10 colegas</li><li>5 usuarios, hasta 2 administradores</li><li>Informes completos y extracto CSV</li><li>2 ubicaciones</li></ul>
         <p class="ps">Puesta en marcha y soporte personal</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan">
-        <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
+        <div class="pn"><b>Enterprise</b><span class="pp">Para grupos</span></div>
+        <div class="pr"><b>A medida</b><span>según tu negocio</span></div>
         <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
         <p class="ps">Puesta en marcha y soporte a medida</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
@@ -1883,23 +1898,27 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     <div class="nw-plans" data-kind="recomiendas" aria-label="Planes si recomiendas">
       <div class="nw-plan">
         <div class="pn"><b>Starter</b><span class="pp">Para empezar</span></div>
+        <div class="pr"><b>29 €</b><span>al mes + IVA</span></div>
         <ul><li>Reservas a tus colaboradores: hasta 20</li><li>1 código QR</li><li>Catálogo en el orden de serie</li><li>Informes básicos</li><li>2 usuarios: 1 administrador y 1 usuario o encargado</li></ul>
         <p class="ps">Puesta en marcha y soporte estándar</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan pro">
         <div class="pn"><b>Pro<span class="dot-p">.</span></b><span class="pp">Para crecer</span></div>
+        <div class="pr"><b>44,95 €</b><span>al mes + IVA</span></div>
         <ul><li>Reservas a tus colaboradores y a toda la red Favent</li><li>2 códigos QR</li><li>Ordenas tu catálogo</li><li>Colaboradores sin límite</li><li>Informes avanzados y extracto CSV</li><li>5 usuarios, hasta 2 administradores</li></ul>
         <p class="ps">Puesta en marcha y soporte personal</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
       <div class="nw-plan">
-        <div class="pn"><b>Enterprise</b><span class="pp">A medida</span></div>
+        <div class="pn"><b>Enterprise</b><span class="pp">Para grupos</span></div>
+        <div class="pr"><b>A medida</b><span>según tu negocio</span></div>
         <ul><li>Todo a medida</li><li>Sin límites</li><li>Condiciones a medida</li></ul>
         <p class="ps">Puesta en marcha y soporte a medida</p>
         <a class="plan-cta" href="#acceso-final-sec">Solicitar información</a>
       </div>
     </div>
+    <p class="plan-note">Precios desde el 15 de febrero de 2027. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que paga en la app; a las empresas no se les descuenta nada por reserva.</p>
   </section>
   </div>
 
@@ -1910,7 +1929,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
       <h2 id="h-preguntas">Lo que nos suelen preguntar<span class="dot-p">.</span></h2>
     </div>
     <div class="nw-faq">
-      <details><summary>¿Cuánto cuesta?</summary><p>Una cuota anual según el plan. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app. A las empresas no se les descuenta nada por reserva.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, si entras antes del 15 de febrero de 2027, el plan Pro todo 2027 por 99 € + IVA. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.</p></details>
       <details><summary>¿Cómo y cuándo cobro?</summary><p>Con Stripe, directamente en tu cuenta bancaria. La comisión y el resto de la señal se envían al canjear el QR.</p></details>
       <details><summary>¿El cliente ve mi comisión?</summary><p>No. El cliente solo ve el precio, lo que paga ahora y lo que paga en el lugar.</p></details>
       <details><summary>¿Puedo apuntar mis reservas de fuera de Favent?</summary><p>Sí. La Agenda es completa: apuntas tus reservas de teléfono, web o en persona, y se sincroniza con Google Calendar.</p></details>
@@ -2817,7 +2836,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Crea tu cuenta": "Create your account",
     "¿Ya tienes cuenta?": "Already have an account?",
     "Crea tu cuenta. Favent revisa cada alta y te avisa en cuanto esté activa.": "Create your account. Favent reviews every sign-up and lets you know as soon as it is active.",
-    "Una cuota anual según el plan. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app. A las empresas no se les descuenta nada por reserva.": "A yearly fee depending on the plan. On top of that, the client pays a 3.25% service fee on what is paid in the app. Businesses pay nothing per booking.",
     "Cuatro pasos, sin perseguir a nadie": "Four steps, no chasing anyone",
     "Recomienda lo de siempre.": "Recommend what you always do.",
     "Ahora, cobrando": "Now, getting paid",
@@ -2827,7 +2845,6 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Lo que nos suelen preguntar": "What people usually ask us",
     "Empieza en el piloto de Mallorca": "Start in the Mallorca pilot",
     "Un plan para cada empresa": "A plan for every business",
-    "Una cuota anual según el plan. Empieza con lo esencial y crece cuando lo necesites.": "A yearly fee depending on the plan. Start with the essentials and grow when you need to.",
     "La forma profesional de gestionar tus comisiones": "The professional way to manage your commissions",
     "Cobras cada cliente que envías, sin perseguir a nadie.": "You get paid for every client you send, without chasing anyone.",
     "Reservas que llegan ya pagadas, de hoteles de tu zona.": "Bookings that arrive already paid, from hotels in your area.",
@@ -2924,6 +2941,17 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     "Reservas a tus colaboradores: hasta 20": "You book with your partners: up to 20",
     "1 código QR": "1 QR code",
     "Puesta en marcha y soporte estándar": "Standard onboarding and support",
+    "Una cuota al mes según el plan. Empieza con lo esencial y crece cuando lo necesites.": "A monthly fee depending on the plan. Start with the essentials and grow when you need to.",
+    "Precio fundador · hasta el 15 de febrero de 2027": "Founding price · until 15 February 2027",
+    "Plan Pro todo 2027 por 99 € + IVA.": "Pro plan for all of 2027 for €99 + VAT.",
+    "Para las empresas que entren antes del 15 de febrero.": "For businesses that join before 15 February.",
+    "29 €": "€29",
+    "44,95 €": "€44.95",
+    "al mes + IVA": "per month + VAT",
+    "según tu negocio": "for your business",
+    "Para grupos": "For groups",
+    "Precios desde el 15 de febrero de 2027. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que paga en la app; a las empresas no se les descuenta nada por reserva.": "Prices from 15 February 2027. On top of that, the client pays a 3.25% service fee on what they pay in the app; businesses pay nothing per booking.",
+    "Starter, 29 € al mes; Pro, 44,95 € al mes (+ IVA); Enterprise, a medida. Con el precio fundador, si entras antes del 15 de febrero de 2027, el plan Pro todo 2027 por 99 € + IVA. Además, el cliente paga unos gastos de gestión del 3,25 % de lo que se paga en la app; a las empresas no se les descuenta nada por reserva.": "Starter, €29 per month; Pro, €44.95 per month (+ VAT); Enterprise, tailored. With the founding price, if you join before 15 February 2027, the Pro plan for all of 2027 costs €99 + VAT. On top of that, the client pays a 3.25% service fee on what is paid in the app; businesses pay nothing per booking.",
     "Te reservan solo tus colaboradores: hasta 10": "Only your partners book with you: up to 10",
     "5 colegas para pasaros reservas": "5 peers to pass bookings to each other",
     "2 usuarios: 1 administrador y 1 usuario o encargado": "2 users: 1 administrator and 1 user or manager",
