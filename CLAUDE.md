@@ -35,6 +35,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - Identidad D, «Favent depurado» (16 nov 2026): carbón `#0B0F17` solo en el inicio, la llamada final y el pie; el resto claro como la app (`#F6F6F3`, tarjetas blancas, texto `#1E2226`). El rosa señal `#FF4F9A` en toques (el punto del logotipo repetido al final de cada titular, etiquetas, línea de los pasos, marcas; en texto pequeño `#C2185B`), nunca en párrafos ni fondos. Sin «gratis durante el piloto» en la web (decisión de Rodrigo, 16 nov). Sin rejilla de puntos, grano, vidrio, relieves ni azul eléctrico. Las pantallas de la app se dibujan en HTML (`.mini`, `.phone`) y llevan «Vista de ejemplo».
 - Tipografías: Funnel Display (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Michroma (solo la palabra del logotipo).
 - Identidad E, «Favent nocturno» (19 nov 2026, rama `oscuro-brillo`): toda la web en carbón, resplandor rosa y azul detrás del panel y de los bloques, menú flotante en píldora, cabeceras centradas y tarjetas en rejilla. Manda sobre la D en la web; detalle en `DESIGN.md`.
+- Limpieza (25 nov 2026, Rodrigo: «más sencilla, sin cambiar el estilo»): el resplandor solo en el inicio y en la llamada final; tarjetas y planes lisos; menú sin «B2B SERVICE» ni banderas; aviso de privacidad en una línea. Lo nuevo debe seguir esa línea: pocos elementos y nada flotando.
 - Sin naranja, sin degradados de color visibles (salvo el resplandor de la identidad E), sin emojis, sin transición de día y noche.
 - Botón principal: «Crear cuenta» → `https://app.favent.app/registro` (Favent revisa cada alta); «Entrar» → `https://app.favent.app/login`. El email de la llamada final sigue llegando a info@favent.es (Web3Forms).
 
@@ -42,7 +43,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - Idioma principal: **español**. Directo, profesional, cercano.
 - Expresión clave: "canal de ventas profesional".
 - **No usar** "comisionistas", "prescriptores" ni "proveedores" en la web. Usar: "quien recomienda", "quien ofrece / presta el servicio", "las dos empresas", "Si recomiendas", "Si ofreces servicios".
-- Contacto por WhatsApp (24 nov 2026): botón fijo abajo a la derecha al +34 633 952 154 («Consultar por WhatsApp»), con un mensaje ya escrito en el idioma de la web.
+- Contacto por WhatsApp (24 nov 2026): al +34 633 952 154 («Consultar por WhatsApp»), con un mensaje ya escrito en el idioma de la web. Desde el 25 nov es un icono dentro del menú de arriba, no un botón flotante (Rodrigo: que nada flote sobre la página).
 - No mencionar WhatsApp ni el efectivo como problema en el copy; hablar de "la forma profesional de gestionar tus comisiones".
 - Ubicación en el copy: **Mallorca** (no Pollença/Alcúdia).
 - Lema corto (desde el 23 nov 2026): "Connecting businesses." (en inglés también en la web en español; antes «Cada cliente que envías, cobrado.»).
