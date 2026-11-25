@@ -1629,10 +1629,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 .topnav .n-badge{display:none}
 .n-end{justify-self:end;display:flex;align-items:center;gap:6px}
 .topnav .lang-switch{height:auto !important;padding:0 !important;gap:0 !important;border:0 !important;box-shadow:none !important;background:transparent !important}
-.lang-switch button svg{display:none !important}
-.lang-switch button{height:36px !important;padding:0 9px !important;background:transparent !important;box-shadow:none !important;color:#8592A6 !important;letter-spacing:.06em}
-.lang-switch button[aria-pressed="true"]{color:#E9EEF6 !important}
-.lang-switch button:hover{color:#E9EEF6 !important}
+.lang-switch button{width:38px;height:36px !important;padding:0 !important;justify-content:center;font-size:0 !important;gap:0 !important;background:transparent !important;box-shadow:none !important;opacity:.4;transition:opacity .25s ease}
+.lang-switch button[aria-pressed="true"],.lang-switch button:hover{opacity:1}
 .topnav .wa{position:static;width:40px;height:40px;padding:0;justify-content:center;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);box-shadow:none}
 .topnav .wa span{display:none}
 .topnav .wa:hover{transform:none;border-color:rgba(255,255,255,.34)}
