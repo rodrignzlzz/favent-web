@@ -5,7 +5,7 @@
 ## Qué es Favent
 Favent es el canal de ventas profesional B2B entre empresas de servicios. Quien recomienda clientes y quien presta el servicio pactan una comisión; la reserva se paga por adelantado con una señal (vía Stripe), queda retenida y la comisión se libera automáticamente cuando se presta el servicio (canje por código QR).
 
-- Mercado inicial: Mallorca (náutico: chárter privado, yates, veleros, lanchas; también traslados, ciclismo y servicios privados). Test en Varsovia en estudio.
+- Mercado inicial: Mallorca (náutico: chárter privado, yates, veleros, lanchas; también traslados, ciclismo y servicios privados). Expansión prevista (decisión de Rodrigo, 25 nov 2026): resto de España, México y Argentina, hacia 2029. El test en Varsovia queda aplazado.
 - Dos flujos: (1) quien recomienda → quien presta el servicio; (2) entre colegas: un proveedor lleno pasa la reserva (o parte) a otro y cobra comisión.
 - Señal: la elige quien presta el servicio, en cada servicio. Al canjear el QR se liberan la comisión a quien recomendó y el resto de la señal a quien presta el servicio. (a) 50 % del total: el otro 50 % se cobra en la oficina. (b) 100 % del total: no queda nada por cobrar en la oficina. Ya no existe «Solo la comisión» (igual que en la app).
 - Gastos de gestión (24 nov 2026): el cliente paga un 3,25 % de lo que se paga en la app (la señal), no del total. Ni quien presta el servicio ni quien recomienda pagan nada por reserva (antes, desde el 19 nov, 2 % el cliente y 2 % quien presta el servicio). Cancelación: si el cliente cancela con más de 72 horas se le devuelve la señal (antes eran 48 h y un 2,75 % solo para el cliente).
@@ -64,10 +64,10 @@ Resumen (el detalle está en `DESIGN.md`):
 1b. Dominio favent.es: redirigir (301) a https://www.favent.app desde el proveedor del dominio; GitHub Pages solo admite un dominio por repositorio y el `CNAME` se queda en www.favent.app.
 2. Páginas legales: aviso legal, política de privacidad y cookies (RGPD/LSSI). Enlazarlas desde el pie.
 3. Sustituir marcadores de logos y fotos cuando haya material real.
-4. Versión en inglés (y quizá polaco) de la web.
+4. Versión en inglés de la web.
 5. Metadatos para compartir (Open Graph, imagen social).
 
 ## Contexto legal y de negocio (no reflejar en la web sin validar)
 - Marca: existe una marca española registrada "Faventy" (clase 42). Pendiente opinión de un agente de marcas antes de registrar "Favent".
-- Pagos previstos: Stripe Connect (cargos y transferencias separados). En Polonia, BLIK (solo PLN).
-- Estructura prevista: sp. z o.o. en Polonia, venta principal en España.
+- Pagos previstos: Stripe Connect (cargos y transferencias separados). Para México y Argentina habrá que revisar moneda, facturación y pasarela de cada país (confirmar si Stripe opera en Argentina). Polonia y BLIK, aplazados.
+- Estructura prevista (25 nov 2026, Rodrigo): una SL española. Ya no una sp. z o.o. en Polonia.
