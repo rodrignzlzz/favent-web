@@ -1004,7 +1004,7 @@ html:not(.cine) .motion-btn{display:none}
 body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .intro{position:relative;isolation:isolate}
 /* Fondo del inicio (26 nov): líneas en ondas (LineWaves), detrás del texto; se funde abajo y a los lados */
-.lw{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity .8s ease;-webkit-mask-image:radial-gradient(ellipse 34% 30% at 50% 56%,rgba(0,0,0,.18),#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 34% 30% at 50% 56%,rgba(0,0,0,.18),#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);mask-composite:intersect}
+.lw{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity .8s ease;-webkit-mask-image:radial-gradient(ellipse 36% 30% at 50% 57%,rgba(0,0,0,.14) 35%,#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 36% 30% at 50% 57%,rgba(0,0,0,.14) 35%,#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);mask-composite:intersect}
 .lw.on{opacity:1}
 .lw canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
 @media (prefers-reduced-motion: reduce){.lw{transition:none}}
@@ -5455,8 +5455,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 (function () {
   var box = document.getElementById('lw'); if (!box) return;
   var canvas = box.querySelector('canvas');
-  var O = { colors: ['#FF4F9A', '#E9ECF2', '#8FA6D9'], cycle: 1, speed: 0.3, lines: 56, width: 1.1, glow: 0.5, brightness: 0.85, highlight: 1,
-    highlightWidth: 1, warp: 1, scale: 1, rotation: -33 * Math.PI / 180, edge: 0.25, influence: 2, opacity: 0.42, maxRatio: 2 };
+  var O = { colors: ['#FF4F9A', '#E9ECF2', '#8FA6D9'], cycle: 2.2, speed: 0.5, lines: 56, width: 1.25, glow: 0.75, brightness: 1.1, highlight: 0.45,
+    highlightWidth: 1.8, warp: 1.45, scale: 1.15, rotation: -33 * Math.PI / 180, edge: 0.2, influence: 2.4, opacity: 0.55, maxRatio: 2 };
   var MAXR = 4, BUDGET = 2.4e6;
   var VERTEX = '#version 300 es\nconst vec2 corners[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));\nvoid main() { gl_Position = vec4(corners[gl_VertexID], 0.0, 1.0); }';
   var FRAGMENT = ['#version 300 es', 'precision highp float;',
