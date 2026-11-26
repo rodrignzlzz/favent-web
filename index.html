@@ -1003,6 +1003,11 @@ html:not(.cine) .motion-btn{display:none}
 /* ===== Texturas: grano en toda la página y retícula detrás del titular ===== */
 body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .intro{position:relative;isolation:isolate}
+/* Fondo del inicio (26 nov): líneas en ondas (LineWaves), detrás del texto; se funde abajo y a los lados */
+.lw{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity .8s ease;-webkit-mask-image:radial-gradient(ellipse 34% 30% at 50% 56%,rgba(0,0,0,.18),#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 34% 30% at 50% 56%,rgba(0,0,0,.18),#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);mask-composite:intersect}
+.lw.on{opacity:1}
+.lw canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+@media (prefers-reduced-motion: reduce){.lw{transition:none}}
 
 /* ===== Identidad D · «Favent depurado» (nov 2026): carbón y blanco, el rosa solo en el punto del logotipo.
    Fuera los puntos del titular, el grano, el vidrio y el azul eléctrico. Ver DESIGN.md. ===== */
@@ -1710,6 +1715,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <canvas class="net" id="net" aria-hidden="true"></canvas>
+    <div class="lw" id="lw" aria-hidden="true"><canvas></canvas></div>
     <p class="eyebrow h1-eb">Canal de ventas B2B · Piloto en Mallorca</p>
     <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Connecting</span></span> <span class="ln"><span><span class="dot-p">businesses.</span></span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 680px">Quien recomienda clientes y quien presta el servicio pactan la comisión. El cliente paga por adelantado y cada uno cobra solo.</p>
@@ -4947,7 +4953,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   }
   function netKick() { if (!NET.raf) NET.raf = requestAnimationFrame(netDraw); }
   function motionPause(pz) {
-    NET.paused = pz; LIVE.paused = pz;
+    NET.paused = pz; LIVE.paused = pz; if (window.LW) window.LW.pause(pz);
     $('motion-btn').setAttribute('aria-pressed', pz);
     if (pz) { sceneStop(); $('cursor').classList.remove('on'); } else { sceneRun(); netKick(); }
   }
@@ -5440,5 +5446,128 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 })();
 </script>
 
+<script>
+/*
+ * Fondo del inicio: líneas en ondas (LineWaves de React Bits, MIT, pasado a JavaScript sin React: la web no lleva
+ * build). WebGL2; sin WebGL2 no se dibuja nada y el inicio queda como antes. Se pausa con el botón de animaciones
+ * (window.LW.pause), fuera de la pantalla y con la pestaña oculta; con prefers-reduced-motion se dibuja quieto.
+ */
+(function () {
+  var box = document.getElementById('lw'); if (!box) return;
+  var canvas = box.querySelector('canvas');
+  var O = { colors: ['#FF4F9A', '#E9ECF2', '#8FA6D9'], cycle: 1, speed: 0.3, lines: 56, width: 1.1, glow: 0.5, brightness: 0.85, highlight: 1,
+    highlightWidth: 1, warp: 1, scale: 1, rotation: -33 * Math.PI / 180, edge: 0.25, influence: 2, opacity: 0.42, maxRatio: 2 };
+  var MAXR = 4, BUDGET = 2.4e6;
+  var VERTEX = '#version 300 es\nconst vec2 corners[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));\nvoid main() { gl_Position = vec4(corners[gl_VertexID], 0.0, 1.0); }';
+  var FRAGMENT = ['#version 300 es', 'precision highp float;',
+    'uniform vec2 uResolution; uniform float uPixel; uniform float uTime; uniform float uLines; uniform float uWidth; uniform float uGlow;',
+    'uniform float uBrightness; uniform float uHighlight; uniform float uHighlightWidth; uniform float uWarp; uniform float uScale; uniform float uRotation;',
+    'uniform vec3 uColor1; uniform vec3 uColor2; uniform vec3 uColor3; uniform float uCycle; uniform float uEdge; uniform vec4 uMouse;',
+    'uniform vec4 uRipples[' + MAXR + ']; uniform float uReveal; uniform float uOpacity;', 'out vec4 fragColor;',
+    'vec2 rotate(vec2 p, float a) { float c = cos(a); float s = sin(a); return vec2(c * p.x - s * p.y, s * p.x + c * p.y); }',
+    'float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }',
+    'float noise(vec2 p) { vec2 i = floor(p); vec2 f = p - i; vec2 w = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);',
+    '  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), w.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), w.x), w.y); }',
+    'float smootherstep(float e0, float e1, float x) { float t = clamp((x - e0) / (e1 - e0), 0.0, 1.0); return t * t * t * (t * (t * 6.0 - 15.0) + 10.0); }',
+    'float bend(vec2 p, float t) { vec2 q = p * 2.0 / uScale;',
+    '  float w = 0.6 * sin(q.x * 0.55 + t * 0.4 + 0.6 * sin(q.y * 0.9 - t * 0.28));',
+    '  w += 0.21 * sin(q.x * 1.3 - t * 0.33 + q.y * 0.8 + 1.3); w += 0.12 * sin(q.y * 2.3 + q.x * 0.9 - t * 0.37 + 0.4);',
+    '  return w * uWarp * uScale * 0.46; }',
+    'float river(vec2 p, float y, float t) {',
+    '  float drift = 0.7 * (0.18 * sin(p.x * 1.6 - t * 0.33 + 0.7) + 0.1 * sin(p.x * 3.1 + t * 0.21));',
+    '  float center = 0.5 * (0.2 * sin(t * 0.17) + 0.08 * sin(t * 0.29 + 1.3)); float width = 0.13 * uHighlightWidth;',
+    '  float near = (y - center - drift) / width; float far = (y + 0.22 * sin(t * 0.13 + 2.0) - drift * 0.6 + 0.3) / (width * 0.55);',
+    '  return max(exp(-near * near), exp(-far * far) * 0.7); }',
+    'vec3 palette(float x) { x = fract(x) * 3.0;',
+    '  if (x < 1.0) return mix(uColor1, uColor2, smoothstep(0.0, 1.0, x)); if (x < 2.0) return mix(uColor2, uColor3, smoothstep(1.0, 2.0, x));',
+    '  return mix(uColor3, uColor1, smoothstep(2.0, 3.0, x)); }',
+    'void main() {',
+    '  float aspect = uResolution.x / uResolution.y; vec2 uv = gl_FragCoord.xy / uResolution;',
+    '  vec2 p = rotate((gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y, uRotation); float t = uTime;',
+    '  vec2 mouse = rotate(uMouse.xy, uRotation); vec2 toMouse = p - mouse; float lens = exp(-dot(toMouse, toMouse) / (uMouse.w * uMouse.w));',
+    '  p.y -= (p.y - mouse.y) * lens * uMouse.z;',
+    '  float ring = 0.0;',
+    '  for (int i = 0; i < ' + MAXR + '; i++) { vec4 r = uRipples[i]; if (r.w <= 0.0) continue;',
+    '    float x = (length(p - rotate(r.xy, uRotation)) - r.z * 0.6) / 0.08; float fade = exp(-r.z * 1.3) * smoothstep(0.0, 0.12, r.z);',
+    '    float bump = exp(-x * x); p.y -= x * bump * 0.07 * fade; ring += bump * fade; }',
+    '  float w = bend(p, t); float y = p.y + w; float phi = y * uLines; float fw = max(fwidth(phi), 1e-5); float crowd = smoothstep(0.18, 0.5, fw);',
+    '  float fold = smoothstep(1.3, 2.2, fw * uResolution.y / uLines);',
+    '  float shimmer = mix(1.0, smoothstep(0.15, 0.85, noise(vec2(y * 1.6 + t * 0.07, p.x * 0.55 - t * 0.22))), 0.5);',
+    '  float lit = max(river(p, y, t), fold * 0.9) * shimmer; float light = mix(1.0, 0.07 + 0.93 * lit, uHighlight);',
+    '  light += (1.0 - light) * min(lens * step(0.0001, uMouse.z) * 0.9 + ring * 0.6, 1.0);',
+    '  float dist = abs(fract(phi + 0.5) - 0.5) / fw; float width = uWidth * uPixel * (1.0 + 1.5 * lit * uHighlight);',
+    '  float cover = clamp(min(dist + width * 0.5, 0.5) - max(dist - width * 0.5, -0.5), 0.0, 1.0); cover = mix(cover, min(width * fw, 1.0), crowd);',
+    '  float halo = exp(-dist / (2.2 * uPixel)) * (1.0 - crowd) * uGlow;',
+    '  float thread = mix(1.0, 0.55 + 0.45 * hash(vec2(floor(phi + 0.5), 7.3)), 0.45 * (1.0 - crowd));',
+    '  float span = 0.5 * sqrt(aspect * aspect + 1.0); float sweep = -span + (2.0 * span + 0.6) * uReveal; float reveal = 1.0 - smoothstep(sweep - 0.6, sweep, p.x);',
+    '  float edge = 1.0; if (uEdge > 0.0) { float ex = min(uv.x, 1.0 - uv.x) * aspect; float ey = min(uv.y, 1.0 - uv.y);',
+    '    edge = smootherstep(0.0, uEdge * 0.5, ex) * smootherstep(0.0, uEdge * 0.5, ey); }',
+    '  vec3 tint = palette(y * 0.3 + p.x * 0.2 + uCycle);',
+    '  float grain = (fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715)))) - 0.5) / 255.0;',
+    '  float strength = (cover + halo) * thread * light * uBrightness * reveal * edge;',
+    '  vec3 color = clamp(tint * strength * uOpacity, 0.0, 1.0); float alpha = max(color.r, max(color.g, color.b));',
+    '  color = clamp(color + grain, 0.0, 1.0); fragColor = vec4(min(color, vec3(alpha)), alpha); }'].join('\n');
+
+  var gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false });
+  if (!gl) return;
+  function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; }
+  var vs = sh(gl.VERTEX_SHADER, VERTEX), fs = sh(gl.FRAGMENT_SHADER, FRAGMENT); if (!vs || !fs) return;
+  var prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  var U = {}, n = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
+  for (var k = 0; k < n; k++) { var info = gl.getActiveUniform(prog, k); U[info.name.replace(/\[0\]$/, '')] = gl.getUniformLocation(prog, info.name); }
+  var vao = gl.createVertexArray();
+  function rgb(h) { h = h.replace('#', ''); return [0, 2, 4].map(function (i) { return parseInt(h.slice(i, i + 2), 16) / 255; }); }
+  var C = O.colors.map(rgb);
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var size = { w: 1, h: 1, r: 1 }, ptr = { x: 0, y: 0, inside: false }, lens = { x: 0, y: 0, p: 0, ready: false }, rip = [], ripD = new Float32Array(MAXR * 4);
+  var time = Math.random() * 60, cyc = 0, reveal = reduced ? 1 : 0, raf = 0, last = 0, seen = true, paused = false, dirty = true;
+  box.classList.add('on');
+  function fit() {
+    var r = box.getBoundingClientRect(), cw = Math.max(1, r.width), ch = Math.max(1, r.height);
+    var ratio = Math.min(devicePixelRatio || 1, O.maxRatio, Math.sqrt(BUDGET / (cw * ch)));
+    var w = Math.max(1, Math.round(cw * ratio)), h = Math.max(1, Math.round(ch * ratio));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    size.w = cw; size.h = ch; size.r = w / cw;
+  }
+  function field(x, y) { return [(x - size.w / 2) / size.h, (size.h / 2 - y) / size.h]; }
+  function frame(now) {
+    raf = 0; if (dirty) { dirty = false; fit(); }
+    var dt = clamp((now - last) / 1000 || 0, 0, 0.05); last = Math.max(last, now);
+    var run = !paused && !reduced;
+    if (run) { time += dt * O.speed * 2.5; cyc += dt * O.speed * O.cycle * 0.05; if (reveal < 1) reveal = Math.min(1, reveal + dt / 1.8); }
+    var tracking = run && ptr.inside;
+    if (tracking) { var f = field(ptr.x, ptr.y); if (!lens.ready) { lens.x = f[0]; lens.y = f[1]; lens.ready = true; } var fo = 1 - Math.exp(-dt * 10); lens.x += (f[0] - lens.x) * fo; lens.y += (f[1] - lens.y) * fo; }
+    var pres = tracking ? 1 : 0; lens.p += (pres - lens.p) * (1 - Math.exp(-dt * 5)); if (lens.p < 0.002 && !tracking) lens.ready = false;
+    for (var i = rip.length - 1; i >= 0; i--) { rip[i].age += dt; if (rip[i].age > 2.6) rip.splice(i, 1); }
+    ripD.fill(0); rip.forEach(function (r, j) { ripD[j * 4] = r.x; ripD[j * 4 + 1] = r.y; ripD[j * 4 + 2] = r.age; ripD[j * 4 + 3] = 1; });
+    var e = 1 - Math.pow(1 - reveal, 3);
+    gl.viewport(0, 0, canvas.width, canvas.height); gl.useProgram(prog); gl.bindVertexArray(vao);
+    gl.uniform2f(U.uResolution, canvas.width, canvas.height); gl.uniform1f(U.uPixel, size.r); gl.uniform1f(U.uTime, time);
+    gl.uniform1f(U.uLines, O.lines); gl.uniform1f(U.uWidth, O.width); gl.uniform1f(U.uGlow, O.glow); gl.uniform1f(U.uBrightness, O.brightness);
+    gl.uniform1f(U.uHighlight, O.highlight); gl.uniform1f(U.uHighlightWidth, O.highlightWidth); gl.uniform1f(U.uWarp, O.warp * (0.25 + 0.75 * e));
+    gl.uniform1f(U.uScale, O.scale); gl.uniform1f(U.uRotation, O.rotation);
+    gl.uniform3f(U.uColor1, C[0][0], C[0][1], C[0][2]); gl.uniform3f(U.uColor2, C[1][0], C[1][1], C[1][2]); gl.uniform3f(U.uColor3, C[2][0], C[2][1], C[2][2]);
+    gl.uniform1f(U.uCycle, cyc); gl.uniform1f(U.uEdge, O.edge); gl.uniform4f(U.uMouse, lens.x, lens.y, lens.p * O.influence * 0.16, 0.2);
+    gl.uniform4fv(U.uRipples, ripD); gl.uniform1f(U.uReveal, e); gl.uniform1f(U.uOpacity, O.opacity);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    var settling = Math.abs(pres - lens.p) > 0.002;
+    if ((run || settling || rip.length) && seen && !document.hidden) raf = requestAnimationFrame(frame);
+  }
+  function wake() { if (raf || !seen || document.hidden) return; last = performance.now(); raf = requestAnimationFrame(frame); }
+  function spot(ev) { var r = box.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top, inside: ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom }; }
+  addEventListener('pointermove', function (ev) { var s = spot(ev); ptr.x = s.x; ptr.y = s.y; ptr.inside = s.inside && ev.pointerType === 'mouse'; wake(); }, { passive: true });
+  addEventListener('pointerdown', function (ev) { if (paused || reduced) return; var s = spot(ev); if (!s.inside) return; var f = field(s.x, s.y); rip.push({ x: f[0], y: f[1], age: 0 }); if (rip.length > MAXR) rip.shift(); wake(); }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', function () { ptr.inside = false; wake(); });
+  if ('ResizeObserver' in window) new ResizeObserver(function () { dirty = true; wake(); }).observe(box);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es.some(function (x) { return x.isIntersecting; }); wake(); }).observe(box);
+  document.addEventListener('visibilitychange', wake);
+  canvas.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); cancelAnimationFrame(raf); raf = 0; seen = false; });
+  window.LW = { pause: function (pz) { paused = !!pz; wake(); } };
+  if (document.getElementById('motion-btn') && document.getElementById('motion-btn').getAttribute('aria-pressed') === 'true') paused = true;
+  wake();
+})();
+</script>
 </body>
 </html>

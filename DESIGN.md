@@ -387,6 +387,8 @@ Minimalista: mucho aire entre secciones y pocas cajas. Un bloque tiene que justi
 
 **`button-chip`**: cápsula pequeña en mono con relieve. 30 px.
 
+**Fondo del inicio: líneas en ondas** (`#lw`, 26 nov 2026, Rodrigo): el componente LineWaves de React Bits (MIT), pasado a JavaScript sin React porque la web no lleva build. WebGL2 detrás del texto del inicio; líneas finas en rosa señal `#FF4F9A`, blanco roto `#E9ECF2` y azul grisáceo `#8FA6D9`, opacidad 0,42, giradas −33°. Se apagan en el centro (máscara radial) para que el titular y el párrafo se lean, y se funden abajo hacia el panel. Reaccionan al ratón (se separan e iluminan) y un clic lanza una onda. Sin WebGL2 no se dibuja nada. Se para con `motion-btn`, fuera de pantalla y con la pestaña oculta; con `prefers-reduced-motion`, quietas.
+
 **`motion-btn`**: círculo de 36 px con relieve, abajo a la derecha del inicio, **solo con el icono** de pausa o reproducir. Pausa a la vez la rejilla y el panel de ejemplo. Es un botón conmutado: etiqueta fija «Pausar animaciones» (`aria-label`, traducida) y estado en `aria-pressed`. Oculto con movimiento reducido.
 
 Todos los botones: verbo al principio, 1–3 palabras, `transform: scale(.97)` al pulsar.
