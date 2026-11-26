@@ -1281,8 +1281,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,.nw-faq summary:focus-v
 .intro::before{content:"";position:absolute;z-index:-1;left:50%;top:-120px;width:100vw;height:600px;transform:translateX(-50%);pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:72px 72px;background-position:center top;-webkit-mask-image:radial-gradient(55% 70% at 50% 30%,#000,transparent 78%);mask-image:radial-gradient(55% 70% at 50% 30%,#000,transparent 78%)}
 .intro > .eyebrow{color:#C5CCD6;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:7px 14px;border-radius:999px;font-size:12px}
 .intro > .eyebrow::before{border-radius:50%}
-.intro h1 .h1-eb{display:flex;width:max-content;max-width:100%;margin:0 auto 24px;color:#C5CCD6;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:0;line-height:1.3}
-.intro h1 .h1-eb::before{border-radius:50%}
+.intro .h1-eb{display:flex;width:max-content;max-width:100%;margin:0 auto;color:#C5CCD6;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:0;line-height:1.3}
+.intro .h1-eb::before{border-radius:50%}
 .hero-cta .p{background:#FFFFFF;color:#0B0F17;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 12px 44px rgba(255,79,154,.32)}
 .hero-cta .g{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14)}
 .hero-cta .g:hover{border-color:rgba(255,255,255,.34)}
@@ -1710,7 +1710,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
 
   <header class="intro" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
     <canvas class="net" id="net" aria-hidden="true"></canvas>
-    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="eyebrow h1-eb">Canal de ventas B2B · Piloto en Mallorca</span><span class="ln"><span>Connecting</span></span> <span class="ln"><span><span class="dot-p">businesses.</span></span></span></h1>
+    <p class="eyebrow h1-eb">Canal de ventas B2B · Piloto en Mallorca</p>
+    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-size: clamp(42px, 7vw, 84px); font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; max-width: 900px"><span class="ln"><span>Connecting</span></span> <span class="ln"><span><span class="dot-p">businesses.</span></span></span></h1>
     <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: var(--ink-2); max-width: 680px">Quien recomienda clientes y quien presta el servicio pactan la comisión. El cliente paga por adelantado y cada uno cobra solo.</p>
     <div class="hero-cta"><a class="p" href="#recomiendas">Recomiendo clientes</a><a class="g" href="#ofreces">Ofrezco servicios</a></div>
     <p class="hero-note">¿Ya tienes cuenta? <a href="https://app.favent.app/login">Entrar</a></p>
