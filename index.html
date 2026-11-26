@@ -1006,6 +1006,8 @@ body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opa
 /* Fondo del inicio (26 nov): líneas en ondas (LineWaves), detrás del texto; se funde abajo y a los lados */
 .lw{position:absolute;z-index:-1;top:-120px;left:50%;width:100vw;height:calc(100% + 120px);transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity .8s ease;-webkit-mask-image:radial-gradient(ellipse 36% 30% at 50% 57%,rgba(0,0,0,.14) 35%,#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 36% 30% at 50% 57%,rgba(0,0,0,.14) 35%,#000 100%),linear-gradient(180deg,#000 55%,transparent 100%);mask-composite:intersect}
 .lw.on{opacity:1}
+/* En el móvil (26 nov, Rodrigo: «me agobia»): solo arriba, detrás del menú y la etiqueta; se desvanecen antes del titular */
+@media (max-width: 640px){.lw{-webkit-mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.55) 18%,transparent 34%);mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.55) 18%,transparent 34%)}}
 .lw canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
 @media (prefers-reduced-motion: reduce){.lw{transition:none}}
 
@@ -5456,7 +5458,8 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   var box = document.getElementById('lw'); if (!box) return;
   var canvas = box.querySelector('canvas');
   var O = { colors: ['#FF4F9A', '#E9ECF2', '#8FA6D9'], cycle: 1.3, speed: 0.3, lines: 56, width: 1.25, glow: 0.75, brightness: 1.1, highlight: 0.45,
-    highlightWidth: 1.8, warp: 1.15, scale: 1.15, rotation: -33 * Math.PI / 180, edge: 0.2, influence: 2.4, opacity: 0.55, maxRatio: 2 };
+    highlightWidth: 1.8, warp: 1.15, scale: 1.15, rotation: -33 * Math.PI / 180, edge: 0, influence: 2.4, opacity: 0.55, maxRatio: 2 };
+  if (matchMedia('(max-width: 640px)').matches) { O.speed = 0.18; O.opacity = 0.4; O.cycle = 0.8; } // en el móvil, más calmadas
   var MAXR = 4, BUDGET = 2.4e6;
   var VERTEX = '#version 300 es\nconst vec2 corners[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));\nvoid main() { gl_Position = vec4(corners[gl_VertexID], 0.0, 1.0); }';
   var FRAGMENT = ['#version 300 es', 'precision highp float;',
@@ -5522,7 +5525,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var size = { w: 1, h: 1, r: 1 }, ptr = { x: 0, y: 0, inside: false }, lens = { x: 0, y: 0, p: 0, ready: false }, rip = [], ripD = new Float32Array(MAXR * 4);
-  var time = Math.random() * 60, cyc = 0, reveal = reduced ? 1 : 0, raf = 0, last = 0, seen = true, paused = false, dirty = true;
+  var lines = O.lines, time = Math.random() * 60, cyc = 0, reveal = reduced ? 1 : 0, raf = 0, last = 0, seen = true, paused = false, dirty = true;
   box.classList.add('on');
   function fit() {
     var r = box.getBoundingClientRect(), cw = Math.max(1, r.width), ch = Math.max(1, r.height);
@@ -5530,6 +5533,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     var w = Math.max(1, Math.round(cw * ratio)), h = Math.max(1, Math.round(ch * ratio));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     size.w = cw; size.h = ch; size.r = w / cw;
+    lines = clamp(Math.round(ch / 11.5), 40, 160);
   }
   function field(x, y) { return [(x - size.w / 2) / size.h, (size.h / 2 - y) / size.h]; }
   function frame(now) {
@@ -5545,7 +5549,7 @@ a:hover .rl,button:hover .rl,a:focus-visible .rl,button:focus-visible .rl{transf
     var e = 1 - Math.pow(1 - reveal, 3);
     gl.viewport(0, 0, canvas.width, canvas.height); gl.useProgram(prog); gl.bindVertexArray(vao);
     gl.uniform2f(U.uResolution, canvas.width, canvas.height); gl.uniform1f(U.uPixel, size.r); gl.uniform1f(U.uTime, time);
-    gl.uniform1f(U.uLines, O.lines); gl.uniform1f(U.uWidth, O.width); gl.uniform1f(U.uGlow, O.glow); gl.uniform1f(U.uBrightness, O.brightness);
+    gl.uniform1f(U.uLines, lines); gl.uniform1f(U.uWidth, O.width); gl.uniform1f(U.uGlow, O.glow); gl.uniform1f(U.uBrightness, O.brightness);
     gl.uniform1f(U.uHighlight, O.highlight); gl.uniform1f(U.uHighlightWidth, O.highlightWidth); gl.uniform1f(U.uWarp, O.warp * (0.25 + 0.75 * e));
     gl.uniform1f(U.uScale, O.scale); gl.uniform1f(U.uRotation, O.rotation);
     gl.uniform3f(U.uColor1, C[0][0], C[0][1], C[0][2]); gl.uniform3f(U.uColor2, C[1][0], C[1][1], C[1][2]); gl.uniform3f(U.uColor3, C[2][0], C[2][1], C[2][2]);
