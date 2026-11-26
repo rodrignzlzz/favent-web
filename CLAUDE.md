@@ -38,6 +38,7 @@ Resumen (el detalle está en `DESIGN.md`):
 - Tipografías: Funnel Display (titulares y texto), Geist Mono (etiquetas, códigos, importes, estados), Michroma (solo la palabra del logotipo).
 - Identidad E, «Favent nocturno» (19 nov 2026, rama `oscuro-brillo`): toda la web en carbón, resplandor rosa y azul detrás del panel y de los bloques, menú flotante en píldora, cabeceras centradas y tarjetas en rejilla. Manda sobre la D en la web; detalle en `DESIGN.md`.
 - Limpieza (25 nov 2026, Rodrigo: «más sencilla, sin cambiar el estilo»): el resplandor solo en el inicio y en la llamada final; tarjetas y planes lisos; menú sin «B2B SERVICE» y con el idioma solo en banderitas, sin «ES / EN» (Rodrigo); aviso de privacidad en una línea. Lo nuevo debe seguir esa línea: pocos elementos y nada flotando.
+- Fondo del inicio (26 nov 2026, Rodrigo): líneas en ondas (LineWaves de React Bits, pasado a JavaScript sin React; `#lw` y el script al final de `index.html`). Detalle en `DESIGN.md`.
 - Sin naranja, sin degradados de color visibles (salvo el resplandor de la identidad E), sin emojis, sin transición de día y noche.
 - Botón principal: «Crear cuenta» → `https://app.favent.app/registro` (Favent revisa cada alta); «Entrar» → `https://app.favent.app/login`. El email de la llamada final sigue llegando a info@favent.es (Web3Forms).
 
