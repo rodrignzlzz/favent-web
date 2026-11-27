@@ -42,6 +42,8 @@ Resumen (el detalle está en `DESIGN.md`):
 - Sin naranja, sin degradados de color visibles (salvo el resplandor de la identidad E), sin emojis, sin transición de día y noche.
 - Botón principal: «Crear cuenta» → `https://app.favent.app/registro` (Favent revisa cada alta); «Entrar» → `https://app.favent.app/login`. El email de la llamada final sigue llegando a info@favent.es (Web3Forms).
 
+- Skills de diseño (27 nov 2026): las de Emil Kowalski (movimiento, tacto en el móvil, datos difíciles) están guardadas en `favent-app/.claude/skills/`; aquí no se guardan (`.gitignore`). Para usarlas en una sesión de la web: `npx skills@latest add emilkowalski/skills -a claude-code`. Reglas que salieron de usarlas: todo `:hover` dentro de `@media (hover:hover) and (pointer:fine)`, campos a 16 px en táctil, nunca bloquear el zoom y solo animar lo que evita un salto brusco (detalle en `DESIGN.md` → Motion y Touch Targets).
+
 ## Textos y tono
 - Idioma principal: **español**. Directo, profesional, cercano.
 - Expresión clave: "canal de ventas profesional".
