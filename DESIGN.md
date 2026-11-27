@@ -290,12 +290,13 @@ El panel de la app (`app.favent.app`, repositorio `favent-app`) tiene tres modos
 - **Cambio suave entre modos** (22 nov 2026, `ThemeFade.tsx`): al guardar otro modo en Ajustes, o en «Automático» cuando el dispositivo pasa a claro u oscuro, los colores (fondos, textos, bordes, sombras) se funden en 0,55 s con la curva `--ease` en vez de saltar. Solo mientras dura el cambio (`html[data-theme-fade]`); con `prefers-reduced-motion`, al momento.
 
 ### Modo claro en capas de la app (27 nov 2026, Rodrigo; referencia: vídeo «Admin Dashboard V2» de code.xr)
-Solo el modo claro del panel; el oscuro no cambia. Tres capas, una sobre otra:
+En los dos modos del panel (primero solo en claro; el mismo día Rodrigo lo pidió también en oscuro). Tres capas, una sobre otra; los valores de abajo son los del modo claro:
 - **Fondo con color** (`--g-bg`): de `#F2F5F9` a `#C8DBEC` en diagonal, con luz rosa señal al 24 % arriba a la derecha, azul `#2B6CA8` al 32 % abajo a la derecha y azul noche al 12 % abajo a la izquierda. Rodrigo lo pidió «un poco menos azul» que la primera prueba.
 - **Lámina de cristal** (`.ap-content`): blanco al 56 %, filo blanco de 1 px, sombra larga azulada y esquinas de 28 px (22 px en el móvil), separada 16 px de los bordes (8 px en el móvil). Sin desenfoque: el fondo ya es suave.
 - **Tarjetas translúcidas**: blanco al 64 % (bloques suaves al 42 %), líneas en azul noche al 12 %.
 - Opacos, para leerse bien: cajones, menús, avisos, el chat, «Guardar» pegado abajo y los mapas.
 - Dentro de la lámina, el gris pequeño pasa a `#565C62` y el azul de enlaces a `#245E94` (contraste 4,5:1 sobre el cristal).
+- **En oscuro** («que parezca una capa sobre el fondo, algo más de color, sin pasarse»): fondo de `#0A0E16` a `#0F1B30` en diagonal, con rosa señal al 15 % arriba a la derecha, azul `#2B6CA8` al 34 % abajo a la derecha y azul eléctrico al 9 % arriba a la izquierda; lámina blanca al 4 % con filo blanco al 8 %; tarjetas `rgba(24,32,48,.62)` y líneas blancas al 9 %. Textos y enlaces no cambian.
 - Código: final de `src/app/panel.css` en `favent-app`, variables `--g-*`.
 
 ### Semantic
