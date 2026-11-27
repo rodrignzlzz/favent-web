@@ -289,6 +289,15 @@ El panel de la app (`app.favent.app`, repositorio `favent-app`) tiene tres modos
 - Contraste mínimo 4,5:1 también en oscuro (lo comprueba la prueba de punta a punta del panel).
 - **Cambio suave entre modos** (22 nov 2026, `ThemeFade.tsx`): al guardar otro modo en Ajustes, o en «Automático» cuando el dispositivo pasa a claro u oscuro, los colores (fondos, textos, bordes, sombras) se funden en 0,55 s con la curva `--ease` en vez de saltar. Solo mientras dura el cambio (`html[data-theme-fade]`); con `prefers-reduced-motion`, al momento.
 
+### Modo claro en capas de la app (27 nov 2026, Rodrigo; referencia: vídeo «Admin Dashboard V2» de code.xr)
+Solo el modo claro del panel; el oscuro no cambia. Tres capas, una sobre otra:
+- **Fondo con color** (`--g-bg`): de `#F2F5F9` a `#C8DBEC` en diagonal, con luz rosa señal al 24 % arriba a la derecha, azul `#2B6CA8` al 32 % abajo a la derecha y azul noche al 12 % abajo a la izquierda. Rodrigo lo pidió «un poco menos azul» que la primera prueba.
+- **Lámina de cristal** (`.ap-content`): blanco al 56 %, filo blanco de 1 px, sombra larga azulada y esquinas de 28 px (22 px en el móvil), separada 16 px de los bordes (8 px en el móvil). Sin desenfoque: el fondo ya es suave.
+- **Tarjetas translúcidas**: blanco al 64 % (bloques suaves al 42 %), líneas en azul noche al 12 %.
+- Opacos, para leerse bien: cajones, menús, avisos, el chat, «Guardar» pegado abajo y los mapas.
+- Dentro de la lámina, el gris pequeño pasa a `#565C62` y el azul de enlaces a `#245E94` (contraste 4,5:1 sobre el cristal).
+- Código: final de `src/app/panel.css` en `favent-app`, variables `--g-*`.
+
 ### Semantic
 - **Error** ({colors.semantic-error}): mensajes de error sobre el lienzo.
 - **Error en pantalla** ({colors.semantic-error-on-screen}): mensajes de error dentro de una pantalla clara.
