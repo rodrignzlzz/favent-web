@@ -45,7 +45,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #7C
 .nav{position:sticky;top:12px;z-index:50;width:calc(100% - 32px);max-width:1080px;margin:14px auto 0;padding:8px 10px 8px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(16,21,31,.86);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);display:flex;align-items:center;gap:12px}
 .nav .links{display:flex;gap:4px;margin-left:auto;align-items:center}
 .nav .links a{height:40px;padding:0 12px;border-radius:999px;display:flex;align-items:center;font-size:14px;font-weight:500;color:var(--ink-2);text-decoration:none;white-space:nowrap}
-.nav .links a:hover,.nav .links a[aria-current]{color:var(--ink);background:rgba(255,255,255,.07)}
+.nav .links a[aria-current]{color:var(--ink);background:rgba(255,255,255,.07)}@media (hover:hover) and (pointer:fine){.nav .links a:hover{color:var(--ink);background:rgba(255,255,255,.07)}}
 .nav .cta{height:40px;padding:0 18px;border-radius:999px;background:#fff;color:#0B0F17;display:flex;align-items:center;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
 @media (max-width:860px){.nav .links a.hide-s{display:none}}
 @media (max-width:560px){.nav{border-radius:26px;flex-wrap:wrap;padding:10px 12px 10px 16px}.nav .links{order:3;width:100%;justify-content:center;margin:0}.nav .cta{margin-left:auto}}
@@ -59,7 +59,7 @@ h1{margin:20px auto 0;max-width:960px;font-size:clamp(36px,6vw,68px);font-weight
 .lead{margin:22px auto 0;max-width:680px;font-size:clamp(17px,2vw,20px);color:var(--ink-2)}
 .ctas{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
 .btn{height:52px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.18);color:var(--ink);background:rgba(255,255,255,.04)}
-.btn:hover{border-color:rgba(255,255,255,.4)}
+@media (hover:hover) and (pointer:fine){.btn:hover{border-color:rgba(255,255,255,.4)}}
 .btn.p{background:#fff;color:#0B0F17;border-color:#fff}
 .btn svg{color:#25D366}
 .note{margin-top:16px;font-size:14px;color:var(--ink-3)}
@@ -119,10 +119,10 @@ footer{border-top:1px solid #1C2333}
 footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-3)}
 footer nav{display:flex;flex-wrap:wrap;gap:18px}
 footer a{color:var(--ink-3);text-decoration:none}
-footer a:hover{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){footer a:hover{color:var(--ink)}}
 .wa{position:fixed;z-index:55;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 16px;border-radius:999px;background:#121826;border:1px solid rgba(255,255,255,.14);color:var(--ink);font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.45)}
 .wa svg{color:#25D366;flex:none}
-.wa:hover{border-color:rgba(255,255,255,.4)}
+@media (hover:hover) and (pointer:fine){.wa:hover{border-color:rgba(255,255,255,.4)}}
 @media (max-width:760px){.wa{width:52px;padding:0;justify-content:center;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}.wa span{display:none}}
 .shot video{width:100%;height:auto;aspect-ratio:16/9;display:block;border-radius:16px;border:1px solid var(--line);background:#0B0F17}
 .hero .shot{margin-top:48px}
@@ -148,8 +148,16 @@ footer a:hover{color:var(--ink)}
 .nav .links a.lng{border:0;padding:0 10px}
 .nav a.wa{position:static;flex:none;width:40px;height:40px;padding:0;justify-content:center;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);box-shadow:none}
 .nav a.wa span{display:none}
-.nav a.wa:hover{border-color:rgba(255,255,255,.34)}
+@media (hover:hover) and (pointer:fine){.nav a.wa:hover{border-color:rgba(255,255,255,.34)}}
 @media (max-width:560px){.nav a.wa{margin-left:auto}.nav .cta{margin-left:0}}
+/* Tacto en el móvil (27 nov 2026): sin el destello gris del navegador al tocar y respuesta al poner el dedo; los campos, a 16 px en pantallas táctiles (con menos, el iPhone acerca la página al escribir y no vuelve). Los :hover van dentro de @media (hover:hover) and (pointer:fine): en táctil se quedaban puestos tras tocar. */
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:where(a,button,summary,label,[role=button]){touch-action:manipulation}
+:where(button,summary,[role=button]){user-select:none;-webkit-user-select:none}
+@media (pointer:coarse){
+  input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{font-size:max(16px,1em)!important}
+  :is(a,button,summary,[role=button]):not([disabled]):active{opacity:.72}
+}
 </style>
 </head>
 <body>

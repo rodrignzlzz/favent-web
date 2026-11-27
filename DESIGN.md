@@ -505,7 +505,8 @@ Palabra gigante «favent.» en Michroma (clamp(52px, 14.5vw, 205px), interlinead
 ### Touch Targets
 - Botones principales de 44–52 px de alto; cápsulas de filtro de 38–44 px.
 - Pins del mapa con área táctil ampliada de 28 px.
-- Sin efectos hover en pantallas táctiles (`@media (hover: hover)`).
+- Sin efectos hover en pantallas táctiles: todo `:hover` va dentro de `@media (hover:hover) and (pointer:fine)` (27 nov 2026; en táctil se quedaban puestos después de tocar). Un `:hover` nuevo, igual.
+- **Tacto (27 nov 2026, web y app):** sin el destello gris del navegador al tocar (`-webkit-tap-highlight-color: transparent`); a cambio, enlaces y botones responden al poner el dedo (`:active` con opacidad 0,72 en `pointer:coarse`). `touch-action: manipulation` en lo que se toca y el texto de los botones no se selecciona al mantener el dedo. Campos a 16 px como mínimo en pantallas táctiles (con menos, el iPhone acerca la página al escribir). Nunca se bloquea el zoom.
 
 ### Collapsing Strategy
 - Menú: sin enlaces a secciones en ningún tamaño; por debajo de 640 px tampoco el botón.
