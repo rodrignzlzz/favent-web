@@ -1540,7 +1540,7 @@ html[lang="en"] .l-es,html:not([lang="en"]) .l-en{display:none !important}
 
 /* ===== Movimiento al estilo de la referencia (19 nov 2026) ===== */
 /* Pantalla de carga: un aro que gira con el logotipo; se va sola aunque falle el script */
-#pl{position:fixed;inset:0;z-index:1000;background:#0B0F17;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s ease;animation:plFail .6s ease 4.5s forwards}
+#pl{position:fixed;inset:0;z-index:1000;background:#0B0F17;display:grid;place-items:center;transition:opacity .35s ease,visibility .35s ease;animation:plFail .4s ease 2.5s forwards}
 #pl.out{opacity:0;visibility:hidden}
 .pl-ring{position:absolute;width:min(220px,46vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,79,154,0) 0deg,rgba(255,79,154,.95) 110deg,rgba(124,196,255,.9) 200deg,rgba(124,196,255,0) 320deg);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));animation:plSpin 1.4s linear infinite}
 .pl-logo{font-family:'Michroma',sans-serif;font-size:20px;letter-spacing:-0.02em;color:#E9EEF6;display:inline-flex;align-items:baseline;animation:plPulse 1.6s ease-in-out infinite}
@@ -1612,7 +1612,7 @@ a:focus-visible .rl,button:focus-visible .rl{transform:translateY(-1.6em)}@media
 .n-cta{position:relative}
 .n-cta .nl,.n-cta .nb{position:relative;z-index:1}
 @media (hover:hover) and (pointer:fine){.n-cta .nl:hover{background:transparent}}
-.nl-hl{position:absolute;left:0;top:50%;height:40px;margin-top:-20px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.16);opacity:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.9,.2,1),width .5s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
+.nl-hl{position:absolute;left:0;top:50%;height:40px;margin-top:-20px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.16);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.2,.9,.2,1),width .3s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
 .nl-hl.on{opacity:1}
 .nl-hl.jump{transition:opacity .3s ease}
 .n-cta .nl:active{transform:scale(.96)}
@@ -1626,7 +1626,7 @@ a:focus-visible .rl,button:focus-visible .rl{transform:translateY(-1.6em)}@media
   .mtab a{position:relative;z-index:1;height:46px;padding:0 18px;border-radius:999px;display:flex;align-items:center;font-size:14.5px;font-weight:500;color:#E9EEF6;text-decoration:none;white-space:nowrap;transition:color .35s ease,transform .2s cubic-bezier(.2,.8,.2,1)}
   .mtab a:active{transform:scale(.95)}
   .mtab a[aria-current="true"]{color:#0B0F17}
-  .mtab-t{position:absolute;left:0;top:5px;height:46px;border-radius:999px;background:#FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:transform .5s cubic-bezier(.2,.9,.2,1),width .5s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
+  .mtab-t{position:absolute;left:0;top:5px;height:46px;border-radius:999px;background:#FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;transition:transform .3s cubic-bezier(.2,.9,.2,1),width .3s cubic-bezier(.2,.9,.2,1),opacity .3s ease}
   .mtab-t.on{opacity:1}
   .pl-done .mtab:not(.off){animation:mtabIn .9s cubic-bezier(.2,.8,.2,1) .3s both}
 }
@@ -5442,7 +5442,8 @@ html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-
   var pl = document.getElementById('pl'), done = false, t0 = Date.now();
   function finish() {
     if (done) return; done = true;
-    var wait = Math.max(0, (rm ? 0 : 900) - (Date.now() - t0));
+    // (27 nov 2026) Sin espera mínima larga: antes el aro se quedaba 0,9 s aunque la página ya estuviera lista
+    var wait = Math.max(0, (rm ? 0 : 250) - (Date.now() - t0));
     setTimeout(function () {
       pl.classList.add('out');
       root.classList.add('pl-done');
@@ -5450,11 +5451,16 @@ html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-
       document.dispatchEvent(new Event('fv:ready'));
       heads.forEach(function (h) { if (io) io.observe(h); else play(h); });
       showCk();
-      setTimeout(function () { pl.remove(); }, 800);
+      setTimeout(function () { pl.remove(); }, 450);
     }, wait);
   }
-  if (document.readyState === 'complete') finish(); else window.addEventListener('load', finish);
-  setTimeout(finish, 3200);
+  // Basta con que estén las letras: las imágenes y los vídeos siguen llegando con la página ya a la vista
+  if (document.readyState === 'complete') finish();
+  else {
+    window.addEventListener('load', finish);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(finish);
+  }
+  setTimeout(finish, 1500);
 })();
 </script>
 
